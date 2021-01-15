@@ -1,17 +1,12 @@
 package Main;
 
-import App.Controllers.SceneController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import App.Config.Database;
-import javax.xml.crypto.Data;
 
 public class Main extends Application {
-    Stage window;
-    SceneController sc;
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../App/Scenes/sample.fxml"));
@@ -19,8 +14,8 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
 
-        Database database = new Database();
-        database.Connection();
+        //Database database = new Database();
+        //database.Connection();
     }
 
 
