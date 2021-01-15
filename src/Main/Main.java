@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import App.Config.Database;
+import javax.xml.crypto.Data;
 
 public class Main extends Application {
 
@@ -14,10 +16,14 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
+
+        Database database = new Database();
+        database.Connection();
     }
 
 
     public static void main(String[] args) {
         launch(args);
+
     }
 }
