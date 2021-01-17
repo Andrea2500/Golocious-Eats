@@ -6,4 +6,8 @@ public class LoginController extends BaseSceneController {
         this.sceneController.setScene("HomeCliente");
     }
 
+    public void creaAccBtn() throws Exception{
+
+    }
+
 }

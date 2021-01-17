@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.LoginController">
+   <top>
+      <Label alignment="CENTER" prefHeight="86.0" style="-fx-font-weight: bold;" text="GOLOCIOUS" textAlignment="CENTER" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="36.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <center>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField id="nomeField" promptText="Inserisci il tuo nome">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="300.0" right="300.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField id="cognomeField" promptText="Inserisci il tuo cognome">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="300.0" right="300.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField id="emailField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="748.0" promptText="Inserisci la tua email">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="300.0" right="300.0" />
+               </VBox.margin>
+            </TextField>
+            <PasswordField id="passwordField" promptText="Inserisci la tua password">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="300.0" right="300.0" />
+               </VBox.margin>
+            </PasswordField>
+            <TextField id="telefonoField" promptText="Inserisci il tuo numero di telefono">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="300.0" right="300.0" />
+               </VBox.margin>
+            </TextField>
+            <DatePicker id="dataNascitaField" prefHeight="26.0" prefWidth="200.0" promptText="Inserisci la tua data di nascita">
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </DatePicker>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button id="loginBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loginBtn" text="LOGIN" textAlignment="CENTER">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets left="300.0" right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="creaAccBtn" mnemonicParsing="false" text="Crea un account">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>
