@@ -22,7 +22,7 @@ public class SceneController extends Controller {
         this.window = window;
     }
 
-    private Stage getWindow(){
+    public Stage getWindow(){
         return window;
     }
 
@@ -30,6 +30,10 @@ public class SceneController extends Controller {
         Parent tableParent = FXMLLoader.load(getClass().getResource("../FXML/"+scene+".fxml"));
         Scene tableScene = new Scene(tableParent, 800, 450);
         this.window.setScene(tableScene);
+    }
+
+    public Scene getScene(){
+        return this.window.getScene();
     }
 
 }
