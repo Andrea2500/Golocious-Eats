@@ -5,15 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:controller="App.Scenes.Controller.LoginController"
-            stylesheets="@../../../Stylesheets/Golocious.css"
-            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.LoginController">
    <top>
-      <Label id="titleLabel" alignment="CENTER" prefHeight="86.0" style="-fx-font-weight: bold;"
-             text="GOLOCIOUS" textAlignment="CENTER" BorderPane.alignment="CENTER">
+      <Label id="titleLabel" alignment="CENTER" prefHeight="86.0" style="-fx-font-weight: bold;" text="GOLOCIOUS" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <font>
             <Font size="36.0" />
          </font>
@@ -38,8 +32,7 @@
                   <Insets bottom="15.0" left="300.0" right="300.0" />
                </VBox.margin>
             </TextField>
-            <TextField id="emailField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                       prefHeight="26.0" prefWidth="748.0" promptText="Inserisci la tua email">
+            <TextField id="emailField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="748.0" promptText="Inserisci la tua email">
                <VBox.margin>
                   <Insets bottom="15.0" left="300.0" right="300.0" />
                </VBox.margin>
@@ -54,16 +47,14 @@
                   <Insets bottom="15.0" left="300.0" right="300.0" />
                </VBox.margin>
             </TextField>
-            <DatePicker id="dataNascitaPick" managed="false" prefHeight="26.0" prefWidth="200.0"
-                        promptText="Inserisci la tua data di nascita" visible="false">
+            <DatePicker id="dataNascitaPick" managed="false" prefHeight="26.0" prefWidth="200.0" promptText="Inserisci la tua data di nascita" visible="false">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
             </DatePicker>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button id="loginBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-                          onAction="#loginBtnClick" prefHeight="12.0" prefWidth="51.0" text="LOGIN" textAlignment="CENTER">
+                  <Button id="loginBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loginBtnClick" prefHeight="12.0" prefWidth="51.0" text="Login" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>

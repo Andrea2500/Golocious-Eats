@@ -3,7 +3,7 @@ package App.Scenes.Controller;
 public class BaseSceneController {
     SceneController sceneController;
 
-    public BaseSceneController() {
+    public BaseSceneController(){
         this.sceneController = SceneController.getInstance();
     }
 
