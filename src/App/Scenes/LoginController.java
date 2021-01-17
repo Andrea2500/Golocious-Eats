@@ -1,8 +1,9 @@
-package App.Controllers;
+package App.Scenes;
 
+import App.Controllers.Controller;
 import javafx.event.ActionEvent;
 
-public class LoginController extends Controller{
+public class LoginController extends Controller {
 
     SceneController sceneController = new SceneController();
 
