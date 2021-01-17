@@ -13,6 +13,6 @@
       </Label>
    </top>
    <center>
-      <Button mnemonicParsing="false" onAction="#loginButton" text="LOGIN" BorderPane.alignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#loginBtn" text="LOGIN" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
