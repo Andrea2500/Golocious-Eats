@@ -64,6 +64,7 @@
 
 .date-picker-popup > * > .cell:hover{
     -fx-background-color: #d68c0f;
+    -fx-cursor: hand;
 }
 
 
@@ -73,6 +74,6 @@
 }
 
 
-.date-picker-popup > * >{
+.date-picker-popup > * {
     -fx-background-color: #001d63;
 }
