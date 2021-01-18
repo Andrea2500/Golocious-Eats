@@ -72,8 +72,3 @@
     -fx-background-color: #001d63;
     -fx-text-fill: #efa528;
 }
-
-
-.date-picker-popup > * {
-    -fx-background-color: #001d63;
-}
