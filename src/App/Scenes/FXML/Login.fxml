@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.LoginController">
    <top>
       <Label id="titleLabel" alignment="CENTER" prefHeight="86.0" style="-fx-font-weight: bold;" text="GOLOCIOUS" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <font>
@@ -22,59 +29,68 @@
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField id="nomeField" managed="false" promptText="Inserisci il tuo nome" visible="false">
+            <TextField id="nomeField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci il tuo nome" visible="false">
                <VBox.margin>
-                  <Insets bottom="15.0" left="300.0" right="300.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField id="cognomeField" managed="false" promptText="Inserisci il tuo cognome" visible="false">
+            <TextField id="cognomeField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci il tuo cognome" visible="false">
                <VBox.margin>
-                  <Insets bottom="15.0" left="300.0" right="300.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField id="emailField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="748.0" promptText="Inserisci la tua email">
+            <TextField id="emailField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci la tua email">
                <VBox.margin>
-                  <Insets bottom="15.0" left="300.0" right="300.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <PasswordField id="passwordField" promptText="Inserisci la tua password">
+            <PasswordField id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci la tua password">
                <VBox.margin>
-                  <Insets bottom="15.0" left="300.0" right="300.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </PasswordField>
-            <TextField id="telefonoField" managed="false" promptText="Inserisci il tuo numero di telefono" visible="false">
+            <TextField id="telefonoField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci il tuo numero di telefono" visible="false">
                <VBox.margin>
-                  <Insets bottom="15.0" left="300.0" right="300.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <DatePicker id="dataNascitaPick" managed="false" prefHeight="26.0" prefWidth="200.0" promptText="Inserisci la tua data di nascita" visible="false">
+            <DatePicker id="dataNascitaPick" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci la tua data di nascita" visible="false">
                <VBox.margin>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </DatePicker>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="800.0">
                <children>
-                  <Button id="loginBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loginBtnClick" prefHeight="12.0" prefWidth="51.0" text="Login" textAlignment="CENTER">
+                  <Button id="loginBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loginBtnClick" prefHeight="12.0" prefWidth="105.0" text="Login" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                      <HBox.margin>
-                        <Insets left="300.0" right="20.0" />
+                        <Insets right="10.0" />
                      </HBox.margin>
-                  </Button>
-                  <Button id="creaAccBtn" mnemonicParsing="false" onAction="#creaAccBtnClick" text="Crea un account">
-                     <HBox.margin>
+                     <VBox.margin>
                         <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button id="creaAccBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#creaAccBtnClick" prefHeight="12.0" prefWidth="130.0" text="Registrati">
+                     <HBox.margin>
+                        <Insets left="5.0" />
                      </HBox.margin>
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
                   </Button>
                </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
             </HBox>
          </children>
          <BorderPane.margin>
-            <Insets top="10.0" />
+            <Insets top="30.0" />
          </BorderPane.margin>
       </VBox>
    </center>
