@@ -62,12 +62,6 @@
 }
 
 
-.date-picker-popup > * > .cell > .days-of-the-next-month{
-    -fx-background-color: #172156;
-    -fx-text-fill: #e19a1f;
-}
-
-
 .date-picker-popup > * > .cell:hover{
     -fx-background-color: #e19a1f;
     -fx-cursor: hand;
@@ -80,6 +74,25 @@
 }
 
 
+.date-picker-popup > .month-year-pane{
+    -fx-padding: 10px 0px;
+}
+
+
 .date-picker-popup > .month-year-pane > * > .button{
     -fx-background-color: #e19a1f;
+    -fx-padding: 0px 5px;
+    -fx-border-insets: 0px;
+    -fx-border-radius: 50%;
+    -fx-border-color: #e19a1f;
+}
+
+
+.date-picker-popup > .month-year-pane > * > .button > *{
+    -fx-background-color: #172156;
+}
+
+
+.date-picker-popup > .month-year-pane > * > .button:hover{
+    -fx-border-color: #172156;
 }
