@@ -74,11 +74,6 @@
 }
 
 
-.date-picker-popup > .month-year-pane{
-    -fx-padding: 10px 0px;
-}
-
-
 .date-picker-popup > .month-year-pane > * > .button{
     -fx-background-color: #e19a1f;
     -fx-padding: 0px 5px;
