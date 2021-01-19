@@ -52,6 +52,7 @@
 
 .date-picker-popup > .month-year-pane > * > .label{
     -fx-text-fill: #172156;
+    -fx-font-weight: bolder;
 }
 
 
@@ -60,6 +61,11 @@
     -fx-text-fill: #172156;
 }
 
+
+.date-picker-popup > * > .cell > .days-of-the-next-month{
+    -fx-background-color: #172156;
+    -fx-text-fill: #e19a1f;
+}
 
 
 .date-picker-popup > * > .cell:hover{
@@ -74,3 +80,6 @@
 }
 
 
+.date-picker-popup > .month-year-pane > * > .button{
+    -fx-background-color: #e19a1f;
+}
