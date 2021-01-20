@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -84,4 +85,7 @@
          </BorderPane.margin>
       </ImageView>
    </top>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
 </BorderPane>

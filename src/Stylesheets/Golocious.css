@@ -45,6 +45,12 @@
 }
 
 
+.date-picker > .arrow-button:hover{
+    -fx-background-color: #e19a1f;
+    -fx-cursor: hand;
+}
+
+
 .date-picker-popup > .month-year-pane{
     -fx-background-color: #e19a1f;
 }
