@@ -7,4 +7,7 @@
    <center>
       <Button mnemonicParsing="false" onAction="#backBtn" text="Indietro" BorderPane.alignment="CENTER" />
    </center>
+   <bottom>
+      <Button mnemonicParsing="false" onAction="#mostraClienti" text="Chiamadb" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>
