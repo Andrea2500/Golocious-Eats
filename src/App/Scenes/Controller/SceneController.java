@@ -9,30 +9,30 @@ import java.io.IOException;
 
 public class SceneController extends Controller {
 
-    public static SceneController instance;
     private Stage window;
 
-    public static SceneController getInstance(){
+    public static SceneController instance;
+    public static SceneController getInstance() {
         if (instance == null)
             instance = new SceneController();
         return instance;
     }
 
-    public void setWindow(Stage window){
+    public void setWindow(Stage window) {
         this.window = window;
     }
 
-    public Stage getWindow(){
+    public Stage getWindow() {
         return window;
     }
 
-    public void setScene(String scene) throws IOException{
+    public void setScene(String scene) throws IOException {
         Parent tableParent = FXMLLoader.load(getClass().getResource("../FXML/"+scene+".fxml"));
         Scene tableScene = new Scene(tableParent, 800, 450);
         this.window.setScene(tableScene);
     }
 
-    public Scene getScene(){
+    public Scene getScene() {
         return this.window.getScene();
     }
 

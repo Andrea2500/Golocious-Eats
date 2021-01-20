@@ -1,7 +1,6 @@
 package App.Objects;
 
 import App.DAO.ClienteDAO;
-
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -18,6 +17,15 @@ public class Cliente {
         if (instance == null)
             instance = new Cliente(id);
         return instance;
+    }
+
+    public Cliente(String email) throws SQLException {
+        this.cdao = new ClienteDAO();
+        this.email = email;
+    }
+
+    public boolean loginConf(String email, String password) throws SQLException {
+        return this.cdao.loginConf(email, password);
     }
 
     public void setNome(String nome) {
@@ -56,16 +64,9 @@ public class Cliente {
         this.setData(id);
     }
 
+
     public void setData(Integer id) throws SQLException {
         cdao.getCliente(id,this);
-        return;
     }
-
-    public void printData(){
-        System.out.println(this.nome+" "+this.cognome);
-    }
-
-
-
 
 }
