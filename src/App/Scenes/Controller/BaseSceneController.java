@@ -31,8 +31,4 @@ public class BaseSceneController {
         };
     }
 
-    public String getValue(String passwordField) {
-        return ((PasswordField) sceneController.getScene().lookup("#"+passwordField)).getText();
-    }
-
 }

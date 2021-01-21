@@ -2,6 +2,7 @@ package App.Objects;
 
 import App.DAO.ClienteDAO;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Cliente {
@@ -13,9 +14,9 @@ public class Cliente {
     ClienteDAO cdao;
 
     public static Cliente instance;
-    public static Cliente getInstance(Integer id) throws SQLException {
+    public static Cliente getInstance(String email) throws SQLException {
         if (instance == null)
-            instance = new Cliente(id);
+            instance = new Cliente(email);
         return instance;
     }
 
@@ -52,18 +53,9 @@ public class Cliente {
         this.dataDiNascita = dataDiNascita;
     }
 
-    public Cliente(Integer id) throws SQLException {
-        this.cdao = new ClienteDAO();
-        this.nome = "";
-        this.cognome="";
-        this.email="";
-        this.telefono="";
-        this.id=id;
-        this.dataDiNascita = new Date();
-        this.indirizzoAttivo=0;
-        this.setData(id);
+    public void setID(Integer id) {
+        this.id = id;
     }
-
 
     public void setData(Integer id) throws SQLException {
         cdao.getCliente(id,this);

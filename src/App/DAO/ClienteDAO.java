@@ -20,14 +20,18 @@ public class ClienteDAO {
     }
 
     public boolean loginConf(String email, String password) throws SQLException {
-        ResultSet rs = this.db.getConnection().createStatement().executeQuery("select * from "+this.table);
-        while(rs.next()) {
-            if(rs.getString("email").equals(email) && rs.getString("password").equals(password)) {
-                return true;
-                //this.cliente = Cliente.getInstance(rs.getInt("clienteid"));
-            }
-        }
-        return false;
+        ResultSet rs = this.db.getConnection().createStatement().executeQuery("select * from "+this.table+" where email = '"+email+
+                                                                                  "' and password = '"+password+"'");
+        if(rs.next()){
+            cliente = Cliente.getInstance(rs.getString("email"));
+            cliente.setNome(rs.getString("nome"));
+            cliente.setCognome(rs.getString("cognome"));
+            cliente.setTelefono(rs.getString("telefono"));
+            cliente.setDataDiNascita(rs.getDate("DataDiNascita"));
+            cliente.setIndirizzoAttivo(rs.getInt("IndirizzoAttivo"));
+            cliente.setID(rs.getInt("ClienteID"));
+            return true;
+        } else return false;
     }
 
 
