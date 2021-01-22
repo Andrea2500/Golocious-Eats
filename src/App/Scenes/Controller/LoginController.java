@@ -25,7 +25,7 @@ public class LoginController extends BaseSceneController {
             String email = getValue("emailField", "textfield");
             String password = getValue("passwordField", "passwordfield");
             if(auth.Login(email,password)) {
-                this.sceneController.setScene("HomeCliente");
+                sceneController.Login();
             } else {
                 System.out.println("errore di login");
             }
@@ -47,7 +47,7 @@ public class LoginController extends BaseSceneController {
             LocalDate dataNascita = getValue("dataNascitaPicker");
             if(nome.length()>0 && cognome.length()>0 && email.length()>0 && password.length()>0 && telefono.length()>0 && dataNascita != null) {
                 if (auth.Register(nome, cognome, email, password, telefono, dataNascita)) {
-                    this.sceneController.setScene("HomeCliente");
+                    sceneController.Login();
                 }
             } else {
                 new AlertBox().display("Errore","Uno dei campi è vuoto");

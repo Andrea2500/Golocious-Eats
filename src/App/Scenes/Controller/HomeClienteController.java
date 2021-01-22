@@ -6,7 +6,7 @@ public class HomeClienteController extends BaseSceneController {
 
     public void backBtn() throws Exception {
         Cliente.getInstance().Reset();
-        sceneController.setScene("Login");
+        sceneController.Logout();
     }
 
 }

@@ -1,0 +1,3 @@
+eliminare alterbox
+inserire testo bind con errori pervenuti
+bordo rosso se si sbaglia

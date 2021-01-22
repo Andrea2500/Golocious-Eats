@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -16,7 +17,7 @@ public class AlertBox {
         alert.setTitle(title);
         alert.setMinWidth(300);
         alert.setMinHeight(200);
-        alert.getIcons().add(new javafx.scene.image.Image("../../Stylesheets/logo.jpg"));
+        alert.getIcons().add(new Image("/Stylesheets/logo.jpg"));
 
 
         Label text = new Label();
@@ -28,7 +29,7 @@ public class AlertBox {
         VBox layout = new VBox();
         layout.getChildren().addAll(text,close);
         layout.setAlignment(Pos.CENTER);
-        layout.getStylesheets().add("../../Stylesheets/Golocious.css");
+        layout.getStylesheets().add("../Stylesheets/Golocious.css");
 
         Scene scene = new Scene(layout);
 
