@@ -43,10 +43,14 @@ public class LoginController extends BaseSceneController {
             String password = getValue("passwordField", "passwordfield");
             String telefono = getValue("telefonoField", "textfield");
             LocalDate dataNascita = getValue("dataNascitaPicker");
-            if(auth.Register(nome, cognome, email, password, telefono, dataNascita)){
-                this.sceneController.setScene("HomeCliente");
+            if(nome.length()>0 && cognome.length()>0 && email.length()>0 && password.length()>0 && telefono.length()>0) {
+                if (auth.Register(nome, cognome, email, password, telefono, dataNascita)) {
+                    this.sceneController.setScene("HomeCliente");
+                } else {
+                    System.out.println("errore di registrazione");
+                }
             } else {
-                System.out.println("errore di registrazione");
+                System.out.println("Uno dei campi è vuoto");
             }
         }
     }
