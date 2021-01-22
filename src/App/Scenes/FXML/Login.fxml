@@ -35,7 +35,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <DatePicker id="dataNascitaPick" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci la tua data di nascita" showWeekNumbers="false" visible="false">
+            <DatePicker id="dataNascitaPicker" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci la tua data di nascita" showWeekNumbers="false" visible="false">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>

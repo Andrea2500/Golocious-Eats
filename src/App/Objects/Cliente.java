@@ -1,39 +1,34 @@
 package App.Objects;
 
-import App.Controllers.AuthController;
 import App.DAO.ClienteDAO;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Cliente {
 
     String nome,cognome,email,telefono;
-    Integer id;
-    Integer indirizzoAttivo;
-    Date dataDiNascita;
+    LocalDate dataNascita;
+    Integer indirizzoAttivo, id;
+    boolean auth;
+
     ClienteDAO cdao;
 
+
     public static Cliente instance;
-
-    public Cliente() throws SQLException {
-        this.cdao = new ClienteDAO();
-    }
-
     public static Cliente getInstance() throws SQLException {
         if (instance == null)
             instance = new Cliente();
         return instance;
     }
 
-    /*
-    public Cliente(String email) throws SQLException {
+    public Cliente() throws SQLException {
         this.cdao = new ClienteDAO();
-        this.email = email;
+        this.auth = false;
     }
-    */
 
-    public boolean loginConf(String email, String password) throws SQLException {
-        return this.cdao.loginConf(email, password);
+    public ClienteDAO getClienteDAO() {
+        return this.cdao;
     }
 
     public void setNome(String nome) {
@@ -56,12 +51,20 @@ public class Cliente {
         this.indirizzoAttivo = indirizzoAttivo;
     }
 
-    public void setDataDiNascita(Date dataDiNascita) {
-        this.dataDiNascita = dataDiNascita;
+    public void setDataNascita(LocalDate dataNascita) {
+        this.dataNascita = dataNascita;
     }
 
     public void setID(Integer id) {
         this.id = id;
+    }
+
+    public boolean isAuth() {
+        return this.auth;
+    }
+
+    public void setAuth(boolean auth) {
+        this.auth = auth;
     }
 
 }

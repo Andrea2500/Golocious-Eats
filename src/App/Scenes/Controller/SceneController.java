@@ -11,6 +11,7 @@ public class SceneController extends Controller {
 
     private Stage window;
 
+
     public static SceneController instance;
     public static SceneController getInstance() {
         if (instance == null)
