@@ -1,7 +1,7 @@
 package App.Objects;
 
 import App.DAO.ClienteDAO;
-import java.security.NoSuchAlgorithmException;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -65,6 +65,12 @@ public class Cliente {
 
     public void setAuth(boolean auth) {
         this.auth = auth;
+    }
+
+    public void Reset(){
+        this.id = null;
+        this.email = null;
+        this.setAuth(false);
     }
 
 }

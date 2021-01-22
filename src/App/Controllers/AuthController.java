@@ -59,4 +59,9 @@ public class AuthController extends Controller {
         return hexString.toString();
     }
 
+    public void Logout(){
+        cliente.Reset();
+        return;
+    }
+
 }
