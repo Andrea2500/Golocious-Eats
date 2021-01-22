@@ -43,8 +43,7 @@ public class ClienteDAO {
             pstmt.setDate(6, Date.valueOf(dataNascita));
             return pstmt.executeUpdate() > 0;
         } catch (PSQLException e) {
-            String error = dbe.getErrorMessage(e.getMessage());
-            System.out.println(error);
+            dbe.showError(dbe.getErrorMessage(e.getMessage()));
             return false;
         }
     }

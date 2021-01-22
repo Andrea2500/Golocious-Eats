@@ -1,7 +1,9 @@
 package App.Config;
 
-public class DBErrors {
+import App.Scenes.AlertBox;
 
+public class DBErrors {
+    AlertBox alert = new AlertBox();
 
     public String getErrorMessage(String error){
 
@@ -23,6 +25,10 @@ public class DBErrors {
 
     private boolean isErrorKey(String error,String key){
         return error.contains(key);
+    }
+
+    public void showError(String errore){
+        alert.display("Errore",errore);
     }
 
 

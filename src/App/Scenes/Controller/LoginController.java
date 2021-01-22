@@ -1,6 +1,8 @@
 package App.Scenes.Controller;
 
 import App.Controllers.AuthController;
+import App.Scenes.AlertBox;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -48,7 +50,7 @@ public class LoginController extends BaseSceneController {
                     this.sceneController.setScene("HomeCliente");
                 }
             } else {
-                System.out.println("Uno dei campi è vuoto");
+                new AlertBox().display("Errore","Uno dei campi è vuoto");
             }
         }
     }
