@@ -1,8 +1,8 @@
 package App.Objects;
 
+import App.Controllers.AuthController;
 import App.DAO.ClienteDAO;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Date;
 
 public class Cliente {
@@ -14,16 +14,23 @@ public class Cliente {
     ClienteDAO cdao;
 
     public static Cliente instance;
-    public static Cliente getInstance(String email) throws SQLException {
+
+    public Cliente() throws SQLException {
+        this.cdao = new ClienteDAO();
+    }
+
+    public static Cliente getInstance() throws SQLException {
         if (instance == null)
-            instance = new Cliente(email);
+            instance = new Cliente();
         return instance;
     }
 
+    /*
     public Cliente(String email) throws SQLException {
         this.cdao = new ClienteDAO();
         this.email = email;
     }
+    */
 
     public boolean loginConf(String email, String password) throws SQLException {
         return this.cdao.loginConf(email, password);
@@ -55,10 +62,6 @@ public class Cliente {
 
     public void setID(Integer id) {
         this.id = id;
-    }
-
-    public void setData(Integer id) throws SQLException {
-        cdao.getCliente(id,this);
     }
 
 }

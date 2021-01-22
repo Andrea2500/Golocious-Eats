@@ -23,18 +23,20 @@ public class ClienteDAO {
         ResultSet rs = this.db.getConnection().createStatement().executeQuery("select * from "+this.table+" where email = '"+email+
                                                                                   "' and password = '"+password+"'");
         if(rs.next()){
-            cliente = Cliente.getInstance(rs.getString("email"));
+            cliente = Cliente.getInstance();
             cliente.setNome(rs.getString("nome"));
             cliente.setCognome(rs.getString("cognome"));
+            cliente.setEmail(rs.getString("email"));
             cliente.setTelefono(rs.getString("telefono"));
-            cliente.setDataDiNascita(rs.getDate("DataDiNascita"));
-            cliente.setIndirizzoAttivo(rs.getInt("IndirizzoAttivo"));
-            cliente.setID(rs.getInt("ClienteID"));
+            cliente.setDataDiNascita(rs.getDate("datadinascita"));
+            cliente.setIndirizzoAttivo(rs.getInt("Indirizzoattivo"));
+            cliente.setID(rs.getInt("clienteid"));
             return true;
         } else return false;
     }
 
 
+    /*
     public void getCliente(Integer id,Cliente obj) throws SQLException {
         ResultSet rs = this.db.getConnection().createStatement().executeQuery("SELECT * FROM " + this.table + " WHERE clienteid=" + id);
         if (rs.next()) {
@@ -49,5 +51,6 @@ public class ClienteDAO {
             System.out.println("Utente non trovato");
         }
     }
+    */
 
 }
