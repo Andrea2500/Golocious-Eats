@@ -10,4 +10,8 @@ public class Database {
         return DriverManager.getConnection("jdbc:postgresql://localhost:5432/OOBD", "postgres", "root");
     }
 
+    public void closeConnection(Connection conn) throws SQLException {
+        conn.close();
+    }
+
 }
