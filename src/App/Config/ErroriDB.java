@@ -18,7 +18,9 @@ public class ErroriDB {
         }
         if(isErrorKey(error, "login_fallito")) {
             baseSceneController.errore("erroreLoginLabel", "Il login non è riuscito", false);
-
+        }
+        if(isErrorKey(error, "signup_fallito")) {
+            baseSceneController.errore("erroreLoginLabel", "Si è verificato un errore!", false);
         }
     }
 

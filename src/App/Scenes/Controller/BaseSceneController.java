@@ -55,15 +55,27 @@ public class BaseSceneController {
     }
 
 
-    public void inizializzaLabel(String id) {
+    public void inizializzaLabel(String id, boolean field) {
         Node node = this.getElementById(id);
-        String field = id.substring(6, id.indexOf("Label")).toLowerCase()+"Field";
-        getElementById(field).setStyle("-fx-border-color: transparent");
+        if(field){
+            String text = id.substring(6, id.indexOf("Label")).toLowerCase()+"Field";
+            getElementById(text).setStyle("-fx-border-color: transparent");
+        }
         ((Label) node).setText("");
     }
 
     public int eta(LocalDate datanascita) {
         return Period.between(datanascita, LocalDate.now()).getYears();
+    }
+
+    public void ResetErrori(){
+        inizializzaLabel("erroreNomeLabel", true);
+        inizializzaLabel("erroreCognomeLabel", true);
+        inizializzaLabel("erroreEmailLabel", true);
+        inizializzaLabel("errorePasswordLabel", true);
+        inizializzaLabel("erroreTelefonoLabel", true);
+        inizializzaLabel("erroreDatanascitaLabel", true);
+        inizializzaLabel("erroreLoginLabel", false);
     }
 
 }

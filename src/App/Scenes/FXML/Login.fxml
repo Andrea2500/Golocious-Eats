@@ -70,7 +70,7 @@
                   <Insets bottom="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </HBox>
-            <Label id="erroreLoginLabel" prefHeight="26.0" prefWidth="250.0">
+            <Label id="erroreLoginLabel" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="60.0" prefWidth="250.0" textOverrun="CLIP" wrapText="true">
                <VBox.margin>
                   <Insets right="5.0" top="10.0" />
                </VBox.margin>

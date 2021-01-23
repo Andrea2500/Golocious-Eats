@@ -39,7 +39,12 @@ public class ClienteDAO {
             pstmt.setString(4, password);
             pstmt.setString(5, telefono);
             pstmt.setDate(6, Date.valueOf(dataNascita));
-            return pstmt.executeUpdate() > 0;
+            if(pstmt.executeUpdate() > 0){
+                return true;
+            }else{
+                new ErroriDB().getErrorMessage("signup_fallito");
+                return false;
+            }
         } catch (PSQLException e) {
             edb.getErrorMessage(e.getMessage());
             return false;
