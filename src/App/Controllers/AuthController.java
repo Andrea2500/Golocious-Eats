@@ -29,7 +29,7 @@ public class AuthController extends Controller {
             cliente.setTelefono(rs.getString("telefono"));
             cliente.setDataNascita(rs.getDate("datadinascita").toLocalDate());
             cliente.setIndirizzoAttivo(rs.getInt("Indirizzoattivo"));
-            cliente.setID(rs.getInt("clienteid"));
+            cliente.setId(rs.getInt("clienteid"));
             cliente.setAuth(true);
             return true;
         } else {
@@ -61,11 +61,6 @@ public class AuthController extends Controller {
             hexString.append(hex);
         }
         return hexString.toString();
-    }
-
-    public void Logout(){
-        cliente.Reset();
-        return;
     }
 
 }

@@ -16,11 +16,12 @@ public class LoginController extends BaseSceneController {
     public void loginBtnClick() throws Exception {
         if(getVisibility("nomeField")){
             ResetErrori();
-            setLoginField();
+            setField(false);
         } else {
             String email = getValue("emailField", "textfield");
             String password = getValue("passwordField", "passwordfield");
             if(email.length() >0 && password.length() >0){
+                ResetErrori();
                 if(auth.Login(email,password))
                     sceneController.Login();
             }else {
@@ -38,7 +39,7 @@ public class LoginController extends BaseSceneController {
     public void registratiBtnClick() throws Exception {
         if (!getVisibility("nomeField")) {
             ResetErrori();
-            setRegisterField();
+            setField(true);
         } else {
             ResetErrori();
 
@@ -80,26 +81,15 @@ public class LoginController extends BaseSceneController {
         }
     }
 
-    public void setLoginField(){
-        setVisibility("nomeField", false);
-        setVisibility("erroreNomeLabel", false);
-        setVisibility("cognomeField", false);
-        setVisibility("erroreCognomeLabel", false);
-        setVisibility("telefonoField", false);
-        setVisibility("erroreTelefonoLabel", false);
-        setVisibility("datanascitaField", false);
-        setVisibility("erroreDatanascitaLabel", false);
-    }
-
-    public void setRegisterField(){
-        setVisibility("nomeField", true);
-        setVisibility("erroreNomeLabel", true);
-        setVisibility("cognomeField", true);
-        setVisibility("erroreCognomeLabel", true);
-        setVisibility("telefonoField", true);
-        setVisibility("erroreTelefonoLabel", true);
-        setVisibility("datanascitaField", true);
-        setVisibility("erroreDatanascitaLabel", true);
+    public void setField(boolean Register){
+        setVisibility("nomeField", Register);
+        setVisibility("erroreNomeLabel", Register);
+        setVisibility("cognomeField", Register);
+        setVisibility("erroreCognomeLabel", Register);
+        setVisibility("telefonoField", Register);
+        setVisibility("erroreTelefonoLabel", Register);
+        setVisibility("datanascitaField", Register);
+        setVisibility("erroreDatanascitaLabel", Register);
     }
 
 }

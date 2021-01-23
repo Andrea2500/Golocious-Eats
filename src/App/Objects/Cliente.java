@@ -11,8 +11,80 @@ public class Cliente {
     Integer indirizzoAttivo, id;
     boolean auth;
 
-    ClienteDAO cdao;
+    ClienteDAO clienteDAO;
 
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public LocalDate getDataNascita() {
+        return dataNascita;
+    }
+
+    public void setDataNascita(LocalDate dataNascita) {
+        this.dataNascita = dataNascita;
+    }
+
+    public Integer getIndirizzoAttivo() {
+        return indirizzoAttivo;
+    }
+
+    public void setIndirizzoAttivo(Integer indirizzoAttivo) {
+        this.indirizzoAttivo = indirizzoAttivo;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public boolean isAuth() {
+        return auth;
+    }
+
+    public void setAuth(boolean auth) {
+        this.auth = auth;
+    }
+
+    public ClienteDAO getClienteDAO() {
+        return clienteDAO;
+    }
+
+    public void setClienteDAO(ClienteDAO clienteDAO) {
+        this.clienteDAO = clienteDAO;
+    }
 
     public static Cliente instance;
     public static Cliente getInstance() throws SQLException {
@@ -22,49 +94,11 @@ public class Cliente {
     }
 
     public Cliente() throws SQLException {
-        this.cdao = new ClienteDAO();
+        this.clienteDAO = new ClienteDAO();
         this.auth = false;
     }
 
-    public ClienteDAO getClienteDAO() {
-        return this.cdao;
-    }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public void setIndirizzoAttivo(Integer indirizzoAttivo) {
-        this.indirizzoAttivo = indirizzoAttivo;
-    }
-
-    public void setDataNascita(LocalDate dataNascita) {
-        this.dataNascita = dataNascita;
-    }
-
-    public void setID(Integer id) {
-        this.id = id;
-    }
-
-    public boolean isAuth() {
-        return this.auth;
-    }
-
-    public void setAuth(boolean auth) {
-        this.auth = auth;
-    }
 
     public void Reset(){
         this.nome = null;

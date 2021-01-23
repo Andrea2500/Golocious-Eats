@@ -22,12 +22,12 @@ public class SceneController extends Controller {
         return instance;
     }
 
-    public void setWindow(Stage window) {
-        this.window = window;
-    }
-
     public Stage getWindow() {
         return window;
+    }
+
+    public void setWindow(Stage window) {
+        this.window = window;
     }
 
     public void setScene(String scene) throws IOException {

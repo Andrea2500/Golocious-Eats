@@ -45,11 +45,10 @@ public class ClienteDAO {
                 new ErroriDB().getErrorMessage("signup_fallito");
                 return false;
             }
-        } catch (PSQLException e) {
+        } catch(PSQLException e) {
             edb.getErrorMessage(e.getMessage());
             return false;
         }
-
     }
 
 }

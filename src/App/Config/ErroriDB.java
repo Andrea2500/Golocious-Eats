@@ -6,6 +6,7 @@ public class ErroriDB {
 
     BaseSceneController baseSceneController = new BaseSceneController();
 
+
     public void getErrorMessage(String error) {
         if(isErrorKey(error,"ck_email")) {
             baseSceneController.errore("erroreEmailLabel", "Inserisci un'email valida", true);

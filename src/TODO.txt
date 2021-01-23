@@ -1,2 +1,0 @@
-inizializzare erroreLoginLabel
-centrare erroreLoginLabel

@@ -54,7 +54,6 @@ public class BaseSceneController {
         ((Label) node).setText(errore);
     }
 
-
     public void inizializzaLabel(String id, boolean field) {
         Node node = this.getElementById(id);
         if(field){
