@@ -1,7 +1,6 @@
 package App.Objects;
 
 import App.DAO.ClienteDAO;
-
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -68,8 +67,12 @@ public class Cliente {
     }
 
     public void Reset(){
-        this.id = null;
+        this.nome = null;
+        this.cognome = null;
         this.email = null;
+        this.telefono = null;
+        this.dataNascita = null;
+        this.id = null;
         this.setAuth(false);
     }
 

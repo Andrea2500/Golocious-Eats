@@ -13,7 +13,7 @@ public class Main extends Application {
     SceneController sc = SceneController.getInstance();
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         sc.setWindow(primaryStage);
         Parent root = FXMLLoader.load(getClass().getResource("../App/Scenes/FXML/Login.fxml"));
         primaryStage.setTitle("Golocious");

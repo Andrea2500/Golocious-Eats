@@ -1,5 +1,6 @@
 package App.Controllers;
 
+import App.Config.ErroriDB;
 import App.Objects.Cliente;
 
 import java.nio.charset.StandardCharsets;
@@ -31,7 +32,10 @@ public class AuthController extends Controller {
             cliente.setID(rs.getInt("clienteid"));
             cliente.setAuth(true);
             return true;
-        } else return false;
+        } else {
+            new ErroriDB().getErrorMessage("login_fallito");
+            return false;
+        }
     }
 
     public boolean Register(String nome, String cognome, String email, String password, String telefono, LocalDate dataNascita) throws NoSuchAlgorithmException, SQLException {

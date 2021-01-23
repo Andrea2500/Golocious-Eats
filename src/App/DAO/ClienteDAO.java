@@ -1,7 +1,7 @@
 package App.DAO;
 
-import App.Config.DBErrors;
 import App.Config.Database;
+import App.Config.ErroriDB;
 import org.postgresql.util.PSQLException;
 import java.sql.*;
 import java.time.LocalDate;
@@ -12,13 +12,11 @@ public class ClienteDAO {
     String table;
 
     Database db;
-    DBErrors dbe;
+    ErroriDB edb = new ErroriDB();
 
 
     public ClienteDAO() throws SQLException {
-
         this.db = new Database();
-        this.dbe = new DBErrors();
         this.conn = db.getConnection();
         this.table = "Cliente";
     }
@@ -43,9 +41,10 @@ public class ClienteDAO {
             pstmt.setDate(6, Date.valueOf(dataNascita));
             return pstmt.executeUpdate() > 0;
         } catch (PSQLException e) {
-            dbe.showError(dbe.getErrorMessage(e.getMessage()));
+            edb.getErrorMessage(e.getMessage());
             return false;
         }
+
     }
 
 }
