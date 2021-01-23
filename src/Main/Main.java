@@ -17,7 +17,7 @@ public class Main extends Application {
         sc.setWindow(primaryStage);
         Parent root = FXMLLoader.load(getClass().getResource("../App/Scenes/FXML/Login.fxml"));
         primaryStage.setTitle("Golocious");
-        primaryStage.setScene(new Scene(root, 800, 450));
+        primaryStage.setScene(new Scene(root, 900, 480));
         primaryStage.show();
         primaryStage.getIcons().add(new Image("/Stylesheets/logo.jpg"));
     }

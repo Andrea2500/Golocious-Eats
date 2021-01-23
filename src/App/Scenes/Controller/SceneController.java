@@ -2,7 +2,6 @@ package App.Scenes.Controller;
 
 import App.Controllers.Controller;
 import App.Objects.Cliente;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -32,7 +31,7 @@ public class SceneController extends Controller {
 
     public void setScene(String scene) throws IOException {
         Parent tableParent = FXMLLoader.load(getClass().getResource("../FXML/"+scene+".fxml"));
-        Scene tableScene = new Scene(tableParent, 800, 450);
+        Scene tableScene = new Scene(tableParent, 900, 475);
         this.window.setScene(tableScene);
     }
 

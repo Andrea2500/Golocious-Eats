@@ -9,135 +9,111 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.LoginController">
    <center>
-      <VBox prefHeight="290.0" prefWidth="559.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextField id="nomeField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci il tuo nome" visible="false">
-               <VBox.margin>
-                  <Insets bottom="5.0" right="5.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField id="cognomeField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci il tuo cognome" visible="false">
-               <VBox.margin>
-                  <Insets bottom="10.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField id="emailField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci la tua email">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </TextField>
-            <PasswordField id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci la tua password">
-               <VBox.margin>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </PasswordField>
-            <TextField id="telefonoField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci il tuo numero di telefono" visible="false">
-               <VBox.margin>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </TextField>
-            <DatePicker id="datanascitaField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci la tua data di nascita" showWeekNumbers="false" visible="false">
-               <VBox.margin>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </DatePicker>
-            <HBox prefHeight="0.0" prefWidth="800.0">
-               <children>
-                  <Button id="loginBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loginBtnClick" prefHeight="12.0" prefWidth="105.0" text="Login" textAlignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="480.0" prefWidth="900.0">
+         <ImageView fitHeight="229.0" fitWidth="249.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../../../Stylesheets/LogoTitle.jpg"/>
+         </ImageView>
+         <HBox alignment="CENTER">
+            <VBox.margin>
+               <Insets bottom="5.0"/>
+            </VBox.margin>
+            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="300.0" spacing="17.5">
+               <padding>
+                  <Insets top="4.0"/>
+               </padding>
+               <Label id="erroreNomeLabel" managed="false" visible="false">
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </Label>
+               <Label id="erroreCognomeLabel" managed="false" visible="false">
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </Label>
+               <Label id="erroreEmailLabel">
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </Label>
+               <Label id="errorePasswordLabel">
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </Label>
+               <Label id="erroreTelefonoLabel" managed="false" visible="false">
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </Label>
+               <Label id="erroreDatanascitaLabel" managed="false" visible="false">
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </Label>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="300.0" spacing="10.0">
+               <TextField id="nomeField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity"
+                          prefHeight="26.0" prefWidth="250.0" promptText="Inserisci il tuo nome" visible="false">
+                  <VBox.margin>
+                     <Insets/>
+                  </VBox.margin>
+               </TextField>
+               <TextField id="cognomeField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity"
+                          prefHeight="26.0" prefWidth="250.0" promptText="Inserisci il tuo cognome"
+                          visible="false">
+                  <VBox.margin>
+                     <Insets/>
+                  </VBox.margin>
+               </TextField>
+               <TextField id="emailField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0"
+                          prefWidth="250.0" promptText="Inserisci la tua email">
+                  <VBox.margin>
+                     <Insets/>
+                  </VBox.margin>
+               </TextField>
+               <PasswordField id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0"
+                              prefWidth="250.0" promptText="Inserisci la tua password"/>
+               <TextField id="telefonoField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity"
+                          prefHeight="26.0" prefWidth="250.0" promptText="Inserisci il tuo numero di telefono"
+                          visible="false"/>
+               <DatePicker id="datanascitaField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity"
+                           prefHeight="26.0" prefWidth="250.0" promptText="Inserisci la tua data di nascita"
+                           showWeekNumbers="false" visible="false"/>
+               <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="300.0">
+                  <Button id="loginBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity"
+                          maxWidth="-Infinity" mnemonicParsing="false" onAction="#loginBtnClick"
+                          prefHeight="12.0" prefWidth="105.0" text="Login" textAlignment="CENTER">
                      <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                      </padding>
                      <HBox.margin>
-                        <Insets right="10.0" />
+                        <Insets right="10.0"/>
                      </HBox.margin>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
                   </Button>
-                  <Button id="creaAccBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#registratiBtnClick" prefHeight="12.0" prefWidth="130.0" text="Registrati">
+                  <Button id="creaAccBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+                          mnemonicParsing="false" onAction="#registratiBtnClick" prefHeight="12.0"
+                          prefWidth="130.0" text="Registrati">
                      <HBox.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0"/>
                      </HBox.margin>
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis>
-                     <VBox.margin>
-                        <Insets left="10.0" />
-                     </VBox.margin>
                   </Button>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </HBox>
-            <Label id="erroreLoginLabel" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="60.0" prefWidth="250.0" textOverrun="CLIP" wrapText="true">
-               <VBox.margin>
-                  <Insets right="5.0" top="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-         </children>
-         <BorderPane.margin>
-            <Insets top="20.0" />
-         </BorderPane.margin>
+               </HBox>
+               <Label id="erroreLoginLabel" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="60.0"
+                      prefWidth="250.0" textOverrun="CLIP" wrapText="true">
+                  <VBox.margin>
+                     <Insets right="5.0" top="10.0"/>
+                  </VBox.margin>
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </Label>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0"/>
+         </HBox>
       </VBox>
    </center>
-   <top>
-      <ImageView fitHeight="140.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@../../../Stylesheets/LogoTitle.jpg" />
-         </image>
-         <BorderPane.margin>
-            <Insets right="2.0" />
-         </BorderPane.margin>
-      </ImageView>
-   </top>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>
-   <left>
-      <VBox alignment="TOP_RIGHT" prefHeight="310.0" prefWidth="275.0" spacing="17.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label id="erroreNomeLabel" managed="false" visible="false">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label id="erroreCognomeLabel" managed="false" visible="false">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label id="erroreEmailLabel">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <Label id="errorePasswordLabel">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label id="erroreTelefonoLabel" managed="false" visible="false">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label id="erroreDatanascitaLabel" managed="false" visible="false">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-         </children>
-         <BorderPane.margin>
-            <Insets top="20.0" />
-         </BorderPane.margin>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets right="15.0" top="5.0" />
-         </padding></VBox>
-   </left>
 </BorderPane>

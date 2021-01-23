@@ -11,7 +11,9 @@ public class Database {
     }
 
     public void closeConnection(Connection conn) throws SQLException {
-        conn.close();
+        if(conn != null) {
+            conn.close();
+        }
     }
 
 }

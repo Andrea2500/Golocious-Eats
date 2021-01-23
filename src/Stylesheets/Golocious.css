@@ -26,6 +26,7 @@
     -fx-text-fill: #172156;
     -fx-prompt-text-fill: #172156;
     -fx-border-color: transparent;
+    -fx-border-radius: 3px;
 }
 
 
