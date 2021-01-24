@@ -1,5 +1,0 @@
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="App.Scenes.Controller.**********" prefHeight="480.0"
-            prefWidth="900.0" stylesheets="@../../../Stylesheets/Golocious.css">
-
-</BorderPane>

@@ -16,4 +16,5 @@ public class ImpostazioniController extends BaseSceneController{
     public void logoutBtn() throws IOException, SQLException {
         sceneController.logout();
     }
+
 }

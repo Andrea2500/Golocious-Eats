@@ -16,4 +16,5 @@ public class OrdiniEffettuatiController extends BaseSceneController {
     public void logoutBtn() throws IOException, SQLException {
         sceneController.logout();
     }
+
 }

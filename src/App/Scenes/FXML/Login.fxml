@@ -7,7 +7,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
+            prefHeight="480.0" prefWidth="900.0"
+            stylesheets="@../../../Stylesheets/Golocious.css"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="App.Scenes.Controller.LoginController">
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="480.0" prefWidth="900.0">
          <ImageView fitHeight="229.0" fitWidth="249.0" pickOnBounds="true" preserveRatio="true">
@@ -75,7 +80,7 @@
                <TextField id="telefonoField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci il tuo numero di telefono" visible="false" />
                <DatePicker id="datanascitaField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="250.0" promptText="Inserisci la tua data di nascita" showWeekNumbers="false" visible="false" />
                <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="300.0">
-                  <Button id="loginBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loginBtnClick" prefHeight="12.0" prefWidth="105.0" text="Login" textAlignment="CENTER">
+                  <Button id="loginBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loginBtnClick" prefHeight="30.0" prefWidth="105.0" text="Login" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -83,7 +88,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="creaAccBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#registratiBtnClick" prefHeight="12.0" prefWidth="130.0" text="Registrati">
+                  <Button id="creaAccBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#registratiBtnClick" prefHeight="30.0" prefWidth="130.0" text="Registrati">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
