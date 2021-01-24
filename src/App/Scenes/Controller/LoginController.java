@@ -23,7 +23,7 @@ public class LoginController extends BaseSceneController {
             if(email.length() >0 && password.length() >0){
                 ResetErrori();
                 if(auth.Login(email,password))
-                    sceneController.Login();
+                    sceneController.login();
             }else {
                 ResetErrori();
                 if(email.length()==0){
@@ -52,7 +52,7 @@ public class LoginController extends BaseSceneController {
 
             if(nome.length()>0 && cognome.length()>0 && email.length()>0 && password.length()>0 && telefono.length()>0 && eta(dataNascita) >= 14) {
                 if (auth.Register(nome, cognome, email, password, telefono, dataNascita)) {
-                    sceneController.Login();
+                    sceneController.login();
                 }
             } else {
                 ResetErrori();

@@ -12,7 +12,9 @@ import java.sql.SQLException;
 public class SceneController extends Controller {
 
     Stage window;
-    String Login = "Login", HomeCliente = "HomeCliente";
+    String Login = "Login", Ordina = "Ordina", OrdiniEffettuati = "OrdiniEffettuati",
+            Impostazioni = "Impostazioni";
+
 
     public static SceneController instance;
     public static SceneController getInstance() {
@@ -39,13 +41,31 @@ public class SceneController extends Controller {
         return this.window.getScene();
     }
 
-    public void Login() throws IOException {
-        this.setScene(HomeCliente);
+
+    public void login() throws IOException {
+        this.setScene(Ordina);
+        getScene().lookup("#ordinaBtn").setStyle("-fx-background-color: #e19a1f");
     }
 
-    public void Logout() throws IOException, SQLException {
+    public void ordina() throws IOException {
+        this.setScene(Ordina);
+        getScene().lookup("#ordinaBtn").setStyle("-fx-background-color: #e19a1f");
+    }
+
+    public void ordiniEffettuati() throws IOException {
+        this.setScene(OrdiniEffettuati);
+        getScene().lookup("#ordiniEffettuatiBtn").setStyle("-fx-background-color: #e19a1f");
+    }
+
+    public void impostazioni() throws IOException {
+        this.setScene(Impostazioni);
+        getScene().lookup("#impostazioniBtn").setStyle("-fx-background-color: #e19a1f");
+    }
+
+    public void logout() throws IOException, SQLException {
         Cliente.getInstance().Reset();
         this.setScene(Login);
     }
+
 
 }

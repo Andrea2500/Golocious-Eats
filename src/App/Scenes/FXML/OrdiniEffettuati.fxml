@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="480.0" prefWidth="900.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.OrdiniEffettuatiController">
+    <top>
+        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="900.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <Button id="ordinaBtn" mnemonicParsing="false" onAction="#ordinaBtn" prefHeight="26.0" prefWidth="60.0"
+                    text="Ordina"/>
+            <Button id="ordiniEffettuatiBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0"
+                    text="Ordini effettuati"/>
+            <Button id="impostazioniBtn" mnemonicParsing="false" onAction="#impostazioniBtn" prefHeight="26.0"
+                    prefWidth="110.0" text="Impostazioni"/>
+            <Button id="logoutBtn" mnemonicParsing="false" onAction="#logoutBtn" prefHeight="26.0" prefWidth="70.0"
+                    text="Logout"/>
+        </HBox>
+    </top>
+   <center>
+      <Label text="OrdiniEffettuati" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
