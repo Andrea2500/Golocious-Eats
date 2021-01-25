@@ -1,6 +1,7 @@
 package App.Objects;
 
 import App.DAO.ClienteDAO;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -14,9 +15,22 @@ public class Cliente {
     LocalDate dataNascita;
     Integer indirizzoAttivo, id;
     boolean auth;
+    Gestore gestore;
+    Rider rider;
 
     ClienteDAO clienteDAO;
 
+    public static Cliente instance;
+    public static Cliente getInstance() throws SQLException {
+        if (instance == null)
+            instance = new Cliente();
+        return instance;
+    }
+
+    public Cliente() throws SQLException {
+        this.clienteDAO = new ClienteDAO();
+        this.auth = false;
+    }
 
     public String getNome() {
         return nome;
@@ -98,19 +112,6 @@ public class Cliente {
         this.clienteDAO = clienteDAO;
     }
 
-    public static Cliente instance;
-    public static Cliente getInstance() throws SQLException {
-        if (instance == null)
-            instance = new Cliente();
-        return instance;
-    }
-
-    public Cliente() throws SQLException {
-        this.clienteDAO = new ClienteDAO();
-        this.auth = false;
-    }
-
-
     public void Reset(){
         this.nome = null;
         this.cognome = null;
@@ -120,6 +121,19 @@ public class Cliente {
         this.id = null;
         this.setAuth(false);
         this.role = null;
+    }
+
+    public void setObject() throws SQLException {
+        switch (this.role){
+            case "gestore":
+                this.gestore = new Gestore(this.id);
+                break;
+            case "rider":
+                this.rider = new Rider(this.id);
+                break;
+            default:
+                break;
+        }
     }
 
 }
