@@ -26,13 +26,13 @@ public class ImpostazioniController extends BaseSceneController{
 
     public void aggiungiBtn() {
         resetErrori();
-        String paese = getValue("errorePaeseLabel", "label");
-        String provincia = getValue("erroreProvinciaLabel", "label");
-        String cap = getValue("erroreCapLabel", "label");
-        String citta = getValue("erroreCittaLabel", "label");
-        String indirizzo = getValue("erroreIndirizzoLabel", "label");
+        String paese = getValue("paeseField", "textfield");
+        String provincia = getValue("provinciaField", "textfield");
+        String cap = getValue("capField", "textfield");
+        String citta = getValue("cittaField", "textfield");
+        String indirizzo = getValue("indirizzoField", "textfield");
         if(paese.length()>0 && provincia.length()>0 && cap.length()>0 && citta.length()>0 && indirizzo.length()>0){
-            //aggiungi indirizzo
+            System.out.println("ciao");
         } else {
             setErrori(paese, provincia, cap, citta, indirizzo);
         }

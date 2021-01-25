@@ -80,6 +80,7 @@ public class LoginController extends BaseSceneController {
         }
     }
 
+
     public void resetErrori() {
         inizializzaLabel("erroreNomeLabel", true);
         inizializzaLabel("erroreCognomeLabel", true);

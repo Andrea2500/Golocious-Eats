@@ -52,7 +52,7 @@ public class BaseSceneController {
         Node node = this.getElementById(id);
         if(field) {
             String text = id.substring(6, id.indexOf("Label")).toLowerCase()+"Field";
-            getElementById(text).setStyle("-fx-border-color: red");
+            getElementById(text).setStyle("-fx-border-color: #ff0000");
         }
         ((Label) node).setText(errore);
     }
@@ -98,7 +98,5 @@ public class BaseSceneController {
         sceneController.logout();
     }
 
-    public void resetErrori() {
-    }
 
 }
