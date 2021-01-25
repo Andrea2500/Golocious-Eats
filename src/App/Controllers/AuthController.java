@@ -14,7 +14,7 @@ public class AuthController extends Controller {
     Cliente cliente;
 
 
-    public AuthController() throws SQLException {
+    public AuthController() {
         this.cliente = Cliente.getInstance();
     }
 

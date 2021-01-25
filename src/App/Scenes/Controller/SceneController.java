@@ -48,49 +48,49 @@ public class SceneController extends Controller {
         getScene().lookup("#"+id).setStyle("-fx-background-color: #e19a1f; -fx-cursor: pointer");
     }
 
-    public void login() throws IOException, SQLException {
+    public void login() throws IOException {
         this.setScene("Ordina");
         setActiveBtn("ordinaBtn");
         setMenu(Cliente.getInstance().getRole());
     }
 
-    public void ordina() throws IOException, SQLException {
+    public void ordina() throws IOException {
         this.setScene("Ordina");
         setActiveBtn("ordinaBtn");
         setMenu(Cliente.getInstance().getRole());
     }
 
-    public void ordiniEffettuati() throws IOException, SQLException {
+    public void ordiniEffettuati() throws IOException {
         this.setScene("OrdiniEffettuati");
         setActiveBtn("ordiniEffettuatiBtn");
         setMenu(Cliente.getInstance().getRole());
     }
 
-    public void consegna() throws IOException, SQLException {
+    public void consegna() throws IOException {
         this.setScene("Consegna");
         setActiveBtn("consegnaBtn");
         setMenu(Cliente.getInstance().getRole());
     }
 
-    public void consegneEffettuate() throws IOException, SQLException {
+    public void consegneEffettuate() throws IOException {
         this.setScene("ConsegneEffettuate");
         setActiveBtn("consegneEffettuateBtn");
         setMenu(Cliente.getInstance().getRole());
     }
 
-    public void gestisciRistorante() throws IOException, SQLException {
+    public void gestisciRistorante() throws IOException {
         this.setScene("GestisciRistorante");
         setActiveBtn("gestisciRistoranteBtn");
         setMenu(Cliente.getInstance().getRole());
     }
 
-    public void impostazioni() throws IOException, SQLException {
+    public void impostazioni() throws IOException {
         this.setScene("Impostazioni");
         setActiveBtn("impostazioniBtn");
         setMenu(Cliente.getInstance().getRole());
     }
 
-    public void logout() throws IOException, SQLException {
+    public void logout() throws IOException {
         Cliente.getInstance().Reset();
         this.setScene("Login");
     }
