@@ -25,20 +25,29 @@ public class ImpostazioniController extends BaseSceneController{
     }
 
     public void aggiungiBtn() {
-        resetErrori();
+        resetErroriIndirizzo();
         String paese = getValue("paeseField", "textfield");
         String provincia = getValue("provinciaField", "textfield");
         String cap = getValue("capField", "textfield");
         String citta = getValue("cittaField", "textfield");
         String indirizzo = getValue("indirizzoField", "textfield");
         if(paese.length()>0 && provincia.length()>0 && cap.length()>0 && citta.length()>0 && indirizzo.length()>0){
-            System.out.println("ciao");
+            //aggiungi indirizzo
         } else {
-            setErrori(paese, provincia, cap, citta, indirizzo);
+            setErroriIndirizzo(paese, provincia, cap, citta, indirizzo);
         }
     }
 
     public void iniziaAConsegnareBtn() {
+        resetErroriConsegna();
+        String patente = getValue("patenteField", "textfield");
+        String veicolo = getValue("veicoloBox", "combobox");
+        System.out.println(veicolo);
+        if(patente.length()>0 && veicolo.length()>0) {
+            //diventa rider
+        } else {
+            setErroriIndirizzo();
+        }
     }
 
     public void resetVBoxManagedAndVisible() {
@@ -62,7 +71,7 @@ public class ImpostazioniController extends BaseSceneController{
         }
     }
 
-    public void resetErrori() {
+    public void resetErroriIndirizzo() {
         inizializzaLabel("errorePaeseLabel", true);
         inizializzaLabel("erroreProvinciaLabel", true);
         inizializzaLabel("erroreCapLabel", true);
@@ -70,7 +79,7 @@ public class ImpostazioniController extends BaseSceneController{
         inizializzaLabel("erroreIndirizzoLabel", true);
     }
 
-    public void setErrori(String paese, String provincia, String cap, String citta, String indirizzo) {
+    public void setErroriIndirizzo(String paese, String provincia, String cap, String citta, String indirizzo) {
         if(paese.length()==0){
             errore("errorePaeseLabel", "Inserisci un Paese", true);
         }
@@ -87,5 +96,12 @@ public class ImpostazioniController extends BaseSceneController{
             errore("erroreIndirizzoLabel", "Inserisci un indirizzo", true);
         }
     }
+
+    public void resetErroriConsegna() {
+    }
+
+    public void setErroriIndirizzo() {
+    }
+
 
 }

@@ -1,4 +1,5 @@
-terminare pagina impostazioni (diventa rider e apri franchising)
+aggiunta Indirizzo a DB
+metodo iniziaAConsegnareBtn in ImpostazioniController
 
 
 

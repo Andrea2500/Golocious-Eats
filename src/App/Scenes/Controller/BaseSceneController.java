@@ -1,10 +1,8 @@
 package App.Scenes.Controller;
 
 import javafx.scene.Node;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -40,6 +38,7 @@ public class BaseSceneController {
             case "textfield" -> ((TextField) sceneController.getScene().lookup("#" + id)).getText();
             case "passwordfield" -> ((PasswordField) sceneController.getScene().lookup("#" + id)).getText();
             case "label" -> ((Label) sceneController.getScene().lookup("#" + id)).getText();
+            case "combobox" -> ((ComboBox<String>) sceneController.getScene().lookup("#" + id)).getSelectionModel().getSelectedItem();
             default -> "";
         };
     }
@@ -67,7 +66,9 @@ public class BaseSceneController {
     }
 
     public int eta(LocalDate datanascita) {
-        return Period.between(datanascita, LocalDate.now()).getYears();
+        if(datanascita != null)
+            return Period.between(datanascita, LocalDate.now()).getYears();
+        else return 0;
     }
 
     public void ordinaBtn() throws IOException, SQLException {

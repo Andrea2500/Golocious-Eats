@@ -17,11 +17,14 @@ public class ErroriDB {
         if(isErrorKey(error, "ck_telefono")) {
             baseSceneController.errore("erroreTelefonoLabel", "Inserisci un numero di telefono valido", true);
         }
+        if(isErrorKey(error, "cliente_telefono_key")) {
+            baseSceneController.errore("erroreTelefonoLabel", "Il numero di telefono è già registrato", true);
+        }
         if(isErrorKey(error, "login_fallito")) {
             baseSceneController.errore("erroreLoginLabel", "Il login non è riuscito", false);
         }
         if(isErrorKey(error, "signup_fallito")) {
-            baseSceneController.errore("erroreLoginLabel", "Si è verificato un errore!", false);
+            baseSceneController.errore("erroreLoginLabel", "Si è verificato un errore", false);
         }
     }
 

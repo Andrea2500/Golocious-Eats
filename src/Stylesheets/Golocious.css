@@ -47,6 +47,10 @@
     -fx-background-color: #fab338;
 }
 
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:selected{
+    -fx-background-color: #fab338;
+    -fx-cursor: hand;
+}
 
 .combo-box-base > * > .arrow{
     -fx-background-color: #172156;
