@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -9,7 +11,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="480.0" prefWidth="900.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.ImpostazioniController">
    <top>
       <HBox id="menuBar" alignment="CENTER" prefHeight="50.0" prefWidth="900.0">
-         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="90.0" BorderPane.alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
+         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="90.0" BorderPane.alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
             <ImageView fitHeight="50.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                <Image url="@../../../Stylesheets/LogoTitle.jpg" />
             </ImageView>
@@ -30,37 +32,101 @@
       </HBox>
    </top>
    <center>
-      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="430.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <VBox alignment="CENTER" prefHeight="430.0" prefWidth="300.0" spacing="20.0">
-            <Button id="inserisciIndirizzoBtn" mnemonicParsing="false" onAction="#impostazioniBtn" prefHeight="30.0" prefWidth="145.0" text="Inserisci indirizzo" />
+            <Button id="inserisciIndirizzoBtn" mnemonicParsing="false" onAction="#inserisciIndirizzoBtn" prefHeight="30.0" prefWidth="145.0" text="Inserisci indirizzo" />
             <Button id="cambiaIndirizzoAttivoBtn" mnemonicParsing="false" onAction="#cambiaIndirizzoAttivoBtn" prefHeight="30.0" prefWidth="145.0" text="Cambia indirizzo attivo" />
             <Button id="diventaRiderBtn" mnemonicParsing="false" onAction="#diventaRiderBtn" prefHeight="30.0" prefWidth="145.0" text="Diventa rider" />
-            <Button id="apriFranchisingBtn" mnemonicParsing="false" onAction="#apriFranchisingBtn" prefHeight="30.0" prefWidth="145.0" text="Apri franchising" />
          </VBox>
-         <VBox id="vuotoVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
-            <children>
-               <Label text="Clicca un pulsante a sinistra">
+         <VBox id="vuotoVBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="600.0" visible="true">
+            <Label text="Clicca un pulsante a sinistra">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </VBox>
+         <HBox id="inserisciIndirizzoHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
+            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="20.0">
+               <padding>
+                  <Insets bottom="39.0" right="25.0" />
+               </padding>
+               <Label id="errorePaeseLabel">
                   <font>
-                     <Font size="18.0" />
+                     <Font size="14.0" />
                   </font>
                </Label>
-            </children></VBox>
-         <VBox id="aggiungiIndirizzoVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
-            <TextField id="paeseField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="20.0" prefWidth="250.0" promptText="Inserisci il tuo Paese" />
-            <TextField id="provinciaField" layoutX="210.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="20.0" prefWidth="250.0" promptText="Inserisci la tua provincia" />
-            <TextField id="cittaField" layoutX="210.0" layoutY="192.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="20.0" prefWidth="250.0" promptText="Inserisci la tua città" />
-            <TextField id="capField" layoutX="210.0" layoutY="174.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="20.0" prefWidth="250.0" promptText="Inserisci il tuo CAP" />
-            <TextField id="indirizzoField" layoutX="210.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="20.0" prefWidth="250.0" promptText="Inserisci il tuo indirizzo e il tuo civico" />
-            <Button id="aggiungiBtn" mnemonicParsing="false" onAction="#aggiungiBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
-         </VBox>
+               <Label id="erroreProvinciaLabel" layoutX="128.0" layoutY="215.0">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label id="erroreCittaLabel" layoutX="128.0" layoutY="234.0">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label id="erroreCapLabel" layoutX="128.0" layoutY="252.0">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label id="erroreIndirizzoLabel" layoutX="128.0" layoutY="272.0">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
+               <TextField id="paeseField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo Paese" />
+               <TextField id="provinciaField" layoutX="210.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua provincia" />
+               <TextField id="cittaField" layoutX="210.0" layoutY="192.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua città" />
+               <TextField id="capField" layoutX="210.0" layoutY="174.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo CAP" />
+               <TextField id="indirizzoField" layoutX="210.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo indirizzo e il tuo civico" />
+               <Button id="aggiungiBtn" mnemonicParsing="false" onAction="#aggiungiBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
+               <Label id="correttoLabel" text="Indirizzo aggiunto correttamente" visible="false">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets left="23.0" />
+                  </VBox.margin>
+               </Label>
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
+            </VBox>
+         </HBox>
          <VBox id="cambiaIndirizzoAttivoVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false" />
-         <VBox id="diventaRiderVBox" alignment="CENTER" prefHeight="430.0" prefWidth="600.0" spacing="10.0">
-            <children>
-               <TextField id="patenteField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua patente" />
-               <ComboBox id="veicoloBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona il tuo veicolo" />
+         <HBox id="diventaRiderHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
+            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="17.8">
+               <padding>
+                  <Insets bottom="39.0" right="25.0" />
+               </padding>
+               <Label id="errorePatenteLabel" layoutX="128.0" layoutY="252.0" visible="false">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label id="erroreVeicoloLabel" layoutX="128.0" layoutY="272.0" visible="false">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+            </VBox>
+            <VBox id="diventaRiderVBox" alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
+               <TextField id="patenteField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="250.0" promptText="Inserisci la tua patente" />
+               <ComboBox id="veicoloBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="250.0" promptText="Seleziona il tuo veicolo" visibleRowCount="3">
+                  <items>
+                     <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Motoveicolo" />
+                        <String fx:value="Bicicletta" />
+                        <String fx:value="Automobile" />
+                     </FXCollections>
+                  </items>
+               </ComboBox>
                <Button id="iniziaAConsegnareBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#iniziaAConsegnareBtn" prefHeight="30.0" prefWidth="250.0" text="Inizia a consegnare" />
-            </children></VBox>
-         <VBox id="apriFranchisingVBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false" />
+            </VBox>
+         </HBox>
       </HBox>
    </center>
 </BorderPane>

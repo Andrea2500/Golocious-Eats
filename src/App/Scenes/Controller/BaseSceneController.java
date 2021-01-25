@@ -5,9 +5,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -24,9 +22,10 @@ public class BaseSceneController {
         return sceneController.getScene().lookup("#" + id);
     }
 
-    public void setVisibility(String id, boolean toggle) {
-        sceneController.getScene().lookup("#" + id).setVisible(toggle);
-        sceneController.getScene().lookup("#" + id).setManaged(toggle);
+    public void setManagedAndVisible(String id, boolean toggle) {
+        Node element = getElementById(id);
+        element.setVisible(toggle);
+        element.setManaged(toggle);
 
     }
 
@@ -70,42 +69,35 @@ public class BaseSceneController {
         return Period.between(datanascita, LocalDate.now()).getYears();
     }
 
-    public void ResetErrori(){
-        inizializzaLabel("erroreNomeLabel", true);
-        inizializzaLabel("erroreCognomeLabel", true);
-        inizializzaLabel("erroreEmailLabel", true);
-        inizializzaLabel("errorePasswordLabel", true);
-        inizializzaLabel("erroreTelefonoLabel", true);
-        inizializzaLabel("erroreDatanascitaLabel", true);
-        inizializzaLabel("erroreLoginLabel", false);
-    }
-
-    public void ordinaBtn() throws IOException, SQLException {
+    public void ordinaBtn() throws IOException {
         sceneController.ordina();
     }
 
-    public void ordiniEffettuatiBtn() throws IOException, SQLException {
+    public void ordiniEffettuatiBtn() throws IOException {
         sceneController.ordiniEffettuati();
     }
 
-    public void consegnaBtn() throws IOException, SQLException {
+    public void consegnaBtn() throws IOException {
         sceneController.consegna();
     }
 
-    public void consegneEffettuateBtn() throws IOException, SQLException {
+    public void consegneEffettuateBtn() throws IOException {
         sceneController.consegneEffettuate();
     }
 
-    public void gestisciRistoranteBtn() throws IOException, SQLException {
+    public void gestisciRistoranteBtn() throws IOException {
         sceneController.gestisciRistorante();
     }
 
-    public void impostazioniBtn() throws IOException, SQLException {
+    public void impostazioniBtn() throws IOException {
         sceneController.impostazioni();
     }
 
-    public void logoutBtn() throws IOException, SQLException {
+    public void logoutBtn() throws IOException {
         sceneController.logout();
+    }
+
+    public void resetErrori() {
     }
 
 }

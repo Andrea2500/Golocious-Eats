@@ -22,7 +22,39 @@
 }
 
 
+.combo-box-base{
+    -fx-background-color: #ffffff;
+}
+
+
+.combo-box-base > * {
+    -fx-text-fill: #172156;
+}
+
+
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell{
+    -fx-text-fill: #172156;
+}
+
+
+.combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:hover{
+    -fx-background-color: #fab338;
+    -fx-cursor: hand;
+}
+
+
+#veicoloBox > * > .arrow{
+    -fx-background-color: #fab338;
+}
+
+
+.combo-box-base > * > .arrow{
+    -fx-background-color: #172156;
+}
+
+
 .text-field{
+    -fx-background-color: white;
     -fx-text-fill: #172156;
     -fx-prompt-text-fill: #172156;
     -fx-border-color: transparent;

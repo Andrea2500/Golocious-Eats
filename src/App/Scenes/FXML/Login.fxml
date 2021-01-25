@@ -13,7 +13,7 @@
          <ImageView fitHeight="229.0" fitWidth="249.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../../Stylesheets/LogoTitle.jpg" />
             <VBox.margin>
-               <Insets right="4.0" />
+               <Insets right="3.0" />
             </VBox.margin>
          </ImageView>
          <HBox alignment="CENTER">
@@ -73,7 +73,7 @@
                </TextField>
                <PasswordField id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua password" />
                <TextField id="telefonoField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo numero di telefono" visible="false" />
-               <DatePicker id="datanascitaField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua data di nascita" showWeekNumbers="false" visible="false" />
+               <DatePicker id="datanascitaField" editable="false" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua data di nascita" showWeekNumbers="false" visible="false" />
                <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="300.0">
                   <Button id="loginBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loginBtnClick" prefHeight="30.0" prefWidth="105.0" text="Login" textAlignment="CENTER">
                      <padding>
