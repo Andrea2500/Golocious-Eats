@@ -39,55 +39,76 @@ public class SceneController extends Controller {
         return this.window.getScene();
     }
 
+    public void setVisibility(String id, boolean toggle) {
+        this.getScene().lookup("#" + id).setVisible(toggle);
+        this.getScene().lookup("#" + id).setManaged(toggle);
+    }
+
     public void setActiveBtn(String id) {
         getScene().lookup("#"+id).setStyle("-fx-background-color: #e19a1f; -fx-cursor: pointer");
     }
 
-    public void login() throws IOException {
+    public void login() throws IOException, SQLException {
         this.setScene("Ordina");
-        //if rider / gestore set visible e managed ai bottoni
         setActiveBtn("ordinaBtn");
+        setMenu(Cliente.getInstance().getRole());
     }
 
-    public void ordina() throws IOException {
+    public void ordina() throws IOException, SQLException {
         this.setScene("Ordina");
-        //if rider / gestore set visible e managed ai bottoni
         setActiveBtn("ordinaBtn");
+        setMenu(Cliente.getInstance().getRole());
      }
 
-    public void ordiniEffettuati() throws IOException {
+    public void ordiniEffettuati() throws IOException, SQLException {
         this.setScene("OrdiniEffettuati");
-        //if rider / gestore set visible e managed ai bottoni
         setActiveBtn("ordiniEffettuatiBtn");
+        setMenu(Cliente.getInstance().getRole());
     }
 
-    public void consegna() throws IOException {
+    public void consegna() throws IOException, SQLException {
         this.setScene("Consegna");
-        //if rider / gestore set visible e managed ai bottoni
         setActiveBtn("consegnaBtn");
+        setMenu(Cliente.getInstance().getRole());
     }
 
-    public void consegneEffettuate() throws IOException {
+    public void consegneEffettuate() throws IOException, SQLException {
         this.setScene("ConsegneEffettuate");
-        //if rider / gestore set visible e managed ai bottoni
         setActiveBtn("consegneEffettuateBtn");
+        setMenu(Cliente.getInstance().getRole());
     }
 
-    public void gestisciRistorante() throws IOException {
+    public void gestisciRistorante() throws IOException, SQLException {
         this.setScene("GestisciRistorante");
-        //if rider / gestore set visible e managed ai bottoni
         setActiveBtn("gestisciRistoranteBtn");
+        setMenu(Cliente.getInstance().getRole());
     }
 
-    public void impostazioni() throws IOException {
+    public void impostazioni() throws IOException, SQLException {
         this.setScene("Impostazioni");
-        //if rider / gestore set visible e managed ai bottoni
         setActiveBtn("impostazioniBtn");
+        setMenu(Cliente.getInstance().getRole());
     }
 
     public void logout() throws IOException, SQLException {
         Cliente.getInstance().Reset();
         this.setScene("Login");
     }
+
+    public void setMenu(String role){
+        switch (role){
+            case "gestore":
+                this.setVisibility("gestisciRistoranteBtn",true);
+                break;
+            case "rider":
+                this.setVisibility("consegnaBtn",true);
+                this.setVisibility("consegneEffettuateBtn",true);
+                break;
+            default:
+                break;
+        }
+
+    }
+
 
 }

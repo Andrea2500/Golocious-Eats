@@ -80,27 +80,27 @@ public class BaseSceneController {
         inizializzaLabel("erroreLoginLabel", false);
     }
 
-    public void ordinaBtn() throws IOException {
+    public void ordinaBtn() throws IOException, SQLException {
         sceneController.ordina();
     }
 
-    public void ordiniEffettuatiBtn() throws IOException {
+    public void ordiniEffettuatiBtn() throws IOException, SQLException {
         sceneController.ordiniEffettuati();
     }
 
-    public void consegnaBtn() throws IOException {
+    public void consegnaBtn() throws IOException, SQLException {
         sceneController.consegna();
     }
 
-    public void consegneEffettuateBtn() throws IOException {
+    public void consegneEffettuateBtn() throws IOException, SQLException {
         sceneController.consegneEffettuate();
     }
 
-    public void gestisciRistoranteBtn() throws IOException {
+    public void gestisciRistoranteBtn() throws IOException, SQLException {
         sceneController.gestisciRistorante();
     }
 
-    public void impostazioniBtn() throws IOException {
+    public void impostazioniBtn() throws IOException, SQLException {
         sceneController.impostazioni();
     }
 

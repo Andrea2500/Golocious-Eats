@@ -30,6 +30,7 @@ public class AuthController extends Controller {
             cliente.setIndirizzoAttivo(rs.getInt("Indirizzoattivo"));
             cliente.setId(rs.getInt("clienteid"));
             cliente.setAuth(true);
+            cliente.setRole(cliente.getClienteDAO().getRole(cliente.getId()));
             return true;
         } else {
             new ErroriDB().getErrorMessage("login_fallito");

@@ -6,7 +6,11 @@ import java.time.LocalDate;
 
 public class Cliente {
 
-    String nome,cognome,email,telefono;
+    String nome;
+    String cognome;
+    String email;
+    String telefono;
+    String role;
     LocalDate dataNascita;
     Integer indirizzoAttivo, id;
     boolean auth;
@@ -70,6 +74,14 @@ public class Cliente {
         this.id = id;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public boolean isAuth() {
         return auth;
     }
@@ -99,7 +111,6 @@ public class Cliente {
     }
 
 
-
     public void Reset(){
         this.nome = null;
         this.cognome = null;
@@ -108,6 +119,7 @@ public class Cliente {
         this.dataNascita = null;
         this.id = null;
         this.setAuth(false);
+        this.role = null;
     }
 
 }

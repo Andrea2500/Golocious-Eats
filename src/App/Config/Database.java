@@ -1,8 +1,6 @@
 package App.Config;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Database {
 
@@ -11,9 +9,22 @@ public class Database {
     }
 
     public void closeConnection(Connection conn) throws SQLException {
-        if(conn != null) {
+        if (conn != null) {
             conn.close();
         }
     }
 
+    public ResultSet queryBuilder(String from, String where) {
+        ResultSet rs;
+        try {
+            Connection conn = getConnection();
+            String sql = "SELECT FROM "+from+" WHERE "+where;
+            rs = conn.createStatement().executeQuery(sql);
+            closeConnection(conn);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            rs = null;
+        }
+        return rs;
+    }
 }
