@@ -99,17 +99,16 @@ public class Cliente {
     }
 
     public static Cliente instance;
-    public static Cliente getInstance() throws SQLException {
+    public static Cliente getInstance() {
         if (instance == null)
             instance = new Cliente();
         return instance;
     }
 
-    public Cliente() throws SQLException {
+    public Cliente() {
         this.clienteDAO = new ClienteDAO();
         this.auth = false;
     }
-
 
     public void Reset(){
         this.nome = null;

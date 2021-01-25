@@ -58,7 +58,7 @@ public class SceneController extends Controller {
         this.setScene("Ordina");
         setActiveBtn("ordinaBtn");
         setMenu(Cliente.getInstance().getRole());
-     }
+    }
 
     public void ordiniEffettuati() throws IOException, SQLException {
         this.setScene("OrdiniEffettuati");
@@ -107,8 +107,6 @@ public class SceneController extends Controller {
             default:
                 break;
         }
-
     }
-
 
 }
