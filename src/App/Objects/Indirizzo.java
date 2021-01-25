@@ -1,5 +1,7 @@
 package App.Objects;
 
+import java.sql.SQLException;
+
 public class Indirizzo {
 
     String paese;
@@ -10,7 +12,7 @@ public class Indirizzo {
 
     Cliente cliente;
 
-    public Indirizzo(String paese, String provincia, String cap, String citta, String indirizzo) {
+    public Indirizzo(String paese, String provincia, String cap, String citta, String indirizzo) throws SQLException {
         this.paese = paese;
         this.provincia = provincia;
         this.cap = cap;

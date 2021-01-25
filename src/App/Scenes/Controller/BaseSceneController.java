@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -69,31 +70,31 @@ public class BaseSceneController {
         return Period.between(datanascita, LocalDate.now()).getYears();
     }
 
-    public void ordinaBtn() throws IOException {
+    public void ordinaBtn() throws IOException, SQLException {
         sceneController.ordina();
     }
 
-    public void ordiniEffettuatiBtn() throws IOException {
+    public void ordiniEffettuatiBtn() throws IOException, SQLException {
         sceneController.ordiniEffettuati();
     }
 
-    public void consegnaBtn() throws IOException {
+    public void consegnaBtn() throws IOException, SQLException {
         sceneController.consegna();
     }
 
-    public void consegneEffettuateBtn() throws IOException {
+    public void consegneEffettuateBtn() throws IOException, SQLException {
         sceneController.consegneEffettuate();
     }
 
-    public void gestisciRistoranteBtn() throws IOException {
+    public void gestisciRistoranteBtn() throws IOException, SQLException {
         sceneController.gestisciRistorante();
     }
 
-    public void impostazioniBtn() throws IOException {
+    public void impostazioniBtn() throws IOException, SQLException {
         sceneController.impostazioni();
     }
 
-    public void logoutBtn() throws IOException {
+    public void logoutBtn() throws IOException, SQLException {
         sceneController.logout();
     }
 

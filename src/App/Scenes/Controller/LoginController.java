@@ -2,6 +2,7 @@ package App.Scenes.Controller;
 
 import App.Controllers.AuthController;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class LoginController extends BaseSceneController {
@@ -9,7 +10,7 @@ public class LoginController extends BaseSceneController {
     AuthController auth;
 
 
-    public LoginController() {
+    public LoginController() throws SQLException {
         this.auth = new AuthController();
     }
 
