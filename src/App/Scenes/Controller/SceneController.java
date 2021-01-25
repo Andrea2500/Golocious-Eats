@@ -31,7 +31,7 @@ public class SceneController extends Controller {
 
     public void setScene(String scene) throws IOException {
         Parent tableParent = FXMLLoader.load(getClass().getResource("../FXML/"+scene+".fxml"));
-        Scene tableScene = new Scene(tableParent, 900, 475);
+        Scene tableScene = new Scene(tableParent, 900, 480);
         this.window.setScene(tableScene);
     }
 
