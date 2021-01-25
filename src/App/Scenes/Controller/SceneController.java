@@ -12,8 +12,6 @@ import java.sql.SQLException;
 public class SceneController extends Controller {
 
     Stage window;
-    String Login = "Login", Ordina = "Ordina", OrdiniEffettuati = "OrdiniEffettuati",
-            Impostazioni = "Impostazioni";
 
 
     public static SceneController instance;
@@ -41,31 +39,55 @@ public class SceneController extends Controller {
         return this.window.getScene();
     }
 
+    public void setActiveBtn(String id) {
+        getScene().lookup("#"+id).setStyle("-fx-background-color: #e19a1f; -fx-cursor: pointer");
+    }
 
     public void login() throws IOException {
-        this.setScene(Ordina);
-        getScene().lookup("#ordinaBtn").setStyle("-fx-background-color: #e19a1f");
+        this.setScene("Ordina");
+        //if rider / gestore set visible e managed ai bottoni
+        setActiveBtn("ordinaBtn");
     }
 
     public void ordina() throws IOException {
-        this.setScene(Ordina);
-        getScene().lookup("#ordinaBtn").setStyle("-fx-background-color: #e19a1f");
-    }
+        this.setScene("Ordina");
+        //if rider / gestore set visible e managed ai bottoni
+        setActiveBtn("ordinaBtn");
+     }
 
     public void ordiniEffettuati() throws IOException {
-        this.setScene(OrdiniEffettuati);
-        getScene().lookup("#ordiniEffettuatiBtn").setStyle("-fx-background-color: #e19a1f");
+        this.setScene("OrdiniEffettuati");
+        //if rider / gestore set visible e managed ai bottoni
+        setActiveBtn("ordiniEffettuatiBtn");
+    }
+
+    public void consegna() throws IOException {
+        this.setScene("Consegna");
+        //if rider / gestore set visible e managed ai bottoni
+        setActiveBtn("consegnaBtn");
+    }
+
+    public void consegneEffettuate() throws IOException {
+        this.setScene("ConsegneEffettuate");
+        //if rider / gestore set visible e managed ai bottoni
+        setActiveBtn("consegneEffettuateBtn");
+    }
+
+    public void gestisciRistorante() throws IOException {
+        this.setScene("GestisciRistorante");
+        //if rider / gestore set visible e managed ai bottoni
+        setActiveBtn("gestisciRistoranteBtn");
     }
 
     public void impostazioni() throws IOException {
-        this.setScene(Impostazioni);
-        getScene().lookup("#impostazioniBtn").setStyle("-fx-background-color: #e19a1f");
+        this.setScene("Impostazioni");
+        //if rider / gestore set visible e managed ai bottoni
+        setActiveBtn("impostazioniBtn");
     }
 
     public void logout() throws IOException, SQLException {
         Cliente.getInstance().Reset();
-        this.setScene(Login);
+        this.setScene("Login");
     }
-
 
 }

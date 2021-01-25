@@ -5,6 +5,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -76,5 +79,35 @@ public class BaseSceneController {
         inizializzaLabel("erroreDatanascitaLabel", true);
         inizializzaLabel("erroreLoginLabel", false);
     }
+
+    public void ordinaBtn() throws IOException {
+        sceneController.ordina();
+    }
+
+    public void ordiniEffettuatiBtn() throws IOException {
+        sceneController.ordiniEffettuati();
+    }
+
+    public void consegnaBtn() throws IOException {
+        sceneController.consegna();
+    }
+
+    public void consegneEffettuateBtn() throws IOException {
+        sceneController.consegneEffettuate();
+    }
+
+    public void gestisciRistoranteBtn() throws IOException {
+        sceneController.gestisciRistorante();
+    }
+
+    public void impostazioniBtn() throws IOException {
+        sceneController.impostazioni();
+    }
+
+    public void logoutBtn() throws IOException, SQLException {
+        sceneController.logout();
+    }
+
+
 
 }

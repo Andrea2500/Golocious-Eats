@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="480.0" prefWidth="900.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.ConsegnaController">
+    <top>
+        <HBox id="menuBar" alignment="CENTER" prefHeight="50.0" prefWidth="900.0">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="90.0" BorderPane.alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
+                <ImageView fitHeight="50.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                    <Image url="@../../../Stylesheets/LogoTitle.jpg" />
+                </ImageView>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="120.0" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="690.0" spacing="20.0" BorderPane.alignment="TOP_RIGHT">
+                <Button id="ordinaBtn" mnemonicParsing="false" onAction="#ordinaBtn" prefHeight="30.0" prefWidth="60.0" text="Ordina" />
+                <Button id="ordiniEffettuatiBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#ordiniEffettuatiBtn" prefHeight="30.0" prefWidth="120.0" text="Ordini effettuati" />
+                <Button id="consegnaBtn" layoutX="10.0" layoutY="20.0" managed="false" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Consegna" visible="false" />
+                <Button id="consegneEffettuateBtn" layoutX="90.0" layoutY="20.0" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#consegneEffettuateBtn" prefHeight="30.0" prefWidth="135.0" text="Consegne effettuate" visible="false" />
+                <Button id="gestisciRistoranteBtn" layoutX="324.0" layoutY="20.0" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#gestisciRistoranteBtn" prefHeight="30.0" prefWidth="130.0" text="Gestisci ristorante" visible="false" />
+                <Button id="impostazioniBtn" mnemonicParsing="false" onAction="#impostazioniBtn" prefHeight="30.0" prefWidth="110.0" text="Impostazioni" />
+                <Button id="logoutBtn" mnemonicParsing="false" onAction="#logoutBtn" prefHeight="30.0" prefWidth="70.0" text="Logout" />
+                <padding>
+                    <Insets right="20.0" />
+                </padding>
+            </HBox>
+        </HBox>
+    </top>
+</BorderPane>
