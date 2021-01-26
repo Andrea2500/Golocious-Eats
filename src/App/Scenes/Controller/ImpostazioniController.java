@@ -11,28 +11,28 @@ public class ImpostazioniController extends BaseSceneController{
 
     public void inserisciIndirizzoBtn() {
         resetBtnColor();
-        resetVBoxManagedAndVisible();
+        resetBoxManagedAndVisible();
         setManagedAndVisible("inserisciIndirizzoHBox", true);
         sceneController.setActiveBtn("inserisciIndirizzoBtn");
     }
 
     public void cambiaIndirizzoAttivoBtn() {
         resetBtnColor();
-        resetVBoxManagedAndVisible();
+        resetBoxManagedAndVisible();
         setManagedAndVisible("cambiaIndirizzoAttivoVBox", true);
         sceneController.setActiveBtn("cambiaIndirizzoAttivoBtn");
     }
 
     public void diventaRiderBtn() {
         resetBtnColor();
-        resetVBoxManagedAndVisible();
+        resetBoxManagedAndVisible();
         setManagedAndVisible("diventaRiderHBox", true);
         sceneController.setActiveBtn("diventaRiderBtn");
     }
 
     public void eliminaAccountBtn() {
         resetBtnColor();
-        resetVBoxManagedAndVisible();
+        resetBoxManagedAndVisible();
         setManagedAndVisible("eliminaAccountVBox", true);
         sceneController.setActiveBtn("eliminaAccountBtn");
     }
@@ -74,7 +74,7 @@ public class ImpostazioniController extends BaseSceneController{
         //TODO alertbox che chiede se si è sicuri
     }
 
-    public void resetVBoxManagedAndVisible() {
+    public void resetBoxManagedAndVisible() {
         getElementById("vuotoVBox").setManaged(false);
         getElementById("vuotoVBox").setVisible(false);
         getElementById("inserisciIndirizzoHBox").setManaged(false);
@@ -94,7 +94,7 @@ public class ImpostazioniController extends BaseSceneController{
             getElementById("cambiaIndirizzoAttivoBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         } else if(getElementById("diventaRiderHBox").isVisible()) {
             getElementById("diventaRiderBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
-        } else if(getElementById("eliminaAccountHBox").isVisible()) {
+        } else if(getElementById("eliminaAccountVBox").isVisible()) {
             getElementById("eliminaAccountBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         }
     }

@@ -1,6 +1,5 @@
 package App.Controllers;
 
-import App.Objects.Cliente;
 import App.Objects.Indirizzo;
 
 import java.sql.SQLException;
