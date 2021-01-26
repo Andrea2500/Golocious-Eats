@@ -1,6 +1,5 @@
 package App.Controllers;
 
-import App.Config.ErroriDB;
 import App.Objects.Cliente;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -16,6 +15,15 @@ public class AuthController extends Controller {
 
     public AuthController() throws SQLException {
         this.cliente = Cliente.getInstance();
+    }
+
+    public AuthController(String nome, String cognome, String email, String telefono, LocalDate dataNascita) throws SQLException {
+        this.cliente = Cliente.getInstance();
+        cliente.setNome(nome);
+        cliente.setCognome(cognome);
+        cliente.setEmail(email);
+        cliente.setTelefono(telefono);
+        cliente.setDataNascita(dataNascita);
     }
 
     public String Login(String email,String password) throws NoSuchAlgorithmException, SQLException {
@@ -38,10 +46,10 @@ public class AuthController extends Controller {
         }
     }
 
-    public String Register(String nome, String cognome, String email, String password, String telefono, LocalDate dataNascita) throws NoSuchAlgorithmException, SQLException {
-        String message = cliente.getClienteDAO().RegisterConf(nome, cognome, email, this.PasswordHash(password), telefono, dataNascita);
+    public String Register(Cliente cliente, String password) throws NoSuchAlgorithmException, SQLException {
+        String message = cliente.getClienteDAO().RegisterConf(cliente, this.PasswordHash(password));
         if(message.equals("cliente_registrato")) {
-            this.Login(email, this.PasswordHash(password));
+            this.Login(cliente.getEmail(), this.PasswordHash(password));
         }
         return message;
     }

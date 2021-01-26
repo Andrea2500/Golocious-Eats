@@ -126,7 +126,7 @@
                   </items>
                </ComboBox>
                <Button id="iniziaAConsegnareBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#iniziaAConsegnareBtn" prefHeight="30.0" prefWidth="250.0" text="Inizia a consegnare" />
-               <Label id="congratulazioniLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" text="Congratulazioni! Riesegui il login per apportare le modifiche al tuo account" textAlignment="CENTER" textOverrun="CLIP" visible="false" wrapText="true">
+               <Label id="erroreRiderLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" text="Congratulazioni! Riesegui il login per apportare le modifiche al tuo account" textAlignment="CENTER" textOverrun="CLIP" visible="false" wrapText="true">
                   <font>
                      <Font size="14.0" />
                   </font>

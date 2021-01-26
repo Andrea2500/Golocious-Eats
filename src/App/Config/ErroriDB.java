@@ -21,6 +21,12 @@ public class ErroriDB {
         if(isErrorKey(error, "signup_fallito")) {
             return "signup_fallito";
         }
+        if(isErrorKey(error, "ck_patente")) {
+            return "ck_patente";
+        }
+        if(isErrorKey(error, "troppo lungo")) {
+            return "troppo lungo";
+        }
         else return "nessun_errore";
     }
 

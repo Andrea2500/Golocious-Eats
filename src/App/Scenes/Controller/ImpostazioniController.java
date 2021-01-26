@@ -1,6 +1,8 @@
 package App.Scenes.Controller;
 
 import App.Controllers.AggiungiIndirizzoController;
+import App.Controllers.DiventaRiderController;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -9,39 +11,40 @@ import java.sql.SQLException;
 public class ImpostazioniController extends BaseSceneController{
 
     AggiungiIndirizzoController aggIndController;
+    DiventaRiderController divRidController;
 
 
-    public void vuotoVBox(){
+    public void vuotoVBox() {
         resetBtnColor();
         resetBoxManagedAndVisible();
-        setManagedAndVisible("vuotoVBox",true);
+        sceneController.setVisibility("vuotoVBox",true);
     }
 
     public void inserisciIndirizzoBtn() {
         resetBtnColor();
         resetBoxManagedAndVisible();
-        setManagedAndVisible("inserisciIndirizzoHBox", true);
+        sceneController.setVisibility("inserisciIndirizzoHBox", true);
         sceneController.setActiveBtn("inserisciIndirizzoBtn");
     }
 
     public void cambiaIndirizzoAttivoBtn() {
         resetBtnColor();
         resetBoxManagedAndVisible();
-        setManagedAndVisible("cambiaIndirizzoAttivoVBox", true);
+        sceneController.setVisibility("cambiaIndirizzoAttivoVBox", true);
         sceneController.setActiveBtn("cambiaIndirizzoAttivoBtn");
     }
 
     public void diventaRiderBtn() {
         resetBtnColor();
         resetBoxManagedAndVisible();
-        setManagedAndVisible("diventaRiderHBox", true);
+        sceneController.setVisibility("diventaRiderHBox", true);
         sceneController.setActiveBtn("diventaRiderBtn");
     }
 
     public void eliminaAccountBtn() {
         resetBtnColor();
         resetBoxManagedAndVisible();
-        setManagedAndVisible("eliminaAccountVBox", true);
+        sceneController.setVisibility("eliminaAccountVBox", true);
         sceneController.setActiveBtn("eliminaAccountBtn");
     }
 
@@ -56,7 +59,7 @@ public class ImpostazioniController extends BaseSceneController{
             aggIndController = new AggiungiIndirizzoController(paese, provincia, citta, cap, indirizzo);
             String messaggio = aggIndController.aggiungiIndirizzo();
             if(messaggio.equals("indirizzo_aggiunto")){
-                ((Label)getElementById("vuotoLabel")).setText("Indirizzo aggiunto correttamente");
+                ((Label) getElementById("vuotoLabel")).setText("Indirizzo aggiunto correttamente");
                 vuotoVBox();
                 resetCampiIndirizzo();
             } else if(messaggio.equals("aggiunta_indirizzo_fallita")){
@@ -69,14 +72,22 @@ public class ImpostazioniController extends BaseSceneController{
         }
     }
 
-    public void iniziaAConsegnareBtn() {
+    public void iniziaAConsegnareBtn() throws SQLException {
         resetErroriConsegna();
         String patente = getValue("patenteField", "textfield");
         String veicolo = getValue("veicoloBox", "combobox");
         if(patente.length()>0 && veicolo != null) {
-            //TODO diventa rider
+            divRidController = new DiventaRiderController(patente, veicolo);
+            String messaggio = divRidController.diventaRider();
+            if(messaggio.equals("rider_aggiunto")) {
+                ((Label) getElementById("vuotoLabel")).setText("Congratulazioni! Effettua nuovamente il login per iniziare a lavorare");
+                vuotoVBox();
+                resetCampiRider();
+            } else {
+                setErroriDB(messaggio);
+            }
         } else {
-            setErroriConsegna(patente, veicolo);
+            setErroriRider(patente, veicolo);
         }
     }
 
@@ -85,16 +96,11 @@ public class ImpostazioniController extends BaseSceneController{
     }
 
     public void resetBoxManagedAndVisible() {
-        getElementById("vuotoVBox").setManaged(false);
-        getElementById("vuotoVBox").setVisible(false);
-        getElementById("inserisciIndirizzoHBox").setManaged(false);
-        getElementById("inserisciIndirizzoHBox").setVisible(false);
-        getElementById("cambiaIndirizzoAttivoVBox").setManaged(false);
-        getElementById("cambiaIndirizzoAttivoVBox").setVisible(false);
-        getElementById("diventaRiderHBox").setManaged(false);
-        getElementById("diventaRiderHBox").setVisible(false);
-        getElementById("eliminaAccountVBox").setManaged(false);
-        getElementById("eliminaAccountVBox").setVisible(false);
+        sceneController.setVisibility("vuotoVBox", false);
+        sceneController.setVisibility("inserisciIndirizzoHBox", false);
+        sceneController.setVisibility("cambiaIndirizzoAttivoVBox", false);
+        sceneController.setVisibility("diventaRiderHBox", false);
+        sceneController.setVisibility("eliminaAccountVBox", false);
     }
 
     public void resetBtnColor() {
@@ -141,7 +147,7 @@ public class ImpostazioniController extends BaseSceneController{
         getElementById("veicoloBox").setStyle("-fx-border-color: transparent");
     }
 
-    public void setErroriConsegna(String patente, String veicolo) {
+    public void setErroriRider(String patente, String veicolo) {
         if(patente.length()==0) {
             errore("errorePatenteLabel", "Inserisci una patente", true);
         }
@@ -151,13 +157,25 @@ public class ImpostazioniController extends BaseSceneController{
         }
     }
 
-    public void resetCampiIndirizzo(){
-        ((TextField)getElementById("paeseField")).setText("");
-        ((TextField)getElementById("provinciaField")).setText("");
-        ((TextField)getElementById("cittaField")).setText("");
-        ((TextField)getElementById("capField")).setText("");
-        ((TextField)getElementById("indirizzoField")).setText("");
+    public void resetCampiIndirizzo() {
+        ((TextField) getElementById("paeseField")).setText("");
+        ((TextField) getElementById("provinciaField")).setText("");
+        ((TextField) getElementById("cittaField")).setText("");
+        ((TextField) getElementById("capField")).setText("");
+        ((TextField) getElementById("indirizzoField")).setText("");
     }
 
+    private void resetCampiRider() {
+        ((TextField) getElementById("patenteField")).setText("");
+        ((ComboBox<String>) getElementById("veicoloBox")).getSelectionModel().clearSelection();
+    }
+
+    private void setErroriDB(String messaggio) {
+        switch (messaggio) {
+            case "ck_patente" -> errore("errorePatenteLabel", "Inserisci una patente", true);
+            case "troppo lungo" -> errore("errorePatenteLabel", "Patente troppo lunga", true);
+            default -> errore("erroreRiderLabel", "Siamo spiacenti, si è verificato un errore", false);
+        }
+    }
 
 }

@@ -6,9 +6,11 @@ import App.Config.ErroriDB;
 import java.sql.*;
 
 public class OrdineDAO {
+
     Connection conn;
     String table;
     String fkTable;
+
 
     Database db;
     ErroriDB edb = new ErroriDB();

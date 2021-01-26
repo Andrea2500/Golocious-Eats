@@ -21,13 +21,6 @@ public class BaseSceneController {
         return sceneController.getScene().lookup("#" + id);
     }
 
-    public void setManagedAndVisible(String id, boolean toggle) {
-        Node element = getElementById(id);
-        element.setVisible(toggle);
-        element.setManaged(toggle);
-
-    }
-
     public boolean getVisibility(String id) {
         return sceneController.getScene().lookup("#" + id).isVisible();
 
@@ -98,6 +91,5 @@ public class BaseSceneController {
     public void logoutBtn() throws IOException, SQLException {
         sceneController.logout();
     }
-
 
 }
