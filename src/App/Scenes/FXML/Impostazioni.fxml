@@ -39,7 +39,7 @@
             <Button id="diventaRiderBtn" mnemonicParsing="false" onAction="#diventaRiderBtn" prefHeight="30.0" prefWidth="145.0" text="Diventa rider" />
             <Button id="eliminaAccountBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" onAction="#eliminaAccountBtn" prefHeight="30.0" prefWidth="145.0" text="Elimina account" />
          </VBox>
-         <VBox id="vuotoVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
+         <VBox id="vuotoVBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="600.0" visible="true">
             <Label text="Clicca un pulsante a sinistra">
                <font>
                   <Font size="18.0" />
@@ -136,7 +136,7 @@
                </padding>
             </VBox>
          </HBox>
-         <VBox id="eliminaAccountVBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" managed="true" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="true">
+         <VBox id="eliminaAccountVBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
             <Label text="Sei sicuro di voler eliminare il tuo account?">
                <font>
                   <Font size="16.0" />
