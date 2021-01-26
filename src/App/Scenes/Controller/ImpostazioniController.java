@@ -57,7 +57,7 @@ public class ImpostazioniController extends BaseSceneController{
         String patente = getValue("patenteField", "textfield");
         String veicolo = getValue("veicoloBox", "combobox");
         if(patente.length()>0 && veicolo != null) {
-            //diventa rider
+            //TODO diventa rider
         } else {
             setErroriIndirizzo(patente, veicolo);
         }
