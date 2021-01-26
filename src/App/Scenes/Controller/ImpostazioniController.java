@@ -2,12 +2,20 @@ package App.Scenes.Controller;
 
 import App.Controllers.AggiungiIndirizzoController;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 
 public class ImpostazioniController extends BaseSceneController{
 
     AggiungiIndirizzoController aggIndController;
+
+
+    public void vuotoVBox(){
+        resetBtnColor();
+        resetBoxManagedAndVisible();
+        setManagedAndVisible("vuotoVBox",true);
+    }
 
     public void inserisciIndirizzoBtn() {
         resetBtnColor();
@@ -48,7 +56,9 @@ public class ImpostazioniController extends BaseSceneController{
             aggIndController = new AggiungiIndirizzoController(paese, provincia, citta, cap, indirizzo);
             String messaggio = aggIndController.aggiungiIndirizzo();
             if(messaggio.equals("indirizzo_aggiunto")){
-                getElementById("correttoLabel").setVisible(true);
+                ((Label)getElementById("vuotoLabel")).setText("Indirizzo aggiunto correttamente");
+                vuotoVBox();
+                resetCampiIndirizzo();
             } else if(messaggio.equals("aggiunta_indirizzo_fallita")){
                 Label correttoLabel = (Label) getElementById("correttoLabel");
                 correttoLabel.setVisible(true);
@@ -139,6 +149,14 @@ public class ImpostazioniController extends BaseSceneController{
             errore("erroreVeicoloLabel", "Inserisci un veicolo", false);
             getElementById("veicoloBox").setStyle("-fx-border-color: #ff0000");
         }
+    }
+
+    public void resetCampiIndirizzo(){
+        ((TextField)getElementById("paeseField")).setText("");
+        ((TextField)getElementById("provinciaField")).setText("");
+        ((TextField)getElementById("cittaField")).setText("");
+        ((TextField)getElementById("capField")).setText("");
+        ((TextField)getElementById("indirizzoField")).setText("");
     }
 
 
