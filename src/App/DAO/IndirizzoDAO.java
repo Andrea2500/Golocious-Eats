@@ -39,7 +39,6 @@ public class IndirizzoDAO {
                 return "aggiunta_indirizzo_fallita";
             }
         } catch(PSQLException e) {
-            System.out.println(e.getMessage());
             db.closeConnection(conn);
             return "aggiunta_indirizzo_fallita";
         }

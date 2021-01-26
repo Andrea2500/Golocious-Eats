@@ -1,22 +1,13 @@
 package App.Scenes.Controller;
 
 import App.Controllers.AuthController;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-
-import java.sql.SQLException;
+import App.Objects.Cliente;
 import java.time.LocalDate;
 
 public class LoginController extends BaseSceneController {
 
     AuthController auth;
 
-
-    public LoginController() throws SQLException {
-        this.auth = new AuthController();
-    }
 
     public void loginBtnClick() throws Exception {
         resetErrori();
@@ -26,6 +17,7 @@ public class LoginController extends BaseSceneController {
             String email = getValue("emailField", "textfield");
             String password = getValue("passwordField", "passwordfield");
             if(email.length()>0 && password.length()>0){
+                auth = new AuthController();
                 String messaggio = auth.Login(email,password);
                 if(messaggio.equals("login_autorizzato")) {
                     sceneController.login();
@@ -55,7 +47,8 @@ public class LoginController extends BaseSceneController {
             String telefono = getValue("telefonoField", "textfield");
             LocalDate dataNascita = getValue("datanascitaField");
             if(nome.length()>0 && cognome.length()>0 && email.length()>0 && password.length()>0 && telefono.length()>0 && eta(dataNascita) >= 14) {
-                String messaggio = auth.Register(nome, cognome, email, password, telefono, dataNascita);
+                auth = new AuthController(nome, cognome, email, telefono, dataNascita);
+                String messaggio = auth.Register(Cliente.getInstance(), password);
                 if (messaggio.equals("cliente_registrato")) {
                     sceneController.login();
                 } else {
@@ -73,7 +66,7 @@ public class LoginController extends BaseSceneController {
             case "cliente_email_key" -> errore("erroreEmailLabel", "L'indirizzo email è gia registrato", true);
             case "ck_telefono" -> errore("erroreTelefonoLabel", "Inserisci un numero di telefono valido", true);
             case "cliente_telefono_key" -> errore("erroreTelefonoLabel", "Il numero di telefono è già registrato", true);
-            case "signup_fallito" -> errore("erroreLoginLabel", "Si è verificato un errore", false);
+            case "signup_fallito", "troppo_lungo" -> errore("erroreLoginLabel", "Si è verificato un errore", false);
         }
     }
 
@@ -100,7 +93,6 @@ public class LoginController extends BaseSceneController {
         }
     }
 
-
     public void resetErrori() {
         inizializzaLabel("erroreNomeLabel", true);
         inizializzaLabel("erroreCognomeLabel", true);
@@ -112,14 +104,14 @@ public class LoginController extends BaseSceneController {
     }
 
     public void setField(boolean Register){
-        setManagedAndVisible("nomeField", Register);
-        setManagedAndVisible("erroreNomeLabel", Register);
-        setManagedAndVisible("cognomeField", Register);
-        setManagedAndVisible("erroreCognomeLabel", Register);
-        setManagedAndVisible("telefonoField", Register);
-        setManagedAndVisible("erroreTelefonoLabel", Register);
-        setManagedAndVisible("datanascitaField", Register);
-        setManagedAndVisible("erroreDatanascitaLabel", Register);
+        sceneController.setVisibility("nomeField", Register);
+        sceneController.setVisibility("erroreNomeLabel", Register);
+        sceneController.setVisibility("cognomeField", Register);
+        sceneController.setVisibility("erroreCognomeLabel", Register);
+        sceneController.setVisibility("telefonoField", Register);
+        sceneController.setVisibility("erroreTelefonoLabel", Register);
+        sceneController.setVisibility("datanascitaField", Register);
+        sceneController.setVisibility("erroreDatanascitaLabel", Register);
     }
 
 }

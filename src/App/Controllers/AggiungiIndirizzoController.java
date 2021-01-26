@@ -16,5 +16,5 @@ public class AggiungiIndirizzoController extends Controller{
         return this.indirizzo.getIndirizzoDAO().aggiungiIndirizzoConf(this.indirizzo.getPaese(), this.indirizzo.getProvincia(),
                 this.indirizzo.getCitta(), this.indirizzo.getCap(), this.indirizzo.getIndirizzo(), indirizzo.getCliente());
     }
-
+    //TODO passare solo indirizzo e in indirizzoDAO prendere dati tramite getter
 }

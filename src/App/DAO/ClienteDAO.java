@@ -33,17 +33,17 @@ public class ClienteDAO {
         return rs;
     }
 
-    public String RegisterConf(String nome, String cognome, String email, String password, String telefono, LocalDate dataNascita) throws SQLException {
+    public String RegisterConf(Cliente cliente, String password) throws SQLException {
         try {
             this.conn = db.getConnection();
             String sql = "insert into " + this.table + " values (?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, nome);
-            pstmt.setString(2, cognome);
-            pstmt.setString(3, email);
+            pstmt.setString(1, cliente.getNome());
+            pstmt.setString(2, cliente.getCognome());
+            pstmt.setString(3, cliente.getEmail());
             pstmt.setString(4, password);
-            pstmt.setString(5, telefono);
-            pstmt.setDate(6, Date.valueOf(dataNascita));
+            pstmt.setString(5, cliente.getTelefono());
+            pstmt.setDate(6, Date.valueOf(cliente.getDataNascita()));
             if(pstmt.executeUpdate() > 0){
                 db.closeConnection(conn);
                 return "cliente_registrato";
@@ -67,7 +67,6 @@ public class ClienteDAO {
         role = db.queryBuilder("rider",where);
         if(role.next())
             return "rider";
-
         return "cliente";
     }
 

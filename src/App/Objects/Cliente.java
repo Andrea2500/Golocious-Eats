@@ -13,11 +13,12 @@ public class Cliente {
     String telefono;
     String role;
     LocalDate dataNascita;
-    Integer indirizzoAttivo, id;
+    Integer indirizzoAttivo;
+    Integer id;
     boolean auth;
+
     Gestore gestore;
     Rider rider;
-
     ClienteDAO clienteDAO;
 
     public static Cliente instance;
@@ -32,24 +33,56 @@ public class Cliente {
         this.auth = false;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
     }
 
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getTelefono() {
+        return telefono;
     }
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public LocalDate getDataNascita() {
+        return dataNascita;
+    }
+
     public void setDataNascita(LocalDate dataNascita) {
         this.dataNascita = dataNascita;
+    }
+
+    public Integer getIndirizzoAttivo() {
+        return indirizzoAttivo;
     }
 
     public void setIndirizzoAttivo(Integer indirizzoAttivo) {
@@ -68,20 +101,36 @@ public class Cliente {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
+    public boolean isAuth() {
+        return auth;
     }
 
     public void setAuth(boolean auth) {
         this.auth = auth;
     }
 
+    public Gestore getGestore() {
+        return gestore;
+    }
+
+    public void setGestore(Gestore gestore) {
+        this.gestore = gestore;
+    }
+
+    public Rider getRider() {
+        return rider;
+    }
+
+    public void setRider(Rider rider) {
+        this.rider = rider;
+    }
+
     public ClienteDAO getClienteDAO() {
         return clienteDAO;
+    }
+
+    public void setClienteDAO(ClienteDAO clienteDAO) {
+        this.clienteDAO = clienteDAO;
     }
 
     public void Reset(){
@@ -97,14 +146,8 @@ public class Cliente {
 
     public void setObject() throws SQLException {
         switch (this.role){
-            case "gestore":
-                this.gestore = new Gestore(this.id);
-                break;
-            case "rider":
-                this.rider = new Rider(this.id);
-                break;
-            default:
-                break;
+            case "gestore" -> this.gestore = new Gestore(this.id);
+            case "rider" -> this.rider = new Rider(this.id);
         }
     }
 
