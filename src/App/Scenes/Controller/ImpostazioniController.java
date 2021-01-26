@@ -1,14 +1,35 @@
 package App.Scenes.Controller;
 
 import App.Controllers.AggiungiIndirizzoController;
+import App.Controllers.SelezionaIndirizzoController;
+import App.Objects.Cliente;
+import App.Objects.Indirizzo;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class ImpostazioniController extends BaseSceneController{
+public class ImpostazioniController extends BaseSceneController implements Initializable {
 
+    Cliente cliente;
+    @FXML private ComboBox<Indirizzo> indirizzoComboBox;
     AggiungiIndirizzoController aggIndController;
+    SelezionaIndirizzoController selIndirizzoController = new SelezionaIndirizzoController();
+
+    public ImpostazioniController() throws SQLException {
+        this.cliente = Cliente.getInstance();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.indirizzoComboBox.getItems().clear();
+    }
 
 
     public void vuotoVBox(){
@@ -24,9 +45,10 @@ public class ImpostazioniController extends BaseSceneController{
         sceneController.setActiveBtn("inserisciIndirizzoBtn");
     }
 
-    public void cambiaIndirizzoAttivoBtn() {
+    public void cambiaIndirizzoAttivoBtn() throws SQLException {
         resetBtnColor();
         resetBoxManagedAndVisible();
+        setListaIndirizzi();
         setManagedAndVisible("cambiaIndirizzoAttivoVBox", true);
         sceneController.setActiveBtn("cambiaIndirizzoAttivoBtn");
     }
@@ -56,8 +78,7 @@ public class ImpostazioniController extends BaseSceneController{
             aggIndController = new AggiungiIndirizzoController(paese, provincia, citta, cap, indirizzo);
             String messaggio = aggIndController.aggiungiIndirizzo();
             if(messaggio.equals("indirizzo_aggiunto")){
-                ((Label)getElementById("vuotoLabel")).setText("Indirizzo aggiunto correttamente");
-                vuotoVBox();
+                ((Label)getElementById("correttoLabel")).setText("Indirizzo aggiunto correttamente");
                 resetCampiIndirizzo();
             } else if(messaggio.equals("aggiunta_indirizzo_fallita")){
                 Label correttoLabel = (Label) getElementById("correttoLabel");
@@ -78,6 +99,12 @@ public class ImpostazioniController extends BaseSceneController{
         } else {
             setErroriConsegna(patente, veicolo);
         }
+    }
+    //TODO refactor method name
+    //TODO elimina indirizzo
+    public void rendiAttivoBtn() throws SQLException {
+        Integer attivo = indirizzoComboBox.getSelectionModel().getSelectedItem().getId();
+        selIndirizzoController.setIndirizzoAttivo(attivo);
     }
 
     public void eliminaDefinitivamenteBtn() {
@@ -157,6 +184,21 @@ public class ImpostazioniController extends BaseSceneController{
         ((TextField)getElementById("cittaField")).setText("");
         ((TextField)getElementById("capField")).setText("");
         ((TextField)getElementById("indirizzoField")).setText("");
+    }
+
+    private void setListaIndirizzi() throws SQLException {
+        ObservableList<Indirizzo> indirizzi= this.selIndirizzoController.getIndirizzi(cliente.getId());
+        indirizzoComboBox.setItems(indirizzi);
+        Integer index = 0;
+        Integer indAttivoCliente = Cliente.getInstance().getIndirizzoAttivo();
+        ObservableList<Indirizzo> lista = indirizzoComboBox.getItems();
+        for(Indirizzo el: lista){
+            if (el.getId() == indAttivoCliente){
+                break;
+            }
+            index++;
+        }
+        indirizzoComboBox.getSelectionModel().select(index);
     }
 
 

@@ -14,6 +14,5 @@ public class Gestore extends Cliente{
         this.id = id;
         this.gestoreDAO = new GestoreDAO();
         this.ristoranti = gestoreDAO.getRistoranti(this.id);
-        System.out.println(ristoranti.toString());
     }
 }

@@ -18,7 +18,7 @@ public class Database {
         ResultSet rs;
         try {
             Connection conn = getConnection();
-            String sql = "SELECT FROM "+from+" WHERE "+where;
+            String sql = "SELECT * FROM "+from+" WHERE "+where;
             rs = conn.createStatement().executeQuery(sql);
             closeConnection(conn);
         } catch (SQLException throwables) {

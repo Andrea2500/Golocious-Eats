@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class Indirizzo {
 
+    Integer id;
     String paese;
     String provincia;
     String citta;
@@ -14,6 +15,14 @@ public class Indirizzo {
 
     Cliente cliente;
     IndirizzoDAO indirizzoDAO;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getPaese() {
         return paese;
@@ -56,5 +65,21 @@ public class Indirizzo {
         this.cliente = Cliente.getInstance();
         this.indirizzoDAO = new IndirizzoDAO();
     }
+    public Indirizzo(Integer id,String paese, String provincia, String citta, String cap, String indirizzo) throws SQLException {
+        this.id = id;
+        this.paese = paese;
+        this.provincia = provincia;
+        this.citta = citta;
+        this.cap = cap;
+        this.indirizzo = indirizzo;
+        this.cliente = Cliente.getInstance();
+        this.indirizzoDAO = new IndirizzoDAO();
+    }
+
+    @Override
+    public String toString(){
+        return this.indirizzo+", "+this.cap+", "+", "+this.citta+", "+this.provincia+", "+this.paese;
+    }
+
 
 }

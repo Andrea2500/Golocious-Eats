@@ -97,7 +97,15 @@
                </padding>
             </VBox>
          </HBox>
-         <VBox id="cambiaIndirizzoAttivoVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false" />
+         <VBox id="cambiaIndirizzoAttivoVBox" fx:id="setIndirizzoVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
+            <children>
+               <ComboBox id="indirizzoComboBox" fx:id="indirizzoComboBox" prefHeight="59.0" prefWidth="363.0" />
+               <Button mnemonicParsing="false" onAction="#rendiAttivoBtn" prefHeight="32.0" prefWidth="363.0" text="Rendi attivo">
+                  <VBox.margin>
+                     <Insets top="25.0" />
+                  </VBox.margin>
+               </Button>
+            </children></VBox>
          <HBox id="diventaRiderHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
             <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="17.8">
                <padding>

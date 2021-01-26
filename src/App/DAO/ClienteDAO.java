@@ -2,6 +2,7 @@ package App.DAO;
 
 import App.Config.Database;
 import App.Config.ErroriDB;
+import App.Objects.Cliente;
 import org.postgresql.util.PSQLException;
 import java.sql.*;
 import java.time.LocalDate;
@@ -68,6 +69,23 @@ public class ClienteDAO {
             return "rider";
 
         return "cliente";
+    }
+
+    public String updateIndirizzoAttivo(Integer id) throws SQLException {
+        try{
+            String sql = "UPDATE "+this.table+" SET indirizzoattivo = '"+id+"' WHERE clienteid = "+ Cliente.getInstance().getId();
+            this.conn = this.db.getConnection();
+            if(this.conn.createStatement().executeUpdate(sql)==1){
+                db.closeConnection(this.conn);
+                return "indirizzo_aggiornato";
+            }else{
+                db.closeConnection(conn);
+                return "errore_aggiornamento_indirizzo";
+            }
+        }catch(PSQLException e){
+            db.closeConnection(conn);
+            return edb.getErrorMessage(e.getMessage());
+        }
     }
 
 

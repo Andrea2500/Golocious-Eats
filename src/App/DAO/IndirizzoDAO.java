@@ -45,4 +45,10 @@ public class IndirizzoDAO {
         }
     }
 
+    public ResultSet getIndirizziDelCliente(Integer id) {
+        String where = "clienteid = '"+id+"'";
+        return this.db.queryBuilder(this.table,where);
+    }
+
+
 }

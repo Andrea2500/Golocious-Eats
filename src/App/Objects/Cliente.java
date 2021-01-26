@@ -56,6 +56,10 @@ public class Cliente {
         this.indirizzoAttivo = indirizzoAttivo;
     }
 
+    public Integer getIndirizzoAttivo() {
+        return indirizzoAttivo;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -21,6 +21,10 @@ public class ErroriDB {
         if(isErrorKey(error, "signup_fallito")) {
             return "signup_fallito";
         }
+        if(isErrorKey(error, "ck_indirizzo_attivo_del_cliente")) {
+            return "ck_indirizzo_attivo_del_cliente";
+        }
+
         else return "nessun_errore";
     }
 
