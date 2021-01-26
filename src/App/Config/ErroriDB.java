@@ -24,12 +24,11 @@ public class ErroriDB {
         if(isErrorKey(error, "ck_indirizzo_attivo_del_cliente")) {
             return "ck_indirizzo_attivo_del_cliente";
         }
-
         if(isErrorKey(error, "ck_patente")) {
             return "ck_patente";
         }
         if(isErrorKey(error, "troppo lungo")) {
-            return "troppo lungo";
+            return "troppo_lungo";
         }
         else return "nessun_errore";
     }

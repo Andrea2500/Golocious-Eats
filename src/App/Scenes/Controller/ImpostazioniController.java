@@ -113,8 +113,14 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     //TODO refactor method name
     //TODO elimina indirizzo
     public void rendiAttivoBtn() throws SQLException {
+        //TODO comboboxvuota
         Integer attivo = indirizzoComboBox.getSelectionModel().getSelectedItem().getId();
-        selIndirizzoController.setIndirizzoAttivo(attivo);
+        String messaggio = selIndirizzoController.setIndirizzoAttivo(attivo);
+        if(messaggio.equals("indirizzo_aggiornato")){
+            ((Label) getElementById("indirizzoAttivoLabel")).setText("Indirizzo attivo aggiornato con successo");
+        }else{
+            setErroriDB(messaggio);
+        }
     }
 
     public void eliminaDefinitivamenteBtn() {
@@ -214,7 +220,8 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     private void setErroriDB(String messaggio) {
         switch (messaggio) {
             case "ck_patente" -> errore("errorePatenteLabel", "Inserisci una patente", true);
-            case "troppo lungo" -> errore("errorePatenteLabel", "Patente troppo lunga", true);
+            case "troppo_lungo" -> errore("errorePatenteLabel", "Patente troppo lunga", true);
+            case "ck_indirizzo_attivo_del_cliente" -> errore("indirizzoAttivoLabel","Si è verificato un errore. Riprova.",false);
             default -> errore("erroreRiderLabel", "Siamo spiacenti, si è verificato un errore", false);
         }
     }
