@@ -18,7 +18,7 @@ public class AuthController extends Controller {
         this.cliente = Cliente.getInstance();
     }
 
-    public boolean Login(String email,String password) throws NoSuchAlgorithmException, SQLException {
+    public String Login(String email,String password) throws NoSuchAlgorithmException, SQLException {
         ResultSet rs = cliente.getClienteDAO().LoginConf(email, this.PasswordHash(password));
         if(rs.next()) {
             cliente = Cliente.getInstance();
@@ -32,18 +32,18 @@ public class AuthController extends Controller {
             cliente.setAuth(true);
             cliente.setRole(cliente.getClienteDAO().getRole(cliente.getId()));
             cliente.setObject();
-            return true;
+            return "login_autorizzato";
         } else {
-            new ErroriDB().getErrorMessage("login_fallito");
-            return false;
+            return "login_fallito";
         }
     }
 
-    public boolean Register(String nome, String cognome, String email, String password, String telefono, LocalDate dataNascita) throws NoSuchAlgorithmException, SQLException {
-        if(cliente.getClienteDAO().RegisterConf(nome, cognome, email, this.PasswordHash(password), telefono, dataNascita)){
+    public String Register(String nome, String cognome, String email, String password, String telefono, LocalDate dataNascita) throws NoSuchAlgorithmException, SQLException {
+        String message = cliente.getClienteDAO().RegisterConf(nome, cognome, email, this.PasswordHash(password), telefono, dataNascita);
+        if(message.equals("cliente_registrato")) {
             this.Login(email, this.PasswordHash(password));
-            return true;
-        } else return false;
+        }
+        return message;
     }
 
     private String PasswordHash(String password) throws NoSuchAlgorithmException {

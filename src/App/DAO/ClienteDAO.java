@@ -11,6 +11,7 @@ public class ClienteDAO {
     Connection conn;
     String table;
 
+
     Database db;
     ErroriDB edb = new ErroriDB();
 
@@ -31,7 +32,7 @@ public class ClienteDAO {
         return rs;
     }
 
-    public boolean RegisterConf(String nome, String cognome, String email, String password, String telefono, LocalDate dataNascita) throws SQLException {
+    public String RegisterConf(String nome, String cognome, String email, String password, String telefono, LocalDate dataNascita) throws SQLException {
         try {
             this.conn = db.getConnection();
             String sql = "insert into " + this.table + " values (?, ?, ?, ?, ?, ?)";
@@ -44,16 +45,14 @@ public class ClienteDAO {
             pstmt.setDate(6, Date.valueOf(dataNascita));
             if(pstmt.executeUpdate() > 0){
                 db.closeConnection(conn);
-                return true;
+                return "cliente_registrato";
             }else{
-                new ErroriDB().getErrorMessage("signup_fallito");
                 db.closeConnection(conn);
-                return false;
+                return "signup_fallito";
             }
         } catch(PSQLException e) {
-            edb.getErrorMessage(e.getMessage());
             db.closeConnection(conn);
-            return false;
+            return edb.getErrorMessage(e.getMessage());
         }
     }
 

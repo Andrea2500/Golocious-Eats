@@ -1,7 +1,6 @@
 package App.Objects;
 
 import App.DAO.GestoreDAO;
-
 import java.sql.SQLException;
 import java.util.List;
 

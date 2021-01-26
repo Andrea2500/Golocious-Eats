@@ -1,7 +1,13 @@
 package App.Scenes.Controller;
 
+import App.Controllers.AggiungiIndirizzoController;
+import javafx.scene.control.Label;
+
+import java.sql.SQLException;
 
 public class ImpostazioniController extends BaseSceneController{
+
+    AggiungiIndirizzoController aggIndController;
 
     public void inserisciIndirizzoBtn() {
         resetBtnColor();
@@ -24,7 +30,7 @@ public class ImpostazioniController extends BaseSceneController{
         sceneController.setActiveBtn("diventaRiderBtn");
     }
 
-    public void aggiungiBtn() {
+    public void aggiungiBtn() throws SQLException {
         resetErroriIndirizzo();
         String paese = getValue("paeseField", "textfield");
         String provincia = getValue("provinciaField", "textfield");
@@ -32,7 +38,15 @@ public class ImpostazioniController extends BaseSceneController{
         String citta = getValue("cittaField", "textfield");
         String indirizzo = getValue("indirizzoField", "textfield");
         if(paese.length()>0 && provincia.length()>0 && cap.length()>0 && citta.length()>0 && indirizzo.length()>0){
-            //aggiungi indirizzo
+            aggIndController = new AggiungiIndirizzoController(paese, provincia, cap, citta, indirizzo);
+            String messaggio = aggIndController.aggiungiIndirizzo();
+            if(messaggio.equals("indirizzo_aggiunto")){
+                getElementById("correttoLabel").setVisible(true);
+            } else if(messaggio.equals("aggiunta_indirizzo_fallita")){
+                Label correttoLabel = (Label) getElementById("correttoLabel");
+                correttoLabel.setVisible(true);
+                correttoLabel.setText("L'indirizzo non è stato aggiunto");
+            }
         } else {
             setErroriIndirizzo(paese, provincia, cap, citta, indirizzo);
         }
@@ -42,11 +56,10 @@ public class ImpostazioniController extends BaseSceneController{
         resetErroriConsegna();
         String patente = getValue("patenteField", "textfield");
         String veicolo = getValue("veicoloBox", "combobox");
-        System.out.println(veicolo);
-        if(patente.length()>0 && veicolo.length()>0) {
+        if(patente.length()>0 && veicolo != null) {
             //diventa rider
         } else {
-            setErroriIndirizzo();
+            setErroriIndirizzo(patente, veicolo);
         }
     }
 
@@ -98,9 +111,19 @@ public class ImpostazioniController extends BaseSceneController{
     }
 
     public void resetErroriConsegna() {
+        inizializzaLabel("errorePatenteLabel", true);
+        inizializzaLabel("erroreVeicoloLabel", false);
+        getElementById("veicoloBox").setStyle("-fx-border-color: transparent");
     }
 
-    public void setErroriIndirizzo() {
+    public void setErroriIndirizzo(String patente, String veicolo) {
+        if(patente.length()==0) {
+            errore("errorePatenteLabel", "Inserisci una patente", true);
+        }
+        if(veicolo == null) {
+            errore("erroreVeicoloLabel", "Inserisci un veicolo", false);
+            getElementById("veicoloBox").setStyle("-fx-border-color: #ff0000");
+        }
     }
 
 

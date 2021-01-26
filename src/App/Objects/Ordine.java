@@ -65,4 +65,5 @@ public class Ordine {
     public void setStato(boolean stato) {
         this.stato = stato;
     }
+
 }

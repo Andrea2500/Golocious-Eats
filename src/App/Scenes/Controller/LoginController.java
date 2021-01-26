@@ -1,6 +1,10 @@
 package App.Scenes.Controller;
 
 import App.Controllers.AuthController;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -22,8 +26,12 @@ public class LoginController extends BaseSceneController {
             String email = getValue("emailField", "textfield");
             String password = getValue("passwordField", "passwordfield");
             if(email.length()>0 && password.length()>0){
-                if(auth.Login(email,password))
+                String messaggio = auth.Login(email,password);
+                if(messaggio.equals("login_autorizzato")) {
                     sceneController.login();
+                } else {
+                    errore("erroreLoginLabel", "Il login non è riuscito", false);
+                }
             }else {
                 if(email.length()==0){
                     errore("erroreEmailLabel", "Inserisci un'email", true);
@@ -47,14 +55,26 @@ public class LoginController extends BaseSceneController {
             String telefono = getValue("telefonoField", "textfield");
             LocalDate dataNascita = getValue("datanascitaField");
             if(nome.length()>0 && cognome.length()>0 && email.length()>0 && password.length()>0 && telefono.length()>0 && eta(dataNascita) >= 14) {
-                if (auth.Register(nome, cognome, email, password, telefono, dataNascita)) {
+                String messaggio = auth.Register(nome, cognome, email, password, telefono, dataNascita);
+                if (messaggio.equals("cliente_registrato")) {
                     sceneController.login();
+                } else {
+                    setErroriDB(messaggio);
                 }
             } else {
                 setErrori(nome, cognome, email, password, telefono, dataNascita);
             }
         }
+    }
 
+    private void setErroriDB(String messaggio) {
+        switch (messaggio) {
+            case "ck_email" -> errore("erroreEmailLabel", "Inserisci un'email valida", true);
+            case "cliente_email_key" -> errore("erroreEmailLabel", "L'indirizzo email è gia registrato", true);
+            case "ck_telefono" -> errore("erroreTelefonoLabel", "Inserisci un numero di telefono valido", true);
+            case "cliente_telefono_key" -> errore("erroreTelefonoLabel", "Il numero di telefono è già registrato", true);
+            case "signup_fallito" -> errore("erroreLoginLabel", "Si è verificato un errore", false);
+        }
     }
 
     public void setErrori(String nome, String cognome, String email, String password, String telefono, LocalDate dataNascita) {

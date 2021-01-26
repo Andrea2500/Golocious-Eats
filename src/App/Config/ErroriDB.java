@@ -1,31 +1,27 @@
 package App.Config;
 
-import App.Scenes.Controller.BaseSceneController;
-
 public class ErroriDB {
 
-    BaseSceneController baseSceneController = new BaseSceneController();
-
-
-    public void getErrorMessage(String error) {
+    public String getErrorMessage(String error) {
         if(isErrorKey(error,"ck_email")) {
-            baseSceneController.errore("erroreEmailLabel", "Inserisci un'email valida", true);
+            return "ck_email";
         }
         if(isErrorKey(error,"cliente_email_key")) {
-            baseSceneController.errore("erroreEmailLabel", "L'indirizzo email è gia registrato", true);
+            return "cliente_email_key";
         }
         if(isErrorKey(error, "ck_telefono")) {
-            baseSceneController.errore("erroreTelefonoLabel", "Inserisci un numero di telefono valido", true);
+            return "ck_telefono";
         }
         if(isErrorKey(error, "cliente_telefono_key")) {
-            baseSceneController.errore("erroreTelefonoLabel", "Il numero di telefono è già registrato", true);
+            return "cliente_telefono_key";
         }
         if(isErrorKey(error, "login_fallito")) {
-            baseSceneController.errore("erroreLoginLabel", "Il login non è riuscito", false);
+            return "login_fallito";
         }
         if(isErrorKey(error, "signup_fallito")) {
-            baseSceneController.errore("erroreLoginLabel", "Si è verificato un errore", false);
+            return "signup_fallito";
         }
+        else return "nessun_errore";
     }
 
     private boolean isErrorKey(String error, String key) {
