@@ -38,7 +38,7 @@ public class ImpostazioniController extends BaseSceneController{
         String citta = getValue("cittaField", "textfield");
         String indirizzo = getValue("indirizzoField", "textfield");
         if(paese.length()>0 && provincia.length()>0 && cap.length()>0 && citta.length()>0 && indirizzo.length()>0){
-            aggIndController = new AggiungiIndirizzoController(paese, provincia, cap, citta, indirizzo);
+            aggIndController = new AggiungiIndirizzoController(paese, provincia, citta, cap, indirizzo);
             String messaggio = aggIndController.aggiungiIndirizzo();
             if(messaggio.equals("indirizzo_aggiunto")){
                 getElementById("correttoLabel").setVisible(true);
