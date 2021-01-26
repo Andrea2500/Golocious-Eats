@@ -30,6 +30,13 @@ public class ImpostazioniController extends BaseSceneController{
         sceneController.setActiveBtn("diventaRiderBtn");
     }
 
+    public void eliminaAccountBtn() {
+        resetBtnColor();
+        resetVBoxManagedAndVisible();
+        setManagedAndVisible("eliminaAccountVBox", true);
+        sceneController.setActiveBtn("eliminaAccountBtn");
+    }
+
     public void aggiungiBtn() throws SQLException {
         resetErroriIndirizzo();
         String paese = getValue("paeseField", "textfield");
@@ -59,8 +66,12 @@ public class ImpostazioniController extends BaseSceneController{
         if(patente.length()>0 && veicolo != null) {
             //TODO diventa rider
         } else {
-            setErroriIndirizzo(patente, veicolo);
+            setErroriConsegna(patente, veicolo);
         }
+    }
+
+    public void eliminaDefinitivamenteBtn() {
+        //TODO alertbox che chiede se si è sicuri
     }
 
     public void resetVBoxManagedAndVisible() {
@@ -72,15 +83,19 @@ public class ImpostazioniController extends BaseSceneController{
         getElementById("cambiaIndirizzoAttivoVBox").setVisible(false);
         getElementById("diventaRiderHBox").setManaged(false);
         getElementById("diventaRiderHBox").setVisible(false);
+        getElementById("eliminaAccountVBox").setManaged(false);
+        getElementById("eliminaAccountVBox").setVisible(false);
     }
 
-    public void resetBtnColor(){
-        if(getElementById("inserisciIndirizzoHBox").isVisible()){
+    public void resetBtnColor() {
+        if(getElementById("inserisciIndirizzoHBox").isVisible()) {
             getElementById("inserisciIndirizzoBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
-        } else if(getElementById("cambiaIndirizzoAttivoVBox").isVisible()){
+        } else if(getElementById("cambiaIndirizzoAttivoVBox").isVisible()) {
             getElementById("cambiaIndirizzoAttivoBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
-        } else if (getElementById("diventaRiderHBox").isVisible()) {
+        } else if(getElementById("diventaRiderHBox").isVisible()) {
             getElementById("diventaRiderBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
+        } else if(getElementById("eliminaAccountHBox").isVisible()) {
+            getElementById("eliminaAccountBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         }
     }
 
@@ -116,7 +131,7 @@ public class ImpostazioniController extends BaseSceneController{
         getElementById("veicoloBox").setStyle("-fx-border-color: transparent");
     }
 
-    public void setErroriIndirizzo(String patente, String veicolo) {
+    public void setErroriConsegna(String patente, String veicolo) {
         if(patente.length()==0) {
             errore("errorePatenteLabel", "Inserisci una patente", true);
         }
