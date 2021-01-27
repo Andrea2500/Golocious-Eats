@@ -9,8 +9,8 @@ public class SelezionaIndirizzoController {
 
     /**********Attributi**********/
 
-    Indirizzo indirizzo;
-    Cliente cliente;
+    private Indirizzo indirizzo;
+    private Cliente cliente;
 
     /**********Metodi**********/
 

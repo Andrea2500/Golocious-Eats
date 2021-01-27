@@ -14,9 +14,9 @@ public class IndirizzoDAO {
 
     /**********Attributi**********/
 
-    String table;
-    ObservableList<Indirizzo> listaIndirizzi;
-    Database db;
+    private String table;
+    private ObservableList<Indirizzo> listaIndirizzi;
+    private Database db;
 
     /**********Metodi**********/
 

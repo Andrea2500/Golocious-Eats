@@ -8,7 +8,7 @@ public class MostraOrdiniEffettuatiController {
 
     /**********Attributi**********/
 
-    Ordine ordine;
+    private Ordine ordine;
 
     /**********Metodi**********/
 

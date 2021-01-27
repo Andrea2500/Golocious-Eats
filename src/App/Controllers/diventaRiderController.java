@@ -8,7 +8,7 @@ public class diventaRiderController {
 
     /**********Attributi**********/
 
-    Rider rider;
+    private Rider rider;
 
     /**********Metodi**********/
 

@@ -6,7 +6,7 @@ public class Database {
 
     /**********Attributi**********/
 
-    Connection connection;
+    private Connection connection;
 
     /**********Metodi**********/
 

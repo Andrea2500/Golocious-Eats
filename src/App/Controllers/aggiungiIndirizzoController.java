@@ -7,7 +7,7 @@ public class aggiungiIndirizzoController {
 
     /**********Attributi**********/
 
-    Indirizzo indirizzo;
+    private Indirizzo indirizzo;
 
     /**********Metodi**********/
 

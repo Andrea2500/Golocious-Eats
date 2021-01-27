@@ -8,9 +8,9 @@ public class Rider extends Cliente {
 
     /**********Attributi**********/
 
-    String patente;
-    String veicolo;
-    RiderDAO riderDAO;
+    private String patente;
+    private String veicolo;
+    private RiderDAO riderDAO;
 
     /**********Metodi**********/
 

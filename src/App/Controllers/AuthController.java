@@ -11,7 +11,7 @@ public class AuthController {
 
     /**********Attributi**********/
 
-    Cliente cliente;
+    private Cliente cliente;
 
     /**********Metodi**********/
 

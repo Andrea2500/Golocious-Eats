@@ -10,10 +10,10 @@ public class ClienteDAO {
 
     /**********Attributi**********/
 
-    String table;
-    Cliente cliente;
-    Database db;
-    ErroriDB edb = new ErroriDB();
+    private String table;
+    private Cliente cliente;
+    protected Database db;
+    private ErroriDB edb = new ErroriDB();
 
     /**********Metodi**********/
 

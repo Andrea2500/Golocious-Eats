@@ -10,10 +10,10 @@ public class OrdineDAO {
 
     /**********Attributi**********/
 
-    String table;
-    String fkTable;
-    ObservableList<Ordine> listaOrdini;
-    Database db;
+    private String table;
+    private String fkTable;
+    private ObservableList<Ordine> listaOrdini;
+    private Database db;
 
     /**********Metodi**********/
 
