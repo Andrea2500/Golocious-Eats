@@ -88,6 +88,8 @@ public class SceneController {
         this.setScene("Impostazioni");
         setCliccatoBtn("impostazioniBtn");
         setMenu(Cliente.getInstance().getRole());
+        if(Cliente.getInstance().getRole().equals("cliente"))
+            this.setVisibile("diventaRiderBtn",true);
     }
 
     public void logout() throws IOException, SQLException {

@@ -61,6 +61,4 @@ public class Rider extends Cliente {
         return super.nome;
     }
 
-    //TODO diventa rider in impostazioni visualizzabile solo se non si è clienti o gestori
-
 }
