@@ -4,22 +4,28 @@ import App.Config.Database;
 import App.Objects.Ordine;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.sql.*;
 
 public class OrdineDAO {
 
+    /**********Attributi**********/
+
     String table;
     String fkTable;
-
     ObservableList<Ordine> listaOrdini;
     Database db;
+
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public OrdineDAO() {
         this.db = new Database();
         this.table = "Ordine";
         this.fkTable = "Carrello";
     }
+
+    /**********Metodi di funzionalità**********/
 
     public ObservableList<Ordine> getOrdini(Integer id) throws SQLException {
         this.listaOrdini = FXCollections.observableArrayList();

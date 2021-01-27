@@ -4,22 +4,28 @@ import App.Config.Database;
 import App.Config.ErroriDB;
 import App.Objects.Rider;
 import org.postgresql.util.PSQLException;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class RiderDAO extends ClienteDAO{
 
+    /**********Attributi**********/
+
     String table;
     Database db;
     ErroriDB edb = new ErroriDB();
 
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public RiderDAO() {
         this.db = new Database();
         this.table = "Rider";
     }
+
+    /**********Metodi di funzionalità**********/
 
     public String diventaRiderConf(Rider rider) throws SQLException {
         try {

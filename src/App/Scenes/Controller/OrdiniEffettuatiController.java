@@ -14,6 +14,8 @@ import java.util.ResourceBundle;
 
 public class OrdiniEffettuatiController extends BaseSceneController implements Initializable {
 
+    /**********Attributi**********/
+
     MostraOrdiniEffettuatiController mostraOrdiniEffettuatiController;
     @FXML private TableView<Ordine> orderTable;
     @FXML private TableColumn<Ordine,Integer> idCol;
@@ -23,6 +25,7 @@ public class OrdiniEffettuatiController extends BaseSceneController implements I
     @FXML private TableColumn<Ordine,String> riderCol;
     @FXML private TableColumn<Ordine,String> statoCol;
 
+    /**********Costruttori**********/
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -38,6 +41,8 @@ public class OrdiniEffettuatiController extends BaseSceneController implements I
             throwables.printStackTrace();
         }
     }
+
+    /**********Metodi di funzionalità**********/
 
     private void showOrder() throws SQLException {
         this.mostraOrdiniEffettuatiController = new MostraOrdiniEffettuatiController();

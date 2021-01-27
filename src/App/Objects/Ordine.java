@@ -7,13 +7,19 @@ import java.sql.SQLException;
 
 public class Ordine {
 
+    /**********Attributi**********/
+
     Integer id;
     String ristorante;
     String dataOrdine;
     String totale;
     String rider;
     boolean stato;
-    OrdineDAO ordinedao;
+    OrdineDAO ordineDAO;
+
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public Ordine(Integer id, String ristorante, String dataOrdine, String totale, String rider, boolean stato) {
         this.id = id;
@@ -22,11 +28,14 @@ public class Ordine {
         this.totale = totale;
         this.rider = rider;
         this.stato = stato;
+        this.ordineDAO = new OrdineDAO();
     }
 
     public Ordine(){
-        this.ordinedao = new OrdineDAO();
+        this.ordineDAO = new OrdineDAO();
     }
+
+    /**********Getter e setter**********/
 
     public Integer getId() {
         return id;
@@ -76,8 +85,12 @@ public class Ordine {
         this.stato = stato;
     }
 
+    /**********Metodi di funzionalità**********/
+
     public ObservableList<Ordine> getOrdini() throws SQLException {
-       return this.ordinedao.getOrdini(Cliente.getInstance().getId());
+       return this.ordineDAO.getOrdini(Cliente.getInstance().getId());
     }
+
+    //TODO attributi Cliente cliente e Rider rider guarda TODO nel costruttore della classe Rider
 
 }

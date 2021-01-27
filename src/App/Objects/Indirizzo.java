@@ -2,10 +2,11 @@ package App.Objects;
 
 import App.DAO.IndirizzoDAO;
 import javafx.collections.ObservableList;
-
 import java.sql.SQLException;
 
 public class Indirizzo {
+
+    /**********Attributi**********/
 
     Integer id;
     String paese;
@@ -13,10 +14,12 @@ public class Indirizzo {
     String citta;
     String cap;
     String indirizzo;
-
-
     Cliente cliente;
     IndirizzoDAO indirizzoDAO;
+
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public Indirizzo() throws SQLException {
         this.cliente = Cliente.getInstance();
@@ -43,6 +46,8 @@ public class Indirizzo {
         this.cliente = Cliente.getInstance();
         this.indirizzoDAO = new IndirizzoDAO();
     }
+
+    /**********Getter e setter**********/
 
     public Integer getId() {
         return id;
@@ -80,10 +85,7 @@ public class Indirizzo {
         this.cliente = cliente;
     }
 
-    @Override
-    public String toString(){
-        return this.indirizzo+", "+this.cap+", "+this.citta+", "+this.provincia+", "+this.paese;
-    }
+    /**********Metodi di funzionalità**********/
 
     public String aggiungiIndirizzo(Indirizzo indirizzo) throws SQLException {
         return this.indirizzoDAO.aggiungiIndirizzoConf(indirizzo);
@@ -91,6 +93,13 @@ public class Indirizzo {
 
     public ObservableList<Indirizzo> getIndirizzi() throws SQLException {
         return this.indirizzoDAO.getIndirizziDelCliente(this.cliente.getId());
+    }
+
+    /**********Metodi di supporto**********/
+
+    @Override
+    public String toString(){
+        return this.indirizzo+", "+this.cap+", "+this.citta+", "+this.provincia+", "+this.paese;
     }
 
 }

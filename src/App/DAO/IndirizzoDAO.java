@@ -5,7 +5,6 @@ import App.Objects.Indirizzo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,15 +12,22 @@ import java.sql.Statement;
 
 public class IndirizzoDAO {
 
+    /**********Attributi**********/
+
     String table;
     ObservableList<Indirizzo> listaIndirizzi;
     Database db;
 
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public IndirizzoDAO() {
         this.db = new Database();
         this.table = "Indirizzo";
     }
+
+    /**********Metodi di funzionalità**********/
 
     public String aggiungiIndirizzoConf(Indirizzo indirizzo) throws SQLException {
         try {

@@ -7,10 +7,15 @@ import java.util.List;
 
 public class GestoreDAO extends ClienteDAO{
 
-
+    /**********Metodi**********/
 
     String table = "gestore";
     //TODO Aggiungere lista ristoranti e modificare metodo getRistoranti
+
+    /**********Metodi**********/
+
+    /**********Metodi di funzionalità**********/
+
     public List<Integer> getRistoranti(Integer id) throws SQLException {
         this.db.setConnection();
         List<Integer> ristoranti = new ArrayList<>();
@@ -22,6 +27,5 @@ public class GestoreDAO extends ClienteDAO{
         }
         return ristoranti;
     }
-
 
 }

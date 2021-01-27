@@ -5,14 +5,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class SceneController {
 
+    /**********Attributi**********/
+
     Stage window;
 
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public static SceneController instance;
     public static SceneController getInstance() {
@@ -20,6 +24,8 @@ public class SceneController {
             instance = new SceneController();
         return instance;
     }
+
+    /**********Getter e setter**********/
 
     public Stage getWindow() {
         return window;
@@ -29,24 +35,18 @@ public class SceneController {
         this.window = window;
     }
 
+    public Scene getScene() {
+        return this.window.getScene();
+    }
+
+
     public void setScene(String scene) throws IOException {
         Parent tableParent = FXMLLoader.load(getClass().getResource("../FXML/"+scene+".fxml"));
         Scene tableScene = new Scene(tableParent, 900, 480);
         this.window.setScene(tableScene);
     }
 
-    public Scene getScene() {
-        return this.window.getScene();
-    }
-
-    public void setVisibility(String id, boolean toggle) {
-        this.getScene().lookup("#" + id).setVisible(toggle);
-        this.getScene().lookup("#" + id).setManaged(toggle);
-    }
-
-    public void setCliccatoBtn(String id) {
-        getScene().lookup("#"+id).setStyle("-fx-background-color: #e19a1f; -fx-cursor: pointer");
-    }
+    /**********Metodi di cambio scene**********/
 
     public void login() throws IOException, SQLException {
         this.setScene("Ordina");
@@ -95,14 +95,25 @@ public class SceneController {
         this.setScene("Login");
     }
 
+    /**********Metodi di supporto**********/
+
+    public void setVisibile(String id, boolean toggle) {
+        this.getScene().lookup("#" + id).setVisible(toggle);
+        this.getScene().lookup("#" + id).setManaged(toggle);
+    }
+
+    public void setCliccatoBtn(String id) {
+        getScene().lookup("#"+id).setStyle("-fx-background-color: #e19a1f; -fx-cursor: pointer");
+    }
+
     public void setMenu(String role){
         switch (role){
             case "gestore":
-                this.setVisibility("gestisciRistoranteBtn",true);
+                this.setVisibile("gestisciRistoranteBtn",true);
                 break;
             case "rider":
-                this.setVisibility("consegnaBtn",true);
-                this.setVisibility("consegneEffettuateBtn",true);
+                this.setVisibile("consegnaBtn",true);
+                this.setVisibile("consegneEffettuateBtn",true);
                 break;
             default:
                 break;

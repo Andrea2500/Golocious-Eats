@@ -6,8 +6,13 @@ import java.time.LocalDate;
 
 public class LoginController extends BaseSceneController {
 
+    /**********Attributi**********/
+
     AuthController auth;
 
+    /**********Metodi**********/
+
+    /**********Metodi di bottoni**********/
 
     public void loginBtnClick() throws Exception {
         resetErrori();
@@ -60,15 +65,20 @@ public class LoginController extends BaseSceneController {
         }
     }
 
-    private void setErroriDB(String messaggio) {
-        switch (messaggio) {
-            case "ck_email" -> errore("erroreEmailLabel", "Inserisci un'email valida", true);
-            case "cliente_email_key" -> errore("erroreEmailLabel", "L'indirizzo email è gia registrato", true);
-            case "ck_telefono" -> errore("erroreTelefonoLabel", "Inserisci un numero di telefono valido", true);
-            case "cliente_telefono_key" -> errore("erroreTelefonoLabel", "Il numero di telefono è già registrato", true);
-            case "signup_fallito", "troppo_lungo" -> errore("erroreLoginLabel", "Si è verificato un errore", false);
-        }
+    /**********Metodi di supporto**********/
+
+    public void setField(boolean Register){
+        sceneController.setVisibile("nomeField", Register);
+        sceneController.setVisibile("erroreNomeLabel", Register);
+        sceneController.setVisibile("cognomeField", Register);
+        sceneController.setVisibile("erroreCognomeLabel", Register);
+        sceneController.setVisibile("telefonoField", Register);
+        sceneController.setVisibile("erroreTelefonoLabel", Register);
+        sceneController.setVisibile("datanascitaField", Register);
+        sceneController.setVisibile("erroreDatanascitaLabel", Register);
     }
+
+    /**********Metodi di ripristino e di errori**********/
 
     public void setErrori(String nome, String cognome, String email, String password, String telefono, LocalDate dataNascita) {
         if(nome.length()==0){
@@ -103,15 +113,14 @@ public class LoginController extends BaseSceneController {
         inizializzaLabel("erroreLoginLabel", false);
     }
 
-    public void setField(boolean Register){
-        sceneController.setVisibility("nomeField", Register);
-        sceneController.setVisibility("erroreNomeLabel", Register);
-        sceneController.setVisibility("cognomeField", Register);
-        sceneController.setVisibility("erroreCognomeLabel", Register);
-        sceneController.setVisibility("telefonoField", Register);
-        sceneController.setVisibility("erroreTelefonoLabel", Register);
-        sceneController.setVisibility("datanascitaField", Register);
-        sceneController.setVisibility("erroreDatanascitaLabel", Register);
+    private void setErroriDB(String messaggio) {
+        switch (messaggio) {
+            case "ck_email" -> errore("erroreEmailLabel", "Inserisci un'email valida", true);
+            case "cliente_email_key" -> errore("erroreEmailLabel", "L'indirizzo email è gia registrato", true);
+            case "ck_telefono" -> errore("erroreTelefonoLabel", "Inserisci un numero di telefono valido", true);
+            case "cliente_telefono_key" -> errore("erroreTelefonoLabel", "Il numero di telefono è già registrato", true);
+            case "signup_fallito", "troppo_lungo" -> errore("erroreLoginLabel", "Si è verificato un errore", false);
+        }
     }
 
 }

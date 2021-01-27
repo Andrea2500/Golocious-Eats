@@ -1,13 +1,13 @@
 package App.Scenes.Controller;
 
-import App.Controllers.AggiungiIndirizzoController;
+import App.Controllers.aggiungiIndirizzoController;
 import App.Controllers.SelezionaIndirizzoController;
 import App.Objects.Cliente;
 import App.Objects.Indirizzo;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import App.Controllers.DiventaRiderController;
+import App.Controllers.diventaRiderController;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -17,12 +17,17 @@ import java.util.ResourceBundle;
 
 public class ImpostazioniController extends BaseSceneController implements Initializable {
 
+    /**********Attributi**********/
+
     Cliente cliente;
-    @FXML
-    private ComboBox<Indirizzo> indirizzoBox;
-    AggiungiIndirizzoController aggIndController;
+    aggiungiIndirizzoController aggIndController;
     SelezionaIndirizzoController selIndirizzoController;
-    DiventaRiderController divRidController;
+    diventaRiderController divRidController;
+    @FXML private ComboBox<Indirizzo> indirizzoBox;
+
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public ImpostazioniController() throws SQLException {
         this.cliente = Cliente.getInstance();
@@ -33,17 +38,19 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         this.indirizzoBox.getItems().clear();
     }
 
+    /**********Metodi di bottoni**********/
+
     public void vuotoVBox() {
         resetBtnColor();
         resetBoxManagedAndVisible();
-        sceneController.setVisibility("vuotoVBox",true);
+        sceneController.setVisibile("vuotoVBox",true);
     }
 
     public void inserisciIndirizzoBtn() {
         resetBtnColor();
         resetBoxManagedAndVisible();
         resetErroriIndirizzo();
-        sceneController.setVisibility("inserisciIndirizzoHBox", true);
+        sceneController.setVisibile("inserisciIndirizzoHBox", true);
         sceneController.setCliccatoBtn("inserisciIndirizzoBtn");
     }
 
@@ -53,21 +60,21 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         this.selIndirizzoController = new SelezionaIndirizzoController();
         setListaIndirizzi();
         resetErroriGestisciIndirizzi();
-        sceneController.setVisibility("gestisciIndirizziVBox", true);
+        sceneController.setVisibile("gestisciIndirizziVBox", true);
         sceneController.setCliccatoBtn("gestisciIndirizziBtn");
     }
 
     public void diventaRiderBtn() {
         resetBtnColor();
         resetBoxManagedAndVisible();
-        sceneController.setVisibility("diventaRiderHBox", true);
+        sceneController.setVisibile("diventaRiderHBox", true);
         sceneController.setCliccatoBtn("diventaRiderBtn");
     }
 
     public void eliminaAccountBtn() {
         resetBtnColor();
         resetBoxManagedAndVisible();
-        sceneController.setVisibility("eliminaAccountVBox", true);
+        sceneController.setVisibile("eliminaAccountVBox", true);
         sceneController.setCliccatoBtn("eliminaAccountBtn");
     }
 
@@ -79,7 +86,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         String citta = getValue("cittaField", "textfield");
         String indirizzo = getValue("indirizzoField", "textfield");
         if(paese.length()>0 && provincia.length()>0 && cap.length()>0 && citta.length()>0 && indirizzo.length()>0){
-            aggIndController = new AggiungiIndirizzoController(paese, provincia, citta, cap, indirizzo);
+            aggIndController = new aggiungiIndirizzoController(paese, provincia, citta, cap, indirizzo);
             String messaggio = aggIndController.aggiungiIndirizzo();
             if(messaggio.equals("indirizzo_aggiunto")){
                 resetCampiIndirizzo();
@@ -116,7 +123,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         String patente = getValue("patenteField", "textfield");
         String veicolo = getValue("veicoloBox", "combobox");
         if(patente.length()>0 && veicolo != null) {
-            divRidController = new DiventaRiderController(patente, veicolo);
+            divRidController = new diventaRiderController(patente, veicolo);
             String messaggio = divRidController.diventaRider();
             if(messaggio.equals("rider_aggiunto")) {
                 ((Label) getElementById("vuotoLabel")).setText("Congratulazioni! Effettua nuovamente il login per iniziare a lavorare");
@@ -135,12 +142,14 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         //TODO alertbox che chiede se si è sicuri
     }
 
+    /**********Metodi di supporto**********/
+
     public void resetBoxManagedAndVisible() {
-        sceneController.setVisibility("vuotoVBox", false);
-        sceneController.setVisibility("inserisciIndirizzoHBox", false);
-        sceneController.setVisibility("gestisciIndirizziVBox", false);
-        sceneController.setVisibility("diventaRiderHBox", false);
-        sceneController.setVisibility("eliminaAccountVBox", false);
+        sceneController.setVisibile("vuotoVBox", false);
+        sceneController.setVisibile("inserisciIndirizzoHBox", false);
+        sceneController.setVisibile("gestisciIndirizziVBox", false);
+        sceneController.setVisibile("diventaRiderHBox", false);
+        sceneController.setVisibile("eliminaAccountVBox", false);
     }
 
     public void resetBtnColor() {
@@ -154,6 +163,23 @@ public class ImpostazioniController extends BaseSceneController implements Initi
             getElementById("eliminaAccountBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         }
     }
+
+    private void setListaIndirizzi() throws SQLException {
+        ObservableList<Indirizzo> indirizzi= this.selIndirizzoController.getIndirizzi();
+        indirizzoBox.setItems(indirizzi);
+        int index = 0;
+        Integer indAttivoCliente = this.cliente.getIndirizzoAttivo();
+        ObservableList<Indirizzo> lista = indirizzoBox.getItems();
+        for(Indirizzo el: lista){
+            if (el.getId().equals(indAttivoCliente)){
+                break;
+            }
+            index++;
+        }
+        indirizzoBox.getSelectionModel().select(index);
+    }
+
+    /**********Metodi di ripristino e di errori**********/
 
     public void resetCampiIndirizzo() {
         ((TextField) getElementById("paeseField")).setText("");
@@ -219,21 +245,6 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     public void setErroriGestisciIndirizzi() {
         errore("indirizzoAttivoLabel", "Seleziona un indirizzo", false);
         getElementById("indirizzoBox").setStyle("-fx-border-color: red");
-    }
-
-    private void setListaIndirizzi() throws SQLException {
-        ObservableList<Indirizzo> indirizzi= this.selIndirizzoController.getIndirizzi();
-        indirizzoBox.setItems(indirizzi);
-        int index = 0;
-        Integer indAttivoCliente = Cliente.getInstance().getIndirizzoAttivo();
-        ObservableList<Indirizzo> lista = indirizzoBox.getItems();
-        for(Indirizzo el: lista){
-            if (el.getId().equals(indAttivoCliente)){
-                break;
-            }
-            index++;
-        }
-        indirizzoBox.getSelectionModel().select(index);
     }
 
     private void setErroriDB(String messaggio) {

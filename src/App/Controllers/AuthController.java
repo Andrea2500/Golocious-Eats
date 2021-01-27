@@ -9,8 +9,13 @@ import java.time.LocalDate;
 
 public class AuthController {
 
+    /**********Attributi**********/
+
     Cliente cliente;
 
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public AuthController() throws SQLException {
         this.cliente = Cliente.getInstance();
@@ -24,6 +29,8 @@ public class AuthController {
         cliente.setTelefono(telefono);
         cliente.setDataNascita(dataNascita);
     }
+
+    /**********Metodi di funzionalità**********/
 
     public String login(String email, String password) throws NoSuchAlgorithmException, SQLException {
         if(cliente.login(email, this.passwordHash(password))) {
@@ -40,6 +47,8 @@ public class AuthController {
         }
         return message;
     }
+
+    /**********Metodi di supporto**********/
 
     private String passwordHash(String password) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");

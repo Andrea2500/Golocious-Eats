@@ -6,10 +6,15 @@ import java.sql.SQLException;
 
 public class Rider extends Cliente {
 
+    /**********Attributi**********/
+
     String patente;
     String veicolo;
     RiderDAO riderDAO;
 
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public Rider(Integer id) {
         super.id = id;
@@ -24,6 +29,8 @@ public class Rider extends Cliente {
         this.veicolo = veicolo;
         this.riderDAO = new RiderDAO();
     }
+
+    /**********Getter e setter**********/
 
     public String getPatente() {
         return patente;
@@ -41,10 +48,11 @@ public class Rider extends Cliente {
         this.veicolo = veicolo;
     }
 
+    /**********Metodi di funzionalità**********/
+
     public String diventaRider(Rider rider) throws SQLException {
         return this.riderDAO.diventaRiderConf(rider);
     }
-
 
     //TODO diventa rider in impostazioni visualizzabile solo se non si è clienti o gestori
 

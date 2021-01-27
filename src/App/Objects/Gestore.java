@@ -6,9 +6,15 @@ import java.util.List;
 
 public class Gestore extends Cliente{
 
+    /**********Attributi**********/
+
     List<Integer> ristoranti;
     GestoreDAO gestoreDAO;
     Integer id;
+
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public Gestore(Integer id) throws SQLException {
         this.id = id;

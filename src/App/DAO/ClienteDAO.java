@@ -8,17 +8,23 @@ import java.sql.*;
 
 public class ClienteDAO {
 
-    String table;
+    /**********Attributi**********/
 
+    String table;
     Cliente cliente;
     Database db;
     ErroriDB edb = new ErroriDB();
 
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public ClienteDAO() {
         this.db = new Database();
         this.table = "Cliente";
     }
+
+    /**********Metodi di funzionalità**********/
 
     public boolean loginConf(String email, String password) throws SQLException {
         this.db.setConnection();
@@ -70,19 +76,6 @@ public class ClienteDAO {
         }
     }
 
-    public String getRole(Integer id) throws SQLException {
-        ResultSet role;
-        String where = "clienteid = '"+id+"'";
-        role = db.queryBuilder("gestore",where);
-        if(role.next())
-            return "gestore";
-        where = "riderid = '"+id+"'";
-        role = db.queryBuilder("rider",where);
-        if(role.next())
-            return "rider";
-        return "cliente";
-    }
-
     public String updateIndirizzoAttivo(Integer id) throws SQLException {
         try{
             String sql = "UPDATE "+this.table+" SET indirizzoattivo = '"+id+"' WHERE clienteid = "+ Cliente.getInstance().getId();
@@ -100,5 +93,19 @@ public class ClienteDAO {
         }
     }
 
+    /**********Metodi di supporto**********/
+
+    public String getRole(Integer id) throws SQLException {
+        ResultSet role;
+        String where = "clienteid = '"+id+"'";
+        role = db.queryBuilder("gestore",where);
+        if(role.next())
+            return "gestore";
+        where = "riderid = '"+id+"'";
+        role = db.queryBuilder("rider",where);
+        if(role.next())
+            return "rider";
+        return "cliente";
+    }
 
 }

@@ -1,11 +1,12 @@
 package App.Objects;
 
 import App.DAO.ClienteDAO;
-
 import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class Cliente {
+
+    /**********Attributi**********/
 
     String nome;
     String cognome;
@@ -16,10 +17,13 @@ public class Cliente {
     Integer indirizzoAttivo;
     Integer id;
     boolean auth;
-
     Gestore gestore;
     Rider rider;
     ClienteDAO clienteDAO;
+
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public static Cliente instance;
     public static Cliente getInstance() throws SQLException {
@@ -32,6 +36,8 @@ public class Cliente {
         this.clienteDAO = new ClienteDAO();
         this.auth = false;
     }
+
+    /**********Getter e setter**********/
 
     public String getNome() {
         return nome;
@@ -121,6 +127,22 @@ public class Cliente {
         this.rider = rider;
     }
 
+    /**********Metodi di funzionalità**********/
+
+    public boolean login(String email, String password) throws SQLException {
+        return this.clienteDAO.loginConf(email, password);
+    }
+
+    public String registra(Cliente cliente, String passwordHash) throws SQLException {
+        return this.clienteDAO.registerConf(cliente, passwordHash);
+    }
+
+    public String aggiornaIndirizzoAttivo(Integer indirizzoid) throws SQLException {
+        return this.clienteDAO.updateIndirizzoAttivo(indirizzoid);
+    }
+
+    /**********Metodi di supporto**********/
+
     public void reset(){
         this.nome = null;
         this.cognome = null;
@@ -139,15 +161,4 @@ public class Cliente {
         }
     }
 
-    public boolean login(String email, String password) throws SQLException {
-       return this.clienteDAO.loginConf(email, password);
-    }
-
-    public String registra(Cliente cliente, String passwordHash) throws SQLException {
-        return this.clienteDAO.registerConf(cliente, passwordHash);
-    }
-
-    public String aggiornaIndirizzoAttivo(Integer indirizzoid) throws SQLException {
-        return this.clienteDAO.updateIndirizzoAttivo(indirizzoid);
-    }
 }

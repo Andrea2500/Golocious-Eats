@@ -3,12 +3,17 @@ package App.Controllers;
 import App.Objects.Indirizzo;
 import java.sql.SQLException;
 
-public class AggiungiIndirizzoController {
+public class aggiungiIndirizzoController {
+
+    /**********Attributi**********/
 
     Indirizzo indirizzo;
 
+    /**********Metodi**********/
 
-    public AggiungiIndirizzoController(String paese, String provincia, String citta, String cap, String indirizzo) throws SQLException {
+    /**********Metodi di funzionalità**********/
+
+    public aggiungiIndirizzoController(String paese, String provincia, String citta, String cap, String indirizzo) throws SQLException {
         this.indirizzo = new Indirizzo(paese, provincia, citta, cap, indirizzo);
     }
 

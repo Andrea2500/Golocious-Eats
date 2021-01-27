@@ -2,6 +2,10 @@ package App.Config;
 
 public class ErroriDB {
 
+    /**********Metodi**********/
+
+    /**********Metodi di funzionalità**********/
+
     public String getErrorMessage(String error) {
         if(isErrorKey(error,"ck_email")) {
             return "ck_email";
@@ -32,6 +36,8 @@ public class ErroriDB {
         }
         else return "nessun_errore";
     }
+
+    /**********Metodi di supporto**********/
 
     private boolean isErrorKey(String error, String key) {
         return error.contains(key);

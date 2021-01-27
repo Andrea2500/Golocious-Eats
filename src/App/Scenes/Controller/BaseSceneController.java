@@ -10,12 +10,49 @@ import java.time.Period;
 
 public class BaseSceneController {
 
+    /**********Attributi**********/
+
     SceneController sceneController;
 
+    /**********Costruttori**********/
 
     public BaseSceneController() {
         this.sceneController = SceneController.getInstance();
     }
+
+    /**********Metodi**********/
+
+    /**********Metodi di cambio scene**********/
+
+    public void ordinaBtn() throws IOException, SQLException {
+        sceneController.ordina();
+    }
+
+    public void ordiniEffettuatiBtn() throws IOException, SQLException {
+        sceneController.ordiniEffettuati();
+    }
+
+    public void consegnaBtn() throws IOException, SQLException {
+        sceneController.consegna();
+    }
+
+    public void consegneEffettuateBtn() throws IOException, SQLException {
+        sceneController.consegneEffettuate();
+    }
+
+    public void gestisciRistoranteBtn() throws IOException, SQLException {
+        sceneController.gestisciRistorante();
+    }
+
+    public void impostazioniBtn() throws IOException, SQLException {
+        sceneController.impostazioni();
+    }
+
+    public void logoutBtn() throws IOException, SQLException {
+        sceneController.logout();
+    }
+
+    /**********Metodi di supporto**********/
 
     public Node getElementById(String id) {
         return sceneController.getScene().lookup("#" + id);
@@ -62,34 +99,6 @@ public class BaseSceneController {
         if(datanascita != null)
             return Period.between(datanascita, LocalDate.now()).getYears();
         else return 0;
-    }
-
-    public void ordinaBtn() throws IOException, SQLException {
-        sceneController.ordina();
-    }
-
-    public void ordiniEffettuatiBtn() throws IOException, SQLException {
-        sceneController.ordiniEffettuati();
-    }
-
-    public void consegnaBtn() throws IOException, SQLException {
-        sceneController.consegna();
-    }
-
-    public void consegneEffettuateBtn() throws IOException, SQLException {
-        sceneController.consegneEffettuate();
-    }
-
-    public void gestisciRistoranteBtn() throws IOException, SQLException {
-        sceneController.gestisciRistorante();
-    }
-
-    public void impostazioniBtn() throws IOException, SQLException {
-        sceneController.impostazioni();
-    }
-
-    public void logoutBtn() throws IOException, SQLException {
-        sceneController.logout();
     }
 
 }
