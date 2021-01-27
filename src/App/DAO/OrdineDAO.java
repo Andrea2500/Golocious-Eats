@@ -34,8 +34,10 @@ public class OrdineDAO {
         PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         pstmt.setInt(1, id);
         ResultSet rs = pstmt.executeQuery();
-        while (rs.next()){
-            this.listaOrdini.add(new Ordine(rs.getInt("ordineid"), rs.getInt("ristoranteid"),rs.getDate("dataordine").toString(), rs.getString("totale"), rs.getInt("riderid"),rs.getBoolean("consegnato")));
+        while (rs.next()) {
+            this.listaOrdini.add(new Ordine(rs.getInt("ordineid"), rs.getInt("ristoranteid"),
+                    rs.getDate("dataordine").toString(), rs.getString("totale"),
+                    rs.getInt("riderid"),rs.getBoolean("consegnato")));
         }
         db.closeConnection();
         return this.listaOrdini;

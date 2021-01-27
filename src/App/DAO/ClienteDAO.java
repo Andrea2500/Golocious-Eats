@@ -111,9 +111,9 @@ public class ClienteDAO {
     public String getNomeDB(Integer id) throws SQLException {
         String where = "clienteid = '"+id+"'";
         ResultSet rs = this.db.queryBuilder(this.table,where);
-        if(rs.next()){
+        if(rs.next()) {
             return rs.getString("nome")+" "+rs.getString("cognome");
-        }else{
+        } else {
             return "Utente non trovato";
         }
     }
