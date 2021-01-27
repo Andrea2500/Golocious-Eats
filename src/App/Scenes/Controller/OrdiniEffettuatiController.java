@@ -29,7 +29,7 @@ public class OrdiniEffettuatiController extends BaseSceneController implements I
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("ordineId"));
         ristoranteCol.setCellValueFactory(new PropertyValueFactory<>("ristorante"));
         dataCol.setCellValueFactory(new PropertyValueFactory<>("dataOrdine"));
         totaleCol.setCellValueFactory(new PropertyValueFactory<>("totale"));

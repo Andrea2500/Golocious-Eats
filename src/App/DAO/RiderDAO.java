@@ -5,10 +5,11 @@ import App.Config.ErroriDB;
 import App.Objects.Rider;
 import org.postgresql.util.PSQLException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class RiderDAO extends ClienteDAO{
+public class RiderDAO {
 
     /**********Attributi**********/
 
@@ -47,5 +48,21 @@ public class RiderDAO extends ClienteDAO{
             return edb.getErrorMessage(e.getMessage());
         }
     }
+
+    public String getVeicolo(Integer riderId) throws SQLException {
+        String where="riderid = '"+riderId+"'";
+        ResultSet rs = this.db.queryBuilder(this.table, where);
+        if(rs.next()){
+            switch (rs.getString("veicolo")){
+                case "a" -> { return "automobile"; }
+                case "b" -> { return "bicicletta"; }
+                case "m" -> { return "motoveicolo"; }
+                default -> { return "veicolo_rider_errore"; }
+            }
+        }else{
+            return "veicolo_rider_errore";
+        }
+    }
+
 
 }

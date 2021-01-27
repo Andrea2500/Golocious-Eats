@@ -26,7 +26,7 @@ public class Cliente {
     /**********Costruttori**********/
 
     public static Cliente instance;
-    public static Cliente getInstance() throws SQLException {
+    public static Cliente getInstance() {
         if (instance == null)
             instance = new Cliente();
         return instance;
@@ -159,6 +159,10 @@ public class Cliente {
             case "gestore" -> this.gestore = new Gestore(this.id);
             case "rider" -> this.rider = new Rider(this.id);
         }
+    }
+
+    public String getNomeDB(Integer id) throws SQLException {
+        return this.clienteDAO.getNomeDB(id);
     }
 
 }

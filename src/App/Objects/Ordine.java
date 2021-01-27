@@ -9,25 +9,25 @@ public class Ordine {
 
     /**********Attributi**********/
 
-    Integer id;
-    String ristorante;
+    Integer ordineId;
+    Ristorante ristorante;
     String dataOrdine;
     String totale;
-    String rider;
-    boolean stato;
+    Rider rider;
+    String stato;
     OrdineDAO ordineDAO;
 
     /**********Metodi**********/
 
     /**********Costruttori**********/
 
-    public Ordine(Integer id, String ristorante, String dataOrdine, String totale, String rider, boolean stato) {
-        this.id = id;
-        this.ristorante = ristorante;
+    public Ordine(Integer ordineId, Integer ristoranteId, String dataOrdine, String totale, Integer riderId, boolean stato) throws SQLException {
+        this.ordineId = ordineId;
+        this.ristorante = new Ristorante(ristoranteId);
         this.dataOrdine = dataOrdine;
         this.totale = totale;
-        this.rider = rider;
-        this.stato = stato;
+        this.rider = new Rider(riderId);
+        this.stato = (stato)?"Consegnato":"In consegna";
         this.ordineDAO = new OrdineDAO();
     }
 
@@ -37,19 +37,19 @@ public class Ordine {
 
     /**********Getter e setter**********/
 
-    public Integer getId() {
-        return id;
+    public Integer getOrdineId() {
+        return ordineId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setOrdineId(Integer ordineId) {
+        this.ordineId = ordineId;
     }
 
-    public String getRistorante() {
+    public Ristorante getRistorante() {
         return ristorante;
     }
 
-    public void setRistorante(String ristorante) {
+    public void setRistorante(Ristorante ristorante) {
         this.ristorante = ristorante;
     }
 
@@ -69,19 +69,19 @@ public class Ordine {
         this.totale = totale;
     }
 
-    public String getRider() {
+    public Rider getRider() {
         return rider;
     }
 
-    public void setRider(String rider) {
+    public void setRider(Rider rider) {
         this.rider = rider;
     }
 
-    public boolean getStato() {
+    public String getStato() {
         return stato;
     }
 
-    public void setStato(boolean stato) {
+    public void setStato(String stato) {
         this.stato = stato;
     }
 
@@ -90,7 +90,5 @@ public class Ordine {
     public ObservableList<Ordine> getOrdini() throws SQLException {
        return this.ordineDAO.getOrdini(Cliente.getInstance().getId());
     }
-
-    //TODO attributi Cliente cliente e Rider rider guarda TODO nel costruttore della classe Rider
 
 }

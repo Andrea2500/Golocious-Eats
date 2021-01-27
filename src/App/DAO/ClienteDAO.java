@@ -108,4 +108,14 @@ public class ClienteDAO {
         return "cliente";
     }
 
+    public String getNomeDB(Integer id) throws SQLException {
+        String where = "clienteid = '"+id+"'";
+        ResultSet rs = this.db.queryBuilder(this.table,where);
+        if(rs.next()){
+            return rs.getString("nome")+" "+rs.getString("cognome");
+        }else{
+            return "Utente non trovato";
+        }
+    }
+
 }

@@ -16,15 +16,15 @@ public class Rider extends Cliente {
 
     /**********Costruttori**********/
 
-    public Rider(Integer id) {
-        super.id = id;
+    public Rider(Integer riderId) throws SQLException {
+        super.id = riderId;
         this.riderDAO = new RiderDAO();
-        // TODO this.patente = riderDAO.getPatente();
-        // TODO this.veicolo = riderDAO.getVeicolo();
+        this.veicolo = this.riderDAO.getVeicolo(riderId);
+        super.nome = super.getNomeDB(riderId);
     }
 
-    public Rider(Integer id, String patente, String veicolo) {
-        super.id = id;
+    public Rider(Integer riderId, String patente, String veicolo) {
+        super.id = riderId;
         this.patente = patente;
         this.veicolo = veicolo;
         this.riderDAO = new RiderDAO();
@@ -52,6 +52,13 @@ public class Rider extends Cliente {
 
     public String diventaRider(Rider rider) throws SQLException {
         return this.riderDAO.diventaRiderConf(rider);
+    }
+
+    /**********Metodi di supporto**********/
+
+    @Override
+    public String toString() {
+        return super.nome;
     }
 
     //TODO diventa rider in impostazioni visualizzabile solo se non si è clienti o gestori
