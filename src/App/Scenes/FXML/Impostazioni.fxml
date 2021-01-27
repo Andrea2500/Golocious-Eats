@@ -36,7 +36,7 @@
          <VBox alignment="CENTER" prefHeight="430.0" prefWidth="300.0" spacing="20.0">
             <Button id="inserisciIndirizzoBtn" mnemonicParsing="false" onAction="#inserisciIndirizzoBtn" prefHeight="30.0" prefWidth="145.0" text="Inserisci indirizzo" />
             <Button id="gestisciIndirizziBtn" mnemonicParsing="false" onAction="#gestisciIndirizziBtn" prefHeight="30.0" prefWidth="145.0" text="Gestisci indirizzi" />
-            <Button id="diventaRiderBtn" mnemonicParsing="false" onAction="#diventaRiderBtn" prefHeight="30.0" prefWidth="145.0" text="Diventa rider" />
+            <Button id="diventaRiderBtn" mnemonicParsing="false" managed="false" onAction="#diventaRiderBtn" prefHeight="30.0" prefWidth="145.0" text="Diventa rider" visible="false" />
             <Button id="eliminaAccountBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" onAction="#eliminaAccountBtn" prefHeight="30.0" prefWidth="145.0" text="Elimina account" />
          </VBox>
          <VBox id="vuotoVBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="600.0" visible="true">
