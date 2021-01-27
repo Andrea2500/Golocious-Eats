@@ -12,6 +12,8 @@ import App.Controllers.DiventaRiderController;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -133,21 +135,14 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         }
     }
 
-    public void iniziaAConsegnareBtn() throws SQLException {
+    public void iniziaAConsegnareBtn() throws SQLException, IOException {
         resetErroriRider();
         String patente = getValue("patenteField", "textfield");
         String veicolo = getValue("veicoloBox", "combobox");
         if(patente.length()>0 && veicolo != null) {
             diventaRiderController = new DiventaRiderController(patente, veicolo);
-            String messaggio = diventaRiderController.diventaRider();
-            if(messaggio.equals("rider_aggiunto")) {
-                ((Label) getElementById("vuotoLabel")).setText("Congratulazioni! Effettua nuovamente il login per iniziare a lavorare");
-                vuotoVBox(); //FIXME non ha senso modificare il testo alla label e mandare a vuotoVBox!!
-                resetCampiRider();
-                //TODO logout
-            } else {
-                setErroriDB(messaggio);
-            }
+            setErroriDB(diventaRiderController.diventaRider());
+            //FIXME non funziona
         } else {
             setErroriRider(patente, veicolo);
         }
@@ -240,11 +235,6 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     public void setErroriGestisciIndirizzi() {
         errore("indirizzoAttivoLabel", "Seleziona un indirizzo", false);
         getElementById("indirizzoBox").setStyle("-fx-border-color: red");
-    }
-
-    private void resetCampiRider() {
-        ((TextField) getElementById("patenteField")).setText("");
-        ((ComboBox<String>) getElementById("veicoloBox")).getSelectionModel().clearSelection();
     }
 
     public void resetErroriRider() {

@@ -1,2 +1,4 @@
 //FIXME RUOLO GESTORE probabilmente inutile
+//FIXME quando ci si registra dà errori perché non sa il cliente di che tipo è
+//FIXME gestione errore cliente non maggiorenne che vuole diventare rider
 //TODO Impostare safe delete per indirizzi e ristoranti

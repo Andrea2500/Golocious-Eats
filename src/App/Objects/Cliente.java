@@ -12,7 +12,7 @@ public class Cliente {
     String cognome;
     String email;
     String telefono;
-    String role;
+    String role = "cliente";
     LocalDate dataNascita;
     Integer indirizzoAttivo;
     Integer id;

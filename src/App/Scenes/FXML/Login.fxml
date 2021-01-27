@@ -89,7 +89,7 @@
                      </HBox.margin>
                   </Button>
                </HBox>
-               <Label id="erroreLoginLabel" alignment="TOP_CENTER" contentDisplay="TOP" prefWidth="250.0" textOverrun="CLIP" wrapText="true">
+               <Label id="erroreLoginLabel" alignment="TOP_CENTER" contentDisplay="TOP" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                   <VBox.margin>
                      <Insets top="5.0" />
                   </VBox.margin>

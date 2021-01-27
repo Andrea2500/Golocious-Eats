@@ -29,4 +29,5 @@ public class EliminaIndirizzoController {
             cliente.setIndirizzoAttivo(null);
         return messaggio;
     }
+
 }

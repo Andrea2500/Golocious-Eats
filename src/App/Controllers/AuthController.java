@@ -17,11 +17,11 @@ public class AuthController {
 
     /**********Costruttori**********/
 
-    public AuthController() throws SQLException {
+    public AuthController() {
         this.cliente = Cliente.getInstance();
     }
 
-    public AuthController(String nome, String cognome, String email, String telefono, LocalDate dataNascita) throws SQLException {
+    public AuthController(String nome, String cognome, String email, String telefono, LocalDate dataNascita) {
         this.cliente = Cliente.getInstance();
         cliente.setNome(nome);
         cliente.setCognome(cognome);

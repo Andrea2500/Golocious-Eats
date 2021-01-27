@@ -5,7 +5,6 @@ import App.Objects.Ristorante;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class GestoreDAO extends ClienteDAO{
 
@@ -13,8 +12,6 @@ public class GestoreDAO extends ClienteDAO{
 
     String table = "gestore";
     ArrayList<Ristorante> ristoranti;
-
-    //TODO Aggiungere lista ristoranti e modificare metodo getRistoranti
 
     /**********Metodi**********/
 
