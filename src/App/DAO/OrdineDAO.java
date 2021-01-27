@@ -1,8 +1,6 @@
 package App.DAO;
 
 import App.Config.Database;
-import App.Config.ErroriDB;
-
 import java.sql.*;
 
 public class OrdineDAO {
@@ -13,7 +11,6 @@ public class OrdineDAO {
 
 
     Database db;
-    ErroriDB edb = new ErroriDB();
 
     public OrdineDAO() {
         this.db = new Database();

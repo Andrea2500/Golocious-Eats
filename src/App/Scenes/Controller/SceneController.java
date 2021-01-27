@@ -45,49 +45,49 @@ public class SceneController extends Controller {
         this.getScene().lookup("#" + id).setManaged(toggle);
     }
 
-    public void setActiveBtn(String id) {
+    public void setCliccatoBtn(String id) {
         getScene().lookup("#"+id).setStyle("-fx-background-color: #e19a1f; -fx-cursor: pointer");
     }
 
     public void login() throws IOException, SQLException {
         this.setScene("Ordina");
-        setActiveBtn("ordinaBtn");
+        setCliccatoBtn("ordinaBtn");
         setMenu(Cliente.getInstance().getRole());
     }
 
     public void ordina() throws IOException, SQLException {
         this.setScene("Ordina");
-        setActiveBtn("ordinaBtn");
+        setCliccatoBtn("ordinaBtn");
         setMenu(Cliente.getInstance().getRole());
     }
 
     public void ordiniEffettuati() throws IOException, SQLException {
         this.setScene("OrdiniEffettuati");
-        setActiveBtn("ordiniEffettuatiBtn");
+        setCliccatoBtn("ordiniEffettuatiBtn");
         setMenu(Cliente.getInstance().getRole());
     }
 
     public void consegna() throws IOException, SQLException {
         this.setScene("Consegna");
-        setActiveBtn("consegnaBtn");
+        setCliccatoBtn("consegnaBtn");
         setMenu(Cliente.getInstance().getRole());
     }
 
     public void consegneEffettuate() throws IOException, SQLException {
         this.setScene("ConsegneEffettuate");
-        setActiveBtn("consegneEffettuateBtn");
+        setCliccatoBtn("consegneEffettuateBtn");
         setMenu(Cliente.getInstance().getRole());
     }
 
     public void gestisciRistorante() throws IOException, SQLException {
         this.setScene("GestisciRistorante");
-        setActiveBtn("gestisciRistoranteBtn");
+        setCliccatoBtn("gestisciRistoranteBtn");
         setMenu(Cliente.getInstance().getRole());
     }
 
     public void impostazioni() throws IOException, SQLException {
         this.setScene("Impostazioni");
-        setActiveBtn("impostazioniBtn");
+        setCliccatoBtn("impostazioniBtn");
         setMenu(Cliente.getInstance().getRole());
     }
 
