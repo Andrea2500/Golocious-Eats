@@ -10,7 +10,6 @@ public class Gestore extends Cliente{
 
     ArrayList<Ristorante> ristoranti;
     GestoreDAO gestoreDAO;
-    Integer id;
 
     /**********Metodi**********/
 
