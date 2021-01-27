@@ -35,4 +35,8 @@ public class SelezionaIndirizzoController {
         return messaggio;
     }
 
+    public String deleteIndirizzo(Integer indirizzoid) throws SQLException {
+        String messaggio = this.indirizzo.deleteIndirizzo(indirizzoid);
+        return messaggio;
+    }
 }

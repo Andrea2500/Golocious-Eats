@@ -34,6 +34,9 @@ public class ErroriDB {
         if(isErrorKey(error, "troppo lungo")) {
             return "troppo_lungo";
         }
+        if(isErrorKey(error, "eliminazione_indirizzo_fallita")) {
+            return "eliminazione_indirizzo_fallita";
+        }
         else return "nessun_errore";
     }
 

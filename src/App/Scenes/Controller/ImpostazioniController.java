@@ -1,13 +1,14 @@
 package App.Scenes.Controller;
 
-import App.Controllers.aggiungiIndirizzoController;
+import App.Controllers.EliminaIndirizzoController;
+import App.Controllers.AggiungiIndirizzoController;
 import App.Controllers.SelezionaIndirizzoController;
 import App.Objects.Cliente;
 import App.Objects.Indirizzo;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import App.Controllers.diventaRiderController;
+import App.Controllers.DiventaRiderController;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -20,9 +21,10 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     /**********Attributi**********/
 
     private Cliente cliente;
-    private aggiungiIndirizzoController aggIndController;
-    private SelezionaIndirizzoController selIndirizzoController;
-    private diventaRiderController divRidController;
+    private AggiungiIndirizzoController aggiungiIndirizzoController;
+    private SelezionaIndirizzoController selezionaIndirizzoController;
+    private EliminaIndirizzoController eliminaIndirizzoController;
+    private DiventaRiderController diventaRiderController;
     @FXML private ComboBox<Indirizzo> indirizzoBox;
 
     /**********Metodi**********/
@@ -57,7 +59,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     public void gestisciIndirizziBtn() throws SQLException {
         resetBtnColor();
         resetBoxManagedAndVisible();
-        this.selIndirizzoController = new SelezionaIndirizzoController();
+        this.selezionaIndirizzoController = new SelezionaIndirizzoController();
         setListaIndirizzi();
         resetErroriGestisciIndirizzi();
         sceneController.setVisibile("gestisciIndirizziVBox", true);
@@ -86,8 +88,8 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         String citta = getValue("cittaField", "textfield");
         String indirizzo = getValue("indirizzoField", "textfield");
         if(paese.length()>0 && provincia.length()>0 && cap.length()>0 && citta.length()>0 && indirizzo.length()>0){
-            aggIndController = new aggiungiIndirizzoController(paese, provincia, citta, cap, indirizzo);
-            String messaggio = aggIndController.aggiungiIndirizzo();
+            aggiungiIndirizzoController = new AggiungiIndirizzoController(paese, provincia, citta, cap, indirizzo);
+            String messaggio = aggiungiIndirizzoController.aggiungiIndirizzo();
             if(messaggio.equals("indirizzo_aggiunto")){
                 resetCampiIndirizzo();
                 ((Label)getElementById("correttoLabel")).setText("Indirizzo aggiunto correttamente");
@@ -103,7 +105,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         resetErroriGestisciIndirizzi();
         Indirizzo attivo = indirizzoBox.getSelectionModel().getSelectedItem();
         if(attivo != null) {
-            String messaggio = selIndirizzoController.setIndirizzoAttivo(attivo.getId());
+            String messaggio = selezionaIndirizzoController.setIndirizzoAttivo(attivo.getId());
             if (messaggio.equals("indirizzo_aggiornato")) {
                 errore("indirizzoAttivoLabel", "Indirizzo attivo aggiornato con successo", false);
             } else {
@@ -114,8 +116,21 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         }
     }
 
-    public void eliminaIndirizzoBtn() {
-        //TODO elimina indirizzo dal db
+    public void eliminaIndirizzoBtn() throws SQLException {
+        resetErroriGestisciIndirizzi();
+        Indirizzo elimina = indirizzoBox.getSelectionModel().getSelectedItem();
+        if(elimina != null) {
+            this.eliminaIndirizzoController = new EliminaIndirizzoController();
+            String messaggio = eliminaIndirizzoController.deleteIndirizzo(elimina.getId());
+            if (messaggio.equals("indirizzo_eliminato")) {
+                errore("indirizzoAttivoLabel", "Indirizzo eliminato con successo", false);
+                this.setListaIndirizzi();
+            } else {
+                setErroriDB(messaggio);
+            }
+        } else {
+            setErroriGestisciIndirizzi();
+        }
     }
 
     public void iniziaAConsegnareBtn() throws SQLException {
@@ -123,8 +138,8 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         String patente = getValue("patenteField", "textfield");
         String veicolo = getValue("veicoloBox", "combobox");
         if(patente.length()>0 && veicolo != null) {
-            divRidController = new diventaRiderController(patente, veicolo);
-            String messaggio = divRidController.diventaRider();
+            diventaRiderController = new DiventaRiderController(patente, veicolo);
+            String messaggio = diventaRiderController.diventaRider();
             if(messaggio.equals("rider_aggiunto")) {
                 ((Label) getElementById("vuotoLabel")).setText("Congratulazioni! Effettua nuovamente il login per iniziare a lavorare");
                 vuotoVBox(); //FIXME non ha senso modificare il testo alla label e mandare a vuotoVBox!!
@@ -165,7 +180,8 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     }
 
     private void setListaIndirizzi() throws SQLException {
-        ObservableList<Indirizzo> indirizzi= this.selIndirizzoController.getIndirizzi();
+        this.indirizzoBox.getItems().clear();
+        ObservableList<Indirizzo> indirizzi= this.selezionaIndirizzoController.getIndirizzi();
         indirizzoBox.setItems(indirizzi);
         int index = 0;
         Integer indAttivoCliente = this.cliente.getIndirizzoAttivo();
@@ -216,6 +232,16 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         }
     }
 
+    private void resetErroriGestisciIndirizzi() {
+        inizializzaLabel("indirizzoAttivoLabel", false);
+        getElementById("indirizzoBox").setStyle("-fx-border-color: transparent");
+    }
+
+    public void setErroriGestisciIndirizzi() {
+        errore("indirizzoAttivoLabel", "Seleziona un indirizzo", false);
+        getElementById("indirizzoBox").setStyle("-fx-border-color: red");
+    }
+
     private void resetCampiRider() {
         ((TextField) getElementById("patenteField")).setText("");
         ((ComboBox<String>) getElementById("veicoloBox")).getSelectionModel().clearSelection();
@@ -237,21 +263,12 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         }
     }
 
-    private void resetErroriGestisciIndirizzi() {
-        inizializzaLabel("indirizzoAttivoLabel", false);
-        getElementById("indirizzoBox").setStyle("-fx-border-color: transparent");
-    }
-
-    public void setErroriGestisciIndirizzi() {
-        errore("indirizzoAttivoLabel", "Seleziona un indirizzo", false);
-        getElementById("indirizzoBox").setStyle("-fx-border-color: red");
-    }
-
     private void setErroriDB(String messaggio) {
         switch (messaggio) {
             case "ck_patente" -> errore("errorePatenteLabel", "Inserisci una patente", true);
             case "troppo_lungo" -> errore("errorePatenteLabel", "Patente troppo lunga", true);
             case "ck_indirizzo_attivo_del_cliente" -> errore("indirizzoAttivoLabel","Si è verificato un errore. Riprova.",false);
+            case "eliminazione_indirizzo_fallita" -> errore("indirizzoAttivoLabel","Non è stato possibile eliminare l'indirizzo. Riprova.",false);
             default -> errore("erroreRiderLabel", "Siamo spiacenti, si è verificato un errore", false);
         }
     }

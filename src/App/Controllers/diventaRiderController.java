@@ -4,7 +4,7 @@ import App.Objects.Cliente;
 import App.Objects.Rider;
 import java.sql.SQLException;
 
-public class diventaRiderController {
+public class DiventaRiderController {
 
     /**********Attributi**********/
 
@@ -14,7 +14,7 @@ public class diventaRiderController {
 
     /**********Costruttori**********/
 
-    public diventaRiderController(String patente, String veicolo) throws SQLException {
+    public DiventaRiderController(String patente, String veicolo) throws SQLException {
         this.rider = new Rider(Cliente.getInstance().getId(), patente, veicolo);
     }
 

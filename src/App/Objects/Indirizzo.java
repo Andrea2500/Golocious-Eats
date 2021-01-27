@@ -18,7 +18,7 @@ public class Indirizzo {
     IndirizzoDAO indirizzoDAO;
 
     /**********Metodi**********/
-
+    
     /**********Costruttori**********/
 
     public Indirizzo() throws SQLException {
@@ -102,4 +102,7 @@ public class Indirizzo {
         return this.indirizzo+", "+this.cap+", "+this.citta+", "+this.provincia+", "+this.paese;
     }
 
+    public String deleteIndirizzo(Integer indirizzoid) throws SQLException {
+        return this.indirizzoDAO.eliminaIndirizzo(indirizzoid);
+    }
 }

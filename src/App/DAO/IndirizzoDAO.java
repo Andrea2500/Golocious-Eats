@@ -65,4 +65,23 @@ public class IndirizzoDAO {
         return this.listaIndirizzi;
     }
 
+    public String eliminaIndirizzo(Integer indirizzoid) throws SQLException {
+        try{
+            this.db.setConnection();
+            String sql = "DELETE from "+this.table+" WHERE indirizzoid = ?";
+            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, indirizzoid);
+            if(pstmt.executeUpdate() > 0){
+                this.db.closeConnection();
+                return "indirizzo_eliminato";
+            }else{
+                this.db.closeConnection();
+                return "eliminazione_indirizzo_fallita";
+            }
+        } catch(PSQLException e) {
+            this.db.closeConnection();
+            return "eliminazione_indirizzo_fallita";
+        }
+
+    }
 }
