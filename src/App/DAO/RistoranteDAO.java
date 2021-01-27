@@ -30,11 +30,11 @@ public class RistoranteDAO {
     public Ristorante getRistorante(Integer ristoranteId) throws SQLException {
         String where ="ristoranteid = '"+ristoranteId+"'";
         ResultSet rs = this.db.queryBuilder(this.table,where);
-        if(rs.next()){
+        if(rs.next()) {
             this.indirizzo = new Indirizzo(rs.getString("paese"),rs.getString("provincia"),
                     rs.getString("citta"), rs.getString("cap"),rs.getString("indirizzo"));
             return this.ristorante = new Ristorante(rs.getString("nome"),this.indirizzo,rs.getString("telefono"),rs.getDate("datadiapertura").toLocalDate());
-        }else{
+        } else {
             return null;
         }
     }
