@@ -23,7 +23,7 @@
                 <Button id="impostazioniBtn" mnemonicParsing="false" onAction="#impostazioniBtn" prefHeight="30.0" prefWidth="110.0" text="Impostazioni" />
                 <Button id="logoutBtn" mnemonicParsing="false" onAction="#logoutBtn" prefHeight="30.0" prefWidth="70.0" text="Logout" />
                 <padding>
-                    <Insets right="20.0" />
+                    <Insets right="10.0" />
                 </padding>
             </HBox>
         </HBox>

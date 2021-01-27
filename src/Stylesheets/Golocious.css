@@ -43,7 +43,7 @@
 }
 
 
-#veicoloBox > * > .arrow{
+#veicoloBox > * > .arrow, #indirizzoBox > * > .arrow{
     -fx-background-color: #fab338;
 }
 

@@ -1,33 +1,30 @@
 package App.Controllers;
 
-import App.DAO.IndirizzoDAO;
 import App.Objects.Cliente;
 import App.Objects.Indirizzo;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SelezionaIndirizzoController {
 
-    IndirizzoDAO indirizzoDAO = new IndirizzoDAO();
+    Indirizzo indirizzo;
+    Cliente cliente;
 
+    public SelezionaIndirizzoController() throws SQLException {
+        this.indirizzo = new Indirizzo();
+        this.cliente = Cliente.getInstance();
+    }
 
-    public ObservableList<Indirizzo> getIndirizzi(Integer id) throws SQLException {
-        ObservableList<Indirizzo> data = FXCollections.observableArrayList();
-        ResultSet result = this.indirizzoDAO.getIndirizziDelCliente(Cliente.getInstance().getId());
-        while(result.next()){
-            data.add(new Indirizzo(result.getInt("indirizzoid"), result.getString("paese"),result.getString("provincia"),result.getString("citta"),result.getString("cap"),result.getString("indirizzo")));
-        }
-        return data;
+    public ObservableList<Indirizzo> getIndirizzi() throws SQLException {
+        return this.indirizzo.getIndirizzoDAO().getIndirizziDelCliente(Cliente.getInstance().getId());
     }
 
     public String setIndirizzoAttivo(Integer indirizzoid) throws SQLException {
-        return Cliente.getInstance().getClienteDAO().updateIndirizzoAttivo(indirizzoid);
+        String messaggio = this.cliente.getClienteDAO().updateIndirizzoAttivo(indirizzoid);
+        if(messaggio.equals("indirizzo_aggiornato")) {
+             cliente.setIndirizzoAttivo(indirizzoid);
+        }
+        return messaggio;
     }
-
-
-
 
 }

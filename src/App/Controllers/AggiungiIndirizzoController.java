@@ -1,7 +1,6 @@
 package App.Controllers;
 
 import App.Objects.Indirizzo;
-
 import java.sql.SQLException;
 
 public class AggiungiIndirizzoController extends Controller{
@@ -13,8 +12,7 @@ public class AggiungiIndirizzoController extends Controller{
     }
 
     public String aggiungiIndirizzo() throws SQLException {
-        return this.indirizzo.getIndirizzoDAO().aggiungiIndirizzoConf(this.indirizzo.getPaese(), this.indirizzo.getProvincia(),
-                this.indirizzo.getCitta(), this.indirizzo.getCap(), this.indirizzo.getIndirizzo(), indirizzo.getCliente());
+        return this.indirizzo.getIndirizzoDAO().aggiungiIndirizzoConf(indirizzo);
     }
-    //TODO passare solo indirizzo e in indirizzoDAO prendere dati tramite getter
+
 }

@@ -16,7 +16,6 @@ public class OrdineDAO {
 
 
     Database db;
-    ErroriDB edb = new ErroriDB();
 
     public OrdineDAO() {
         this.db = new Database();

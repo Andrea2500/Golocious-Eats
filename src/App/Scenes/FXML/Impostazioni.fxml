@@ -26,7 +26,7 @@
             <Button id="impostazioniBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Impostazioni" />
             <Button id="logoutBtn" mnemonicParsing="false" onAction="#logoutBtn" prefHeight="30.0" prefWidth="70.0" text="Logout" />
             <padding>
-               <Insets right="20.0" />
+               <Insets right="10.0" />
             </padding>
          </HBox>
       </HBox>
@@ -35,7 +35,7 @@
       <HBox alignment="CENTER" prefHeight="430.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <VBox alignment="CENTER" prefHeight="430.0" prefWidth="300.0" spacing="20.0">
             <Button id="inserisciIndirizzoBtn" mnemonicParsing="false" onAction="#inserisciIndirizzoBtn" prefHeight="30.0" prefWidth="145.0" text="Inserisci indirizzo" />
-            <Button id="cambiaIndirizzoAttivoBtn" mnemonicParsing="false" onAction="#cambiaIndirizzoAttivoBtn" prefHeight="30.0" prefWidth="145.0" text="Cambia indirizzo attivo" />
+            <Button id="gestisciIndirizziBtn" mnemonicParsing="false" onAction="#gestisciIndirizziBtn" prefHeight="30.0" prefWidth="145.0" text="Gestisci indirizzi" />
             <Button id="diventaRiderBtn" mnemonicParsing="false" onAction="#diventaRiderBtn" prefHeight="30.0" prefWidth="145.0" text="Diventa rider" />
             <Button id="eliminaAccountBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" onAction="#eliminaAccountBtn" prefHeight="30.0" prefWidth="145.0" text="Elimina account" />
          </VBox>
@@ -84,7 +84,7 @@
                <TextField id="capField" layoutX="210.0" layoutY="174.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo CAP" />
                <TextField id="indirizzoField" layoutX="210.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo indirizzo e il tuo civico" />
                <Button id="aggiungiBtn" mnemonicParsing="false" onAction="#aggiungiBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
-               <Label id="correttoLabel" text="Indirizzo aggiunto correttamente" visible="false">
+               <Label id="correttoLabel">
                   <font>
                      <Font size="14.0" />
                   </font>
@@ -97,16 +97,23 @@
                </padding>
             </VBox>
          </HBox>
-         <VBox id="cambiaIndirizzoAttivoVBox" fx:id="setIndirizzoVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
-            <children>
-               <ComboBox id="indirizzoComboBox" fx:id="indirizzoComboBox" prefHeight="59.0" prefWidth="363.0" />
-               <Button mnemonicParsing="false" onAction="#rendiAttivoBtn" prefHeight="32.0" prefWidth="363.0" text="Rendi attivo">
-                  <VBox.margin>
-                     <Insets top="25.0" />
-                  </VBox.margin>
-               </Button>
-               <Label id="indirizzoAttivoLabel" text="Label" />
-            </children></VBox>
+         <VBox id="gestisciIndirizziVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
+            <ComboBox id="indirizzoBox" fx:id="indirizzoBox" prefHeight="30.0" prefWidth="350.0" />
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0" spacing="20.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <Button mnemonicParsing="false" onAction="#rendiAttivoBtn" prefHeight="30.0" prefWidth="165.0" text="Rendi attivo" />
+               <Button id="eliminaIndirizzoBtn" layoutX="235.0" layoutY="10.0" mnemonicParsing="false" onAction="#eliminaIndirizzoBtn" prefHeight="30.0" prefWidth="165.0" text="Elimina" />
+            </HBox>
+            <Label id="indirizzoAttivoLabel">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <padding>
+               <Insets top="30.0" />
+            </padding>
+         </VBox>
          <HBox id="diventaRiderHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
             <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="17.8">
                <padding>
@@ -135,7 +142,7 @@
                   </items>
                </ComboBox>
                <Button id="iniziaAConsegnareBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#iniziaAConsegnareBtn" prefHeight="30.0" prefWidth="250.0" text="Inizia a consegnare" />
-               <Label id="erroreRiderLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" text="Congratulazioni! Riesegui il login per apportare le modifiche al tuo account" textAlignment="CENTER" textOverrun="CLIP" visible="false" wrapText="true">
+               <Label id="erroreRiderLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" visible="false" wrapText="true">
                   <font>
                      <Font size="14.0" />
                   </font>

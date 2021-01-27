@@ -11,7 +11,6 @@ import App.Controllers.DiventaRiderController;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -19,9 +18,11 @@ import java.util.ResourceBundle;
 public class ImpostazioniController extends BaseSceneController implements Initializable {
 
     Cliente cliente;
-    @FXML private ComboBox<Indirizzo> indirizzoComboBox;
+    @FXML
+    private ComboBox<Indirizzo> indirizzoBox;
     AggiungiIndirizzoController aggIndController;
     SelezionaIndirizzoController selIndirizzoController = new SelezionaIndirizzoController();
+    DiventaRiderController divRidController;
 
     public ImpostazioniController() throws SQLException {
         this.cliente = Cliente.getInstance();
@@ -29,10 +30,8 @@ public class ImpostazioniController extends BaseSceneController implements Initi
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.indirizzoComboBox.getItems().clear();
+        this.indirizzoBox.getItems().clear();
     }
-    DiventaRiderController divRidController;
-
 
     public void vuotoVBox() {
         resetBtnColor();
@@ -43,30 +42,32 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     public void inserisciIndirizzoBtn() {
         resetBtnColor();
         resetBoxManagedAndVisible();
+        resetErroriIndirizzo();
         sceneController.setVisibility("inserisciIndirizzoHBox", true);
-        sceneController.setActiveBtn("inserisciIndirizzoBtn");
+        sceneController.setCliccatoBtn("inserisciIndirizzoBtn");
     }
 
-    public void cambiaIndirizzoAttivoBtn() throws SQLException {
+    public void gestisciIndirizziBtn() throws SQLException {
         resetBtnColor();
         resetBoxManagedAndVisible();
         setListaIndirizzi();
-        sceneController.setVisibility("cambiaIndirizzoAttivoVBox", true);
-        sceneController.setActiveBtn("cambiaIndirizzoAttivoBtn");
+        resetErroriGestisciIndirizzi();
+        sceneController.setVisibility("gestisciIndirizziVBox", true);
+        sceneController.setCliccatoBtn("gestisciIndirizziBtn");
     }
 
     public void diventaRiderBtn() {
         resetBtnColor();
         resetBoxManagedAndVisible();
         sceneController.setVisibility("diventaRiderHBox", true);
-        sceneController.setActiveBtn("diventaRiderBtn");
+        sceneController.setCliccatoBtn("diventaRiderBtn");
     }
 
     public void eliminaAccountBtn() {
         resetBtnColor();
         resetBoxManagedAndVisible();
         sceneController.setVisibility("eliminaAccountVBox", true);
-        sceneController.setActiveBtn("eliminaAccountBtn");
+        sceneController.setCliccatoBtn("eliminaAccountBtn");
     }
 
     public void aggiungiBtn() throws SQLException {
@@ -80,20 +81,37 @@ public class ImpostazioniController extends BaseSceneController implements Initi
             aggIndController = new AggiungiIndirizzoController(paese, provincia, citta, cap, indirizzo);
             String messaggio = aggIndController.aggiungiIndirizzo();
             if(messaggio.equals("indirizzo_aggiunto")){
-                ((Label)getElementById("correttoLabel")).setText("Indirizzo aggiunto correttamente");
                 resetCampiIndirizzo();
+                ((Label)getElementById("correttoLabel")).setText("Indirizzo aggiunto correttamente");
             } else if(messaggio.equals("aggiunta_indirizzo_fallita")){
-                Label correttoLabel = (Label) getElementById("correttoLabel");
-                correttoLabel.setVisible(true);
-                correttoLabel.setText("L'indirizzo non è stato aggiunto");
+                ((Label)getElementById("correttoLabel")).setText("L'indirizzo non è stato aggiunto");
             }
         } else {
             setErroriIndirizzo(paese, provincia, cap, citta, indirizzo);
         }
     }
 
+    public void rendiAttivoBtn() throws SQLException {
+        resetErroriGestisciIndirizzi();
+        Indirizzo attivo = indirizzoBox.getSelectionModel().getSelectedItem();
+        if(attivo != null) {
+            String messaggio = selIndirizzoController.setIndirizzoAttivo(attivo.getId());
+            if (messaggio.equals("indirizzo_aggiornato")) {
+                errore("indirizzoAttivoLabel", "Indirizzo attivo aggiornato con successo", false);
+            } else {
+                setErroriDB(messaggio);
+            }
+        } else {
+            setErroriGestisciIndirizzi();
+        }
+    }
+
+    public void eliminaIndirizzoBtn() {
+        //TODO elimina indirizzo dal db
+    }
+
     public void iniziaAConsegnareBtn() throws SQLException {
-        resetErroriConsegna();
+        resetErroriRider();
         String patente = getValue("patenteField", "textfield");
         String veicolo = getValue("veicoloBox", "combobox");
         if(patente.length()>0 && veicolo != null) {
@@ -101,25 +119,14 @@ public class ImpostazioniController extends BaseSceneController implements Initi
             String messaggio = divRidController.diventaRider();
             if(messaggio.equals("rider_aggiunto")) {
                 ((Label) getElementById("vuotoLabel")).setText("Congratulazioni! Effettua nuovamente il login per iniziare a lavorare");
-                vuotoVBox();
+                vuotoVBox(); //FIXME non ha senso modificare il testo alla label e mandare a vuotoVBox!!
                 resetCampiRider();
+                //TODO logout
             } else {
                 setErroriDB(messaggio);
             }
         } else {
             setErroriRider(patente, veicolo);
-        }
-    }
-    //TODO refactor method name
-    //TODO elimina indirizzo
-    public void rendiAttivoBtn() throws SQLException {
-        //TODO comboboxvuota
-        Integer attivo = indirizzoComboBox.getSelectionModel().getSelectedItem().getId();
-        String messaggio = selIndirizzoController.setIndirizzoAttivo(attivo);
-        if(messaggio.equals("indirizzo_aggiornato")){
-            ((Label) getElementById("indirizzoAttivoLabel")).setText("Indirizzo attivo aggiornato con successo");
-        }else{
-            setErroriDB(messaggio);
         }
     }
 
@@ -130,7 +137,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     public void resetBoxManagedAndVisible() {
         sceneController.setVisibility("vuotoVBox", false);
         sceneController.setVisibility("inserisciIndirizzoHBox", false);
-        sceneController.setVisibility("cambiaIndirizzoAttivoVBox", false);
+        sceneController.setVisibility("gestisciIndirizziVBox", false);
         sceneController.setVisibility("diventaRiderHBox", false);
         sceneController.setVisibility("eliminaAccountVBox", false);
     }
@@ -138,13 +145,21 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     public void resetBtnColor() {
         if(getElementById("inserisciIndirizzoHBox").isVisible()) {
             getElementById("inserisciIndirizzoBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
-        } else if(getElementById("cambiaIndirizzoAttivoVBox").isVisible()) {
-            getElementById("cambiaIndirizzoAttivoBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
+        } else if(getElementById("gestisciIndirizziVBox").isVisible()) {
+            getElementById("gestisciIndirizziBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         } else if(getElementById("diventaRiderHBox").isVisible()) {
             getElementById("diventaRiderBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         } else if(getElementById("eliminaAccountVBox").isVisible()) {
             getElementById("eliminaAccountBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         }
+    }
+
+    public void resetCampiIndirizzo() {
+        ((TextField) getElementById("paeseField")).setText("");
+        ((TextField) getElementById("provinciaField")).setText("");
+        ((TextField) getElementById("cittaField")).setText("");
+        ((TextField) getElementById("capField")).setText("");
+        ((TextField) getElementById("indirizzoField")).setText("");
     }
 
     public void resetErroriIndirizzo() {
@@ -153,6 +168,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         inizializzaLabel("erroreCapLabel", true);
         inizializzaLabel("erroreCittaLabel", true);
         inizializzaLabel("erroreIndirizzoLabel", true);
+        inizializzaLabel("correttoLabel", false);
     }
 
     public void setErroriIndirizzo(String paese, String provincia, String cap, String citta, String indirizzo) {
@@ -173,7 +189,12 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         }
     }
 
-    public void resetErroriConsegna() {
+    private void resetCampiRider() {
+        ((TextField) getElementById("patenteField")).setText("");
+        ((ComboBox<String>) getElementById("veicoloBox")).getSelectionModel().clearSelection();
+    }
+
+    public void resetErroriRider() {
         inizializzaLabel("errorePatenteLabel", true);
         inizializzaLabel("erroreVeicoloLabel", false);
         getElementById("veicoloBox").setStyle("-fx-border-color: transparent");
@@ -189,32 +210,29 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         }
     }
 
-    public void resetCampiIndirizzo() {
-        ((TextField) getElementById("paeseField")).setText("");
-        ((TextField) getElementById("provinciaField")).setText("");
-        ((TextField) getElementById("cittaField")).setText("");
-        ((TextField) getElementById("capField")).setText("");
-        ((TextField) getElementById("indirizzoField")).setText("");
+    private void resetErroriGestisciIndirizzi() {
+        inizializzaLabel("indirizzoAttivoLabel", false);
+        getElementById("indirizzoBox").setStyle("-fx-border-color: transparent");
     }
 
-    private void resetCampiRider() {
-        ((TextField) getElementById("patenteField")).setText("");
-        ((ComboBox<String>) getElementById("veicoloBox")).getSelectionModel().clearSelection();
+    public void setErroriGestisciIndirizzi() {
+        errore("indirizzoAttivoLabel", "Seleziona un indirizzo", false);
+        getElementById("indirizzoBox").setStyle("-fx-border-color: red");
     }
 
     private void setListaIndirizzi() throws SQLException {
-        ObservableList<Indirizzo> indirizzi= this.selIndirizzoController.getIndirizzi(cliente.getId());
-        indirizzoComboBox.setItems(indirizzi);
-        Integer index = 0;
+        ObservableList<Indirizzo> indirizzi= this.selIndirizzoController.getIndirizzi();
+        indirizzoBox.setItems(indirizzi);
+        int index = 0;
         Integer indAttivoCliente = Cliente.getInstance().getIndirizzoAttivo();
-        ObservableList<Indirizzo> lista = indirizzoComboBox.getItems();
+        ObservableList<Indirizzo> lista = indirizzoBox.getItems();
         for(Indirizzo el: lista){
-            if (el.getId() == indAttivoCliente){
+            if (el.getId().equals(indAttivoCliente)){
                 break;
             }
             index++;
         }
-        indirizzoComboBox.getSelectionModel().select(index);
+        indirizzoBox.getSelectionModel().select(index);
     }
 
     private void setErroriDB(String messaggio) {

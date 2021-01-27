@@ -5,14 +5,13 @@ import App.Config.ErroriDB;
 import App.Objects.Cliente;
 import org.postgresql.util.PSQLException;
 import java.sql.*;
-import java.time.LocalDate;
 
 public class ClienteDAO {
 
     Connection conn;
     String table;
 
-
+    Cliente cliente;
     Database db;
     ErroriDB edb = new ErroriDB();
 
@@ -22,7 +21,7 @@ public class ClienteDAO {
         this.table = "Cliente";
     }
 
-    public ResultSet LoginConf(String email, String password) throws SQLException {
+    public Cliente LoginConf(String email, String password) throws SQLException {
         this.conn = db.getConnection();
         String sql = "select * from "+this.table+" where email = ? and password = ?";
         PreparedStatement pstmt = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -30,7 +29,19 @@ public class ClienteDAO {
         pstmt.setString(2, password);
         ResultSet rs = pstmt.executeQuery();
         db.closeConnection(conn);
-        return rs;
+        this.cliente = Cliente.getInstance();
+        cliente = Cliente.getInstance();
+        cliente.setNome(rs.getString("nome"));
+        cliente.setCognome(rs.getString("cognome"));
+        cliente.setEmail(email);
+        cliente.setTelefono(rs.getString("telefono"));
+        cliente.setDataNascita(rs.getDate("datadinascita").toLocalDate());
+        cliente.setIndirizzoAttivo(rs.getInt("Indirizzoattivo"));
+        cliente.setId(rs.getInt("clienteid"));
+        cliente.setAuth(true);
+        cliente.setRole(cliente.getClienteDAO().getRole(cliente.getId()));
+        cliente.setObject();
+        return cliente;
     }
 
     public String RegisterConf(Cliente cliente, String password) throws SQLException {

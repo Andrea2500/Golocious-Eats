@@ -4,7 +4,6 @@ import App.Objects.Cliente;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -27,19 +26,8 @@ public class AuthController extends Controller {
     }
 
     public String Login(String email,String password) throws NoSuchAlgorithmException, SQLException {
-        ResultSet rs = cliente.getClienteDAO().LoginConf(email, this.PasswordHash(password));
-        if(rs.next()) {
-            cliente = Cliente.getInstance();
-            cliente.setNome(rs.getString("nome"));
-            cliente.setCognome(rs.getString("cognome"));
-            cliente.setEmail(email);
-            cliente.setTelefono(rs.getString("telefono"));
-            cliente.setDataNascita(rs.getDate("datadinascita").toLocalDate());
-            cliente.setIndirizzoAttivo(rs.getInt("Indirizzoattivo"));
-            cliente.setId(rs.getInt("clienteid"));
-            cliente.setAuth(true);
-            cliente.setRole(cliente.getClienteDAO().getRole(cliente.getId()));
-            cliente.setObject();
+        cliente = cliente.getClienteDAO().LoginConf(email, this.PasswordHash(password));
+        if(cliente != null) {
             return "login_autorizzato";
         } else {
             return "login_fallito";

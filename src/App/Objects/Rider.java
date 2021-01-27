@@ -1,6 +1,5 @@
 package App.Objects;
 
-import App.DAO.IndirizzoDAO;
 import App.DAO.RiderDAO;
 import java.sql.SQLException;
 
@@ -50,4 +49,5 @@ public class Rider extends Cliente {
     }
 
     //TODO diventa rider in impostazioni visualizzabile solo se non si è clienti o gestori
+
 }
