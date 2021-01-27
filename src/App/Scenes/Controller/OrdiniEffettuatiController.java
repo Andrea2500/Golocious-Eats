@@ -1,6 +1,6 @@
 package App.Scenes.Controller;
 
-import App.Objects.Cliente;
+import App.Controllers.MostraOrdiniEffettuatiController;
 import App.Objects.Ordine;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,8 +14,7 @@ import java.util.ResourceBundle;
 
 public class OrdiniEffettuatiController extends BaseSceneController implements Initializable {
 
-    Cliente cliente;
-    Ordine ordine;
+    MostraOrdiniEffettuatiController mostraOrdiniEffettuatiController;
     @FXML private TableView<Ordine> orderTable;
     @FXML private TableColumn<Ordine,Integer> idCol;
     @FXML private TableColumn<Ordine,String> ristoranteCol;
@@ -24,10 +23,6 @@ public class OrdiniEffettuatiController extends BaseSceneController implements I
     @FXML private TableColumn<Ordine,String> riderCol;
     @FXML private TableColumn<Ordine,String> statoCol;
 
-    public OrdiniEffettuatiController() throws SQLException {
-        this.cliente = Cliente.getInstance();
-        this.ordine = new Ordine();
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -38,17 +33,16 @@ public class OrdiniEffettuatiController extends BaseSceneController implements I
         riderCol.setCellValueFactory(new PropertyValueFactory<>("rider"));
         statoCol.setCellValueFactory(new PropertyValueFactory<>("stato"));
         try {
-            this.showOrder(cliente.getId());
+            this.showOrder();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
-
-    private void showOrder(Integer id) throws SQLException {
-        ObservableList<Ordine> data = this.ordine.getOrdini();
+    private void showOrder() throws SQLException {
+        this.mostraOrdiniEffettuatiController = new MostraOrdiniEffettuatiController();
+        ObservableList<Ordine> data = this.mostraOrdiniEffettuatiController.getOrdini();
         orderTable.setItems(data);
     }
-
 
 }

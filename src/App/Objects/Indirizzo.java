@@ -1,6 +1,7 @@
 package App.Objects;
 
 import App.DAO.IndirizzoDAO;
+import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 
@@ -79,13 +80,17 @@ public class Indirizzo {
         this.cliente = cliente;
     }
 
-    public IndirizzoDAO getIndirizzoDAO() {
-        return indirizzoDAO;
-    }
-
     @Override
     public String toString(){
         return this.indirizzo+", "+this.cap+", "+this.citta+", "+this.provincia+", "+this.paese;
+    }
+
+    public String aggiungiIndirizzo(Indirizzo indirizzo) throws SQLException {
+        return this.indirizzoDAO.aggiungiIndirizzoConf(indirizzo);
+    }
+
+    public ObservableList<Indirizzo> getIndirizzi() throws SQLException {
+        return this.indirizzoDAO.getIndirizziDelCliente(this.cliente.getId());
     }
 
 }

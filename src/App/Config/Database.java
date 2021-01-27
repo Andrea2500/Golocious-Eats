@@ -4,23 +4,29 @@ import java.sql.*;
 
 public class Database {
 
-    public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/OOBD", "postgres", "root");
+    Connection connection;
+
+    public void setConnection() throws SQLException {
+        this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/OOBD", "postgres", "root");
     }
 
-    public void closeConnection(Connection conn) throws SQLException {
-        if (conn != null) {
-            conn.close();
+    public Connection getConnection(){
+        return this.connection;
+    }
+
+    public void closeConnection() throws SQLException {
+        if (this.connection != null) {
+            this.connection.close();
         }
     }
 
     public ResultSet queryBuilder(String from, String where) {
         ResultSet rs;
         try {
-            Connection conn = getConnection();
+            setConnection();
             String sql = "SELECT * FROM "+from+" WHERE "+where;
-            rs = conn.createStatement().executeQuery(sql);
-            closeConnection(conn);
+            rs = this.connection.createStatement().executeQuery(sql);
+            closeConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             rs = null;

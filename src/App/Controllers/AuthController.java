@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class AuthController extends Controller {
+public class AuthController {
 
     Cliente cliente;
 
@@ -25,24 +25,23 @@ public class AuthController extends Controller {
         cliente.setDataNascita(dataNascita);
     }
 
-    public String Login(String email,String password) throws NoSuchAlgorithmException, SQLException {
-        cliente = cliente.getClienteDAO().LoginConf(email, this.PasswordHash(password));
-        if(cliente != null) {
+    public String login(String email, String password) throws NoSuchAlgorithmException, SQLException {
+        if(cliente.login(email, this.passwordHash(password))) {
             return "login_autorizzato";
         } else {
             return "login_fallito";
         }
     }
 
-    public String Register(Cliente cliente, String password) throws NoSuchAlgorithmException, SQLException {
-        String message = cliente.getClienteDAO().RegisterConf(cliente, this.PasswordHash(password));
+    public String register(Cliente cliente, String password) throws NoSuchAlgorithmException, SQLException {
+        String message = cliente.registra(cliente, this.passwordHash(password));
         if(message.equals("cliente_registrato")) {
-            this.Login(cliente.getEmail(), this.PasswordHash(password));
+            this.login(cliente.getEmail(), this.passwordHash(password));
         }
         return message;
     }
 
-    private String PasswordHash(String password) throws NoSuchAlgorithmException {
+    private String passwordHash(String password) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] encoded = digest.digest(password.getBytes(StandardCharsets.UTF_8));
         return this.bytesToHex(encoded);

@@ -8,7 +8,6 @@ import java.sql.*;
 
 public class ClienteDAO {
 
-    Connection conn;
     String table;
 
     Cliente cliente;
@@ -21,34 +20,37 @@ public class ClienteDAO {
         this.table = "Cliente";
     }
 
-    public Cliente LoginConf(String email, String password) throws SQLException {
-        this.conn = db.getConnection();
+    public boolean loginConf(String email, String password) throws SQLException {
+        this.db.setConnection();
         String sql = "select * from "+this.table+" where email = ? and password = ?";
-        PreparedStatement pstmt = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         pstmt.setString(1, email);
         pstmt.setString(2, password);
         ResultSet rs = pstmt.executeQuery();
-        db.closeConnection(conn);
-        this.cliente = Cliente.getInstance();
-        cliente = Cliente.getInstance();
-        cliente.setNome(rs.getString("nome"));
-        cliente.setCognome(rs.getString("cognome"));
-        cliente.setEmail(email);
-        cliente.setTelefono(rs.getString("telefono"));
-        cliente.setDataNascita(rs.getDate("datadinascita").toLocalDate());
-        cliente.setIndirizzoAttivo(rs.getInt("Indirizzoattivo"));
-        cliente.setId(rs.getInt("clienteid"));
-        cliente.setAuth(true);
-        cliente.setRole(cliente.getClienteDAO().getRole(cliente.getId()));
-        cliente.setObject();
-        return cliente;
+        this.db.closeConnection();
+        if(rs.next()){
+            this.cliente = Cliente.getInstance();
+            cliente = Cliente.getInstance();
+            cliente.setNome(rs.getString("nome"));
+            cliente.setCognome(rs.getString("cognome"));
+            cliente.setEmail(email);
+            cliente.setTelefono(rs.getString("telefono"));
+            cliente.setDataNascita(rs.getDate("datadinascita").toLocalDate());
+            cliente.setIndirizzoAttivo(rs.getInt("Indirizzoattivo"));
+            cliente.setId(rs.getInt("clienteid"));
+            cliente.setAuth(true);
+            cliente.setRole(this.getRole(cliente.getId()));
+            cliente.setObject();
+            return true;
+        }
+        return false;
     }
 
-    public String RegisterConf(Cliente cliente, String password) throws SQLException {
+    public String registerConf(Cliente cliente, String password) throws SQLException {
         try {
-            this.conn = db.getConnection();
+            this.db.setConnection();
             String sql = "insert into " + this.table + " values (?, ?, ?, ?, ?, ?)";
-            PreparedStatement pstmt = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, cliente.getNome());
             pstmt.setString(2, cliente.getCognome());
             pstmt.setString(3, cliente.getEmail());
@@ -56,14 +58,14 @@ public class ClienteDAO {
             pstmt.setString(5, cliente.getTelefono());
             pstmt.setDate(6, Date.valueOf(cliente.getDataNascita()));
             if(pstmt.executeUpdate() > 0){
-                db.closeConnection(conn);
+                this.db.closeConnection();
                 return "cliente_registrato";
             }else{
-                db.closeConnection(conn);
+                this.db.closeConnection();
                 return "signup_fallito";
             }
         } catch(PSQLException e) {
-            db.closeConnection(conn);
+            this.db.closeConnection();
             return edb.getErrorMessage(e.getMessage());
         }
     }
@@ -84,16 +86,16 @@ public class ClienteDAO {
     public String updateIndirizzoAttivo(Integer id) throws SQLException {
         try{
             String sql = "UPDATE "+this.table+" SET indirizzoattivo = '"+id+"' WHERE clienteid = "+ Cliente.getInstance().getId();
-            this.conn = this.db.getConnection();
-            if(this.conn.createStatement().executeUpdate(sql)==1){
-                db.closeConnection(this.conn);
+            this.db.setConnection();
+            if(this.db.getConnection().createStatement().executeUpdate(sql)==1){
+                this.db.closeConnection();
                 return "indirizzo_aggiornato";
             }else{
-                db.closeConnection(conn);
+                this.db.closeConnection();
                 return "errore_aggiornamento_indirizzo";
             }
         }catch(PSQLException e){
-            db.closeConnection(conn);
+            this.db.closeConnection();
             return edb.getErrorMessage(e.getMessage());
         }
     }

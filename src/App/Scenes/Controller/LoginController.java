@@ -18,7 +18,7 @@ public class LoginController extends BaseSceneController {
             String password = getValue("passwordField", "passwordfield");
             if(email.length()>0 && password.length()>0){
                 auth = new AuthController();
-                String messaggio = auth.Login(email,password);
+                String messaggio = auth.login(email,password);
                 if(messaggio.equals("login_autorizzato")) {
                     sceneController.login();
                 } else {
@@ -48,7 +48,7 @@ public class LoginController extends BaseSceneController {
             LocalDate dataNascita = getValue("datanascitaField");
             if(nome.length()>0 && cognome.length()>0 && email.length()>0 && password.length()>0 && telefono.length()>0 && eta(dataNascita) >= 14) {
                 auth = new AuthController(nome, cognome, email, telefono, dataNascita);
-                String messaggio = auth.Register(Cliente.getInstance(), password);
+                String messaggio = auth.register(Cliente.getInstance(), password);
                 if (messaggio.equals("cliente_registrato")) {
                     sceneController.login();
                 } else {

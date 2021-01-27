@@ -1,19 +1,20 @@
 package App.DAO;
 
 import App.Config.Database;
-import App.Config.ErroriDB;
 import App.Objects.Indirizzo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
-import java.sql.*;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class IndirizzoDAO {
 
-    Connection conn;
     String table;
-
-
+    ObservableList<Indirizzo> listaIndirizzi;
     Database db;
 
 
@@ -24,9 +25,9 @@ public class IndirizzoDAO {
 
     public String aggiungiIndirizzoConf(Indirizzo indirizzo) throws SQLException {
         try {
-            this.conn = db.getConnection();
+            this.db.setConnection();
             String sql = "insert into " + this.table + " values (?, ?, ?, ?, ?, ?)";
-            PreparedStatement pstmt = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, indirizzo.getCliente().getId());
             pstmt.setString(2, indirizzo.getPaese());
             pstmt.setString(3, indirizzo.getProvincia());
@@ -34,28 +35,28 @@ public class IndirizzoDAO {
             pstmt.setString(5, indirizzo.getCap());
             pstmt.setString(6, indirizzo.getIndirizzo());
             if(pstmt.executeUpdate() > 0){
-                db.closeConnection(conn);
+                this.db.closeConnection();
                 return "indirizzo_aggiunto";
             }else{
-                db.closeConnection(conn);
+                this.db.closeConnection();
                 return "aggiunta_indirizzo_fallita";
             }
         } catch(PSQLException e) {
-            db.closeConnection(conn);
+            this.db.closeConnection();
             return "aggiunta_indirizzo_fallita";
         }
     }
 
-    public ObservableList<Indirizzo> getIndirizziDelCliente(Integer id) throws SQLException {
-        ObservableList<Indirizzo> data = FXCollections.observableArrayList();
-        String where = "clienteid = '"+id+"'";
+    public ObservableList<Indirizzo> getIndirizziDelCliente(Integer clienteid) throws SQLException {
+        this.listaIndirizzi = FXCollections.observableArrayList();
+        String where = "clienteid = '"+clienteid+"'";
         ResultSet rs = this.db.queryBuilder(this.table,where);
         while(rs.next()){
-            data.add(new Indirizzo(rs.getInt("indirizzoid"), rs.getString("paese"),
+            this.listaIndirizzi.add(new Indirizzo(rs.getInt("indirizzoid"), rs.getString("paese"),
                     rs.getString("provincia"),rs.getString("citta"),
                     rs.getString("cap"),rs.getString("indirizzo")));
         }
-        return data;
+        return this.listaIndirizzi;
     }
 
 }

@@ -28,7 +28,6 @@ public class Ordine {
         this.ordinedao = new OrdineDAO();
     }
 
-
     public Integer getId() {
         return id;
     }
@@ -78,7 +77,7 @@ public class Ordine {
     }
 
     public ObservableList<Ordine> getOrdini() throws SQLException {
-       return this.ordinedao.getOrders(Cliente.getInstance().getId());
+       return this.ordinedao.getOrdini(Cliente.getInstance().getId());
     }
 
 }

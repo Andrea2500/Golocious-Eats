@@ -1,23 +1,24 @@
 package App.Objects;
 
 import App.DAO.RiderDAO;
+
 import java.sql.SQLException;
 
 public class Rider extends Cliente {
 
     String patente;
     String veicolo;
-
-
     RiderDAO riderDAO;
 
-    public Rider(Integer id) throws SQLException {
+
+    public Rider(Integer id) {
         super.id = id;
+        this.riderDAO = new RiderDAO();
         // TODO this.patente = riderDAO.getPatente();
         // TODO this.veicolo = riderDAO.getVeicolo();
     }
 
-    public Rider(Integer id, String patente, String veicolo) throws SQLException {
+    public Rider(Integer id, String patente, String veicolo) {
         super.id = id;
         this.patente = patente;
         this.veicolo = veicolo;
@@ -40,13 +41,10 @@ public class Rider extends Cliente {
         this.veicolo = veicolo;
     }
 
-    public RiderDAO getRiderDAO() {
-        return riderDAO;
+    public String diventaRider(Rider rider) throws SQLException {
+        return this.riderDAO.diventaRiderConf(rider);
     }
 
-    public void setRiderDAO(RiderDAO riderDAO) {
-        this.riderDAO = riderDAO;
-    }
 
     //TODO diventa rider in impostazioni visualizzabile solo se non si è clienti o gestori
 

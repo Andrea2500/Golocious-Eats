@@ -1,6 +1,5 @@
 package App.Scenes.Controller;
 
-import App.Controllers.Controller;
 import App.Objects.Cliente;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class SceneController extends Controller {
+public class SceneController {
 
     Stage window;
 
@@ -92,7 +91,7 @@ public class SceneController extends Controller {
     }
 
     public void logout() throws IOException, SQLException {
-        Cliente.getInstance().Reset();
+        Cliente.getInstance().reset();
         this.setScene("Login");
     }
 

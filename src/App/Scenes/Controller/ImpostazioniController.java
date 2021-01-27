@@ -21,7 +21,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     @FXML
     private ComboBox<Indirizzo> indirizzoBox;
     AggiungiIndirizzoController aggIndController;
-    SelezionaIndirizzoController selIndirizzoController = new SelezionaIndirizzoController();
+    SelezionaIndirizzoController selIndirizzoController;
     DiventaRiderController divRidController;
 
     public ImpostazioniController() throws SQLException {
@@ -50,6 +50,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     public void gestisciIndirizziBtn() throws SQLException {
         resetBtnColor();
         resetBoxManagedAndVisible();
+        this.selIndirizzoController = new SelezionaIndirizzoController();
         setListaIndirizzi();
         resetErroriGestisciIndirizzi();
         sceneController.setVisibility("gestisciIndirizziVBox", true);

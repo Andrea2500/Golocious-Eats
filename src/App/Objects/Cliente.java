@@ -28,7 +28,7 @@ public class Cliente {
         return instance;
     }
 
-    public Cliente() throws SQLException {
+    public Cliente() {
         this.clienteDAO = new ClienteDAO();
         this.auth = false;
     }
@@ -121,15 +121,7 @@ public class Cliente {
         this.rider = rider;
     }
 
-    public ClienteDAO getClienteDAO() {
-        return clienteDAO;
-    }
-
-    public void setClienteDAO(ClienteDAO clienteDAO) {
-        this.clienteDAO = clienteDAO;
-    }
-
-    public void Reset(){
+    public void reset(){
         this.nome = null;
         this.cognome = null;
         this.email = null;
@@ -147,4 +139,15 @@ public class Cliente {
         }
     }
 
+    public boolean login(String email, String password) throws SQLException {
+       return this.clienteDAO.loginConf(email, password);
+    }
+
+    public String registra(Cliente cliente, String passwordHash) throws SQLException {
+        return this.clienteDAO.registerConf(cliente, passwordHash);
+    }
+
+    public String aggiornaIndirizzoAttivo(Integer indirizzoid) throws SQLException {
+        return this.clienteDAO.updateIndirizzoAttivo(indirizzoid);
+    }
 }
