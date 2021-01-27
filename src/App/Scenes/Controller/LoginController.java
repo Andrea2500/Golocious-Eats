@@ -8,7 +8,7 @@ public class LoginController extends BaseSceneController {
 
     /**********Attributi**********/
 
-    AuthController auth;
+    private AuthController auth;
 
     /**********Metodi**********/
 

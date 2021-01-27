@@ -19,10 +19,10 @@ public class ImpostazioniController extends BaseSceneController implements Initi
 
     /**********Attributi**********/
 
-    Cliente cliente;
-    aggiungiIndirizzoController aggIndController;
-    SelezionaIndirizzoController selIndirizzoController;
-    diventaRiderController divRidController;
+    private Cliente cliente;
+    private aggiungiIndirizzoController aggIndController;
+    private SelezionaIndirizzoController selIndirizzoController;
+    private diventaRiderController divRidController;
     @FXML private ComboBox<Indirizzo> indirizzoBox;
 
     /**********Metodi**********/

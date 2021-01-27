@@ -16,7 +16,7 @@ public class OrdiniEffettuatiController extends BaseSceneController implements I
 
     /**********Attributi**********/
 
-    MostraOrdiniEffettuatiController mostraOrdiniEffettuatiController;
+    private MostraOrdiniEffettuatiController mostraOrdiniEffettuatiController;
     @FXML private TableView<Ordine> orderTable;
     @FXML private TableColumn<Ordine,Integer> idCol;
     @FXML private TableColumn<Ordine,String> ristoranteCol;

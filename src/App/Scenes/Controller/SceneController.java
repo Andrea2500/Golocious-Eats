@@ -12,7 +12,7 @@ public class SceneController {
 
     /**********Attributi**********/
 
-    Stage window;
+    private Stage window;
 
     /**********Metodi**********/
 

@@ -12,7 +12,7 @@ public class BaseSceneController {
 
     /**********Attributi**********/
 
-    SceneController sceneController;
+    protected SceneController sceneController;
 
     /**********Costruttori**********/
 
