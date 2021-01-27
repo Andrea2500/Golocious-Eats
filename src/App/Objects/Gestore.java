@@ -2,13 +2,13 @@ package App.Objects;
 
 import App.DAO.GestoreDAO;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Gestore extends Cliente{
 
     /**********Attributi**********/
 
-    List<Integer> ristoranti;
+    ArrayList<Ristorante> ristoranti;
     GestoreDAO gestoreDAO;
     Integer id;
 
