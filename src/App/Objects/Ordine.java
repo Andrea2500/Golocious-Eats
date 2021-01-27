@@ -1,5 +1,10 @@
 package App.Objects;
 
+import App.DAO.OrdineDAO;
+import javafx.collections.ObservableList;
+
+import java.sql.SQLException;
+
 public class Ordine {
 
     Integer id;
@@ -8,6 +13,7 @@ public class Ordine {
     String totale;
     String rider;
     boolean stato;
+    OrdineDAO ordinedao;
 
     public Ordine(Integer id, String ristorante, String dataOrdine, String totale, String rider, boolean stato) {
         this.id = id;
@@ -17,6 +23,11 @@ public class Ordine {
         this.rider = rider;
         this.stato = stato;
     }
+
+    public Ordine(){
+        this.ordinedao = new OrdineDAO();
+    }
+
 
     public Integer getId() {
         return id;
@@ -64,6 +75,10 @@ public class Ordine {
 
     public void setStato(boolean stato) {
         this.stato = stato;
+    }
+
+    public ObservableList<Ordine> getOrdini() throws SQLException {
+       return this.ordinedao.getOrders(Cliente.getInstance().getId());
     }
 
 }
