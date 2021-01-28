@@ -17,7 +17,7 @@
             </ImageView>
          </HBox>
          <HBox prefHeight="50.0" prefWidth="120.0" />
-         <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="690.0" spacing="20.0" BorderPane.alignment="TOP_RIGHT">
+         <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="690.0" spacing="15.0" BorderPane.alignment="TOP_RIGHT">
             <Button id="ordinaBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Ordina" />
             <Button id="ordiniEffettuatiBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#ordiniEffettuatiBtn" prefHeight="30.0" prefWidth="120.0" text="Ordini effettuati" />
             <Button id="consegnaBtn" layoutX="10.0" layoutY="20.0" managed="false" mnemonicParsing="false" onAction="#consegnaBtn" prefHeight="30.0" prefWidth="75.0" text="Consegna" visible="false" />

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane prefHeight="480.0" prefWidth="900.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.GestisciRistoranteController">
     <top>
@@ -14,7 +15,7 @@
                 </ImageView>
             </HBox>
             <HBox prefHeight="50.0" prefWidth="120.0" />
-            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="690.0" spacing="20.0" BorderPane.alignment="TOP_RIGHT">
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="690.0" spacing="15.0" BorderPane.alignment="TOP_RIGHT">
                 <Button id="ordinaBtn" mnemonicParsing="false" onAction="#ordinaBtn" prefHeight="30.0" prefWidth="60.0" text="Ordina" />
                 <Button id="ordiniEffettuatiBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#ordiniEffettuatiBtn" prefHeight="30.0" prefWidth="120.0" text="Ordini effettuati" />
                 <Button id="consegnaBtn" layoutX="10.0" layoutY="20.0" managed="false" mnemonicParsing="false" onAction="#consegnaBtn" prefHeight="30.0" prefWidth="75.0" text="Consegna" visible="false" />
@@ -28,4 +29,134 @@
             </HBox>
         </HBox>
     </top>
+    <center>
+        <HBox alignment="CENTER" prefHeight="430.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="430.0" prefWidth="300.0" spacing="20.0">
+                <Button id="inserisciAndirizzoBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0" text="Inserisci articolo" />
+                <Button id="gestisciArticoloBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0" text="Gestisci articoli" />
+                <Button id="aggiungiRistoranteBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0" text="Aggiungi ristorante" />
+            <Button id="rendiGestoreBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0" text="Rendi Gestore" />
+            <Button id="selezionaRistoranteBtn" layoutX="88.0" layoutY="285.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0" text="Seleziona ristorante" />
+            </VBox>
+            <HBox id="inserisciArticoloHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
+                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="20.0">
+                    <padding>
+                        <Insets bottom="39.0" right="25.0" />
+                    </padding>
+                    <Label id="errorePaeseLabel">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Label>
+                    <Label id="erroreProvinciaLabel" layoutX="128.0" layoutY="215.0">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Label>
+                    <Label id="erroreCittaLabel" layoutX="128.0" layoutY="234.0">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Label>
+                    <Label id="erroreCapLabel" layoutX="128.0" layoutY="252.0">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Label>
+                    <Label id="erroreIndirizzoLabel" layoutX="128.0" layoutY="272.0">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Label>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
+                    <TextField id="paeseField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo Paese" />
+                    <TextField id="provinciaField" layoutX="210.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua provincia" />
+                    <TextField id="cittaField" layoutX="210.0" layoutY="192.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua città" />
+                    <TextField id="capField" layoutX="210.0" layoutY="174.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo CAP" />
+                    <TextField id="indirizzoField" layoutX="210.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo indirizzo e il tuo civico" />
+                    <Button id="aggiungiBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
+                    <Label id="correttoLabel">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                        <VBox.margin>
+                            <Insets left="23.0" />
+                        </VBox.margin>
+                    </Label>
+                    <padding>
+                        <Insets top="30.0" />
+                    </padding>
+                </VBox>
+            </HBox>
+            <VBox id="gestisciIndirizziVBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="true">
+                <ComboBox id="articoloBox" fx:id="indirizzoBox" prefHeight="30.0" prefWidth="350.0" promptText="Seleziona un articolo dal menu" visibleRowCount="1000" />
+                <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0" spacing="20.0">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Abilita" />
+                    <Button id="eliminaIndirizzoBtn" layoutX="235.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="102.0" text="Disabilita" />
+               <Button id="eliminaIndirizzoBtn" layoutX="320.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="138.0" text="Elimina dal menu" />
+                </HBox>
+                <Label id="articoloAttivoLabel">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+            </Label>
+                <padding>
+                    <Insets top="30.0" />
+                </padding>
+            </VBox>
+            <HBox id="aggiungiRistoranteHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
+                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="17.8">
+                    <padding>
+                        <Insets bottom="39.0" right="25.0" />
+                    </padding>
+                    <Label id="errorePatenteLabel" layoutX="128.0" layoutY="252.0">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Label>
+                    <Label id="erroreVeicoloLabel" layoutX="128.0" layoutY="272.0">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Label>
+                </VBox>
+                <VBox id="diventaRiderVBox" alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
+                    <TextField id="patenteField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="250.0" promptText="Inserisci la tua patente" />
+                    <ComboBox id="veicoloBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="250.0" promptText="Seleziona il tuo veicolo" visibleRowCount="3">
+                        <items>
+                        </items>
+                    </ComboBox>
+                    <Button id="iniziaAConsegnareBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Inizia a consegnare" />
+                    <Label id="erroreRiderLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Label>
+                    <padding>
+                        <Insets top="50.0" />
+                    </padding>
+                </VBox>
+            </HBox>
+            <VBox id="rendiGestoreVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
+                <Label id="vuotoLabel" text="Clicca un pulsante a sinistra">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+            </VBox>
+            <VBox id="selezionaRistorante" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
+            <children>
+               <Label id="vuotoLabel" text="Clicca un pulsante a sinistra">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+            </children>
+         </VBox>
+        </HBox>
+    </center>
 </BorderPane>

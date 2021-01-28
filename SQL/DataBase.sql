@@ -66,7 +66,7 @@ CREATE TRIGGER trigger_uppercase_patente BEFORE INSERT OR UPDATE ON rider
 
 
 CREATE TABLE Ristorante (
-    Nome VARCHAR (100) NOT NULL,
+    Nome VARCHAR (100) NOT NULL UNIQUE,
     Paese VARCHAR (32) NOT NULL,
     Provincia VARCHAR (32) NOT NULL,
     Citta VARCHAR (32) NOT NULL,
@@ -108,11 +108,10 @@ CREATE TABLE Ordine (
 
 
 CREATE TABLE Articolo (
-    Nome VARCHAR (150) NOT NULL,
+    Nome VARCHAR (150) NOT NULL UNIQUE,
     Prezzo MONEY NOT NULL,
     Categoria CHAR(1) NOT NULL,
     Ingredienti VARCHAR (300),
-    Disponibile BOOLEAN DEFAULT true NOT NULL,
     ArticoloID SERIAL PRIMARY KEY NOT NULL,
 
     CONSTRAINT CK_CATEGORIA CHECK (Categoria IN ('a', 'b', 'p', 't', 'd', 'v', 'w'))
@@ -122,6 +121,7 @@ CREATE TABLE Articolo (
 CREATE TABLE Menu (
     ArticoloID INTEGER NOT NULL REFERENCES Articolo(ArticoloID) ON UPDATE CASCADE ON DELETE CASCADE,
     RistoranteID INTEGER NOT NULL REFERENCES Ristorante(RistoranteID) ON UPDATE CASCADE ON DELETE CASCADE,
+    Disponibile BOOLEAN DEFAULT true NOT NULL,
     
     CONSTRAINT UQ_MENU UNIQUE (ArticoloID, RistoranteID)
 );

@@ -77,13 +77,6 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         sceneController.setCliccatoBtn("diventaRiderBtn");
     }
 
-    public void eliminaAccountBtn() {
-        resetBtnColor();
-        resetBoxManagedAndVisible();
-        sceneController.setVisibile("eliminaAccountVBox", true);
-        sceneController.setCliccatoBtn("eliminaAccountBtn");
-    }
-
     public void aggiungiBtn() throws SQLException {
         resetErroriIndirizzo();
         String paese = getValue("paeseField", "textfield");
@@ -147,10 +140,6 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         } else {
             setErroriRider(patente, veicolo);
         }
-    }
-
-    public void eliminaDefinitivamenteBtn() {
-        //TODO alertbox che chiede se si è sicuri
     }
 
     /**********Metodi di supporto**********/

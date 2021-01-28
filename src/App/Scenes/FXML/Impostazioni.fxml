@@ -17,7 +17,7 @@
             </ImageView>
          </HBox>
          <HBox prefHeight="50.0" prefWidth="120.0" />
-         <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="690.0" spacing="20.0" BorderPane.alignment="TOP_RIGHT">
+         <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="690.0" spacing="15.0" BorderPane.alignment="TOP_RIGHT">
             <Button id="ordinaBtn" mnemonicParsing="false" onAction="#ordinaBtn" prefHeight="30.0" prefWidth="60.0" text="Ordina" />
             <Button id="ordiniEffettuatiBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#ordiniEffettuatiBtn" prefHeight="30.0" prefWidth="120.0" text="Ordini effettuati" />
             <Button id="consegnaBtn" layoutX="10.0" layoutY="20.0" managed="false" mnemonicParsing="false" onAction="#consegnaBtn" prefHeight="30.0" prefWidth="75.0" text="Consegna" visible="false" />
@@ -37,7 +37,6 @@
             <Button id="inserisciIndirizzoBtn" mnemonicParsing="false" onAction="#inserisciIndirizzoBtn" prefHeight="30.0" prefWidth="145.0" text="Inserisci indirizzo" />
             <Button id="gestisciIndirizziBtn" mnemonicParsing="false" onAction="#gestisciIndirizziBtn" prefHeight="30.0" prefWidth="145.0" text="Gestisci indirizzi" />
             <Button id="diventaRiderBtn" managed="false" mnemonicParsing="false" onAction="#diventaRiderBtn" prefHeight="30.0" prefWidth="145.0" text="Diventa rider" visible="false" />
-            <Button id="eliminaAccountBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" onAction="#eliminaAccountBtn" prefHeight="30.0" prefWidth="145.0" text="Elimina account" />
          </VBox>
          <VBox id="vuotoVBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="600.0" visible="true">
             <Label id="vuotoLabel" text="Clicca un pulsante a sinistra">
@@ -98,7 +97,7 @@
             </VBox>
          </HBox>
          <VBox id="gestisciIndirizziVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
-            <ComboBox id="indirizzoBox" fx:id="indirizzoBox" prefHeight="30.0" prefWidth="350.0" promptText="Non hai indirizzi attivi, creane uno" />
+            <ComboBox id="indirizzoBox" fx:id="indirizzoBox" prefHeight="30.0" prefWidth="350.0" promptText="Non hai indirizzi attivi, creane uno" visibleRowCount="1000" />
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0" spacing="20.0">
                <VBox.margin>
                   <Insets />
@@ -152,14 +151,6 @@
                </padding>
             </VBox>
          </HBox>
-         <VBox id="eliminaAccountVBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
-            <Label text="Sei sicuro di voler eliminare il tuo account?">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Button id="eliminaDefinitivamenteBtn" mnemonicParsing="false" onAction="#eliminaDefinitivamenteBtn" prefHeight="30.0" prefWidth="160.0" text="Elimina definitivamente" />
-         </VBox>
       </HBox>
    </center>
 </BorderPane>
