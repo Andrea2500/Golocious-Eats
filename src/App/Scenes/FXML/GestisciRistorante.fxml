@@ -38,7 +38,26 @@
             <Button id="rendiGestoreBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0" text="Rendi Gestore" />
             <Button id="selezionaRistoranteBtn" layoutX="88.0" layoutY="285.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0" text="Seleziona ristorante" />
             </VBox>
-            <HBox id="inserisciArticoloHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
+            <VBox id="gestisciIndirizziVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
+                <ComboBox id="articoloBox" fx:id="indirizzoBox" prefHeight="30.0" prefWidth="350.0" promptText="Seleziona un articolo dal menu" visibleRowCount="1000" />
+                <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0" spacing="20.0">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Abilita" />
+                    <Button id="eliminaIndirizzoBtn" layoutX="235.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="102.0" text="Disabilita" />
+               <Button id="eliminaIndirizzoBtn" layoutX="320.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="138.0" text="Elimina dal menu" />
+                </HBox>
+                <Label id="articoloAttivoLabel">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+            </Label>
+                <padding>
+                    <Insets top="30.0" />
+                </padding>
+            </VBox>
+            <HBox id="inserisciArticoloHBox" managed="true" prefHeight="430.0" prefWidth="600.0" visible="true">
                 <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="20.0">
                     <padding>
                         <Insets bottom="39.0" right="25.0" />
@@ -70,11 +89,11 @@
                     </Label>
                 </VBox>
                 <VBox alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
-                    <TextField id="paeseField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo Paese" />
-                    <TextField id="provinciaField" layoutX="210.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua provincia" />
-                    <TextField id="cittaField" layoutX="210.0" layoutY="192.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua città" />
-                    <TextField id="capField" layoutX="210.0" layoutY="174.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo CAP" />
-                    <TextField id="indirizzoField" layoutX="210.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo indirizzo e il tuo civico" />
+                    <TextField id="paeseField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il Paese" />
+                    <TextField id="provinciaField" layoutX="210.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la provincia" />
+                    <TextField id="cittaField" layoutX="210.0" layoutY="192.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la città" />
+                    <TextField id="capField" layoutX="210.0" layoutY="174.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il CAP" />
+                    <TextField id="indirizzoField" layoutX="210.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'indirizzo e il civico" />
                     <Button id="aggiungiBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
                     <Label id="correttoLabel">
                         <font>
@@ -89,25 +108,6 @@
                     </padding>
                 </VBox>
             </HBox>
-            <VBox id="gestisciIndirizziVBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="true">
-                <ComboBox id="articoloBox" fx:id="indirizzoBox" prefHeight="30.0" prefWidth="350.0" promptText="Seleziona un articolo dal menu" visibleRowCount="1000" />
-                <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0" spacing="20.0">
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                    <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Abilita" />
-                    <Button id="eliminaIndirizzoBtn" layoutX="235.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="102.0" text="Disabilita" />
-               <Button id="eliminaIndirizzoBtn" layoutX="320.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="138.0" text="Elimina dal menu" />
-                </HBox>
-                <Label id="articoloAttivoLabel">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-            </Label>
-                <padding>
-                    <Insets top="30.0" />
-                </padding>
-            </VBox>
             <HBox id="aggiungiRistoranteHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
                 <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="17.8">
                     <padding>
