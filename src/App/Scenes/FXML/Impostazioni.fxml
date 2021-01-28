@@ -36,7 +36,7 @@
          <VBox alignment="CENTER" prefHeight="430.0" prefWidth="300.0" spacing="20.0">
             <Button id="inserisciIndirizzoBtn" mnemonicParsing="false" onAction="#inserisciIndirizzoBtn" prefHeight="30.0" prefWidth="145.0" text="Inserisci indirizzo" />
             <Button id="gestisciIndirizziBtn" mnemonicParsing="false" onAction="#gestisciIndirizziBtn" prefHeight="30.0" prefWidth="145.0" text="Gestisci indirizzi" />
-            <Button id="diventaRiderBtn" mnemonicParsing="false" managed="false" onAction="#diventaRiderBtn" prefHeight="30.0" prefWidth="145.0" text="Diventa rider" visible="false" />
+            <Button id="diventaRiderBtn" managed="false" mnemonicParsing="false" onAction="#diventaRiderBtn" prefHeight="30.0" prefWidth="145.0" text="Diventa rider" visible="false" />
             <Button id="eliminaAccountBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" onAction="#eliminaAccountBtn" prefHeight="30.0" prefWidth="145.0" text="Elimina account" />
          </VBox>
          <VBox id="vuotoVBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="600.0" visible="true">
@@ -142,7 +142,7 @@
                   </items>
                </ComboBox>
                <Button id="iniziaAConsegnareBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#iniziaAConsegnareBtn" prefHeight="30.0" prefWidth="250.0" text="Inizia a consegnare" />
-               <Label id="erroreRiderLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" visible="false" wrapText="true">
+               <Label id="erroreRiderLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                   <font>
                      <Font size="14.0" />
                   </font>

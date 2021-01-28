@@ -43,7 +43,7 @@ public class AuthController {
     public String register(Cliente cliente, String password) throws NoSuchAlgorithmException, SQLException {
         String message = cliente.registra(cliente, this.passwordHash(password));
         if(message.equals("cliente_registrato")) {
-            this.login(cliente.getEmail(), this.passwordHash(password));
+            this.login(cliente.getEmail(), password);
         }
         return message;
     }

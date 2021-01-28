@@ -96,12 +96,11 @@ public class SceneController {
     public void logout() throws IOException {
         Cliente.getInstance().reset();
         this.setScene("Login");
-        ((Label) this.getScene().lookup("#erroreLoginLabel")).setText("Congratulazioni! Effettua il login per iniziare a consegnare");
     }
 
     public void riderLogout() throws IOException {
         logout();
-
+        ((Label) this.getScene().lookup("#erroreLoginLabel")).setText("Congratulazioni! Effettua il login per iniziare a consegnare");
     }
 
     /**********Metodi di supporto**********/
@@ -125,7 +124,7 @@ public class SceneController {
                     this.setVisibile("consegnaBtn", true);
                     this.setVisibile("consegneEffettuateBtn", true);
                     break;
-                default:
+                case "cliente":
                     break;
             }
         }

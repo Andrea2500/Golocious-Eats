@@ -33,7 +33,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
 
     /**********Costruttori**********/
 
-    public ImpostazioniController() throws SQLException {
+    public ImpostazioniController() {
         this.cliente = Cliente.getInstance();
     }
 
@@ -71,6 +71,8 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     public void diventaRiderBtn() {
         resetBtnColor();
         resetBoxManagedAndVisible();
+        resetErroriRider();
+        resetCampiRider();
         sceneController.setVisibile("diventaRiderHBox", true);
         sceneController.setCliccatoBtn("diventaRiderBtn");
     }
@@ -142,7 +144,6 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         if(patente.length()>0 && veicolo != null) {
             diventaRiderController = new DiventaRiderController(patente, veicolo);
             setErroriDB(diventaRiderController.diventaRider());
-            //FIXME non funziona
         } else {
             setErroriRider(patente, veicolo);
         }
@@ -237,9 +238,15 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         getElementById("indirizzoBox").setStyle("-fx-border-color: red");
     }
 
+    public void resetCampiRider() {
+        ((TextField) getElementById("patenteField")).setText("");
+        ((ComboBox<String>) getElementById("veicoloBox")).getSelectionModel().clearSelection();
+    }
+
     public void resetErroriRider() {
         inizializzaLabel("errorePatenteLabel", true);
         inizializzaLabel("erroreVeicoloLabel", false);
+        inizializzaLabel("erroreRiderLabel", false);
         getElementById("veicoloBox").setStyle("-fx-border-color: transparent");
     }
 
@@ -259,7 +266,9 @@ public class ImpostazioniController extends BaseSceneController implements Initi
             case "troppo_lungo" -> errore("errorePatenteLabel", "Patente troppo lunga", true);
             case "ck_indirizzo_attivo_del_cliente" -> errore("indirizzoAttivoLabel","Si è verificato un errore. Riprova.",false);
             case "eliminazione_indirizzo_fallita" -> errore("indirizzoAttivoLabel","Non è stato possibile eliminare l'indirizzo. Riprova.",false);
-            default -> errore("erroreRiderLabel", "Siamo spiacenti, si è verificato un errore", false);
+            case "aggiunta_rider_fallita" -> errore("erroreRiderLabel", "Siamo spiacenti, si è verificato un errore", false);
+            case "ck_eta_rider" -> errore("erroreRiderLabel", "Devi essere maggiorenne per iscriverti come rider", false);
+            case "rider_patente_key" -> errore("erroreRiderLabel", "La patente è già registrata", false);
         }
     }
 

@@ -1,6 +1,7 @@
 package App.DAO;
 
 import App.Config.Database;
+import App.Config.ErroriDB;
 import App.Objects.Indirizzo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -71,10 +72,10 @@ public class IndirizzoDAO {
             String sql = "DELETE from "+this.table+" WHERE indirizzoid = ?";
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, indirizzoid);
-            if(pstmt.executeUpdate() > 0){
+            if(pstmt.executeUpdate() > 0) {
                 this.db.closeConnection();
                 return "indirizzo_eliminato";
-            }else{
+            } else {
                 this.db.closeConnection();
                 return "eliminazione_indirizzo_fallita";
             }

@@ -34,8 +34,11 @@ public class ErroriDB {
         if(isErrorKey(error, "troppo lungo")) {
             return "troppo_lungo";
         }
-        if(isErrorKey(error, "eliminazione_indirizzo_fallita")) {
-            return "eliminazione_indirizzo_fallita";
+        if(isErrorKey(error, "ck_eta_rider")){
+            return "ck_eta_rider";
+        }
+        if(isErrorKey(error, "rider_patente_key")) {
+            return "rider_patente_key";
         }
         else return "nessun_errore";
     }
