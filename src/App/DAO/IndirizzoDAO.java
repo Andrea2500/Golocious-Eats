@@ -1,11 +1,11 @@
 package App.DAO;
 
 import App.Config.Database;
-import App.Config.ErroriDB;
 import App.Objects.Indirizzo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,7 +56,7 @@ public class IndirizzoDAO {
 
     public ObservableList<Indirizzo> getIndirizziDelCliente(Integer clienteid) throws SQLException {
         this.listaIndirizzi = FXCollections.observableArrayList();
-        String where = "clienteid = '"+clienteid+"'";
+        String where = "clienteid = '"+clienteid+"' AND eliminato = false";
         ResultSet rs = this.db.queryBuilder(this.table,where);
         while(rs.next()){
             this.listaIndirizzi.add(new Indirizzo(rs.getInt("indirizzoid"), rs.getString("paese"),
@@ -69,7 +69,7 @@ public class IndirizzoDAO {
     public String eliminaIndirizzo(Integer indirizzoid) throws SQLException {
         try{
             this.db.setConnection();
-            String sql = "DELETE from "+this.table+" WHERE indirizzoid = ?";
+            String sql = "UPDATE "+this.table+" SET eliminato = true WHERE indirizzoid = ?";
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, indirizzoid);
             if(pstmt.executeUpdate() > 0) {
