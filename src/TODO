@@ -1,2 +1,4 @@
 //FIXME RUOLO GESTORE probabilmente inutile
 //TODO Impostare safe delete per indirizzi e ristoranti
+//FIXME eliminazione cliente da gestire se è rider e ha effettuato consegne o è unico gestore di un ristorante
+//TODO controllare tramite metodi che il cliente, il ristorante, il rider, il menu con articolo e l'indirizzo abbiano eliminato == false
