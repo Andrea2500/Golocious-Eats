@@ -11,11 +11,13 @@ public class AggiungiIndirizzoController {
 
     /**********Metodi**********/
 
-    /**********Metodi di funzionalità**********/
+    /**********Costruttori**********/
 
-    public AggiungiIndirizzoController(String paese, String provincia, String citta, String cap, String indirizzo) throws SQLException {
-        this.indirizzo = new Indirizzo(paese, provincia, citta, cap, indirizzo);
+    public AggiungiIndirizzoController(Indirizzo indirizzo) {
+        this.indirizzo = indirizzo;
     }
+
+    /**********Metodi di funzionalitào**********/
 
     public String aggiungiIndirizzo() throws SQLException {
         return this.indirizzo.aggiungiIndirizzo(this.indirizzo);

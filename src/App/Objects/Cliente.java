@@ -1,6 +1,8 @@
 package App.Objects;
 
 import App.DAO.ClienteDAO;
+import javafx.collections.ObservableList;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -14,11 +16,15 @@ public class Cliente {
     String telefono;
     String role = "cliente";
     LocalDate dataNascita;
+    //Todo rendere di tipo indirizzo e modificare dove serve
     Integer indirizzoAttivo;
     Integer id;
     boolean auth;
     Gestore gestore;
     Rider rider;
+    //todo ObservableList<Carrello> carrelli;
+    ObservableList<Indirizzo> indirizzi;
+
     ClienteDAO clienteDAO;
 
     /**********Metodi**********/
@@ -127,6 +133,18 @@ public class Cliente {
         this.rider = rider;
     }
 
+    public ObservableList<Indirizzo> getIndirizziDB() throws SQLException {
+        return this.clienteDAO.getIndirizziDB();
+    }
+
+    public ObservableList<Indirizzo> getIndirizzi() {
+        return indirizzi;
+    }
+
+    public void setIndirizzi(ObservableList<Indirizzo> indirizzi) {
+        this.indirizzi = indirizzi;
+    }
+
     /**********Metodi di funzionalità**********/
 
     public boolean login(String email, String password) throws SQLException {
@@ -165,4 +183,11 @@ public class Cliente {
         return this.clienteDAO.getNomeDB(id);
     }
 
+    public void addIndirizzo(Indirizzo indirizzo){
+        this.indirizzi.add(indirizzo);
+    }
+
+    public void rimuoviIndirizzo(Indirizzo indirizzo) {
+        this.indirizzi.remove(indirizzo);
+    }
 }

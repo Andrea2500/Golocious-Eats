@@ -23,8 +23,8 @@ public class EliminaIndirizzoController {
 
     /**********Metodi di funzionalità**********/
 
-    public String deleteIndirizzo(Integer indirizzoId) throws SQLException {
-        String messaggio = this.indirizzo.deleteIndirizzo(indirizzoId);
+    public String eliminaIndirizzo(Integer indirizzoId) throws SQLException {
+        String messaggio = this.indirizzo.eliminaIndirizzo(indirizzoId);
         if(indirizzoId.equals(cliente.getIndirizzoAttivo()))
             cliente.setIndirizzoAttivo(null);
         return messaggio;

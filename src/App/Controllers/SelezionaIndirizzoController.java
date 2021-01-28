@@ -2,7 +2,7 @@ package App.Controllers;
 
 import App.Objects.Cliente;
 import App.Objects.Indirizzo;
-import javafx.collections.ObservableList;
+
 import java.sql.SQLException;
 
 public class SelezionaIndirizzoController {
@@ -23,9 +23,6 @@ public class SelezionaIndirizzoController {
 
     /**********Metodi di funzionalità**********/
 
-    public ObservableList<Indirizzo> getIndirizzi() throws SQLException {
-        return this.indirizzo.getIndirizzi();
-    }
 
     public String setIndirizzoAttivo(Integer indirizzoid) throws SQLException {
         String messaggio = this.cliente.aggiornaIndirizzoAttivo(indirizzoid);
@@ -35,8 +32,4 @@ public class SelezionaIndirizzoController {
         return messaggio;
     }
 
-    public String deleteIndirizzo(Integer indirizzoid) throws SQLException {
-        String messaggio = this.indirizzo.deleteIndirizzo(indirizzoid);
-        return messaggio;
-    }
 }

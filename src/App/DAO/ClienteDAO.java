@@ -3,7 +3,11 @@ package App.DAO;
 import App.Config.Database;
 import App.Config.ErroriDB;
 import App.Objects.Cliente;
+import App.Objects.Indirizzo;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
+
 import java.sql.*;
 
 public class ClienteDAO {
@@ -14,6 +18,7 @@ public class ClienteDAO {
     private Cliente cliente;
     protected Database db;
     private ErroriDB edb = new ErroriDB();
+    private ObservableList<Indirizzo> listaIndirizzi;
 
     /**********Metodi**********/
 
@@ -46,6 +51,7 @@ public class ClienteDAO {
             cliente.setId(rs.getInt("clienteid"));
             cliente.setAuth(true);
             cliente.setRole(this.getRole(cliente.getId()));
+            cliente.setIndirizzi(this.getIndirizziDB());
             cliente.setObject();
             return true;
         }
@@ -91,6 +97,19 @@ public class ClienteDAO {
             this.db.closeConnection();
             return edb.getErrorMessage(e.getMessage());
         }
+    }
+
+    public ObservableList<Indirizzo> getIndirizziDB() throws SQLException {
+        this.cliente = Cliente.getInstance();
+        this.listaIndirizzi = FXCollections.observableArrayList();
+        String where = "clienteid = '"+this.cliente.getId()+"' AND eliminato = false";
+        ResultSet rs = this.db.queryBuilder("indirizzo",where);
+        while(rs.next()){
+            this.listaIndirizzi.add(new Indirizzo(rs.getInt("indirizzoid"), rs.getString("paese"),
+                    rs.getString("provincia"),rs.getString("citta"),
+                    rs.getString("cap"),rs.getString("indirizzo")));
+        }
+        return this.listaIndirizzi;
     }
 
     /**********Metodi di supporto**********/
