@@ -1,6 +1,12 @@
-//FIXME RUOLO GESTORE probabilmente inutile
-//TODO impostare safe delete per indirizzi e ristoranti
-//FIXME eliminazione cliente da gestire se è rider e ha effettuato consegne o è unico gestore di un ristorante
-//TODO controllare tramite metodi che il cliente, il ristorante, il rider, il menu con articolo e l'indirizzo abbiano eliminato == false
-//TODO quando si vuole rendere gestore un cliente bisogna controllare che non sia un rider
-//TODO elimina righe gestore quando elimini cliente
+TODO! controllare tramite metodi che l'indirizzo abbia eliminato == false
+
+TODO SEZIONE GESTISCI RISTORANTE
+     INSERISCI ARTICOLO manualmente o da esistenti
+     ELIMINA ARTICOLO per quel ristorante, da Menu
+     SEZIONE STATISTICHE per ricerca complessa
+     RENDI GESTORE quando si vuole rendere gestore un cliente bisogna controllare che non sia un rider
+
+TODO SEZIONE CONSEGNA
+     CONSEGNA ATTUALE con visualizzazione di indirizzo cliente e tasto per confermare consegna
+
+TODO CONSEGNE EFFETTUATE
