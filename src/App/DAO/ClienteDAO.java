@@ -41,18 +41,16 @@ public class ClienteDAO {
         this.db.closeConnection();
         if(rs.next()){
             this.cliente = Cliente.getInstance();
-            cliente = Cliente.getInstance();
             cliente.setNome(rs.getString("nome"));
             cliente.setCognome(rs.getString("cognome"));
             cliente.setEmail(email);
             cliente.setTelefono(rs.getString("telefono"));
             cliente.setDataNascita(rs.getDate("datadinascita").toLocalDate());
-            cliente.setIndirizzoAttivo(rs.getInt("Indirizzoattivo"));
+            cliente.setIndirizzoAttivo(new Indirizzo(rs.getInt("Indirizzoattivo")));
             cliente.setId(rs.getInt("clienteid"));
             cliente.setAuth(true);
-            cliente.setRole(this.getRole(cliente.getId()));
+            cliente.setRuolo(this.getRole(cliente.getId()));
             cliente.setIndirizzi(this.getIndirizziDB());
-            cliente.setObject();
             return true;
         }
         return false;
@@ -82,9 +80,9 @@ public class ClienteDAO {
         }
     }
 
-    public String updateIndirizzoAttivo(Integer id) throws SQLException {
+    public String aggiornaIndirizzoAttivo(Indirizzo indirizzo) throws SQLException {
         try{
-            String sql = "UPDATE "+this.table+" SET indirizzoattivo = '"+id+"' WHERE clienteid = "+ Cliente.getInstance().getId();
+            String sql = "UPDATE "+this.table+" SET indirizzoattivo = '"+indirizzo.getId()+"' WHERE clienteid = "+ Cliente.getInstance().getId();
             this.db.setConnection();
             if(this.db.getConnection().createStatement().executeUpdate(sql)==1){
                 this.db.closeConnection();

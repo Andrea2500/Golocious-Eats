@@ -10,21 +10,17 @@ public class Cliente {
 
     /**********Attributi**********/
 
+    Integer id;
     String nome;
     String cognome;
     String email;
     String telefono;
-    String role = "cliente";
+    String ruolo = "cliente";
     LocalDate dataNascita;
-    //Todo rendere di tipo indirizzo e modificare dove serve
-    Integer indirizzoAttivo;
-    Integer id;
+    Indirizzo indirizzoAttivo;
     boolean auth;
-    Gestore gestore;
-    Rider rider;
     //todo ObservableList<Carrello> carrelli;
     ObservableList<Indirizzo> indirizzi;
-
     ClienteDAO clienteDAO;
 
     /**********Metodi**********/
@@ -77,12 +73,12 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public String getRole() {
-        return role;
+    public String getRuolo() {
+        return ruolo;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRuolo(String ruolo) {
+        this.ruolo = ruolo;
     }
 
     public LocalDate getDataNascita() {
@@ -93,11 +89,11 @@ public class Cliente {
         this.dataNascita = dataNascita;
     }
 
-    public Integer getIndirizzoAttivo() {
+    public Indirizzo getIndirizzoAttivo() {
         return indirizzoAttivo;
     }
 
-    public void setIndirizzoAttivo(Integer indirizzoAttivo) {
+    public void setIndirizzoAttivo(Indirizzo indirizzoAttivo) {
         this.indirizzoAttivo = indirizzoAttivo;
     }
 
@@ -115,22 +111,6 @@ public class Cliente {
 
     public void setAuth(boolean auth) {
         this.auth = auth;
-    }
-
-    public Gestore getGestore() {
-        return gestore;
-    }
-
-    public void setGestore(Gestore gestore) {
-        this.gestore = gestore;
-    }
-
-    public Rider getRider() {
-        return rider;
-    }
-
-    public void setRider(Rider rider) {
-        this.rider = rider;
     }
 
     public ObservableList<Indirizzo> getIndirizziDB() throws SQLException {
@@ -155,8 +135,8 @@ public class Cliente {
         return this.clienteDAO.registerConf(cliente, passwordHash);
     }
 
-    public String aggiornaIndirizzoAttivo(Integer indirizzoid) throws SQLException {
-        return this.clienteDAO.updateIndirizzoAttivo(indirizzoid);
+    public String aggiornaIndirizzoAttivo(Indirizzo indirizzo) throws SQLException {
+        return this.clienteDAO.aggiornaIndirizzoAttivo(indirizzo);
     }
 
     /**********Metodi di supporto**********/
@@ -169,14 +149,7 @@ public class Cliente {
         this.dataNascita = null;
         this.id = null;
         this.setAuth(false);
-        this.role = null;
-    }
-
-    public void setObject() throws SQLException {
-        switch (this.role){
-            case "gestore" -> this.gestore = new Gestore(this.id);
-            case "rider" -> this.rider = new Rider(this.id);
-        }
+        this.ruolo = null;
     }
 
     public String getNomeDB(Integer id) throws SQLException {
@@ -187,7 +160,4 @@ public class Cliente {
         this.indirizzi.add(indirizzo);
     }
 
-    public void rimuoviIndirizzo(Indirizzo indirizzo) {
-        this.indirizzi.remove(indirizzo);
-    }
 }

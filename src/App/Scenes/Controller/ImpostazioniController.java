@@ -104,9 +104,10 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         resetErroriGestisciIndirizzi();
         Indirizzo attivo = indirizzoBox.getSelectionModel().getSelectedItem();
         if(attivo != null) {
-            String messaggio = selezionaIndirizzoController.setIndirizzoAttivo(attivo.getId());
+            String messaggio = selezionaIndirizzoController.setIndirizzoAttivo(attivo);
             if (messaggio.equals("indirizzo_aggiornato")) {
                 errore("indirizzoAttivoLabel", "Indirizzo attivo aggiornato con successo", false);
+                cliente.setIndirizzoAttivo(attivo);
             } else {
                 setErroriDB(messaggio);
             }
@@ -169,10 +170,10 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         ObservableList<Indirizzo> indirizzi = this.cliente.getIndirizzi();
         indirizzoBox.setItems(indirizzi);
         int index = 0;
-        Integer indAttivoCliente = this.cliente.getIndirizzoAttivo();
+        Indirizzo indAttivoCliente = this.cliente.getIndirizzoAttivo();
         ObservableList<Indirizzo> lista = indirizzoBox.getItems();
         for(Indirizzo el: lista){
-            if (el.getId().equals(indAttivoCliente)){
+            if (el.getId().equals(indAttivoCliente.getId())){
                 break;
             }
             index++;

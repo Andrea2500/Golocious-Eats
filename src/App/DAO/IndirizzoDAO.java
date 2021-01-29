@@ -54,7 +54,7 @@ public class IndirizzoDAO {
         }
     }
 
-    public ObservableList<Indirizzo> getIndirizziDelCliente(Integer clienteid) throws SQLException {
+    public ObservableList<Indirizzo> getIndirizziDB(Integer clienteid) throws SQLException {
         this.listaIndirizzi = FXCollections.observableArrayList();
         String where = "clienteid = '"+clienteid+"' AND eliminato = false";
         ResultSet rs = this.db.queryBuilder(this.table,where);
@@ -85,4 +85,16 @@ public class IndirizzoDAO {
         }
 
     }
+
+    public Indirizzo getIndirizzoDB(int indirizzoId) throws SQLException {
+        String where = "indirizzoid = '"+indirizzoId+"'";
+        ResultSet rs = this.db.queryBuilder(this.table,where);
+        if(rs.next()) {
+           return new Indirizzo(rs.getInt("indirizzoid"), rs.getString("paese"), rs.getString("provincia"),
+                   rs.getString("citta"), rs.getString("cap"), rs.getString("indirizzo"));
+        } else {
+            return null;
+        }
+    }
+
 }

@@ -8,7 +8,7 @@ public class Indirizzo {
 
     /**********Attributi**********/
 
-    Integer id;
+    int id;
     String paese;
     String provincia;
     String citta;
@@ -24,6 +24,11 @@ public class Indirizzo {
     public Indirizzo() throws SQLException {
         this.cliente = Cliente.getInstance();
         this.indirizzoDAO = new IndirizzoDAO();
+    }
+
+    public Indirizzo(int indirizzoId) throws SQLException {
+        this.indirizzoDAO = new IndirizzoDAO();
+        this.setData(this.indirizzoDAO.getIndirizzoDB(indirizzoId));
     }
 
     public Indirizzo(String paese, String provincia, String citta, String cap, String indirizzo) throws SQLException {
@@ -91,8 +96,8 @@ public class Indirizzo {
         return this.indirizzoDAO.aggiungiIndirizzoConf(indirizzo);
     }
 
-    public ObservableList<Indirizzo> getIndirizzi() throws SQLException {
-        return this.indirizzoDAO.getIndirizziDelCliente(this.cliente.getId());
+    public ObservableList<Indirizzo> getIndirizziDB() throws SQLException {
+        return this.indirizzoDAO.getIndirizziDB(this.cliente.getId());
     }
 
     /**********Metodi di supporto**********/
@@ -105,4 +110,14 @@ public class Indirizzo {
     public String eliminaIndirizzo(Integer indirizzoid) throws SQLException {
         return this.indirizzoDAO.eliminaIndirizzo(indirizzoid);
     }
+
+    public void setData(Indirizzo indirizzo) {
+        this.id = indirizzo.getId();
+        this.paese = indirizzo.getPaese();
+        this.provincia = indirizzo.getProvincia();
+        this.citta = indirizzo.getCitta();
+        this.cap = indirizzo.getCap();
+        this.indirizzo = indirizzo.getIndirizzo();
+    }
+
 }

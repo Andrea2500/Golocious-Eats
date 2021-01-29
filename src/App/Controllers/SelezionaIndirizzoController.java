@@ -24,10 +24,10 @@ public class SelezionaIndirizzoController {
     /**********Metodi di funzionalità**********/
 
 
-    public String setIndirizzoAttivo(Integer indirizzoid) throws SQLException {
-        String messaggio = this.cliente.aggiornaIndirizzoAttivo(indirizzoid);
+    public String setIndirizzoAttivo(Indirizzo indirizzo) throws SQLException {
+        String messaggio = this.cliente.aggiornaIndirizzoAttivo(indirizzo);
         if(messaggio.equals("indirizzo_aggiornato")) {
-             cliente.setIndirizzoAttivo(indirizzoid);
+             cliente.setIndirizzoAttivo(indirizzo);
         }
         return messaggio;
     }
