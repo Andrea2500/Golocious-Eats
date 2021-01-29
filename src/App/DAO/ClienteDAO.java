@@ -4,8 +4,6 @@ import App.Config.Database;
 import App.Config.ErroriDB;
 import App.Objects.Cliente;
 import App.Objects.Indirizzo;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
 
 import java.sql.*;
@@ -18,7 +16,6 @@ public class ClienteDAO {
     private Cliente cliente;
     protected Database db;
     private ErroriDB edb = new ErroriDB();
-    private ObservableList<Indirizzo> listaIndirizzi;
 
     /**********Metodi**********/
 
@@ -46,11 +43,9 @@ public class ClienteDAO {
             cliente.setEmail(email);
             cliente.setTelefono(rs.getString("telefono"));
             cliente.setDataNascita(rs.getDate("datadinascita").toLocalDate());
-            cliente.setIndirizzoAttivo(new Indirizzo(rs.getInt("Indirizzoattivo")));
-            cliente.setId(rs.getInt("clienteid"));
+            cliente.setClienteId(rs.getInt("clienteid"));
             cliente.setAuth(true);
-            cliente.setRuolo(this.getRole(cliente.getId()));
-            cliente.setIndirizzi(this.getIndirizziDB());
+            cliente.setRuolo(this.getRole(cliente.getClienteId()));
             return true;
         }
         return false;
@@ -80,9 +75,9 @@ public class ClienteDAO {
         }
     }
 
-    public String aggiornaIndirizzoAttivo(Indirizzo indirizzo) throws SQLException {
+    public String aggiornaIndirizzoAttivo(Integer indirizzoId) throws SQLException {
         try{
-            String sql = "UPDATE "+this.table+" SET indirizzoattivo = '"+indirizzo.getId()+"' WHERE clienteid = "+ Cliente.getInstance().getId();
+            String sql = "UPDATE "+this.table+" SET indirizzoattivo = '"+ indirizzoId +"' WHERE clienteid = "+ Cliente.getInstance().getClienteId();
             this.db.setConnection();
             if(this.db.getConnection().createStatement().executeUpdate(sql)==1){
                 this.db.closeConnection();
@@ -95,19 +90,6 @@ public class ClienteDAO {
             this.db.closeConnection();
             return edb.getErrorMessage(e.getMessage());
         }
-    }
-
-    public ObservableList<Indirizzo> getIndirizziDB() throws SQLException {
-        this.cliente = Cliente.getInstance();
-        this.listaIndirizzi = FXCollections.observableArrayList();
-        String where = "clienteid = '"+this.cliente.getId()+"' AND eliminato = false";
-        ResultSet rs = this.db.queryBuilder("indirizzo",where);
-        while(rs.next()){
-            this.listaIndirizzi.add(new Indirizzo(rs.getInt("indirizzoid"), rs.getString("paese"),
-                    rs.getString("provincia"),rs.getString("citta"),
-                    rs.getString("cap"),rs.getString("indirizzo")));
-        }
-        return this.listaIndirizzi;
     }
 
     /**********Metodi di supporto**********/

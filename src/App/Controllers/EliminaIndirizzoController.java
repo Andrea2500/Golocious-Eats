@@ -9,23 +9,21 @@ public class EliminaIndirizzoController {
 
     /**********Attributi**********/
 
-    private Indirizzo indirizzo;
     private Cliente cliente;
 
     /**********Metodi**********/
 
     /**********Costruttori**********/
 
-    public EliminaIndirizzoController() throws SQLException {
-        this.indirizzo = new Indirizzo();
+    public EliminaIndirizzoController() {
         this.cliente = Cliente.getInstance();
     }
 
     /**********Metodi di funzionalità**********/
 
     public String eliminaIndirizzo(Integer indirizzoId) throws SQLException {
-        String messaggio = this.indirizzo.eliminaIndirizzo(indirizzoId);
-        if(indirizzoId.equals(cliente.getIndirizzoAttivo()))
+        String messaggio = new Indirizzo().eliminaIndirizzo(indirizzoId);
+        if(indirizzoId.equals(cliente.getIndirizzoAttivo().getIndirizzoId()))
             cliente.setIndirizzoAttivo(null);
         return messaggio;
     }

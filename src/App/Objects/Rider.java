@@ -1,6 +1,7 @@
 package App.Objects;
 
 import App.DAO.RiderDAO;
+import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 
@@ -11,20 +12,21 @@ public class Rider extends Cliente {
     private String patente;
     private String veicolo;
     private RiderDAO riderDAO;
+    private ObservableList<Ordine> consegne;
 
     /**********Metodi**********/
 
     /**********Costruttori**********/
 
     public Rider(Integer riderId) throws SQLException {
-        super.id = riderId;
+        super.clienteId = riderId;
         this.riderDAO = new RiderDAO();
         this.veicolo = this.riderDAO.getVeicolo(riderId);
         super.nome = super.getNomeDB(riderId);
     }
 
     public Rider(Integer riderId, String patente, String veicolo) {
-        super.id = riderId;
+        super.clienteId = riderId;
         this.patente = patente;
         this.veicolo = veicolo;
         this.riderDAO = new RiderDAO();
@@ -46,6 +48,14 @@ public class Rider extends Cliente {
 
     public void setVeicolo(String veicolo) {
         this.veicolo = veicolo;
+    }
+
+    public ObservableList<Ordine> getConsegne() {
+        return consegne;
+    }
+
+    public void setConsegne(ObservableList<Ordine> consegne) {
+        this.consegne = consegne;
     }
 
     /**********Metodi di funzionalità**********/

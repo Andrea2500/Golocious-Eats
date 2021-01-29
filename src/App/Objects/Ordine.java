@@ -15,6 +15,7 @@ public class Ordine {
     String totale;
     Rider rider;
     String stato;
+    //TODO Carrello carrello
     OrdineDAO ordineDAO;
 
     /**********Metodi**********/
@@ -88,7 +89,7 @@ public class Ordine {
     /**********Metodi di funzionalità**********/
 
     public ObservableList<Ordine> getOrdini() throws SQLException {
-       return this.ordineDAO.getOrdini(Cliente.getInstance().getId());
+       return this.ordineDAO.getOrdini(Cliente.getInstance().getClienteId());
     }
 
 }

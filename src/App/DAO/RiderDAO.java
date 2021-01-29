@@ -33,7 +33,7 @@ public class RiderDAO {
             this.db.setConnection();
             String sql = "insert into " + this.table + " values (?, ?, ?)";
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, rider.getId());
+            pstmt.setInt(1, rider.getClienteId());
             pstmt.setString(2, rider.getPatente());
             pstmt.setString(3, rider.getVeicolo().substring(0,1).toLowerCase());
             if(pstmt.executeUpdate() > 0){
@@ -49,6 +49,8 @@ public class RiderDAO {
         }
     }
 
+    /**********Metodi di supporto**********/
+
     public String getVeicolo(Integer riderId) throws SQLException {
         String where="riderid = '"+riderId+"'";
         ResultSet rs = this.db.queryBuilder(this.table, where);
@@ -63,6 +65,5 @@ public class RiderDAO {
             return "veicolo_rider_errore";
         }
     }
-
 
 }

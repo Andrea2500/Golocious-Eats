@@ -16,9 +16,9 @@ public class Gestore extends Cliente{
     /**********Costruttori**********/
 
     public Gestore(Integer id) throws SQLException {
-        this.id = id;
+        this.clienteId = id;
         this.gestoreDAO = new GestoreDAO();
-        this.ristoranti = gestoreDAO.getRistoranti(this.id);
+        this.ristoranti = new Ristorante().getRistorantiDB(this.clienteId);
     }
 
 }

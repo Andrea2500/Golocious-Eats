@@ -16,14 +16,16 @@ public class Database {
         return this.connection;
     }
 
+    public void setConnection() throws SQLException {
+        this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/OOBD", "postgres", "root");
+    }
+
+    /**********Metodi di supporto**********/
+
     public void closeConnection() throws SQLException {
         if (this.connection != null) {
             this.connection.close();
         }
-    }
-
-    public void setConnection() throws SQLException {
-        this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/OOBD", "postgres", "root");
     }
 
     /**********Metodi di supporto**********/

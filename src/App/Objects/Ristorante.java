@@ -3,6 +3,7 @@ package App.Objects;
 import App.DAO.RistoranteDAO;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Ristorante {
 
@@ -13,18 +14,24 @@ public class Ristorante {
     private Indirizzo indirizzo;
     private String telefono;
     private LocalDate dataDiApertura;
+    //TODO lista di articoli
     private RistoranteDAO ristoranteDAO;
 
     /**********Metodi**********/
 
     /**********Costruttori**********/
 
+    public Ristorante() {
+
+    }
+
     public Ristorante(Integer ristoranteId) throws SQLException {
         this.ristoranteDAO = new RistoranteDAO();
         this.updateFields(this.ristoranteDAO.getRistorante(ristoranteId));
     }
 
-    public Ristorante(String nome, Indirizzo indirizzo, String telefono, LocalDate dataDiApertura) {
+    public Ristorante(Integer ristoranteId, String nome, Indirizzo indirizzo, String telefono, LocalDate dataDiApertura) {
+        this.ristoranteId = ristoranteId;
         this.nome = nome;
         this.indirizzo = indirizzo;
         this.telefono = telefono;
@@ -87,5 +94,9 @@ public class Ristorante {
     @Override
     public String toString() {
         return this.nome;
+    }
+
+    public ArrayList<Ristorante> getRistorantiDB(Integer clienteId) throws SQLException {
+        return this.ristoranteDAO.getRistoranti(clienteId);
     }
 }

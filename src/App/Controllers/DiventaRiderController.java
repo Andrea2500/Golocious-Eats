@@ -18,7 +18,7 @@ public class DiventaRiderController {
     /**********Costruttori**********/
 
     public DiventaRiderController(String patente, String veicolo) {
-        this.rider = new Rider(Cliente.getInstance().getId(), patente, veicolo);
+        this.rider = new Rider(Cliente.getInstance().getClienteId(), patente, veicolo);
     }
 
     /**********Metodi di funzionalità**********/

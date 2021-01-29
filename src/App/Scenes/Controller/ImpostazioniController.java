@@ -33,8 +33,9 @@ public class ImpostazioniController extends BaseSceneController implements Initi
 
     /**********Costruttori**********/
 
-    public ImpostazioniController() {
+    public ImpostazioniController() throws SQLException {
         this.cliente = Cliente.getInstance();
+        this.cliente.getIndirizziDB();
     }
 
     @Override
@@ -62,6 +63,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         resetBtnColor();
         resetBoxManagedAndVisible();
         this.selezionaIndirizzoController = new SelezionaIndirizzoController();
+        cliente.setIndirizzi(cliente.getIndirizziDB());
         setListaIndirizzi();
         resetErroriGestisciIndirizzi();
         sceneController.setVisibile("gestisciIndirizziVBox", true);
@@ -86,8 +88,8 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         String indirizzo = getValue("indirizzoField", "textfield");
         Indirizzo address = new Indirizzo(paese,provincia,cap,citta,indirizzo);
         if(paese.length()>0 && provincia.length()>0 && cap.length()>0 && citta.length()>0 && indirizzo.length()>0){
-            aggiungiIndirizzoController = new AggiungiIndirizzoController(address);
-            String messaggio = aggiungiIndirizzoController.aggiungiIndirizzo();
+            aggiungiIndirizzoController = new AggiungiIndirizzoController();
+            String messaggio = aggiungiIndirizzoController.aggiungiIndirizzo(address);
             if(messaggio.equals("indirizzo_aggiunto")){
                 resetCampiIndirizzo();
                 this.cliente.addIndirizzo(address);
@@ -121,7 +123,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         Indirizzo elimina = indirizzoBox.getSelectionModel().getSelectedItem();
         if(elimina != null) {
             this.eliminaIndirizzoController = new EliminaIndirizzoController();
-            String messaggio = eliminaIndirizzoController.eliminaIndirizzo(elimina.getId());
+            String messaggio = eliminaIndirizzoController.eliminaIndirizzo(elimina.getIndirizzoId());
             if (messaggio.equals("indirizzo_eliminato")) {
                 errore("indirizzoAttivoLabel", "Indirizzo eliminato con successo", false);
                 this.setListaIndirizzi();
@@ -172,13 +174,15 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         int index = 0;
         Indirizzo indAttivoCliente = this.cliente.getIndirizzoAttivo();
         ObservableList<Indirizzo> lista = indirizzoBox.getItems();
-        for(Indirizzo el: lista){
-            if (el.getId().equals(indAttivoCliente.getId())){
-                break;
+        if(indAttivoCliente != null){
+            for (Indirizzo el : lista) {
+                if (el.getIndirizzoId().equals(indAttivoCliente.getIndirizzoId())) {
+                    break;
+                }
+                index++;
             }
-            index++;
+            indirizzoBox.getSelectionModel().select(index);
         }
-        indirizzoBox.getSelectionModel().select(index);
     }
 
     /**********Metodi di ripristino e di errori**********/

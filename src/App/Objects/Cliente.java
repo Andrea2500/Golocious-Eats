@@ -1,16 +1,22 @@
 package App.Objects;
 
 import App.DAO.ClienteDAO;
+import javafx.beans.InvalidationListener;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class Cliente {
 
     /**********Attributi**********/
 
-    Integer id;
+    Integer clienteId;
     String nome;
     String cognome;
     String email;
@@ -97,12 +103,12 @@ public class Cliente {
         this.indirizzoAttivo = indirizzoAttivo;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getClienteId() {
+        return clienteId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setClienteId(Integer clienteId) {
+        this.clienteId = clienteId;
     }
 
     public boolean isAuth() {
@@ -114,7 +120,7 @@ public class Cliente {
     }
 
     public ObservableList<Indirizzo> getIndirizziDB() throws SQLException {
-        return this.clienteDAO.getIndirizziDB();
+        return new Indirizzo().getIndirizziDB();
     }
 
     public ObservableList<Indirizzo> getIndirizzi() {
@@ -135,8 +141,8 @@ public class Cliente {
         return this.clienteDAO.registerConf(cliente, passwordHash);
     }
 
-    public String aggiornaIndirizzoAttivo(Indirizzo indirizzo) throws SQLException {
-        return this.clienteDAO.aggiornaIndirizzoAttivo(indirizzo);
+    public String aggiornaIndirizzoAttivo(Integer indirizzoId) throws SQLException {
+        return this.clienteDAO.aggiornaIndirizzoAttivo(indirizzoId);
     }
 
     /**********Metodi di supporto**********/
@@ -147,7 +153,7 @@ public class Cliente {
         this.email = null;
         this.telefono = null;
         this.dataNascita = null;
-        this.id = null;
+        this.clienteId = null;
         this.setAuth(false);
         this.ruolo = null;
     }

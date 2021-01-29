@@ -8,12 +8,12 @@ public class Indirizzo {
 
     /**********Attributi**********/
 
-    int id;
+    Integer indirizzoId;
     String paese;
     String provincia;
     String citta;
     String cap;
-    String indirizzo;
+    String indirizzoCivico;
     Cliente cliente;
     IndirizzoDAO indirizzoDAO;
 
@@ -28,38 +28,38 @@ public class Indirizzo {
 
     public Indirizzo(int indirizzoId) throws SQLException {
         this.indirizzoDAO = new IndirizzoDAO();
-        this.setData(this.indirizzoDAO.getIndirizzoDB(indirizzoId));
+        this.setData(this.indirizzoDAO.getIndirizzo(indirizzoId));
     }
 
-    public Indirizzo(String paese, String provincia, String citta, String cap, String indirizzo) throws SQLException {
+    public Indirizzo(String paese, String provincia, String citta, String cap, String indirizzoCivico) throws SQLException {
         this.paese = paese;
         this.provincia = provincia;
         this.citta = citta;
         this.cap = cap;
-        this.indirizzo = indirizzo;
+        this.indirizzoCivico = indirizzoCivico;
         this.cliente = Cliente.getInstance();
         this.indirizzoDAO = new IndirizzoDAO();
     }
 
-    public Indirizzo(Integer id, String paese, String provincia, String citta, String cap, String indirizzo) throws SQLException {
-        this.id = id;
+    public Indirizzo(Integer indirizzoId, String paese, String provincia, String citta, String cap, String indirizzoCivico) throws SQLException {
+        this.indirizzoId = indirizzoId;
         this.paese = paese;
         this.provincia = provincia;
         this.citta = citta;
         this.cap = cap;
-        this.indirizzo = indirizzo;
+        this.indirizzoCivico = indirizzoCivico;
         this.cliente = Cliente.getInstance();
         this.indirizzoDAO = new IndirizzoDAO();
     }
 
     /**********Getter e setter**********/
 
-    public Integer getId() {
-        return id;
+    public Integer getIndirizzoId() {
+        return indirizzoId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIndirizzoId(Integer indirizzoId) {
+        this.indirizzoId = indirizzoId;
     }
 
     public String getPaese() {
@@ -78,8 +78,8 @@ public class Indirizzo {
         return citta;
     }
 
-    public String getIndirizzo() {
-        return indirizzo;
+    public String getIndirizzoCivico() {
+        return indirizzoCivico;
     }
 
     public Cliente getCliente() {
@@ -97,14 +97,14 @@ public class Indirizzo {
     }
 
     public ObservableList<Indirizzo> getIndirizziDB() throws SQLException {
-        return this.indirizzoDAO.getIndirizziDB(this.cliente.getId());
+        return this.indirizzoDAO.getIndirizzi(this.cliente.getClienteId());
     }
 
     /**********Metodi di supporto**********/
 
     @Override
     public String toString(){
-        return this.indirizzo+", "+this.cap+", "+this.citta+", "+this.provincia+", "+this.paese;
+        return this.indirizzoCivico +", "+this.cap+", "+this.citta+", "+this.provincia+", "+this.paese;
     }
 
     public String eliminaIndirizzo(Integer indirizzoid) throws SQLException {
@@ -112,12 +112,12 @@ public class Indirizzo {
     }
 
     public void setData(Indirizzo indirizzo) {
-        this.id = indirizzo.getId();
+        this.indirizzoId = indirizzo.getIndirizzoId();
         this.paese = indirizzo.getPaese();
         this.provincia = indirizzo.getProvincia();
         this.citta = indirizzo.getCitta();
         this.cap = indirizzo.getCap();
-        this.indirizzo = indirizzo.getIndirizzo();
+        this.indirizzoCivico = indirizzo.getIndirizzoCivico();
     }
 
 }
