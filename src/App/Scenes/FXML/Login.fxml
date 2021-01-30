@@ -73,9 +73,9 @@
                </TextField>
                <PasswordField id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua password" />
                <TextField id="telefonoField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo numero di telefono" visible="false" />
-               <DatePicker id="datanascitaField" editable="false" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua data di nascita" showWeekNumbers="false" visible="false" />
-               <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="300.0" spacing="20.0">
-                  <Button id="loginBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loginBtnClick" prefHeight="30.0" prefWidth="115.0" text="Login" textAlignment="CENTER">
+               <DatePicker id="datanascitaField" editable="false" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="28.0" prefWidth="250.0" promptText="Seleziona la tua data di nascita" showWeekNumbers="false" visible="false" />
+               <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="300.0" spacing="15.0">
+                  <Button id="loginBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loginBtnClick" prefHeight="30.0" prefWidth="105.0" text="Login" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -83,7 +83,7 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button id="creaAccBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#registratiBtnClick" prefHeight="30.0" prefWidth="115.0" text="Registrati">
+                  <Button id="creaAccBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#registratiBtnClick" prefHeight="30.0" prefWidth="130.0" text="Registrati">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

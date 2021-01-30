@@ -89,7 +89,7 @@
                     </padding>
                 </VBox>
             </HBox>
-            <VBox id="gestisciArticoliVBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="true">
+            <VBox id="gestisciArticoliVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
                 <ComboBox id="gestisciArticoloBox" fx:id="gestisciArticoloBox" prefHeight="30.0" prefWidth="350.0" promptText="Seleziona un articolo dal menu" visibleRowCount="1000" />
                 <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0" spacing="15.0">
                     <VBox.margin>
@@ -108,30 +108,39 @@
                     <Insets top="30.0" />
                 </padding>
             </VBox>
-            <HBox id="aggiungiRistoranteHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
-                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="17.8">
+            <HBox id="aggiungiRistoranteHBox" managed="true" prefHeight="430.0" prefWidth="600.0" visible="true">
+                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="21.0">
                     <padding>
                         <Insets bottom="39.0" right="25.0" />
                     </padding>
-                    <Label id="errorePatenteLabel" layoutX="128.0" layoutY="252.0">
+                    <Label id="erroreNomeRistoranteLabel" layoutX="128.0" layoutY="252.0">
                         <font>
                             <Font size="14.0" />
                         </font>
                     </Label>
-                    <Label id="erroreVeicoloLabel" layoutX="128.0" layoutY="272.0">
+                    <Label id="erroreIndirizzoRistoranteLabel" layoutX="128.0" layoutY="272.0">
                         <font>
                             <Font size="14.0" />
                         </font>
                     </Label>
+               <Label id="erroreTelefonoRistoranteLabel" layoutX="160.0" layoutY="176.0">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label id="erroreDataaperturaRistoranteLabel" layoutX="160.0" layoutY="158.0">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
                 </VBox>
-                <VBox id="diventaRiderVBox" alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
-                    <TextField id="patenteField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="250.0" promptText="Inserisci la tua patente" />
-                    <ComboBox id="veicoloBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="250.0" promptText="Seleziona il tuo veicolo" visibleRowCount="1000">
-                        <items>
-                        </items>
-                    </ComboBox>
-                    <Button id="iniziaAConsegnareBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Inizia a consegnare" />
-                    <Label id="erroreRiderLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                <VBox alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
+                    <TextField id="nomeRistoranteField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il nome" />
+               <TextField id="indirizzoRistoranteField" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'indirizzo" />
+               <TextField id="telefonoRistoranteField" layoutX="10.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci numero di telefono" />
+               <DatePicker id="dataaperturaRistoranteField" prefHeight="28.0" prefWidth="250.0" promptText="Seleziona la data di apertura" />
+                    <Button id="aggiungiNuovoRistoranteBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
+                    <Label id="erroreAggiungiRistoranteLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                         <font>
                             <Font size="14.0" />
                         </font>
@@ -150,8 +159,16 @@
             </VBox>
             <VBox id="selezionaRistorante" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
             <children>
-               <ComboBox id="ristoranteBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="1000" />
+               <ComboBox id="selezionaRistoranteBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="1000" />
+               <Label id="selezionaRistoranteLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="250.0" textAlignment="CENTER">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
             </children>
+            <padding>
+               <Insets top="20.0" />
+            </padding>
             </VBox>
         </HBox>
     </center>
