@@ -67,11 +67,7 @@ CREATE TRIGGER trigger_uppercase_patente BEFORE INSERT OR UPDATE ON rider
 
 CREATE TABLE Ristorante (
     Nome VARCHAR (100) NOT NULL UNIQUE,
-    Paese VARCHAR (32) NOT NULL,
-    Provincia VARCHAR (32) NOT NULL,
-    Citta VARCHAR (32) NOT NULL,
-    CAP VARCHAR (10) NOT NULL,
-    Indirizzo VARCHAR (100) NOT NULL,
+    Indirizzo VARCHAR (320) NOT NULL,
     Telefono VARCHAR (20) NOT NULL,
     DataDiApertura DATE NOT NULL,
     RistoranteID SERIAL PRIMARY KEY NOT NULL,
