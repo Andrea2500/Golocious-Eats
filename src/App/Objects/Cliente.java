@@ -45,7 +45,7 @@ public class Cliente {
         this.auth = false;
     }
 
-    /**********Getter e setter**********/
+    /**********Getter e Setter**********/
 
     public String getNome() {
         return nome;

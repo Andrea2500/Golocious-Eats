@@ -32,7 +32,7 @@ public class Rider extends Cliente {
         this.riderDAO = new RiderDAO();
     }
 
-    /**********Getter e setter**********/
+    /**********Getter e Setter**********/
 
     public String getPatente() {
         return patente;

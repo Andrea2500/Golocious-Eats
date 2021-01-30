@@ -38,7 +38,7 @@
             <Button id="gestisciIndirizziBtn" mnemonicParsing="false" onAction="#gestisciIndirizziBtn" prefHeight="30.0" prefWidth="145.0" text="Gestisci indirizzi" />
             <Button id="diventaRiderBtn" managed="false" mnemonicParsing="false" onAction="#diventaRiderBtn" prefHeight="30.0" prefWidth="145.0" text="Diventa rider" visible="false" />
          </VBox>
-         <VBox id="vuotoVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
+         <VBox id="vuotoVBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="600.0" visible="true">
             <Label id="vuotoLabel" text="Clicca un pulsante a sinistra">
                <font>
                   <Font size="18.0" />
@@ -97,7 +97,7 @@
             </VBox>
          </HBox>
          <VBox id="gestisciIndirizziVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
-            <ComboBox id="indirizzoBox" fx:id="indirizzoBox" prefHeight="30.0" prefWidth="250.0" promptText="Non hai indirizzi attivi, creane uno" visibleRowCount="1000" />
+            <ComboBox id="indirizzoBox" fx:id="indirizzoBox" prefHeight="30.0" prefWidth="250.0" promptText="Non hai indirizzi attivi" visibleRowCount="1000" />
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0" spacing="15.0">
                <VBox.margin>
                   <Insets />
@@ -113,7 +113,7 @@
                <Insets top="30.0" />
             </padding>
          </VBox>
-         <HBox id="diventaRiderHBox" managed="true" prefHeight="430.0" prefWidth="600.0" visible="true">
+         <HBox id="diventaRiderHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
             <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="21.0">
                <padding>
                   <Insets bottom="39.0" right="25.0" />

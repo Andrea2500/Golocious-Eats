@@ -73,7 +73,7 @@ public class IndirizzoDAO {
         }
     }
 
-    /**********Metodi di supporto**********/
+    /**********Getter e Setter**********/
 
     public Indirizzo getIndirizzo(int indirizzoId) throws SQLException {
         String where = "indirizzoid = '"+indirizzoId+"'";

@@ -17,13 +17,15 @@ public class ArticoloDAO {
     ObservableList<Articolo> articoli;
 
     /**********Metodi**********/
+
     /**********Costruttori**********/
+
     public ArticoloDAO() {
         this.table = "articolo";
         this.db = new Database();
     }
 
-    /**********Getter e Setter**********/
+    /**********Metodi di funzionalità**********/
 
     public ObservableList<Articolo> getArticoli(int ristoranteId) throws SQLException {
         this.articoli = FXCollections.observableArrayList();
@@ -37,10 +39,4 @@ public class ArticoloDAO {
         return this.articoli;
     }
 
-    /**********Metodi di funzionalità**********/
-
-
-
-
 }
-

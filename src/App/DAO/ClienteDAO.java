@@ -75,24 +75,7 @@ public class ClienteDAO {
         }
     }
 
-    public String aggiornaIndirizzoAttivo(Integer indirizzoId) throws SQLException {
-        try{
-            String sql = "UPDATE "+this.table+" SET indirizzoattivo = '"+ indirizzoId +"' WHERE clienteid = "+ Cliente.getInstance().getClienteId();
-            this.db.setConnection();
-            if(this.db.getConnection().createStatement().executeUpdate(sql)==1){
-                this.db.closeConnection();
-                return "indirizzo_aggiornato";
-            }else{
-                this.db.closeConnection();
-                return "errore_aggiornamento_indirizzo";
-            }
-        }catch(PSQLException e){
-            this.db.closeConnection();
-            return edb.getErrorMessage(e.getMessage());
-        }
-    }
-
-    /**********Metodi di supporto**********/
+    /**********Getter e Setter**********/
 
     public String getRole(Integer id) throws SQLException {
         ResultSet role;
@@ -114,6 +97,23 @@ public class ClienteDAO {
             return rs.getString("nome")+" "+rs.getString("cognome");
         } else {
             return "Utente non trovato";
+        }
+    }
+
+    public String aggiornaIndirizzoAttivo(Integer indirizzoId) throws SQLException {
+        try{
+            String sql = "UPDATE "+this.table+" SET indirizzoattivo = '"+ indirizzoId +"' WHERE clienteid = "+ Cliente.getInstance().getClienteId();
+            this.db.setConnection();
+            if(this.db.getConnection().createStatement().executeUpdate(sql)==1){
+                this.db.closeConnection();
+                return "indirizzo_aggiornato";
+            }else{
+                this.db.closeConnection();
+                return "errore_aggiornamento_indirizzo";
+            }
+        }catch(PSQLException e){
+            this.db.closeConnection();
+            return edb.getErrorMessage(e.getMessage());
         }
     }
 

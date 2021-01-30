@@ -39,7 +39,7 @@ public class Ristorante {
         this.ristoranteDAO = new RistoranteDAO();
     }
 
-    /**********Getter e setter**********/
+    /**********Getter e Setter**********/
 
     public Integer getRistoranteId() {
         return ristoranteId;

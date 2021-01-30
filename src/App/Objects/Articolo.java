@@ -35,7 +35,7 @@ public class Articolo {
         this.disponibile = disponibile;
     }
 
-    /**********Getter e setter**********/
+    /**********Getter e Setter**********/
 
     public String getNome() {
         return nome;

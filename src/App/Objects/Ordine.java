@@ -36,7 +36,7 @@ public class Ordine {
         this.ordineDAO = new OrdineDAO();
     }
 
-    /**********Getter e setter**********/
+    /**********Getter e Setter**********/
 
     public Integer getOrdineId() {
         return ordineId;

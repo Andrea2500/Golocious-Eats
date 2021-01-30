@@ -26,7 +26,7 @@ public class SceneController {
         return instance;
     }
 
-    /**********Getter e setter**********/
+    /**********Getter e Setter**********/
 
     public Stage getWindow() {
         return window;

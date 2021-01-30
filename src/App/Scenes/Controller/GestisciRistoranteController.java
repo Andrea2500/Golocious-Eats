@@ -1,6 +1,7 @@
 package App.Scenes.Controller;
 
 import App.Controllers.GestisciArticoloController;
+import App.Controllers.SelezionaIndirizzoController;
 import App.Objects.Articolo;
 import App.Objects.Ristorante;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import java.util.ResourceBundle;
 public class GestisciRistoranteController extends BaseSceneController implements Initializable {
 
     /**********Attributi**********/
+
     @FXML ComboBox<Articolo> gestisciArticoloBox;
     GestisciArticoloController gestisciArticoloController;
     Ristorante ristoranteSelezionato;
@@ -34,7 +36,43 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     /**********Metodi di bottoni**********/
 
+    /*public void inserisciIndirizzoBtn() {
+        resetBtnColor();
+        resetBoxManagedAndVisible();
+        resetErroriIndirizzo();
+        sceneController.setVisibile("inserisciIndirizzoHBox", true);
+        sceneController.setCliccatoBtn("inserisciIndirizzoBtn");
+    }
 
+    public void gestisciIndirizziBtn() throws SQLException {
+        resetBtnColor();
+        resetBoxManagedAndVisible();
+        this.selezionaIndirizzoController = new SelezionaIndirizzoController();
+        cliente.setIndirizzi(cliente.getIndirizziDB());
+        setListaIndirizzi();
+        resetErroriGestisciIndirizzi();
+        sceneController.setVisibile("gestisciIndirizziVBox", true);
+        sceneController.setCliccatoBtn("gestisciIndirizziBtn");
+    }
+
+    public void diventaRiderBtn() {
+        resetBtnColor();
+        resetBoxManagedAndVisible();
+        resetErroriRider();
+        resetCampiRider();
+        sceneController.setVisibile("diventaRiderHBox", true);
+        sceneController.setCliccatoBtn("diventaRiderBtn");
+    }
+
+    public void diventaRiderBtn() {
+        resetBtnColor();
+        resetBoxManagedAndVisible();
+        resetErroriRider();
+        resetCampiRider();
+        sceneController.setVisibile("diventaRiderHBox", true);
+        sceneController.setCliccatoBtn("diventaRiderBtn");
+    }
+*/
 
     /**********Metodi di supporto**********/
 
@@ -42,8 +80,6 @@ public class GestisciRistoranteController extends BaseSceneController implements
         this.gestisciArticoloController = new GestisciArticoloController();
         this.gestisciArticoloBox.setItems(gestisciArticoloController.getArticoli(3));
     }
-
-
 
     /**********Metodi di ripristino e di errori**********/
 

@@ -21,7 +21,6 @@ public class SelezionaIndirizzoController {
 
     /**********Metodi di funzionalità**********/
 
-
     public String setIndirizzoAttivo(Indirizzo indirizzo) throws SQLException {
         String messaggio = this.cliente.aggiornaIndirizzoAttivo(indirizzo.getIndirizzoId());
         if(messaggio.equals("indirizzo_aggiornato")) {

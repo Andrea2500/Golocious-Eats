@@ -25,8 +25,6 @@ public class OrdineDAO {
         this.fkTable = "Carrello";
     }
 
-    /**********Metodi di funzionalità**********/
-
     /**********Metodi di supporto**********/
 
     public ObservableList<Ordine> getOrdini(Integer id) throws SQLException {

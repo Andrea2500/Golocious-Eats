@@ -52,7 +52,7 @@ public class Indirizzo {
         this.indirizzoDAO = new IndirizzoDAO();
     }
 
-    /**********Getter e setter**********/
+    /**********Getter e Setter**********/
 
     public Integer getIndirizzoId() {
         return indirizzoId;

@@ -150,7 +150,7 @@
                     </padding>
                 </VBox>
             </HBox>
-            <VBox id="rendiGestoreVBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="true">
+            <VBox id="rendiGestoreVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
             <children>
                <TextField id="emailGestoreField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'email del nuovo gestore" />
                <Button id="aggiungiGestoreBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
@@ -164,7 +164,7 @@
                <Insets top="30.0" />
             </padding>
             </VBox>
-            <VBox id="selezionaRistorante" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
+            <VBox id="selezionaRistorante" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="true" prefHeight="430.0" prefWidth="600.0" visible="true">
             <children>
                <ComboBox id="selezionaRistoranteBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="1000" />
                <Label id="selezionaRistoranteLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="250.0" textAlignment="CENTER">

@@ -12,6 +12,7 @@ public class GestisciArticoloController {
     /**********Metodi**********/
 
     /**********Costruttori**********/
+
     public GestisciArticoloController() {
         this.articolo = new Articolo();
     }
@@ -25,4 +26,5 @@ public class GestisciArticoloController {
     /**********Metodi di supporto**********/
 
     /**********Metodi di ripristino e di errori**********/
+
 }
