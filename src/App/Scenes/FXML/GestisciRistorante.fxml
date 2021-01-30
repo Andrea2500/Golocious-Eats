@@ -35,7 +35,7 @@
                 <Button id="inserisciAndirizzoBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0" text="Inserisci articolo" />
                 <Button id="gestisciArticoloBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0" text="Gestisci articoli" />
                 <Button id="aggiungiRistoranteBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0" text="Aggiungi ristorante" />
-            <Button id="rendiGestoreBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0" text="Rendi Gestore" />
+            <Button id="rendiGestoreBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0" text="Rendi gestore" />
             <Button id="selezionaRistoranteBtn" layoutX="88.0" layoutY="285.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="145.0" text="Seleziona ristorante" />
             </VBox>
             <HBox id="inserisciArticoloHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
@@ -108,7 +108,7 @@
                     <Insets top="30.0" />
                 </padding>
             </VBox>
-            <HBox id="aggiungiRistoranteHBox" managed="true" prefHeight="430.0" prefWidth="600.0" visible="true">
+            <HBox id="aggiungiRistoranteHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
                 <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="21.0">
                     <padding>
                         <Insets bottom="39.0" right="25.0" />
@@ -150,12 +150,19 @@
                     </padding>
                 </VBox>
             </HBox>
-            <VBox id="rendiGestoreVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
-                <Label id="vuotoLabel" text="Clicca un pulsante a sinistra">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
+            <VBox id="rendiGestoreVBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="true">
+            <children>
+               <TextField id="emailGestoreField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'email del nuovo gestore" />
+               <Button id="aggiungiGestoreBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
+               <Label id="erroreEmailGestoreLabel">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+            </children>
+            <padding>
+               <Insets top="30.0" />
+            </padding>
             </VBox>
             <VBox id="selezionaRistorante" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
             <children>
