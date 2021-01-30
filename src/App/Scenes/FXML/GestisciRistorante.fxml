@@ -90,7 +90,7 @@
                 </VBox>
             </HBox>
             <VBox id="gestisciArticoliVBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="true">
-                <ComboBox id="articoloBox" fx:id="indirizzoBox" prefHeight="30.0" prefWidth="350.0" promptText="Seleziona un articolo dal menu" visibleRowCount="1000" />
+                <ComboBox id="gestisciArticoloBox" fx:id="gestisciArticoloBox" prefHeight="30.0" prefWidth="350.0" promptText="Seleziona un articolo dal menu" visibleRowCount="8" />
                 <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0" spacing="15.0">
                     <VBox.margin>
                         <Insets />
