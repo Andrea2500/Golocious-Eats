@@ -35,7 +35,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
 
     public ImpostazioniController() throws SQLException {
         this.cliente = Cliente.getInstance();
-        this.cliente.getIndirizziDB();
+        this.cliente.setIndirizzi(this.cliente.getIndirizziDB());
     }
 
     @Override
