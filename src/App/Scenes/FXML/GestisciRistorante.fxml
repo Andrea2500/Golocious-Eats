@@ -65,11 +65,11 @@
                     </Label>
                 </VBox>
                 <VBox alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
-               <ComboBox id="inserisciArticoloBox" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un articolo esistente" />
+               <ComboBox id="inserisciArticoloBox" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un articolo esistente" visibleRowCount="1000" />
                <Button id="aggiungiEsistenteBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Aggiungi esistente" />
                     <TextField id="nomeField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il nome" />
                     <TextField id="provinciaField" layoutX="210.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il prezzo in euro (es. 7,50)" />
-               <ComboBox id="categoriaBox" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona una categoria" />
+               <ComboBox id="categoriaBox" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona una categoria" visibleRowCount="1000" />
                <TextField id="ingredientiField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci gli ingredienti" />
                     <Button id="aggiungiManualmenteBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Aggiungi manualmente" />
                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="250.0">
@@ -126,7 +126,7 @@
                 </VBox>
                 <VBox id="diventaRiderVBox" alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
                     <TextField id="patenteField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="250.0" promptText="Inserisci la tua patente" />
-                    <ComboBox id="veicoloBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="250.0" promptText="Seleziona il tuo veicolo" visibleRowCount="3">
+                    <ComboBox id="veicoloBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="250.0" promptText="Seleziona il tuo veicolo" visibleRowCount="1000">
                         <items>
                         </items>
                     </ComboBox>
@@ -149,11 +149,9 @@
                 </Label>
             </VBox>
             <VBox id="selezionaRistorante" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
-                <Label id="vuotoLabel" text="Clicca un pulsante a sinistra">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
+            <children>
+               <ComboBox id="ristoranteBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="1000" />
+            </children>
             </VBox>
         </HBox>
     </center>
