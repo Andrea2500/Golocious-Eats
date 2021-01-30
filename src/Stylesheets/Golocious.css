@@ -43,7 +43,9 @@
 }
 
 
-#veicoloBox > * > .arrow, #indirizzoBox > * > .arrow, #articoloBox > * > .arrow{
+#veicoloBox > * > .arrow, #indirizzoBox > * > .arrow,
+#inserisciArticoloBox > * > .arrow, #gestisciArticoloBox > * > .arrow,
+#categoriaBox > * > .arrow{
     -fx-background-color: #fab338;
 }
 
