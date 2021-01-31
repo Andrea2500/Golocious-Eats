@@ -47,13 +47,13 @@ public class ImpostazioniController extends BaseSceneController implements Initi
 
     public void vuotoVBox() {
         resetBtnColor();
-        resetBoxManagedAndVisible();
+        resetVHBoxManagedAndVisible();
         sceneController.setVisibile("vuotoVBox",true);
     }
 
     public void inserisciIndirizzoBtn() {
         resetBtnColor();
-        resetBoxManagedAndVisible();
+        resetVHBoxManagedAndVisible();
         resetErroriIndirizzo();
         sceneController.setVisibile("inserisciIndirizzoHBox", true);
         sceneController.setCliccatoBtn("inserisciIndirizzoBtn");
@@ -61,7 +61,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
 
     public void gestisciIndirizziBtn() throws SQLException {
         resetBtnColor();
-        resetBoxManagedAndVisible();
+        resetVHBoxManagedAndVisible();
         this.selezionaIndirizzoController = new SelezionaIndirizzoController();
         cliente.setIndirizzi(cliente.getIndirizziDB());
         setListaIndirizzi();
@@ -72,9 +72,9 @@ public class ImpostazioniController extends BaseSceneController implements Initi
 
     public void diventaRiderBtn() {
         resetBtnColor();
-        resetBoxManagedAndVisible();
+        resetVHBoxManagedAndVisible();
         resetErroriRider();
-        resetCampiRider();
+        //resetCampiRider();
         sceneController.setVisibile("diventaRiderHBox", true);
         sceneController.setCliccatoBtn("diventaRiderBtn");
     }
@@ -149,7 +149,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
 
     /**********Metodi di supporto**********/
 
-    public void resetBoxManagedAndVisible() {
+    public void resetVHBoxManagedAndVisible() {
         sceneController.setVisibile("vuotoVBox", false);
         sceneController.setVisibile("inserisciIndirizzoHBox", false);
         sceneController.setVisibile("gestisciIndirizziVBox", false);
@@ -232,10 +232,13 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         getElementById("indirizzoBox").setStyle("-fx-border-color: red");
     }
 
+    /*
     public void resetCampiRider() {
+
         ((TextField) getElementById("patenteField")).setText("");
         ((ComboBox<String>) getElementById("veicoloBox")).getSelectionModel().clearSelection();
     }
+    */
 
     public void resetErroriRider() {
         inizializzaLabel("errorePatenteLabel", true);
