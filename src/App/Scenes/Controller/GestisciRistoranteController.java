@@ -7,10 +7,12 @@ import App.Objects.Articolo;
 import App.Objects.Cliente;
 import App.Objects.Gestore;
 import App.Objects.Ristorante;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -26,6 +28,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     AggiungiGestoreController aggiungiGestoreController;
     Gestore gestore;
     @FXML ComboBox<Ristorante> selezionaRistoranteBox;
+
     /**********Metodi**********/
 
     /**********Costruttori**********/
@@ -41,30 +44,42 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     /**********Metodi di bottoni**********/
 
-    public void inserisciArticoloBtn() {
-        ((ComboBox) getElementById("inserisciArticoloBox")).getItems().clear();
-        try {
-            setInserisciArticoliBox();
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public void inserisciArticoloBtn(ActionEvent e) {
+        if (selezionaRistoranteBox.getSelectionModel().getSelectedItem() != null) {
+            ((ComboBox) getElementById("inserisciArticoloBox")).getItems().clear();
+            try {
+                setInserisciArticoliBox();
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+            resetBtnColor();
+            resetVHBoxManagedAndVisible();
+            sceneController.setVisibile("inserisciArticoloHBox", true);
+            sceneController.setCliccatoBtn("inserisciArticoloBtn");
+        } else {
+            e.consume();
+            errore("erroreSelezionaRistoranteLabel", "Prima di procedere seleziona un ristorante", false);
+            getElementById("selezionaRistoranteBox").setStyle("-fx-border-color: #ff0000");
         }
-        resetBtnColor();
-        resetVHBoxManagedAndVisible();
-        sceneController.setVisibile("inserisciArticoloHBox", true);
-        sceneController.setCliccatoBtn("inserisciArticoloBtn");
     }
 
-    public void gestisciArticoloBtn() {
-        ((ComboBox) getElementById("gestisciArticoloBox")).getItems().clear();
-        try {
-            setGestisciArticoliBox();
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public void gestisciArticoloBtn(ActionEvent e) {
+        if (selezionaRistoranteBox.getSelectionModel().getSelectedItem() != null) {
+            ((ComboBox) getElementById("gestisciArticoloBox")).getItems().clear();
+            try {
+                setGestisciArticoliBox();
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+            resetBtnColor();
+            resetVHBoxManagedAndVisible();
+            sceneController.setVisibile("gestisciArticoliVBox", true);
+            sceneController.setCliccatoBtn("gestisciArticoliBtn");
+        } else {
+            e.consume();
+            errore("erroreSelezionaRistoranteLabel", "Prima di procedere seleziona un ristorante", false);
+            getElementById("selezionaRistoranteBox").setStyle("-fx-border-color: #ff0000");
         }
-        resetBtnColor();
-        resetVHBoxManagedAndVisible();
-        sceneController.setVisibile("gestisciArticoliVBox", true);
-        sceneController.setCliccatoBtn("gestisciArticoliBtn");
     }
 
     public void aggiungiRistoranteBtn() {
@@ -74,14 +89,21 @@ public class GestisciRistoranteController extends BaseSceneController implements
         sceneController.setCliccatoBtn("aggiungiRistoranteBtn");
     }
 
-    public void rendiGestoreBtn() {
-        resetBtnColor();
-        resetVHBoxManagedAndVisible();
-        sceneController.setVisibile("rendiGestoreVBox", true);
-        sceneController.setCliccatoBtn("rendiGestoreBtn");
+    public void rendiGestoreBtn(ActionEvent e) {
+        if (selezionaRistoranteBox.getSelectionModel().getSelectedItem() != null) {
+            resetBtnColor();
+            resetVHBoxManagedAndVisible();
+            sceneController.setVisibile("rendiGestoreVBox", true);
+            sceneController.setCliccatoBtn("rendiGestoreBtn");
+        } else {
+            e.consume();
+            errore("erroreSelezionaRistoranteLabel", "Prima di procedere seleziona un ristorante", false);
+            getElementById("selezionaRistoranteBox").setStyle("-fx-border-color: #ff0000");
+        }
     }
 
     public void selezionaRistoranteBtn() {
+        resetErroriSelezionaRistorante();
         resetBtnColor();
         resetVHBoxManagedAndVisible();
         sceneController.setVisibile("selezionaRistoranteVBox", true);
@@ -167,6 +189,11 @@ public class GestisciRistoranteController extends BaseSceneController implements
         } else if(getElementById("selezionaRistoranteVBox").isVisible()) {
             getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         }
+    }
+
+    public void resetErroriSelezionaRistorante() {
+        inizializzaLabel("erroreSelezionaRistoranteLabel", false);
+        getElementById("selezionaRistoranteBox").setStyle("-fx-border-color: transparent");
     }
 
 }

@@ -174,17 +174,17 @@
                     </font>
                 </Label>
             </VBox>
-            <VBox id="selezionaRistoranteVBox" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="true" prefHeight="430.0" prefWidth="600.0" visible="true">
+            <VBox id="selezionaRistoranteVBox" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="true" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="true">
             <children>
                <ComboBox id="selezionaRistoranteBox" fx:id="selezionaRistoranteBox" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#selezionaRistoranteBox" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="8" />
-               <Label id="selezionaRistoranteLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="250.0" textAlignment="CENTER">
+               <Label id="erroreSelezionaRistoranteLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" wrapText="true">
                   <font>
                      <Font size="14.0" />
                   </font>
                </Label>
             </children>
             <padding>
-               <Insets top="20.0" />
+               <Insets top="50.0" />
             </padding>
             </VBox>
         </HBox>
