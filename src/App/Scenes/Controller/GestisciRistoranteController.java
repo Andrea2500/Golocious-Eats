@@ -47,7 +47,6 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
         resetBtnColor();
         resetVHBoxManagedAndVisible();
-        getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: hand !important");
         sceneController.setVisibile("inserisciArticoloHBox", true);
         sceneController.setCliccatoBtn("inserisciArticoloBtn");
     }
@@ -61,7 +60,6 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
         resetBtnColor();
         resetVHBoxManagedAndVisible();
-        getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: hand !important");
         sceneController.setVisibile("gestisciArticoliVBox", true);
         sceneController.setCliccatoBtn("gestisciArticoliBtn");
     }
@@ -69,8 +67,6 @@ public class GestisciRistoranteController extends BaseSceneController implements
     public void aggiungiRistoranteBtn() {
         resetBtnColor();
         resetVHBoxManagedAndVisible();
-        //FIXME
-        getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: hand !important");
         sceneController.setVisibile("aggiungiRistoranteHBox", true);
         sceneController.setCliccatoBtn("aggiungiRistoranteBtn");
     }
@@ -78,7 +74,6 @@ public class GestisciRistoranteController extends BaseSceneController implements
     public void rendiGestoreBtn() {
         resetBtnColor();
         resetVHBoxManagedAndVisible();
-        getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: hand !important");
         sceneController.setVisibile("rendiGestoreVBox", true);
         sceneController.setCliccatoBtn("rendiGestoreBtn");
     }
@@ -86,7 +81,6 @@ public class GestisciRistoranteController extends BaseSceneController implements
     public void selezionaRistoranteBtn() {
         resetBtnColor();
         resetVHBoxManagedAndVisible();
-        getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: hand !important");
         sceneController.setVisibile("selezionaRistoranteVBox", true);
         sceneController.setCliccatoBtn("selezionaRistoranteBtn");
     }

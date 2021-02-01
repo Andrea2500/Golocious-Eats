@@ -24,8 +24,8 @@ public class GestisciArticoliController {
 
     /**********Metodi di funzionalità**********/
 
-    public ObservableList<Articolo> getArticoliRistorante(int ristoranteId) throws SQLException {
-        return this.articolo.getArticoliDB(ristoranteId);
+    public ObservableList<Articolo> getArticoliRistorante() {
+        return this.ristorante.getArticoli();
     }
 
     public String switchDisponibilita(boolean toggle,int ristoranteid,int articoloid) throws SQLException {

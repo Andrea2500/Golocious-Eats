@@ -80,7 +80,7 @@
                             <String fx:value="Pizze in teglia" />
                             <String fx:value="Dolci" />
                             <String fx:value="Bevande" />
-                            <String fx:value="Vino" />
+                            <String fx:value="Vini" />
                         </FXCollections>
                     </items>
                     </ComboBox>
@@ -100,7 +100,7 @@
                             <Insets top="30.0" />
                         </padding>
                     </VBox>
-                    </HBox>
+            </HBox>
             <VBox id="gestisciArticoliVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
                 <ComboBox id="gestisciArticoloBox" prefHeight="30.0" prefWidth="350.0" promptText="Seleziona un articolo dal menu" visibleRowCount="8" />
                 <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0" spacing="15.0">
@@ -150,8 +150,8 @@
                     <TextField id="nomeRistoranteField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il nome" />
                <TextField id="indirizzoRistoranteField" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'indirizzo" />
                <TextField id="telefonoRistoranteField" layoutX="10.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci numero di telefono" />
-               <DatePicker id="dataaperturaRistoranteField" prefHeight="28.0" prefWidth="250.0" promptText="Seleziona la data di apertura" showWeekNumbers="false" />
-                    <Button id="aggiungiNuovoRistoranteBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#aggiungiNuovoRistoranteBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
+               <DatePicker id="dataaperturaRistoranteField" editable="false" showWeekNumbers="false" prefHeight="28.0" prefWidth="250.0" promptText="Seleziona la data di apertura" />
+                    <Button id="aggiungiNuovoRistoranteBtn" onAction="#aggiungiNuovoRistoranteBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
                     <Label id="erroreAggiungiRistoranteLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                         <font>
                             <Font size="14.0" />

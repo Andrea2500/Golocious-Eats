@@ -87,14 +87,6 @@ public class Articolo {
 
     /**********Metodi di funzionalità**********/
 
-    public ObservableList<Articolo> getArticoliAltriRistorantiDB(int ristoranteId) throws SQLException {
-        return this.articoloDAO.getArticoliAltriRistorantiDB(ristoranteId);
-    }
-
-    public ObservableList<Articolo> getArticoliDB(int ristoranteId) throws SQLException {
-       return this.articoloDAO.getArticoli(ristoranteId);
-    }
-
     public String switchDisponibilita(boolean toggle,int ristoranteid,int articoloid) throws SQLException {
         return this.articoloDAO.switchDisponibilita(toggle,ristoranteid,articoloid);
     }
