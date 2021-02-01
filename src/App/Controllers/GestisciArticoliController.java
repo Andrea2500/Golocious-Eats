@@ -19,21 +19,20 @@ public class GestisciArticoliController {
 
     public GestisciArticoliController() {
         this.articolo = new Articolo();
-        this.ristorante = new Ristorante();
     }
 
     /**********Metodi di funzionalità**********/
 
-    public ObservableList<Articolo> getArticoliRistorante() {
-        return this.ristorante.getArticoli();
+    public ObservableList<Articolo> getArticoliRistorante(Ristorante ristorante) throws SQLException {
+        return new Ristorante(ristorante.getRistoranteId()).getArticoli();
     }
 
-    public String switchDisponibilita(boolean toggle,int ristoranteid,int articoloid) throws SQLException {
-        return this.articolo.switchDisponibilita(toggle,ristoranteid,articoloid);
+    public String switchDisponibilita(boolean toggle, Ristorante ristorante, Articolo articolo) throws SQLException {
+        return this.articolo.switchDisponibilita(toggle, ristorante.getRistoranteId(), articolo.getArticoloId());
     }
 
-    public String eliminaDaMenu(Ristorante ristorante, int articoloid) throws SQLException {
-       return ristorante.eliminaDaMenuDB(articoloid);
+    public String eliminaDaMenu(Ristorante ristorante, Articolo articolo) throws SQLException {
+       return ristorante.eliminaDaMenuDB(articolo.getArticoloId());
     }
 
     /**********Metodi di supporto**********/

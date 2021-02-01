@@ -97,8 +97,8 @@ public class GestisciRistoranteController extends BaseSceneController implements
         this.gestisciArticoliController = new GestisciArticoliController();
         Articolo articolo = ((ComboBox<Articolo>) getElementById("gestisciArticoloBox")).getSelectionModel().getSelectedItem();
         int index = ((ComboBox<Articolo>) getElementById("gestisciArticoloBox")).getSelectionModel().getSelectedIndex();
-        this.gestisciArticoliController.switchDisponibilita(true,this.ristoranteAttivo.getRistoranteId(),articolo.getArticoloid());
-        ((ComboBox) getElementById("gestisciArticoloBox")).setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo.getRistoranteId()));
+        this.gestisciArticoliController.switchDisponibilita(true,this.ristoranteAttivo, articolo);
+        ((ComboBox) getElementById("gestisciArticoloBox")).setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
         ((ComboBox<Articolo>) getElementById("gestisciArticoloBox")).getSelectionModel().select(index);
     }
 
@@ -106,15 +106,15 @@ public class GestisciRistoranteController extends BaseSceneController implements
         this.gestisciArticoliController = new GestisciArticoliController();
         Articolo articolo = ((ComboBox<Articolo>) getElementById("gestisciArticoloBox")).getSelectionModel().getSelectedItem();
         int index = ((ComboBox<Articolo>) getElementById("gestisciArticoloBox")).getSelectionModel().getSelectedIndex();
-        this.gestisciArticoliController.switchDisponibilita(false,this.ristoranteAttivo.getRistoranteId(),articolo.getArticoloid());
-        ((ComboBox) getElementById("gestisciArticoloBox")).setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo.getRistoranteId()));
+        this.gestisciArticoliController.switchDisponibilita(false,this.ristoranteAttivo, articolo);
+        ((ComboBox) getElementById("gestisciArticoloBox")).setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
         ((ComboBox<Articolo>) getElementById("gestisciArticoloBox")).getSelectionModel().select(index);
     }
 
     public void eliminaBtn() throws SQLException {
         this.gestisciArticoliController = new GestisciArticoliController();
         Articolo articolo = ((ComboBox<Articolo>) getElementById("gestisciArticoloBox")).getSelectionModel().getSelectedItem();
-        String messaggio = this.gestisciArticoliController.eliminaDaMenu(this.ristoranteAttivo,articolo.getArticoloid());
+        String messaggio = this.gestisciArticoliController.eliminaDaMenu(this.ristoranteAttivo, articolo);
     }
 
     public void aggiungiNuovoRistoranteBtn() {
@@ -131,12 +131,12 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     public void setInserisciArticoliBox() throws SQLException{
         this.inserisciArticoloController = new InserisciArticoloController();
-        ((ComboBox) getElementById("inserisciArticoloBox")).setItems(inserisciArticoloController.getArticoliAltriRistoranti(this.ristoranteAttivo.getRistoranteId()));//FIXME
+        ((ComboBox) getElementById("inserisciArticoloBox")).setItems(inserisciArticoloController.getArticoliAltriRistoranti(this.ristoranteAttivo));
     }
 
     public void setGestisciArticoliBox() throws SQLException {
         this.gestisciArticoliController = new GestisciArticoliController();
-        ((ComboBox) getElementById("gestisciArticoloBox")).setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo.getRistoranteId()));//FIXME
+        ((ComboBox) getElementById("gestisciArticoloBox")).setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
     }
 
     /**********Metodi di ripristino e di errori**********/

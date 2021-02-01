@@ -69,7 +69,7 @@ public class Articolo {
         this.ingredienti = ingredienti;
     }
 
-    public int getArticoloid() {
+    public int getArticoloId() {
         return articoloid;
     }
 

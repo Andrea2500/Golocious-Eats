@@ -22,8 +22,8 @@ public class InserisciArticoloController {
 
     /**********Metodi di funzionalità**********/
 
-    public ObservableList<Articolo> getArticoliAltriRistoranti(Integer ristoranteId) throws SQLException {
-        return this.ristorante.getArticoliAltriRistorantiDB(ristoranteId);
+    public ObservableList<Articolo> getArticoliAltriRistoranti(Ristorante ristorante) throws SQLException {
+        return this.ristorante.getArticoliAltriRistorantiDB(ristorante.getRistoranteId());
     }
 
     /**********Metodi di supporto**********/

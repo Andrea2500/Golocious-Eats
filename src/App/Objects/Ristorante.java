@@ -87,6 +87,7 @@ public class Ristorante {
 
     public String eliminaDaMenuDB(int articoloid) throws SQLException {
         return this.ristoranteDAO.eliminaDaMenu(this.ristoranteId, articoloid);
+    }
     public ObservableList<Articolo> getArticoli() {
         return articoli;
     }
@@ -101,7 +102,7 @@ public class Ristorante {
         return this.ristoranteDAO.getArticoliAltriRistorantiDB(ristoranteId);
     }
 
-    public ArrayList<Ristorante> getRistorantiDB(Integer ristoranteId) throws SQLException {
+    public ObservableList<Ristorante> getRistorantiDB(Integer ristoranteId) throws SQLException {
         return this.ristoranteDAO.getRistoranti(ristoranteId);
     }
 
@@ -122,8 +123,5 @@ public class Ristorante {
         return this.nome;
     }
 
-    public ObservableList<Ristorante> getRistorantiDB(Integer clienteId) throws SQLException {
-        return this.ristoranteDAO.getRistoranti(clienteId);
-    }
 
 }
