@@ -16,9 +16,9 @@ public class Gestore extends Cliente{
 
     /**********Costruttori**********/
 
-    public Gestore(int clienteId) throws SQLException {
+    public Gestore(Cliente cliente) throws SQLException {
         this.gestoreDAO = new GestoreDAO();
-        this.ristoranti = new Ristorante().getRistorantiDB(clienteId);
+        this.ristoranti = this.getRistorantiDB(cliente);
     }
 
     public Gestore() {
@@ -35,5 +35,10 @@ public class Gestore extends Cliente{
 
     public String rendiGestore(String email, Integer ristoranteId) throws SQLException {
         return this.gestoreDAO.rendiGetsore(email,ristoranteId);
+    }
+
+    public ObservableList<Ristorante> getRistorantiDB(Cliente cliente) throws SQLException {
+        this.ristoranti = new Ristorante().getRistorantiDB(cliente.getClienteId());
+        return this.ristoranti;
     }
 }

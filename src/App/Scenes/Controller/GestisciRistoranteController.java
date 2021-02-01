@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -44,6 +46,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     public void inserisciArticoloBtn(ActionEvent e) {
         if (selezionaRistoranteBox.getSelectionModel().getSelectedItem() != null) {
+            ((ComboBox) getElementById("inserisciArticoloBox")).getItems().clear();
             try {
                 setInserisciArticoliBox();
             } catch (SQLException exception) {
