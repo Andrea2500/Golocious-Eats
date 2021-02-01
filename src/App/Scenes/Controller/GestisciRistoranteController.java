@@ -25,7 +25,6 @@ public class GestisciRistoranteController extends BaseSceneController {
         }
         resetBtnColor();
         resetVHBoxManagedAndVisible();
-        getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: hand !important");
         sceneController.setVisibile("inserisciArticoloHBox", true);
         sceneController.setCliccatoBtn("inserisciArticoloBtn");
     }
@@ -39,7 +38,6 @@ public class GestisciRistoranteController extends BaseSceneController {
         }
         resetBtnColor();
         resetVHBoxManagedAndVisible();
-        getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: hand !important");
         sceneController.setVisibile("gestisciArticoliVBox", true);
         sceneController.setCliccatoBtn("gestisciArticoliBtn");
     }
@@ -47,8 +45,6 @@ public class GestisciRistoranteController extends BaseSceneController {
     public void aggiungiRistoranteBtn() {
         resetBtnColor();
         resetVHBoxManagedAndVisible();
-        //FIXME
-        getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: hand !important");
         sceneController.setVisibile("aggiungiRistoranteHBox", true);
         sceneController.setCliccatoBtn("aggiungiRistoranteBtn");
     }
@@ -56,7 +52,6 @@ public class GestisciRistoranteController extends BaseSceneController {
     public void rendiGestoreBtn() {
         resetBtnColor();
         resetVHBoxManagedAndVisible();
-        getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: hand !important");
         sceneController.setVisibile("rendiGestoreVBox", true);
         sceneController.setCliccatoBtn("rendiGestoreBtn");
     }
@@ -64,7 +59,6 @@ public class GestisciRistoranteController extends BaseSceneController {
     public void selezionaRistoranteBtn() {
         resetBtnColor();
         resetVHBoxManagedAndVisible();
-        getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: hand !important");
         sceneController.setVisibile("selezionaRistoranteVBox", true);
         sceneController.setCliccatoBtn("selezionaRistoranteBtn");
     }
@@ -100,8 +94,8 @@ public class GestisciRistoranteController extends BaseSceneController {
     }
 
     public void setGestisciArticoliBox() throws SQLException {
-        this.gestisciArticoliController = new GestisciArticoliController();
-        ((ComboBox) getElementById("gestisciArticoloBox")).setItems(gestisciArticoliController.getArticoliRistorante(3));//FIXME
+        this.gestisciArticoliController = new GestisciArticoliController(3);
+        ((ComboBox) getElementById("gestisciArticoloBox")).setItems(gestisciArticoliController.getArticoliRistorante());
     }
 
     /**********Metodi di ripristino e di errori**********/

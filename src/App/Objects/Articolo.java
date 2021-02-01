@@ -85,16 +85,6 @@ public class Articolo {
         this.disponibile = disponibile;
     }
 
-    /**********Metodi di funzionalità**********/
-
-    public ObservableList<Articolo> getArticoliAltriRistorantiDB(int ristoranteId) throws SQLException {
-        return this.articoloDAO.getArticoliAltriRistorantiDB(ristoranteId);
-    }
-
-    public ObservableList<Articolo> getArticoliDB(int ristoranteId) throws SQLException {
-       return this.articoloDAO.getArticoli(ristoranteId);
-    }
-
     /**********Metodi di supporto**********/
 
     public void selezionaCategoria(String categoria){

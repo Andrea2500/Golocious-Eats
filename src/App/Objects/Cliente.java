@@ -2,6 +2,7 @@ package App.Objects;
 
 import App.DAO.ClienteDAO;
 import javafx.beans.InvalidationListener;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
@@ -43,6 +44,7 @@ public class Cliente {
     public Cliente() {
         this.clienteDAO = new ClienteDAO();
         this.auth = false;
+        this.indirizzi = FXCollections.observableArrayList();
     }
 
     /**********Getter e Setter**********/
@@ -166,4 +168,7 @@ public class Cliente {
         this.indirizzi.add(indirizzo);
     }
 
+    public void removeIndirizzo(Indirizzo indirizzo) {
+        this.indirizzi.remove(indirizzo);
+    }
 }

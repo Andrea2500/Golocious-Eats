@@ -1,6 +1,7 @@
 package App.Controllers;
 
 import App.Objects.Articolo;
+import App.Objects.Ristorante;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
@@ -9,20 +10,20 @@ public class GestisciArticoliController {
 
     /**********Attributi**********/
 
-    Articolo articolo;
+    Ristorante ristorante;
 
     /**********Metodi**********/
 
     /**********Costruttori**********/
 
-    public GestisciArticoliController() {
-        this.articolo = new Articolo();
+    public GestisciArticoliController(Integer ristoranteId) throws SQLException {
+        this.ristorante = new Ristorante(ristoranteId);
     }
 
     /**********Metodi di funzionalità**********/
 
-    public ObservableList<Articolo> getArticoliRistorante(int ristoranteId) throws SQLException {
-        return this.articolo.getArticoliDB(ristoranteId);
+    public ObservableList<Articolo> getArticoliRistorante() {
+        return this.ristorante.getArticoli();
     }
 
     /**********Metodi di supporto**********/

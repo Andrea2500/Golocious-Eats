@@ -22,12 +22,6 @@
 }
 
 
-#selezionaRistoranteBtn{
-    -fx-background-color: #e19a1f;
-    -fx-cursor: hand;
-}
-
-
 .combo-box-base{
     -fx-background-color: #ffffff;
 }

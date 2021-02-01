@@ -82,6 +82,7 @@ public class SceneController {
     public void gestisciRistorante() throws IOException {
         this.setScene("GestisciRistorante");
         setCliccatoBtn("gestisciRistoranteBtn");
+        setCliccatoBtn("selezionaRistoranteBtn");
         setMenu(Cliente.getInstance().getRuolo());
     }
 

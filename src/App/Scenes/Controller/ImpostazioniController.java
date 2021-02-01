@@ -49,7 +49,6 @@ public class ImpostazioniController extends BaseSceneController {
 
     public void gestisciIndirizziBtn() throws SQLException {
         this.cliente.setIndirizzi(this.cliente.getIndirizziDB());
-        ((ComboBox)getElementById("indirizzoBox")).getItems().clear();
         resetBtnColor();
         resetVHBoxManagedAndVisible();
         this.selezionaIndirizzoController = new SelezionaIndirizzoController();
@@ -118,7 +117,7 @@ public class ImpostazioniController extends BaseSceneController {
             String messaggio = eliminaIndirizzoController.eliminaIndirizzo(elimina.getIndirizzoId());
             if (messaggio.equals("indirizzo_eliminato")) {
                 errore("indirizzoAttivoLabel", "Indirizzo eliminato con successo", false);
-                this.setListaIndirizzi();
+                setListaIndirizzi();
             } else {
                 setErroriDB(messaggio);
             }
@@ -167,7 +166,7 @@ public class ImpostazioniController extends BaseSceneController {
         int index = 0;
         Indirizzo indAttivoCliente = this.cliente.getIndirizzoAttivo();
         ObservableList<Indirizzo> lista = indirizzoBox.getItems();
-        if(indAttivoCliente != null){
+        if(indAttivoCliente != null) {
             for (Indirizzo el : lista) {
                 if (el.getIndirizzoId().equals(indAttivoCliente.getIndirizzoId())) {
                     break;

@@ -1,6 +1,8 @@
 package App.Objects;
 
 import App.DAO.RistoranteDAO;
+import javafx.collections.ObservableList;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ public class Ristorante {
     private Indirizzo indirizzo;
     private String telefono;
     private LocalDate dataDiApertura;
-    //TODO lista di articoli
+    private ObservableList<Articolo> articoli;
     private RistoranteDAO ristoranteDAO;
 
     /**********Metodi**********/
@@ -22,7 +24,7 @@ public class Ristorante {
     /**********Costruttori**********/
 
     public Ristorante() {
-
+        this.ristoranteDAO = new RistoranteDAO();
     }
 
     public Ristorante(Integer ristoranteId) throws SQLException {
@@ -30,13 +32,14 @@ public class Ristorante {
         this.updateFields(this.ristoranteDAO.getRistorante(ristoranteId));
     }
 
-    public Ristorante(Integer ristoranteId, String nome, Indirizzo indirizzo, String telefono, LocalDate dataDiApertura) {
+    public Ristorante(Integer ristoranteId, String nome, Indirizzo indirizzo, String telefono, LocalDate dataDiApertura, ObservableList<Articolo> articoli) {
         this.ristoranteId = ristoranteId;
         this.nome = nome;
         this.indirizzo = indirizzo;
         this.telefono = telefono;
         this.dataDiApertura = dataDiApertura;
         this.ristoranteDAO = new RistoranteDAO();
+        this.articoli = articoli;
     }
 
     /**********Getter e Setter**********/
@@ -81,7 +84,26 @@ public class Ristorante {
         this.dataDiApertura = dataDiApertura;
     }
 
+    public ObservableList<Articolo> getArticoli() {
+        return articoli;
+    }
+
+    public void setArticoli(ObservableList<Articolo> articoli) {
+        this.articoli = articoli;
+    }
+
+    /**********Metodi di funzionalità**********/
+
+    public ObservableList<Articolo> getArticoliAltriRistorantiDB(Integer ristoranteId) throws SQLException {
+        return this.ristoranteDAO.getArticoliAltriRistorantiDB(ristoranteId);
+    }
+
+    public ArrayList<Ristorante> getRistorantiDB(Integer ristoranteId) throws SQLException {
+        return this.ristoranteDAO.getRistoranti(ristoranteId);
+    }
+
     /**********Metodi di supporto**********/
+
 
     public void updateFields(Ristorante ristorante){
         this.ristoranteId = ristorante.getRistoranteId();
@@ -89,6 +111,7 @@ public class Ristorante {
         this.indirizzo = ristorante.getIndirizzo();
         this.telefono = ristorante.getTelefono();
         this.dataDiApertura = ristorante.getDataDiApertura();
+        this.articoli = ristorante.getArticoli();
     }
 
     @Override
@@ -96,7 +119,4 @@ public class Ristorante {
         return this.nome;
     }
 
-    public ArrayList<Ristorante> getRistorantiDB(Integer clienteId) throws SQLException {
-        return this.ristoranteDAO.getRistoranti(clienteId);
-    }
 }
