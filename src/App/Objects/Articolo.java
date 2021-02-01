@@ -95,6 +95,10 @@ public class Articolo {
        return this.articoloDAO.getArticoli(ristoranteId);
     }
 
+    public String switchDisponibilita(boolean toggle,int ristoranteid,int articoloid) throws SQLException {
+        return this.articoloDAO.switchDisponibilita(toggle,ristoranteid,articoloid);
+    }
+
     /**********Metodi di supporto**********/
 
     public void selezionaCategoria(String categoria){
@@ -113,9 +117,10 @@ public class Articolo {
     @Override
     public String toString() {
         if(this.disponibile)
-            return this.nome+" - DISPONIBILE";
+            return this.nome+" - "+this.categoria+" - DISPONIBILE";
         else
-            return this.nome+" - NON DISPONIBILE";
+            return this.nome+" - "+this.categoria+" - NON DISPONIBILE";
     }
+
 
 }

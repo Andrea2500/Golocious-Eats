@@ -1,9 +1,10 @@
 package App.Objects;
 
 import App.DAO.RistoranteDAO;
+import javafx.collections.ObservableList;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Ristorante {
 
@@ -22,7 +23,7 @@ public class Ristorante {
     /**********Costruttori**********/
 
     public Ristorante() {
-
+        this.ristoranteDAO = new RistoranteDAO();
     }
 
     public Ristorante(Integer ristoranteId) throws SQLException {
@@ -81,6 +82,12 @@ public class Ristorante {
         this.dataDiApertura = dataDiApertura;
     }
 
+    /**********Metodi di funzionalità**********/
+
+    public String eliminaDaMenuDB(int articoloid) throws SQLException {
+        return this.ristoranteDAO.eliminaDaMenu(this.ristoranteId, articoloid);
+    }
+
     /**********Metodi di supporto**********/
 
     public void updateFields(Ristorante ristorante){
@@ -96,7 +103,8 @@ public class Ristorante {
         return this.nome;
     }
 
-    public ArrayList<Ristorante> getRistorantiDB(Integer clienteId) throws SQLException {
+    public ObservableList<Ristorante> getRistorantiDB(Integer clienteId) throws SQLException {
         return this.ristoranteDAO.getRistoranti(clienteId);
     }
+
 }

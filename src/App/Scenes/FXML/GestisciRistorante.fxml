@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 
 <BorderPane prefHeight="480.0" prefWidth="900.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.GestisciRistoranteController">
     <top>
@@ -88,11 +88,11 @@
                         <Button id="aggiungiManualmenteBtn" mnemonicParsing="false" onAction="#aggiungiManualmenteBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi manualmente" />
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="250.0">
                             <VBox.margin>
-                                <Insets/>
+                                <Insets />
                             </VBox.margin>
                             <Label id="correttoLabel">
                                 <font>
-                                    <Font size="14.0"/>
+                                    <Font size="14.0" />
                                 </font>
                             </Label>
                         </HBox>
@@ -108,8 +108,8 @@
                         <Insets />
                     </VBox.margin>
                     <Button id="abilitaBtn" mnemonicParsing="false" onAction="#abilitaBtn" prefHeight="30.0" prefWidth="77.0" text="Abilita" />
-                    <Button id="disabilitaBtn" layoutX="235.0" layoutY="10.0" onAction="#disabilitaBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="106.0" text="Disabilita" />
-               <Button id="eliminaBtn" layoutX="320.0" layoutY="10.0" onAction="#eliminaBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" text="Elimina dal menu" />
+                    <Button id="disabilitaBtn" layoutX="235.0" layoutY="10.0" mnemonicParsing="false" onAction="#disabilitaBtn" prefHeight="30.0" prefWidth="106.0" text="Disabilita" />
+               <Button id="eliminaBtn" layoutX="320.0" layoutY="10.0" mnemonicParsing="false" onAction="#eliminaBtn" prefHeight="30.0" prefWidth="137.0" text="Elimina dal menu" />
                 </HBox>
                 <Label id="articoloAttivoLabel">
                     <font>
@@ -150,8 +150,8 @@
                     <TextField id="nomeRistoranteField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il nome" />
                <TextField id="indirizzoRistoranteField" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'indirizzo" />
                <TextField id="telefonoRistoranteField" layoutX="10.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci numero di telefono" />
-               <DatePicker id="dataaperturaRistoranteField" showWeekNumbers="false" prefHeight="28.0" prefWidth="250.0" promptText="Seleziona la data di apertura" />
-                    <Button id="aggiungiNuovoRistoranteBtn" onAction="#aggiungiNuovoRistoranteBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
+               <DatePicker id="dataaperturaRistoranteField" prefHeight="28.0" prefWidth="250.0" promptText="Seleziona la data di apertura" showWeekNumbers="false" />
+                    <Button id="aggiungiNuovoRistoranteBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#aggiungiNuovoRistoranteBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
                     <Label id="erroreAggiungiRistoranteLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                         <font>
                             <Font size="14.0" />
@@ -162,24 +162,21 @@
                     </padding>
                 </VBox>
             </HBox>
-            <VBox id="rendiGestoreVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0"
-                  spacing="10.0" visible="false">
+            <VBox id="rendiGestoreVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
                 <padding>
-                    <Insets top="30.0"/>
+                    <Insets top="30.0" />
                 </padding>
-                <TextField id="emailGestoreField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0"
-                           prefWidth="250.0" promptText="Inserisci l'email del nuovo gestore"/>
-                <Button id="aggiungiGestoreBtn" onAction="#aggiungiGestoreBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0"
-                        text="Aggiungi"/>
+                <TextField id="emailGestoreField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'email del nuovo gestore" />
+                <Button id="aggiungiGestoreBtn" mnemonicParsing="false" onAction="#aggiungiGestoreBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
                 <Label id="erroreEmailGestoreLabel">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </Label>
             </VBox>
             <VBox id="selezionaRistoranteVBox" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="true" prefHeight="430.0" prefWidth="600.0" visible="true">
             <children>
-               <ComboBox id="selezionaRistoranteBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="8" />
+               <ComboBox id="selezionaRistoranteBox" fx:id="selezionaRistoranteBox" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#selezionaRistoranteBox" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="8" />
                <Label id="selezionaRistoranteLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="250.0" textAlignment="CENTER">
                   <font>
                      <Font size="14.0" />
