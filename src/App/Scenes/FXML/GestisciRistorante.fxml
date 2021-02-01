@@ -67,11 +67,11 @@
                     </Label>
                 </VBox>
                 <VBox alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
-               <ComboBox id="inserisciArticoloBox" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un articolo esistente" visibleRowCount="8" />
+               <ComboBox id="inserisciarticoloField" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un articolo esistente" visibleRowCount="8" />
                    <Button id="aggiungiEsistenteBtn" mnemonicParsing="false" onAction="#aggiungiEsistenteBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi esistente" />
                         <TextField id="nomeField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il nome" />
                         <TextField id="provinciaField" layoutX="210.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il prezzo in euro (es. 7,50)" />
-                   <ComboBox id="categoriaBox" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona una categoria" visibleRowCount="8">
+                   <ComboBox id="categoriaField" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona una categoria" visibleRowCount="8">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Antipasti" />
@@ -102,7 +102,7 @@
                     </VBox>
             </HBox>
             <VBox id="gestisciArticoliVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
-                <ComboBox id="gestisciArticoloBox" prefHeight="30.0" prefWidth="350.0" promptText="Seleziona un articolo dal menu" visibleRowCount="8" />
+                <ComboBox id="gestisciarticoloField" prefHeight="30.0" prefWidth="350.0" promptText="Seleziona un articolo dal menu" visibleRowCount="8" />
                 <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0" spacing="15.0">
                     <VBox.margin>
                         <Insets />
@@ -111,7 +111,7 @@
                     <Button id="disabilitaBtn" layoutX="235.0" layoutY="10.0" mnemonicParsing="false" onAction="#disabilitaBtn" prefHeight="30.0" prefWidth="106.0" text="Disabilita" />
                <Button id="eliminaBtn" layoutX="320.0" layoutY="10.0" mnemonicParsing="false" onAction="#eliminaBtn" prefHeight="30.0" prefWidth="137.0" text="Elimina dal menu" />
                 </HBox>
-                <Label id="articoloAttivoLabel">
+                <Label id="erroreGestisciarticoloLabel">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -176,8 +176,8 @@
             </VBox>
             <VBox id="selezionaRistoranteVBox" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="true" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="true">
             <children>
-               <ComboBox id="selezionaRistoranteBox" fx:id="selezionaRistoranteBox" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#selezionaRistoranteBox" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="8" />
-               <Label id="erroreSelezionaRistoranteLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" wrapText="true">
+               <ComboBox id="selezionaristoranteField" fx:id="selezionaRistoranteBox" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#selezionaRistoranteBox" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="8" />
+               <Label id="erroreSelezionaristoranteLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" wrapText="true">
                   <font>
                      <Font size="14.0" />
                   </font>

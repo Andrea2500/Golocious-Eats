@@ -77,13 +77,12 @@ public class ImpostazioniController extends BaseSceneController {
         String cap = getValue("capField", "textfield");
         String citta = getValue("cittaField", "textfield");
         String indirizzo = getValue("indirizzoField", "textfield");
-        Indirizzo address = new Indirizzo(paese,provincia,cap,citta,indirizzo);
+        Indirizzo indirizzoCompleto = new Indirizzo(paese,provincia,cap,citta,indirizzo);
         if(paese.length()>0 && provincia.length()>0 && cap.length()>0 && citta.length()>0 && indirizzo.length()>0){
             aggiungiIndirizzoController = new AggiungiIndirizzoController();
-            String messaggio = aggiungiIndirizzoController.aggiungiIndirizzo(address);
+            String messaggio = aggiungiIndirizzoController.aggiungiIndirizzo(indirizzoCompleto);
             if(messaggio.equals("indirizzo_aggiunto")){
                 resetCampiIndirizzo();
-                this.cliente.addIndirizzo(address);
                 ((Label)getElementById("correttoLabel")).setText("Indirizzo aggiunto correttamente");
             } else if(messaggio.equals("aggiunta_indirizzo_fallita")){
                 ((Label)getElementById("correttoLabel")).setText("L'indirizzo non è stato aggiunto");
@@ -95,11 +94,11 @@ public class ImpostazioniController extends BaseSceneController {
 
     public void rendiAttivoBtn() throws SQLException {
         resetErroriGestisciIndirizzi();
-        Indirizzo attivo = ((ComboBox<Indirizzo>)getElementById("indirizzoBox")).getSelectionModel().getSelectedItem();
+        Indirizzo attivo = ((ComboBox<Indirizzo>)getElementById("indirizzoattivoField")).getSelectionModel().getSelectedItem();
         if(attivo != null) {
             String messaggio = selezionaIndirizzoController.setIndirizzoAttivo(attivo);
             if (messaggio.equals("indirizzo_aggiornato")) {
-                errore("indirizzoAttivoLabel", "Indirizzo attivo aggiornato con successo", false);
+                errore("erroreIndirizzoattivoLabel", "Indirizzo attivo aggiornato con successo", false);
                 cliente.setIndirizzoAttivo(attivo);
             } else {
                 setErroriDB(messaggio);
@@ -111,12 +110,12 @@ public class ImpostazioniController extends BaseSceneController {
 
     public void eliminaIndirizzoBtn() throws SQLException {
         resetErroriGestisciIndirizzi();
-        Indirizzo elimina = ((ComboBox<Indirizzo>)getElementById("indirizzoBox")).getSelectionModel().getSelectedItem();
+        Indirizzo elimina = ((ComboBox<Indirizzo>)getElementById("indirizzoattivoField")).getSelectionModel().getSelectedItem();
         if(elimina != null) {
             this.eliminaIndirizzoController = new EliminaIndirizzoController();
             String messaggio = eliminaIndirizzoController.eliminaIndirizzo(elimina.getIndirizzoId());
             if (messaggio.equals("indirizzo_eliminato")) {
-                errore("indirizzoAttivoLabel", "Indirizzo eliminato con successo", false);
+                errore("erroreIndirizzoattivoLabel", "Indirizzo eliminato con successo", false);
                 setListaIndirizzi();
             } else {
                 setErroriDB(messaggio);
@@ -129,7 +128,7 @@ public class ImpostazioniController extends BaseSceneController {
     public void iniziaAConsegnareBtn() throws SQLException, IOException {
         resetErroriRider();
         String patente = getValue("patenteField", "textfield");
-        String veicolo = getValue("veicoloBox", "combobox");
+        String veicolo = getValue("veicoloField", "combobox");
         if(patente.length()>0 && veicolo != null) {
             diventaRiderController = new DiventaRiderController(patente, veicolo);
             setErroriDB(diventaRiderController.diventaRider());
@@ -158,14 +157,14 @@ public class ImpostazioniController extends BaseSceneController {
     }
 
     private void setListaIndirizzi() throws SQLException {
-        ComboBox indirizzoBox = ((ComboBox)getElementById("indirizzoBox"));
-        indirizzoBox.getItems().clear();
+        ComboBox indirizzoattivoField = ((ComboBox)getElementById("indirizzoattivoField"));
+        indirizzoattivoField.getItems().clear();
         cliente.setIndirizzi(cliente.getIndirizziDB());
         ObservableList<Indirizzo> indirizzi = this.cliente.getIndirizzi();
-        indirizzoBox.setItems(indirizzi);
+        indirizzoattivoField.setItems(indirizzi);
         int index = 0;
         Indirizzo indAttivoCliente = this.cliente.getIndirizzoAttivo();
-        ObservableList<Indirizzo> lista = indirizzoBox.getItems();
+        ObservableList<Indirizzo> lista = indirizzoattivoField.getItems();
         if(indAttivoCliente != null) {
             for (Indirizzo el : lista) {
                 if (el.getIndirizzoId().equals(indAttivoCliente.getIndirizzoId())) {
@@ -173,7 +172,7 @@ public class ImpostazioniController extends BaseSceneController {
                 }
                 index++;
             }
-            indirizzoBox.getSelectionModel().select(index);
+            indirizzoattivoField.getSelectionModel().select(index);
         }
     }
 
@@ -215,13 +214,11 @@ public class ImpostazioniController extends BaseSceneController {
     }
 
     private void resetErroriGestisciIndirizzi() {
-        inizializzaLabel("indirizzoAttivoLabel", false);
-        getElementById("indirizzoBox").setStyle("-fx-border-color: transparent");
+        inizializzaLabel("erroreIndirizzoattivoLabel", true);
     }
 
     public void setErroriGestisciIndirizzi() {
-        errore("indirizzoAttivoLabel", "Seleziona un indirizzo", false);
-        getElementById("indirizzoBox").setStyle("-fx-border-color: red");
+        errore("erroreIndirizzoattivoLabel", "Seleziona un indirizzo", true);
     }
 
     /*
@@ -236,7 +233,7 @@ public class ImpostazioniController extends BaseSceneController {
         inizializzaLabel("errorePatenteLabel", true);
         inizializzaLabel("erroreVeicoloLabel", false);
         inizializzaLabel("erroreRiderLabel", false);
-        getElementById("veicoloBox").setStyle("-fx-border-color: transparent");
+        inizializzaLabel("veicoloBox", true);
     }
 
     public void setErroriRider(String patente, String veicolo) {
@@ -244,8 +241,7 @@ public class ImpostazioniController extends BaseSceneController {
             errore("errorePatenteLabel", "Inserisci una patente", true);
         }
         if(veicolo == null) {
-            errore("erroreVeicoloLabel", "Inserisci un veicolo", false);
-            getElementById("veicoloBox").setStyle("-fx-border-color: #ff0000");
+            errore("erroreVeicoloLabel", "Inserisci un veicolo", true);
         }
     }
 
@@ -253,8 +249,8 @@ public class ImpostazioniController extends BaseSceneController {
         switch (messaggio) {
             case "ck_patente" -> errore("errorePatenteLabel", "Inserisci una patente", true);
             case "troppo_lungo" -> errore("errorePatenteLabel", "Patente troppo lunga", true);
-            case "ck_indirizzo_attivo_del_cliente" -> errore("indirizzoAttivoLabel","Si è verificato un errore. Riprova.",false);
-            case "eliminazione_indirizzo_fallita" -> errore("indirizzoAttivoLabel","Non è stato possibile eliminare l'indirizzo. Riprova.",false);
+            case "ck_indirizzo_attivo_del_cliente" -> errore("erroreIndirizzoattivoLabel","Si è verificato un errore. Riprova.",false);
+            case "eliminazione_indirizzo_fallita" -> errore("erroreIndirizzoattivoLabel","Non è stato possibile eliminare l'indirizzo. Riprova.",false);
             case "aggiunta_rider_fallita" -> errore("erroreRiderLabel", "Siamo spiacenti, si è verificato un errore", false);
             case "ck_eta_rider" -> errore("erroreRiderLabel", "Devi essere maggiorenne per iscriverti come rider", false);
             case "rider_patente_key" -> errore("erroreRiderLabel", "La patente è già registrata", false);

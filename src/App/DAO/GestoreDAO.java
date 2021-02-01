@@ -31,29 +31,29 @@ public class GestoreDAO extends ClienteDAO{
     /**********Metodi di funzionalità**********/
 
     public String rendiGetsore(String email, Integer ristoranteId) throws SQLException {
-        try{
+        try {
             this.db.setConnection();
             String sql = "SELECT * FROM cliente where email = ?";
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1,email);
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()){
-                sql = "INSERT INTO "+this.table+" VALUES(?,?,'Titolare')";
+                sql = "INSERT INTO "+this.table+" VALUES(?,?)";
                 pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                pstmt.setInt(1,rs.getInt("clienteid"));
-                pstmt.setInt(2,ristoranteId);
-                if(pstmt.executeUpdate() > 0){
+                pstmt.setInt(1, rs.getInt("clienteid"));
+                pstmt.setInt(2, ristoranteId);
+                if(pstmt.executeUpdate() > 0) {
                     this.db.closeConnection();
-                    return "gestore_aggiunmto";
-                }else{
+                    return "gestore_aggiunto";
+                } else {
                     this.db.closeConnection();
-                    return "errore_inserimento_getore";
+                    return "errore_inserimento_gestore";
                 }
-            }else{
+            } else {
                 this.db.closeConnection();
                 return "utente_non_trovato";
             }
-        }catch (PSQLException e){
+        } catch (PSQLException e) {
             this.db.closeConnection();
             return edb.getErrorMessage(e.getMessage());
         }

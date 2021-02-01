@@ -43,9 +43,9 @@
 }
 
 
-#veicoloBox > * > .arrow, #indirizzoBox > * > .arrow,
-#inserisciArticoloBox > * > .arrow, #gestisciArticoloBox > * > .arrow,
-#categoriaBox > * > .arrow, #selezionaRistoranteBox > * > .arrow{
+#veicoloField > * > .arrow, #indirizzoattivoField > * > .arrow,
+#inserisciarticoloField > * > .arrow, #gestisciarticoloField > * > .arrow,
+#categoriaField > * > .arrow, #selezionaristoranteField > * > .arrow{
     -fx-background-color: #fab338;
 }
 

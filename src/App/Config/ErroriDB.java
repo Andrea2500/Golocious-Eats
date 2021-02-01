@@ -40,6 +40,9 @@ public class ErroriDB {
         if(isErrorKey(error, "rider_patente_key")) {
             return "rider_patente_key";
         }
+        if(isErrorKey(error, "uq_gestore")) {
+            return "uq_gestore";
+        }
         else return "nessun_errore";
     }
 
