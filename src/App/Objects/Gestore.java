@@ -21,9 +21,19 @@ public class Gestore extends Cliente{
         this.ristoranti = new Ristorante().getRistorantiDB(clienteId);
     }
 
+    public Gestore() {
+        this.gestoreDAO = new GestoreDAO();
+    }
+
     /**********Getter e Setter**********/
 
     public ObservableList<Ristorante> getRistoranti() {
         return ristoranti;
+    }
+
+    /**********Metodi di funzionalità**********/
+
+    public String rendiGestore(String email, Integer ristoranteId) throws SQLException {
+        return this.gestoreDAO.rendiGetsore(email,ristoranteId);
     }
 }

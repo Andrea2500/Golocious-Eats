@@ -1,5 +1,6 @@
 package App.Scenes.Controller;
 
+import App.Controllers.AggiungiGestoreController;
 import App.Controllers.GestisciArticoliController;
 import App.Controllers.InserisciArticoloController;
 import App.Objects.Articolo;
@@ -9,6 +10,7 @@ import App.Objects.Ristorante;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -21,6 +23,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     Ristorante ristoranteAttivo;
     InserisciArticoloController inserisciArticoloController;
     GestisciArticoliController gestisciArticoliController;
+    AggiungiGestoreController aggiungiGestoreController;
     Gestore gestore;
     @FXML ComboBox<Ristorante> selezionaRistoranteBox;
     /**********Metodi**********/
@@ -120,7 +123,10 @@ public class GestisciRistoranteController extends BaseSceneController implements
     public void aggiungiNuovoRistoranteBtn() {
     }
 
-    public void aggiungiGestoreBtn() {
+    public void aggiungiGestoreBtn() throws SQLException {
+        this.aggiungiGestoreController = new AggiungiGestoreController();
+        String email = ((TextField) getElementById("gestoreField")).getText();
+        String messaggio = this.aggiungiGestoreController.rendiGestore(email,ristoranteAttivo);
     }
 
     public void selezionaRistoranteBox(){
