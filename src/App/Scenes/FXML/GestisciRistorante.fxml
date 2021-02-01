@@ -168,7 +168,7 @@
                 </padding>
                 <TextField id="gestoreField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'email del nuovo gestore" />
                 <Button id="aggiungiGestoreBtn" mnemonicParsing="false" onAction="#aggiungiGestoreBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
-                <Label id="erroreEmailGestoreLabel">
+                <Label id="erroreGestoreLabel">
                     <font>
                         <Font size="14.0" />
                     </font>

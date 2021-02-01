@@ -21,10 +21,10 @@ public class EliminaIndirizzoController {
 
     /**********Metodi di funzionalità**********/
 
-    public String eliminaIndirizzo(Integer indirizzoId) throws SQLException {
-        String messaggio = new Indirizzo().eliminaIndirizzo(indirizzoId);
+    public String eliminaIndirizzo(Indirizzo indirizzo) throws SQLException {
+        String messaggio = new Indirizzo().eliminaIndirizzo(indirizzo.getIndirizzoId());
         if(cliente.getIndirizzoAttivo() != null){
-            if (indirizzoId.equals(cliente.getIndirizzoAttivo().getIndirizzoId()))
+            if (indirizzo.getIndirizzoId().equals(cliente.getIndirizzoAttivo().getIndirizzoId()))
                 cliente.setIndirizzoAttivo(null);
         }
         return messaggio;

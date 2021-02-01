@@ -11,9 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
-
+import javafx.scene.control.TextField;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -34,7 +33,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     /**********Costruttori**********/
 
     public GestisciRistoranteController() throws SQLException {
-        this.gestore = new Gestore(Cliente.getInstance().getClienteId());
+        this.gestore = new Gestore(Cliente.getInstance());
     }
 
     @Override
@@ -89,6 +88,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     public void rendiGestoreBtn(ActionEvent e) {
         if (selezionaRistoranteBox.getSelectionModel().getSelectedItem() != null) {
+            resetErroriRendiGestore();
             resetBtnColor();
             resetVHBoxManagedAndVisible();
             sceneController.setVisibile("rendiGestoreVBox", true);
@@ -96,8 +96,6 @@ public class GestisciRistoranteController extends BaseSceneController implements
         } else {
             e.consume();
             setErroriSelezionaRistorante();
-            errore("erroreSelezionaRistoranteLabel", "Prima di procedere seleziona un ristorante", false);
-            getElementById("selezionaRistoranteBox").setStyle("-fx-border-color: #ff0000");
         }
     }
 
@@ -151,16 +149,32 @@ public class GestisciRistoranteController extends BaseSceneController implements
         resetErroriGestisciArticoli();
         this.gestisciArticoliController = new GestisciArticoliController();
         Articolo articolo = ((ComboBox<Articolo>) getElementById("gestisciarticoloField")).getSelectionModel().getSelectedItem();
-        String messaggio = this.gestisciArticoliController.eliminaDaMenu(this.ristoranteAttivo, articolo);
+        if(articolo != null) {
+            String messaggio = this.gestisciArticoliController.eliminaDaMenu(this.ristoranteAttivo, articolo);
+        } else {
+            setErroriGestisciArticoli();
+        }
     }
 
     public void aggiungiNuovoRistoranteBtn() {
     }
 
     public void aggiungiGestoreBtn() throws SQLException {
+        resetErroriRendiGestore();
         this.aggiungiGestoreController = new AggiungiGestoreController();
         String email = ((TextField) getElementById("gestoreField")).getText();
-        String messaggio = this.aggiungiGestoreController.rendiGestore(email,ristoranteAttivo);
+        if(email.length() > 0) {
+            String messaggio = this.aggiungiGestoreController.rendiGestore(email, ristoranteAttivo);
+            if (messaggio.equals("gestore_aggiunto")) {
+                resetCampiRendiGestore();
+                ((Label) getElementById("erroreGestoreLabel")).setText("Gestore aggiunto con successo");
+            } else {
+                setErroriRendiGestore(messaggio);
+                setErroriDB(messaggio);
+            }
+        } else {
+            setErroriRendiGestore("email_vuota");
+        }
     }
 
     public void selezionaRistoranteBox(){
@@ -169,12 +183,12 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     /**********Metodi di supporto**********/
 
-    public void setInserisciArticoliBox() throws SQLException{
+    private void setInserisciArticoliBox() throws SQLException{
         this.inserisciArticoloController = new InserisciArticoloController();
         ((ComboBox) getElementById("inserisciarticoloField")).setItems(inserisciArticoloController.getArticoliAltriRistoranti(this.ristoranteAttivo));
     }
 
-    public void setGestisciArticoliBox() throws SQLException {
+    private void setGestisciArticoliBox() throws SQLException {
         this.gestisciArticoliController = new GestisciArticoliController();
         ((ComboBox) getElementById("gestisciarticoloField")).setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
     }
@@ -211,6 +225,22 @@ public class GestisciRistoranteController extends BaseSceneController implements
         inizializzaLabel("erroreGestisciarticoloLabel", true);
     }
 
+    private void setErroriRendiGestore(String messaggio) {
+        switch (messaggio) {
+            case "email_vuota" -> errore("erroreGestoreLabel", "Inserisci un'email", true);
+            case "errore_inserimento_gestore" -> errore("erroreGestoreLabel", "Si è verificato un errore", true);
+            case "utente_non_trovato" -> errore("erroreGestoreLabel", "L'utente non è stato trovato", true);
+        }
+    }
+
+    private void resetErroriRendiGestore() {
+        inizializzaLabel("erroreGestoreLabel", true);
+    }
+
+    private void resetCampiRendiGestore() {
+        ((TextField) getElementById("gestoreField")).setText("");
+    }
+
     private void setErroriSelezionaRistorante() {
         errore("erroreSelezionaristoranteLabel", "Prima di procedere seleziona un ristorante", true);
     }
@@ -218,6 +248,12 @@ public class GestisciRistoranteController extends BaseSceneController implements
     private void resetErroriSelezionaRistorante() {
         inizializzaLabel("erroreSelezionaRistoranteLabel", false);
         getElementById("selezionaRistoranteBox").setStyle("-fx-border-color: transparent");
+    }
+
+    private void setErroriDB(String messaggio) {
+        switch (messaggio) {
+            case "uq_gestore" -> errore("erroreGestoreLabel", "L'utente è già un gestore del ristorante", true);
+        }
     }
 
 }

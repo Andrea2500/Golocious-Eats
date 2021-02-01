@@ -15,7 +15,7 @@ public class AggiungiGestoreController {
 
     /**********Costruttori**********/
 
-    public AggiungiGestoreController() throws SQLException {
+    public AggiungiGestoreController() {
         this.gestore = new Gestore();
     }
 

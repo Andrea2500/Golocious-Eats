@@ -113,7 +113,7 @@ public class ImpostazioniController extends BaseSceneController {
         Indirizzo elimina = ((ComboBox<Indirizzo>)getElementById("indirizzoattivoField")).getSelectionModel().getSelectedItem();
         if(elimina != null) {
             this.eliminaIndirizzoController = new EliminaIndirizzoController();
-            String messaggio = eliminaIndirizzoController.eliminaIndirizzo(elimina.getIndirizzoId());
+            String messaggio = eliminaIndirizzoController.eliminaIndirizzo(elimina);
             if (messaggio.equals("indirizzo_eliminato")) {
                 errore("erroreIndirizzoattivoLabel", "Indirizzo eliminato con successo", false);
                 setListaIndirizzi();
@@ -178,23 +178,6 @@ public class ImpostazioniController extends BaseSceneController {
 
     /**********Metodi di ripristino e di errori**********/
 
-    public void resetCampiIndirizzo() {
-        ((TextField) getElementById("paeseField")).setText("");
-        ((TextField) getElementById("provinciaField")).setText("");
-        ((TextField) getElementById("cittaField")).setText("");
-        ((TextField) getElementById("capField")).setText("");
-        ((TextField) getElementById("indirizzoField")).setText("");
-    }
-
-    public void resetErroriIndirizzo() {
-        inizializzaLabel("errorePaeseLabel", true);
-        inizializzaLabel("erroreProvinciaLabel", true);
-        inizializzaLabel("erroreCapLabel", true);
-        inizializzaLabel("erroreCittaLabel", true);
-        inizializzaLabel("erroreIndirizzoLabel", true);
-        inizializzaLabel("correttoLabel", false);
-    }
-
     public void setErroriIndirizzo(String paese, String provincia, String cap, String citta, String indirizzo) {
         if(paese.length()==0){
             errore("errorePaeseLabel", "Inserisci un Paese", true);
@@ -213,27 +196,29 @@ public class ImpostazioniController extends BaseSceneController {
         }
     }
 
-    private void resetErroriGestisciIndirizzi() {
-        inizializzaLabel("erroreIndirizzoattivoLabel", true);
+    public void resetErroriIndirizzo() {
+        inizializzaLabel("errorePaeseLabel", true);
+        inizializzaLabel("erroreProvinciaLabel", true);
+        inizializzaLabel("erroreCapLabel", true);
+        inizializzaLabel("erroreCittaLabel", true);
+        inizializzaLabel("erroreIndirizzoLabel", true);
+        inizializzaLabel("correttoLabel", false);
+    }
+
+    public void resetCampiIndirizzo() {
+        ((TextField) getElementById("paeseField")).setText("");
+        ((TextField) getElementById("provinciaField")).setText("");
+        ((TextField) getElementById("cittaField")).setText("");
+        ((TextField) getElementById("capField")).setText("");
+        ((TextField) getElementById("indirizzoField")).setText("");
     }
 
     public void setErroriGestisciIndirizzi() {
         errore("erroreIndirizzoattivoLabel", "Seleziona un indirizzo", true);
     }
 
-    /*
-    public void resetCampiRider() {
-
-        ((TextField) getElementById("patenteField")).setText("");
-        ((ComboBox<String>) getElementById("veicoloBox")).getSelectionModel().clearSelection();
-    }
-    */
-
-    public void resetErroriRider() {
-        inizializzaLabel("errorePatenteLabel", true);
-        inizializzaLabel("erroreVeicoloLabel", false);
-        inizializzaLabel("erroreRiderLabel", false);
-        inizializzaLabel("veicoloBox", true);
+    private void resetErroriGestisciIndirizzi() {
+        inizializzaLabel("erroreIndirizzoattivoLabel", true);
     }
 
     public void setErroriRider(String patente, String veicolo) {
@@ -244,6 +229,21 @@ public class ImpostazioniController extends BaseSceneController {
             errore("erroreVeicoloLabel", "Inserisci un veicolo", true);
         }
     }
+
+    public void resetErroriRider() {
+        inizializzaLabel("errorePatenteLabel", true);
+        inizializzaLabel("erroreVeicoloLabel", false);
+        inizializzaLabel("erroreRiderLabel", false);
+        inizializzaLabel("veicoloBox", true);
+    }
+
+    /*
+    public void resetCampiRider() {
+
+        ((TextField) getElementById("patenteField")).setText("");
+        ((ComboBox<String>) getElementById("veicoloBox")).getSelectionModel().clearSelection();
+    }
+    */
 
     private void setErroriDB(String messaggio) {
         switch (messaggio) {
