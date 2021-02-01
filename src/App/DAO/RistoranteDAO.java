@@ -8,10 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class RistoranteDAO {
 
@@ -38,10 +35,8 @@ public class RistoranteDAO {
         String where ="ristoranteid = '"+ristoranteId+"'";
         ResultSet rs = this.db.queryBuilder(this.table,where);
         if(rs.next()) {
-            this.indirizzo = new Indirizzo(rs.getString("paese"),rs.getString("provincia"),
-                    rs.getString("citta"), rs.getString("cap"),rs.getString("indirizzo"));
             return new Ristorante(rs.getInt("ristoranteid"), rs.getString("nome"),
-                    this.indirizzo,rs.getString("telefono"),
+                    rs.getString("indirizzo"),rs.getString("telefono"),
                     rs.getDate("datadiapertura").toLocalDate(),getArticoli(rs.getInt("ristoranteid")));
         } else {
             return null;
@@ -55,7 +50,7 @@ public class RistoranteDAO {
         this.db.closeConnection();
         while(rs.next()) {
             ristoranti.add(new Ristorante(rs.getInt("ristoranteid"), rs.getString("nome"),
-                    this.indirizzo,rs.getString("telefono"),
+                    rs.getString("indirizzo"),rs.getString("telefono"),
                     rs.getDate("datadiapertura").toLocalDate(), getArticoli(rs.getInt("ristoranteid"))));
         }
         return ristoranti;
@@ -79,8 +74,8 @@ public class RistoranteDAO {
             this.db.closeConnection();
             return "articolo_fallito";
         }
-
     }
+
     public ObservableList<Articolo> getArticoliAltriRistorantiDB(int ristoranteId) throws SQLException {
         this.articoli = FXCollections.observableArrayList();
         this.db.setConnection();
@@ -105,4 +100,26 @@ public class RistoranteDAO {
         return this.articoli;
     }
 
+    public int aggiungiRistorante(Ristorante ristorante) throws SQLException{
+        try{
+            String sql = "INSERT INTO "+this.table+" VALUES (?,?,?,?)";
+            this.db.setConnection();
+            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1,ristorante.getNome());
+            pstmt.setString(2,ristorante.getIndirizzo());
+            pstmt.setString(3,ristorante.getTelefono());
+            pstmt.setDate(4, Date.valueOf(ristorante.getDataDiApertura()));
+            pstmt.executeUpdate();
+            ResultSet rs = pstmt.getGeneratedKeys();
+            this.db.closeConnection();
+            if(rs.next()){
+                return rs.getInt("ristoranteid");
+            }else {
+                return 0;
+            }
+        } catch(PSQLException e) {
+            this.db.closeConnection();
+            return 0;
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package App.Scenes.Controller;
 
 import App.Controllers.AggiungiGestoreController;
+import App.Controllers.AggiungiRistoranteController;
 import App.Controllers.GestisciArticoliController;
 import App.Controllers.InserisciArticoloController;
 import App.Objects.Articolo;
@@ -11,11 +12,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class GestisciRistoranteController extends BaseSceneController implements Initializable {
@@ -26,6 +28,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     InserisciArticoloController inserisciArticoloController;
     GestisciArticoliController gestisciArticoliController;
     AggiungiGestoreController aggiungiGestoreController;
+    AggiungiRistoranteController aggiungiRistoranteController;
     Gestore gestore;
     @FXML ComboBox<Ristorante> selezionaRistoranteBox;
 
@@ -34,7 +37,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     /**********Costruttori**********/
 
     public GestisciRistoranteController() throws SQLException {
-        this.gestore = new Gestore(Cliente.getInstance().getClienteId());
+        this.gestore = new Gestore(Cliente.getInstance());
     }
 
     @Override
@@ -102,12 +105,13 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    public void selezionaRistoranteBtn() {
+    public void selezionaRistoranteBtn() throws SQLException {
         resetErroriSelezionaRistorante();
         resetBtnColor();
         resetVHBoxManagedAndVisible();
         sceneController.setVisibile("selezionaRistoranteVBox", true);
         sceneController.setCliccatoBtn("selezionaRistoranteBtn");
+        selezionaRistoranteBox.setItems(this.gestore.getRistorantiDB(Cliente.getInstance()));
     }
 
 
@@ -142,7 +146,22 @@ public class GestisciRistoranteController extends BaseSceneController implements
         String messaggio = this.gestisciArticoliController.eliminaDaMenu(this.ristoranteAttivo, articolo);
     }
 
-    public void aggiungiNuovoRistoranteBtn() {
+    public void aggiungiNuovoRistoranteBtn() throws SQLException {
+        String nome = ((TextField)getElementById("nomeRistoranteField")).getText();
+        String indirizzo = ((TextField)getElementById("indirizzoRistoranteField")).getText();
+        String telefono = ((TextField)getElementById("telefonoRistoranteField")).getText();
+        LocalDate dataApertura = ((DatePicker) getElementById("dataaperturaRistoranteField")).getValue();
+
+        if(nome.length() > 0 && indirizzo.length() > 0 && telefono.length() > 0 &&dataApertura != null ){
+            this.aggiungiRistoranteController = new AggiungiRistoranteController();
+            Ristorante ristorante = new Ristorante(nome,indirizzo,telefono,dataApertura);
+            String messaggio = this.aggiungiRistoranteController.aggiungiRistorante(ristorante);
+
+        }
+
+
+
+
     }
 
     public void aggiungiGestoreBtn() throws SQLException {

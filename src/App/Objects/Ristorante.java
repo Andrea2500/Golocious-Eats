@@ -12,7 +12,7 @@ public class Ristorante {
 
     private Integer ristoranteId;
     private String nome;
-    private Indirizzo indirizzo;
+    private String indirizzo;
     private String telefono;
     private LocalDate dataDiApertura;
     private ObservableList<Articolo> articoli;
@@ -31,7 +31,7 @@ public class Ristorante {
         this.updateFields(this.ristoranteDAO.getRistorante(ristoranteId));
     }
 
-    public Ristorante(Integer ristoranteId, String nome, Indirizzo indirizzo, String telefono, LocalDate dataDiApertura, ObservableList<Articolo> articoli) {
+    public Ristorante(Integer ristoranteId, String nome, String indirizzo, String telefono, LocalDate dataDiApertura, ObservableList<Articolo> articoli) {
         this.ristoranteId = ristoranteId;
         this.nome = nome;
         this.indirizzo = indirizzo;
@@ -39,6 +39,14 @@ public class Ristorante {
         this.dataDiApertura = dataDiApertura;
         this.ristoranteDAO = new RistoranteDAO();
         this.articoli = articoli;
+    }
+
+    public Ristorante(String nome, String indirizzo, String telefono, LocalDate dataDiApertura) {
+        this.nome = nome;
+        this.indirizzo = indirizzo;
+        this.telefono = telefono;
+        this.dataDiApertura = dataDiApertura;
+        this.ristoranteDAO = new RistoranteDAO();
     }
 
     /**********Getter e Setter**********/
@@ -59,11 +67,11 @@ public class Ristorante {
         this.nome = nome;
     }
 
-    public Indirizzo getIndirizzo() {
+    public String getIndirizzo() {
         return indirizzo;
     }
 
-    public void setIndirizzo(Indirizzo indirizzo) {
+    public void setIndirizzo(String indirizzo) {
         this.indirizzo = indirizzo;
     }
 
@@ -96,14 +104,16 @@ public class Ristorante {
         this.articoli = articoli;
     }
 
-    /**********Metodi di funzionalità**********/
-
     public ObservableList<Articolo> getArticoliAltriRistorantiDB(Integer ristoranteId) throws SQLException {
         return this.ristoranteDAO.getArticoliAltriRistorantiDB(ristoranteId);
     }
 
     public ObservableList<Ristorante> getRistorantiDB(Integer ristoranteId) throws SQLException {
         return this.ristoranteDAO.getRistoranti(ristoranteId);
+    }
+
+    public int aggiungiRistorante(Ristorante ristorante) throws SQLException {
+        return this.ristoranteDAO.aggiungiRistorante(ristorante);
     }
 
     /**********Metodi di supporto**********/
@@ -122,6 +132,5 @@ public class Ristorante {
     public String toString() {
         return this.nome;
     }
-
 
 }
