@@ -87,6 +87,10 @@ public class Articolo {
 
     /**********Metodi di funzionalità**********/
 
+    public ObservableList<Articolo> getArticoliAltriRistorantiDB(int ristoranteId) throws SQLException {
+        return this.articoloDAO.getArticoliAltriRistorantiDB(ristoranteId);
+    }
+
     public ObservableList<Articolo> getArticoliDB(int ristoranteId) throws SQLException {
        return this.articoloDAO.getArticoli(ristoranteId);
     }
@@ -108,10 +112,10 @@ public class Articolo {
 
     @Override
     public String toString() {
-        String disp;
         if(this.disponibile)
             return this.nome+" - DISPONIBILE";
         else
             return this.nome+" - NON DISPONIBILE";
     }
+
 }

@@ -1,39 +1,28 @@
 package App.Scenes.Controller;
 
-import App.Controllers.GestisciArticoloController;
-import App.Objects.Articolo;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import App.Controllers.GestisciArticoliController;
+import App.Controllers.InserisciArticoloController;
 import javafx.scene.control.ComboBox;
-
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
-public class GestisciRistoranteController extends BaseSceneController implements Initializable {
+public class GestisciRistoranteController extends BaseSceneController {
 
     /**********Attributi**********/
 
-    @FXML ComboBox<Articolo> gestisciArticoloBox;
-    GestisciArticoloController gestisciArticoloController;
+    InserisciArticoloController inserisciArticoloController;
+    GestisciArticoliController gestisciArticoliController;
 
     /**********Metodi**********/
-
-    /**********Costruttori**********/
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.gestisciArticoloBox.getItems().clear();
-        try {
-            setGestisciArticoliBox();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
 
     /**********Metodi di bottoni**********/
 
     public void inserisciArticoloBtn() {
+        ((ComboBox) getElementById("inserisciArticoloBox")).getItems().clear();
+        try {
+            setInserisciArticoliBox();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         resetBtnColor();
         resetVHBoxManagedAndVisible();
         getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: hand !important");
@@ -42,6 +31,12 @@ public class GestisciRistoranteController extends BaseSceneController implements
     }
 
     public void gestisciArticoloBtn() {
+        ((ComboBox) getElementById("gestisciArticoloBox")).getItems().clear();
+        try {
+            setGestisciArticoliBox();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         resetBtnColor();
         resetVHBoxManagedAndVisible();
         getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: hand !important");
@@ -74,11 +69,39 @@ public class GestisciRistoranteController extends BaseSceneController implements
         sceneController.setCliccatoBtn("selezionaRistoranteBtn");
     }
 
+
+
+    public void aggiungiEsistenteBtn() {
+    }
+
+    public void aggiungiManualmenteBtn() {
+    }
+
+    public void abilitaBtn() {
+    }
+
+    public void disabilitaBtn() {
+    }
+
+    public void eliminaBtn() {
+    }
+
+    public void aggiungiNuovoRistoranteBtn() {
+    }
+
+    public void aggiungiGestoreBtn() {
+    }
+
     /**********Metodi di supporto**********/
 
+    public void setInserisciArticoliBox() throws SQLException{
+        this.inserisciArticoloController = new InserisciArticoloController();
+        ((ComboBox) getElementById("inserisciArticoloBox")).setItems(inserisciArticoloController.getArticoliAltriRistoranti(3));//FIXME
+    }
+
     public void setGestisciArticoliBox() throws SQLException {
-        this.gestisciArticoloController = new GestisciArticoloController();
-        this.gestisciArticoloBox.setItems(gestisciArticoloController.getArticoli(3));
+        this.gestisciArticoliController = new GestisciArticoliController();
+        ((ComboBox) getElementById("gestisciArticoloBox")).setItems(gestisciArticoliController.getArticoliRistorante(3));//FIXME
     }
 
     /**********Metodi di ripristino e di errori**********/

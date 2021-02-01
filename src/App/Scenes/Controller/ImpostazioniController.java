@@ -1,24 +1,19 @@
 package App.Scenes.Controller;
 
-import App.Controllers.EliminaIndirizzoController;
 import App.Controllers.AggiungiIndirizzoController;
+import App.Controllers.DiventaRiderController;
+import App.Controllers.EliminaIndirizzoController;
 import App.Controllers.SelezionaIndirizzoController;
 import App.Objects.Cliente;
 import App.Objects.Indirizzo;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import App.Controllers.DiventaRiderController;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
-public class ImpostazioniController extends BaseSceneController implements Initializable {
+public class ImpostazioniController extends BaseSceneController {
 
     /**********Attributi**********/
 
@@ -27,20 +22,13 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     private SelezionaIndirizzoController selezionaIndirizzoController;
     private EliminaIndirizzoController eliminaIndirizzoController;
     private DiventaRiderController diventaRiderController;
-    @FXML private ComboBox<Indirizzo> indirizzoBox;
 
     /**********Metodi**********/
 
     /**********Costruttori**********/
 
-    public ImpostazioniController() throws SQLException {
+    public ImpostazioniController() {
         this.cliente = Cliente.getInstance();
-        this.cliente.setIndirizzi(this.cliente.getIndirizziDB());
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.indirizzoBox.getItems().clear();
     }
 
     /**********Metodi di bottoni**********/
@@ -60,6 +48,8 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     }
 
     public void gestisciIndirizziBtn() throws SQLException {
+        this.cliente.setIndirizzi(this.cliente.getIndirizziDB());
+        ((ComboBox)getElementById("indirizzoBox")).getItems().clear();
         resetBtnColor();
         resetVHBoxManagedAndVisible();
         this.selezionaIndirizzoController = new SelezionaIndirizzoController();
@@ -78,6 +68,8 @@ public class ImpostazioniController extends BaseSceneController implements Initi
         sceneController.setVisibile("diventaRiderHBox", true);
         sceneController.setCliccatoBtn("diventaRiderBtn");
     }
+
+
 
     public void aggiungiBtn() throws SQLException {
         resetErroriIndirizzo();
@@ -104,7 +96,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
 
     public void rendiAttivoBtn() throws SQLException {
         resetErroriGestisciIndirizzi();
-        Indirizzo attivo = indirizzoBox.getSelectionModel().getSelectedItem();
+        Indirizzo attivo = ((ComboBox<Indirizzo>)getElementById("indirizzoBox")).getSelectionModel().getSelectedItem();
         if(attivo != null) {
             String messaggio = selezionaIndirizzoController.setIndirizzoAttivo(attivo);
             if (messaggio.equals("indirizzo_aggiornato")) {
@@ -120,7 +112,7 @@ public class ImpostazioniController extends BaseSceneController implements Initi
 
     public void eliminaIndirizzoBtn() throws SQLException {
         resetErroriGestisciIndirizzi();
-        Indirizzo elimina = indirizzoBox.getSelectionModel().getSelectedItem();
+        Indirizzo elimina = ((ComboBox<Indirizzo>)getElementById("indirizzoBox")).getSelectionModel().getSelectedItem();
         if(elimina != null) {
             this.eliminaIndirizzoController = new EliminaIndirizzoController();
             String messaggio = eliminaIndirizzoController.eliminaIndirizzo(elimina.getIndirizzoId());
@@ -167,7 +159,8 @@ public class ImpostazioniController extends BaseSceneController implements Initi
     }
 
     private void setListaIndirizzi() throws SQLException {
-        this.indirizzoBox.getItems().clear();
+        ComboBox indirizzoBox = ((ComboBox)getElementById("indirizzoBox"));
+        indirizzoBox.getItems().clear();
         cliente.setIndirizzi(cliente.getIndirizziDB());
         ObservableList<Indirizzo> indirizzi = this.cliente.getIndirizzi();
         indirizzoBox.setItems(indirizzi);
