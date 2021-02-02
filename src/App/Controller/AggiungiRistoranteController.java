@@ -3,9 +3,6 @@ package App.Controller;
 import App.Objects.Cliente;
 import App.Objects.Gestore;
 import App.Objects.Ristorante;
-import org.postgresql.util.PSQLException;
-
-import java.sql.SQLException;
 
 public class AggiungiRistoranteController {
 
@@ -25,13 +22,14 @@ public class AggiungiRistoranteController {
 
     /**********Metodi di funzionalità**********/
 
-    public String aggiungiRistorante(Ristorante ristorante) throws SQLException {
+    public String aggiungiRistorante(Ristorante ristorante) throws Exception {
         int idRistoranteAggiunto = 0;
-        try {
-            idRistoranteAggiunto = this.ristorante.aggiungiRistorante(ristorante);
-        } catch(SQLException e) {
-            System.out.println(e.getMessage());
+        try{
+           idRistoranteAggiunto = this.ristorante.aggiungiRistorante(ristorante);
+        }catch (Exception e){
+            return e.getMessage();
         }
+        System.out.println(idRistoranteAggiunto);
         if(idRistoranteAggiunto != 0) {
             return gestore.rendiGestore(Cliente.getInstance().getEmail(), idRistoranteAggiunto);
         } else {

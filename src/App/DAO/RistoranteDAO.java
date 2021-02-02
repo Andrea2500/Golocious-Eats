@@ -1,6 +1,7 @@
 package App.DAO;
 
 import App.Config.Database;
+import App.Config.ErroriDB;
 import App.Objects.Articolo;
 import App.Objects.Indirizzo;
 import App.Objects.Ristorante;
@@ -16,6 +17,7 @@ public class RistoranteDAO {
 
     private String table;
     private Database db;
+    ErroriDB edb;
     private ObservableList<Ristorante> ristoranti;
     private ObservableList<Articolo> articoli;
     private Indirizzo indirizzo;
@@ -26,6 +28,7 @@ public class RistoranteDAO {
 
     public RistoranteDAO() {
         this.db = new Database();
+        this.edb = new ErroriDB();
         this.table = "Ristorante";
     }
 
@@ -121,22 +124,28 @@ public class RistoranteDAO {
         return this.articoli;
     }
 
-    public int aggiungiRistorante(Ristorante ristorante) throws SQLException{
-
-        String sql = "INSERT INTO "+this.table+" VALUES (?,?,?,?)";
-        this.db.setConnection();
-        PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        pstmt.setString(1,ristorante.getNome());
-        pstmt.setString(2,ristorante.getIndirizzo());
-        pstmt.setString(3,ristorante.getTelefono());
-        pstmt.setDate(4, Date.valueOf(ristorante.getDataDiApertura()));
-        pstmt.executeUpdate();
-        ResultSet rs = pstmt.getGeneratedKeys();
-        this.db.closeConnection();
-        if(rs.next()){
-            return rs.getInt("ristoranteid");
-        }else {
-            return 0;
+    public int aggiungiRistorante(Ristorante ristorante) throws Exception {
+        try{
+            String sql = "INSERT INTO "+this.table+" VALUES (?,?,?,?)";
+            this.db.setConnection();
+            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1,ristorante.getNome());
+            pstmt.setString(2,ristorante.getIndirizzo());
+            pstmt.setString(3,ristorante.getTelefono());
+            pstmt.setDate(4, Date.valueOf(ristorante.getDataDiApertura()));
+            pstmt.executeUpdate();
+            ResultSet rs = pstmt.getGeneratedKeys();
+            this.db.closeConnection();
+            if(rs.next()){
+                return rs.getInt("ristoranteid");
+            }else {
+                return 0;
+            }
+        }catch (PSQLException e){
+            this.db.closeConnection();
+            String errore = this.edb.getErrorMessage(e.getMessage());
+            throw new Exception(errore);
         }
+
     }
 }

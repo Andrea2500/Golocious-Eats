@@ -164,13 +164,13 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    public void aggiungiNuovoRistoranteBtn() throws SQLException {
+    public void aggiungiNuovoRistoranteBtn() throws Exception {
         resetErroriAggiungiRistorante();
-        String nome = ((TextField) getElementById("nomeField")).getText();
-        String indirizzo = ((TextField) getElementById("indirizzoField")).getText();
-        String telefono = ((TextField) getElementById("telefonoField")).getText();
-        LocalDate dataApertura = ((DatePicker) getElementById("dataaperturaField")).getValue();
-        if(nome.length() > 0 && indirizzo.length() > 0 && telefono.length() > 0 && dataApertura.isBefore(LocalDate.now())) {
+        String nome = ((TextField) getElementById("nomeristoranteField")).getText();
+        String indirizzo = ((TextField) getElementById("indirizzoristoranteField")).getText();
+        String telefono = ((TextField) getElementById("telefonoristoranteField")).getText();
+        LocalDate dataApertura = ((DatePicker) getElementById("dataaperturaristoranteField")).getValue();
+        if(nome.length() > 0 && indirizzo.length() > 0 && telefono.length() > 0 && dataApertura != null && dataApertura.isBefore(LocalDate.now())) {
             this.aggiungiRistoranteController = new AggiungiRistoranteController();
             String messaggio = this.aggiungiRistoranteController.aggiungiRistorante(new Ristorante(nome, indirizzo, telefono, dataApertura));
             if(messaggio.equals("gestore_aggiunto")) {
@@ -251,27 +251,26 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     private void setErroriAggiungiRistorante(String nome, String indirizzo, String telefono, LocalDate dataApertura) {
         if(nome.length()==0){
-            errore("erroreNomeLabel", "Inserisci un nome", true);
+            errore("erroreNomeristoranteLabel", "Inserisci un nome", true);
         }
         if(indirizzo.length()==0){
-            errore("erroreIndirizzoLabel", "Inserisci un indirizzo", true);
+            errore("erroreIndirizzoristoranteLabel", "Inserisci un indirizzo", true);
         }
         if(telefono.length()==0){
-            errore("erroreTelefonoLabel", "Inserisci un numero di telefono", true);
+            errore("erroreTelefonoristoranteLabel", "Inserisci un numero di telefono", true);
         }
         if(dataApertura==null) {
-            errore("erroreDataaperturaLabel", "Seleziona una data di apertura", true);
+            errore("erroreDataaperturaristoranteLabel", "Seleziona una data di apertura", true);
         } else if(dataApertura.isAfter(LocalDate.now())) {
-            errore("erroreDataaperturaLabel", "La data deve essere passata", true);
+            errore("erroreDataaperturaristoranteLabel", "La data deve essere passata", true);
         }
     }
 
     private void resetErroriAggiungiRistorante() {
-        inizializzaLabel("erroreNomeLabel", true);
-        inizializzaLabel("erroreIndirizzoLabel", true);
-        inizializzaLabel("erroreTelefonoLabel", true);
-        inizializzaLabel("erroreDataaperturaLabel", true);
-
+        inizializzaLabel("erroreNomeristoranteLabel", true);
+        inizializzaLabel("erroreIndirizzoristoranteLabel", true);
+        inizializzaLabel("erroreTelefonoristoranteLabel", true);
+        inizializzaLabel("erroreDataaperturaristoranteLabel", true);
     }
 
     private void setErroriRendiGestore(String messaggio) {
@@ -303,6 +302,9 @@ public class GestisciRistoranteController extends BaseSceneController implements
         switch (messaggio) {
             case "uq_gestore" -> errore("erroreGestoreLabel", "L'utente è già un gestore del ristorante", true);
             case "ristorante_non_aggiunto" -> errore("erroreAggiungiRistoranteLabel", "Il ristorante non è stato aggiunto", false);
+            case "ristorante_nome_key" -> errore("erroreAggiungiRistoranteLabel", "Il nome è già esistente", false);
+            case "uq_telefono_ristorante" -> errore("erroreAggiungiRistoranteLabel", "Il telefono è già esistente", false);
+            case "uq_menu" -> errore("", "", false);//FIXME
         }
     }
 

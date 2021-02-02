@@ -43,6 +43,15 @@ public class ErroriDB {
         if(isErrorKey(error, "uq_gestore")) {
             return "uq_gestore";
         }
+        if(isErrorKey(error, "ristorante_nome_key")) {
+            return "ristorante_nome_key";
+        }
+        if(isErrorKey(error, "uq_telefono_ristorante")) {
+            return "uq_telefono_ristorante";
+        }
+        if(isErrorKey(error, "uq_menu")) {
+            return "uq_menu";
+        }
         else return "nessun_errore";
     }
 

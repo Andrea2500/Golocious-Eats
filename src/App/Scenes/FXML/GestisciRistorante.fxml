@@ -125,32 +125,32 @@
                     <padding>
                         <Insets bottom="39.0" right="25.0" />
                     </padding>
-                    <Label id="erroreNomeLabel" layoutX="128.0" layoutY="252.0" textAlignment="CENTER" wrapText="true">
+                    <Label id="erroreNomeristoranteLabel" layoutX="128.0" layoutY="252.0" textAlignment="CENTER" wrapText="true">
                         <font>
                             <Font size="14.0" />
                         </font>
                     </Label>
-                    <Label id="erroreIndirizzoLabel" layoutX="128.0" layoutY="272.0" textAlignment="CENTER" wrapText="true">
+                    <Label id="erroreIndirizzoristoranteLabel" layoutX="128.0" layoutY="272.0" textAlignment="CENTER" wrapText="true">
                         <font>
                             <Font size="14.0" />
                         </font>
                     </Label>
-               <Label id="erroreTelefonoLabel" layoutX="160.0" layoutY="176.0" textAlignment="CENTER" wrapText="true">
+               <Label id="erroreTelefonoristoranteLabel" layoutX="160.0" layoutY="176.0" textAlignment="CENTER" wrapText="true">
                   <font>
                      <Font size="14.0" />
                   </font>
                </Label>
-               <Label id="erroreDataaperturaLabel" layoutX="160.0" layoutY="158.0" textAlignment="CENTER" wrapText="true">
+               <Label id="erroreDataaperturaristoranteLabel" layoutX="160.0" layoutY="158.0" textAlignment="CENTER" wrapText="true">
                   <font>
                      <Font size="14.0" />
                   </font>
                </Label>
                 </VBox>
                 <VBox alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
-                    <TextField id="nomeField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il nome" />
-               <TextField id="indirizzoField" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'indirizzo" />
-               <TextField id="telefonoField" layoutX="10.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci numero di telefono" />
-               <DatePicker id="dataaperturaField" editable="false" prefHeight="28.0" prefWidth="250.0" promptText="Seleziona la data di apertura" showWeekNumbers="false" />
+                    <TextField id="nomeristoranteField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il nome" />
+               <TextField id="indirizzoristoranteField" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'indirizzo" />
+               <TextField id="telefonoristoranteField" layoutX="10.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci numero di telefono" />
+               <DatePicker id="dataaperturaristoranteField" editable="false" prefHeight="28.0" prefWidth="250.0" promptText="Seleziona la data di apertura" showWeekNumbers="false" />
                     <Button id="aggiungiNuovoRistoranteBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#aggiungiNuovoRistoranteBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
                     <Label id="erroreAggiungiRistoranteLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                         <font>

@@ -116,8 +116,14 @@ public class Ristorante {
         return this.ristoranteDAO.getRistoranti(ristoranteId);
     }
 
-    public int aggiungiRistorante(Ristorante ristorante) throws SQLException {
-        return this.ristoranteDAO.aggiungiRistorante(ristorante);
+    public int aggiungiRistorante(Ristorante ristorante) throws Exception {
+        Integer id = 0;
+        try{
+            id = this.ristoranteDAO.aggiungiRistorante(ristorante);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+        return id;
     }
 
 
