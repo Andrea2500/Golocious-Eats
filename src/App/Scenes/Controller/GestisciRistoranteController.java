@@ -173,8 +173,9 @@ public class GestisciRistoranteController extends BaseSceneController implements
         if(nome.length() > 0 && indirizzo.length() > 0 && telefono.length() > 0 && dataApertura != null && dataApertura.isBefore(LocalDate.now())) {
             this.apriRistoranteController = new ApriRistoranteController();
             String messaggio = this.apriRistoranteController.apriRistorante(new Ristorante(nome, indirizzo, telefono, dataApertura));
-            if(messaggio.equals("gestore_aggiunto")) {
+            if(messaggio.equals("ristorante_aperto")) {
                 ((Label) getElementById("erroreApriRistoranteLabel")).setText("Ristorante aggiunto con successo");
+                resetCampiApriRistorante();
             } else {
                 setErroriDB(messaggio);
             }
@@ -271,6 +272,14 @@ public class GestisciRistoranteController extends BaseSceneController implements
         inizializzaLabel("erroreIndirizzoristoranteLabel", true);
         inizializzaLabel("erroreTelefonoristoranteLabel", true);
         inizializzaLabel("erroreDataaperturaristoranteLabel", true);
+        inizializzaLabel("erroreApriRistoranteLabel", false);
+    }
+
+    private void resetCampiApriRistorante() {
+        ((TextField) getElementById("nomeristoranteField")).setText("");
+        ((TextField) getElementById("indirizzoristoranteField")).setText("");
+        ((TextField) getElementById("telefonoristoranteField")).setText("");
+        ((DatePicker) getElementById("dataaperturaristoranteField")).setValue(null);
     }
 
     private void setErroriRendiGestore(String messaggio) {
@@ -294,7 +303,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     }
 
     private void resetErroriSelezionaRistorante() {
-        inizializzaLabel("erroreSelezionaRistoranteLabel", false);
+        inizializzaLabel("erroreSelezionaristoranteLabel", false);
         getElementById("selezionaRistoranteBox").setStyle("-fx-border-color: transparent");
     }
 
@@ -303,7 +312,8 @@ public class GestisciRistoranteController extends BaseSceneController implements
             case "uq_gestore" -> errore("erroreGestoreLabel", "L'utente è già un gestore del ristorante", true);
             case "ristorante_non_aggiunto" -> errore("erroreApriRistoranteLabel", "Il ristorante non è stato aggiunto", false);
             case "ristorante_nome_key" -> errore("erroreApriRistoranteLabel", "Il nome è già esistente", false);
-            case "uq_telefono_ristorante" -> errore("erroreApriRistoranteLabel", "Il telefono è già esistente", false);
+            case "ck_telefono_ristorante" -> errore("erroreTelefonoristoranteLabel", "Inserisci un telefono valido", false);
+            case "troppo_lungo" -> errore("erroreApriRistoranteLabel", "Uno dei campi inseriti è troppo lungo", false);
             case "uq_menu" -> errore("", "", false);//FIXME
         }
     }

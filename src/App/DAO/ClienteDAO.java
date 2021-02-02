@@ -3,7 +3,6 @@ package App.DAO;
 import App.Config.Database;
 import App.Config.ErroriDB;
 import App.Objects.Cliente;
-import App.Objects.Indirizzo;
 import org.postgresql.util.PSQLException;
 
 import java.sql.*;
@@ -71,7 +70,7 @@ public class ClienteDAO {
             }
         } catch(PSQLException e) {
             this.db.closeConnection();
-            return edb.getErrorMessage(e.getMessage());
+            return edb.getMessaggioErrore(e.getMessage());
         }
     }
 
@@ -113,7 +112,7 @@ public class ClienteDAO {
             }
         }catch(PSQLException e){
             this.db.closeConnection();
-            return edb.getErrorMessage(e.getMessage());
+            return edb.getMessaggioErrore(e.getMessage());
         }
     }
 

@@ -45,7 +45,7 @@ public class RiderDAO {
             }
         } catch(PSQLException e) {
             this.db.closeConnection();
-            return edb.getErrorMessage(e.getMessage());
+            return edb.getMessaggioErrore(e.getMessage());
         }
     }
 

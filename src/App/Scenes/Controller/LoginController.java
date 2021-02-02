@@ -117,7 +117,7 @@ public class LoginController extends BaseSceneController {
         switch (messaggio) {
             case "ck_email" -> errore("erroreEmailLabel", "Inserisci un'email valida", true);
             case "cliente_email_key" -> errore("erroreEmailLabel", "L'indirizzo email è gia registrato", true);
-            case "ck_telefono" -> errore("erroreTelefonoLabel", "Inserisci un numero di telefono valido", true);
+            case "ck_telefono_cliente" -> errore("erroreTelefonoLabel", "Inserisci un numero di telefono valido", true);
             case "cliente_telefono_key" -> errore("erroreTelefonoLabel", "Il numero di telefono è già registrato", true);
             case "signup_fallito", "troppo_lungo" -> errore("erroreLoginLabel", "Si è verificato un errore", false);
         }

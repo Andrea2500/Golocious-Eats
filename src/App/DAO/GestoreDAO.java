@@ -55,7 +55,7 @@ public class GestoreDAO extends ClienteDAO{
             }
         } catch (PSQLException e) {
             this.db.closeConnection();
-            return edb.getErrorMessage(e.getMessage());
+            return edb.getMessaggioErrore(e.getMessage());
         }
     }
 
