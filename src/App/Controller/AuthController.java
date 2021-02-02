@@ -1,4 +1,4 @@
-package App.Controllers;
+package App.Controller;
 
 import App.Objects.Cliente;
 import java.nio.charset.StandardCharsets;

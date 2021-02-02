@@ -65,14 +65,14 @@ public class RistoranteDAO {
             pstmt.setInt(2,articoloId);
             if(pstmt.executeUpdate() > 0){
                 this.db.closeConnection();
-                return "articolo_eliminati";
+                return "articolo_eliminato";
             }else{
                 this.db.closeConnection();
-                return "articolo_fallito";
+                return "eliminazione_articolo_fallita";
             }
         } catch(PSQLException e) {
             this.db.closeConnection();
-            return "articolo_fallito";
+            return "eliminazione_articolo_fallita";
         }
     }
 
@@ -101,24 +101,20 @@ public class RistoranteDAO {
     }
 
     public int aggiungiRistorante(Ristorante ristorante) throws SQLException{
-        try{
-            String sql = "INSERT INTO "+this.table+" VALUES (?,?,?,?)";
-            this.db.setConnection();
-            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1,ristorante.getNome());
-            pstmt.setString(2,ristorante.getIndirizzo());
-            pstmt.setString(3,ristorante.getTelefono());
-            pstmt.setDate(4, Date.valueOf(ristorante.getDataDiApertura()));
-            pstmt.executeUpdate();
-            ResultSet rs = pstmt.getGeneratedKeys();
-            this.db.closeConnection();
-            if(rs.next()){
-                return rs.getInt("ristoranteid");
-            }else {
-                return 0;
-            }
-        } catch(PSQLException e) {
-            this.db.closeConnection();
+
+        String sql = "INSERT INTO "+this.table+" VALUES (?,?,?,?)";
+        this.db.setConnection();
+        PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        pstmt.setString(1,ristorante.getNome());
+        pstmt.setString(2,ristorante.getIndirizzo());
+        pstmt.setString(3,ristorante.getTelefono());
+        pstmt.setDate(4, Date.valueOf(ristorante.getDataDiApertura()));
+        pstmt.executeUpdate();
+        ResultSet rs = pstmt.getGeneratedKeys();
+        this.db.closeConnection();
+        if(rs.next()){
+            return rs.getInt("ristoranteid");
+        }else {
             return 0;
         }
     }

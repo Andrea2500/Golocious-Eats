@@ -1,4 +1,4 @@
-package App.Controllers;
+package App.Controller;
 
 import App.Objects.Indirizzo;
 

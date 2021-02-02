@@ -1,9 +1,9 @@
 package App.Scenes.Controller;
 
-import App.Controllers.AggiungiIndirizzoController;
-import App.Controllers.DiventaRiderController;
-import App.Controllers.EliminaIndirizzoController;
-import App.Controllers.SelezionaIndirizzoController;
+import App.Controller.AggiungiIndirizzoController;
+import App.Controller.DiventaRiderController;
+import App.Controller.EliminaIndirizzoController;
+import App.Controller.SelezionaIndirizzoController;
 import App.Objects.Cliente;
 import App.Objects.Indirizzo;
 import javafx.collections.ObservableList;

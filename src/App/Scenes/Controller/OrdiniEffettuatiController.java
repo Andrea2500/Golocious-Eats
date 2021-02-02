@@ -1,6 +1,6 @@
 package App.Scenes.Controller;
 
-import App.Controllers.MostraOrdiniEffettuatiController;
+import App.Controller.MostraOrdiniEffettuatiController;
 import App.Objects.Ordine;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

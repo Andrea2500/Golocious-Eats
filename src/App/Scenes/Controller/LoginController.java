@@ -1,7 +1,7 @@
 package App.Scenes.Controller;
 
-import App.Controllers.AuthController;
-import App.Objects.Cliente;
+import App.Controller.AuthController;
+
 import java.time.LocalDate;
 
 public class LoginController extends BaseSceneController {

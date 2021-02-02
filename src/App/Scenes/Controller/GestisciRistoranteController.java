@@ -1,8 +1,9 @@
 package App.Scenes.Controller;
 
-import App.Controllers.AggiungiGestoreController;
-import App.Controllers.GestisciArticoliController;
-import App.Controllers.InserisciArticoloController;
+import App.Controller.AggiungiGestoreController;
+import App.Controller.AggiungiRistoranteController;
+import App.Controller.GestisciArticoliController;
+import App.Controller.InserisciArticoloController;
 import App.Objects.Articolo;
 import App.Objects.Cliente;
 import App.Objects.Gestore;
@@ -11,10 +12,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class GestisciRistoranteController extends BaseSceneController implements Initializable {
@@ -24,6 +27,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     Ristorante ristoranteAttivo;
     InserisciArticoloController inserisciArticoloController;
     GestisciArticoliController gestisciArticoliController;
+    AggiungiRistoranteController aggiungiRistoranteController;
     AggiungiGestoreController aggiungiGestoreController;
     Gestore gestore;
     @FXML ComboBox<Ristorante> selezionaRistoranteBox;
@@ -80,6 +84,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     }
 
     public void aggiungiRistoranteBtn() {
+        resetErroriAggiungiRistorante();
         resetBtnColor();
         resetVHBoxManagedAndVisible();
         sceneController.setVisibile("aggiungiRistoranteHBox", true);
@@ -151,12 +156,31 @@ public class GestisciRistoranteController extends BaseSceneController implements
         Articolo articolo = ((ComboBox<Articolo>) getElementById("gestisciarticoloField")).getSelectionModel().getSelectedItem();
         if(articolo != null) {
             String messaggio = this.gestisciArticoliController.eliminaDaMenu(this.ristoranteAttivo, articolo);
+            if(messaggio.equals("eliminazione_articolo_fallita")) {
+                errore("erroreGestisciarticoloLabel", "L'eliminazione non è riuscita", true);
+            }
         } else {
             setErroriGestisciArticoli();
         }
     }
 
-    public void aggiungiNuovoRistoranteBtn() {
+    public void aggiungiNuovoRistoranteBtn() throws SQLException {
+        resetErroriAggiungiRistorante();
+        String nome = ((TextField) getElementById("nomeField")).getText();
+        String indirizzo = ((TextField) getElementById("indirizzoField")).getText();
+        String telefono = ((TextField) getElementById("telefonoField")).getText();
+        LocalDate dataApertura = ((DatePicker) getElementById("dataaperturaField")).getValue();
+        if(nome.length() > 0 && indirizzo.length() > 0 && telefono.length() > 0 && dataApertura.isBefore(LocalDate.now())) {
+            this.aggiungiRistoranteController = new AggiungiRistoranteController();
+            String messaggio = this.aggiungiRistoranteController.aggiungiRistorante(new Ristorante(nome, indirizzo, telefono, dataApertura));
+            if(messaggio.equals("gestore_aggiunto")) {
+                ((Label) getElementById("erroreAggiungiRistoranteLabel")).setText("Ristorante aggiunto con successo");
+            } else {
+                setErroriDB(messaggio);
+            }
+        } else {
+            setErroriAggiungiRistorante(nome, indirizzo, telefono, dataApertura);
+        }
     }
 
     public void aggiungiGestoreBtn() throws SQLException {
@@ -225,6 +249,31 @@ public class GestisciRistoranteController extends BaseSceneController implements
         inizializzaLabel("erroreGestisciarticoloLabel", true);
     }
 
+    private void setErroriAggiungiRistorante(String nome, String indirizzo, String telefono, LocalDate dataApertura) {
+        if(nome.length()==0){
+            errore("erroreNomeLabel", "Inserisci un nome", true);
+        }
+        if(indirizzo.length()==0){
+            errore("erroreIndirizzoLabel", "Inserisci un indirizzo", true);
+        }
+        if(telefono.length()==0){
+            errore("erroreTelefonoLabel", "Inserisci un numero di telefono", true);
+        }
+        if(dataApertura==null) {
+            errore("erroreDataaperturaLabel", "Seleziona una data di apertura", true);
+        } else if(dataApertura.isAfter(LocalDate.now())) {
+            errore("erroreDataaperturaLabel", "La data deve essere passata", true);
+        }
+    }
+
+    private void resetErroriAggiungiRistorante() {
+        inizializzaLabel("erroreNomeLabel", true);
+        inizializzaLabel("erroreIndirizzoLabel", true);
+        inizializzaLabel("erroreTelefonoLabel", true);
+        inizializzaLabel("erroreDataaperturaLabel", true);
+
+    }
+
     private void setErroriRendiGestore(String messaggio) {
         switch (messaggio) {
             case "email_vuota" -> errore("erroreGestoreLabel", "Inserisci un'email", true);
@@ -253,6 +302,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     private void setErroriDB(String messaggio) {
         switch (messaggio) {
             case "uq_gestore" -> errore("erroreGestoreLabel", "L'utente è già un gestore del ristorante", true);
+            case "ristorante_non_aggiunto" -> errore("erroreAggiungiRistoranteLabel", "Il ristorante non è stato aggiunto", false);
         }
     }
 
