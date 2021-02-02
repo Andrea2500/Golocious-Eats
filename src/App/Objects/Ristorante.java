@@ -102,7 +102,7 @@ public class Ristorante {
     }
 
     public String aggiungiArticoloEsistenteDB(int articoloId) throws SQLException {
-        return this.ristoranteDAO.aggiungiArticoloEsistente(this, articoloId);
+        return this.ristoranteDAO.aggiungiArticoloEsistente(this.getRistoranteId(), articoloId);
     }
 
     public ObservableList<Articolo> getArticoli() {
@@ -121,14 +121,12 @@ public class Ristorante {
         return this.ristoranteDAO.getRistoranti(ristoranteId);
     }
 
-    public int aggiungiRistorante(Ristorante ristorante) throws Exception {
-        Integer id = 0;
+    public int setRistoranteDB() throws Exception {
         try{
-            id = this.ristoranteDAO.aggiungiRistorante(ristorante);
-        }catch (Exception e){
+            return this.ristoranteDAO.setRistorante(this);
+        } catch (Exception e){
             throw new Exception(e.getMessage());
         }
-        return id;
     }
 
 

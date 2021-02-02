@@ -124,8 +124,8 @@ public class RistoranteDAO {
         return this.articoli;
     }
 
-    public int aggiungiRistorante(Ristorante ristorante) throws Exception {
-        try{
+    public int setRistorante(Ristorante ristorante) throws Exception {
+        try {
             String sql = "INSERT INTO "+this.table+" VALUES (?,?,?,?)";
             this.db.setConnection();
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -136,25 +136,25 @@ public class RistoranteDAO {
             pstmt.executeUpdate();
             ResultSet rs = pstmt.getGeneratedKeys();
             this.db.closeConnection();
-            if(rs.next()){
+            if(rs.next()) {
                 return rs.getInt("ristoranteid");
-            }else {
+            } else {
                 return 0;
             }
-        }catch (PSQLException e){
+        } catch (PSQLException e) {
             this.db.closeConnection();
+            System.out.println(e.getMessage());
             String errore = this.edb.getErrorMessage(e.getMessage());
             throw new Exception(errore);
         }
-
     }
 
-    public String aggiungiArticoloEsistente(Ristorante ristorante, int articoloId) throws SQLException{
+    public String aggiungiArticoloEsistente(int ristoranteId, int articoloId) throws SQLException{
         try {
             String sql = "INSERT INTO menu VALUES (?, ?)";
             this.db.setConnection();
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql);
-            pstmt.setInt(1, ristorante.getRistoranteId());
+            pstmt.setInt(1, ristoranteId);
             pstmt.setInt(2, articoloId);
             if(pstmt.executeUpdate() > 0){
                 this.db.closeConnection();
@@ -165,7 +165,7 @@ public class RistoranteDAO {
             }
         } catch(PSQLException e) {
             this.db.closeConnection();
-            return "closeConnection";
+            return "articolo_non_aggiunto";
         }
     }
 

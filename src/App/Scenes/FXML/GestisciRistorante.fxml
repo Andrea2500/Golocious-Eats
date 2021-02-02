@@ -36,7 +36,7 @@
             <VBox alignment="CENTER" prefHeight="430.0" prefWidth="300.0" spacing="20.0">
                 <Button id="inserisciArticoloBtn" mnemonicParsing="false" onAction="#inserisciArticoloBtn" prefHeight="30.0" prefWidth="145.0" text="Inserisci articolo" />
                 <Button id="gestisciArticoliBtn" mnemonicParsing="false" onAction="#gestisciArticoloBtn" prefHeight="30.0" prefWidth="145.0" text="Gestisci articoli" />
-                <Button id="aggiungiRistoranteBtn" mnemonicParsing="false" onAction="#aggiungiRistoranteBtn" prefHeight="30.0" prefWidth="145.0" text="Aggiungi ristorante" />
+                <Button id="apriRistoranteBtn" mnemonicParsing="false" onAction="#apriRistoranteBtn" prefHeight="30.0" prefWidth="145.0" text="Apri ristorante" />
                 <Button id="rendiGestoreBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" onAction="#rendiGestoreBtn" prefHeight="30.0" prefWidth="145.0" text="Rendi gestore" />
                 <Button id="selezionaRistoranteBtn" layoutX="88.0" layoutY="285.0" mnemonicParsing="false" onAction="#selezionaRistoranteBtn" prefHeight="30.0" prefWidth="145.0" text="Seleziona ristorante" />
             </VBox>
@@ -120,7 +120,7 @@
                     <Insets top="30.0" />
                 </padding>
             </VBox>
-            <HBox id="aggiungiRistoranteHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
+            <HBox id="apriRistoranteHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
                 <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="21.0">
                     <padding>
                         <Insets bottom="39.0" right="25.0" />
@@ -151,8 +151,8 @@
                <TextField id="indirizzoristoranteField" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'indirizzo" />
                <TextField id="telefonoristoranteField" layoutX="10.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci numero di telefono" />
                <DatePicker id="dataaperturaristoranteField" editable="false" prefHeight="28.0" prefWidth="250.0" promptText="Seleziona la data di apertura" showWeekNumbers="false" />
-                    <Button id="aggiungiNuovoRistoranteBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#aggiungiNuovoRistoranteBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
-                    <Label id="erroreAggiungiRistoranteLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                    <Button id="apriNuovoRistoranteBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#apriNuovoRistoranteBtn" prefHeight="30.0" prefWidth="250.0" text="Apri ora" />
+                    <Label id="erroreApriRistoranteLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                         <font>
                             <Font size="14.0" />
                         </font>

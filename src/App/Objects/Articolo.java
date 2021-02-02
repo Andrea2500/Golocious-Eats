@@ -6,7 +6,7 @@ public class Articolo {
 
     /**********Attributi**********/
 
-    int articoloid;
+    int articoloId;
     String nome;
     String prezzo;
     String categoria;
@@ -30,11 +30,11 @@ public class Articolo {
         this.articoloDAO = new ArticoloDAO();
     }
 
-    public Articolo(String nome, String prezzo, String categoria, String ingredienti, int articoloid, boolean disponibile) {
+    public Articolo(String nome, String prezzo, String categoria, String ingredienti, int articoloId, boolean disponibile) {
         this.nome = nome;
         this.prezzo = prezzo;
         this.ingredienti = ingredienti;
-        this.articoloid = articoloid;
+        this.articoloId = articoloId;
         selezionaCategoria(categoria);
         this.disponibile = disponibile;
     }
@@ -74,11 +74,11 @@ public class Articolo {
     }
 
     public int getArticoloId() {
-        return articoloid;
+        return articoloId;
     }
 
-    public void setArticoloid(int articoloid) {
-        this.articoloid = articoloid;
+    public void setArticoloId(int articoloId) {
+        this.articoloId = articoloId;
     }
 
     public boolean isDisponibile() {
@@ -92,7 +92,12 @@ public class Articolo {
     /**********Metodi di funzionalità**********/
 
     public String setArticoloDB() {
-        return this.articoloDAO.setArticolo(this);
+        try {
+            this.articoloId = this.articoloDAO.setArticolo(this);
+            return "articolo_aggiunto";
+        } catch (Exception e){
+            return e.getMessage();
+        }
     }
 
     /**********Metodi di supporto**********/

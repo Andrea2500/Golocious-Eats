@@ -104,13 +104,14 @@ CREATE TABLE Ordine (
 
 
 CREATE TABLE Articolo (
-    Nome VARCHAR (150) NOT NULL UNIQUE,
+    Nome VARCHAR (150) NOT NULL,
     Prezzo MONEY NOT NULL,
     Categoria CHAR(1) NOT NULL,
     Ingredienti VARCHAR (300),
     ArticoloID SERIAL PRIMARY KEY NOT NULL,
 
-    CONSTRAINT CK_CATEGORIA CHECK (Categoria IN ('a', 'b', 'p', 't', 'd', 'v', 'w'))
+    CONSTRAINT CK_CATEGORIA CHECK (Categoria IN ('a', 'b', 'p', 't', 'd', 'v', 'w')),
+    CONSTRAINT UQ_CATEGORIA UNIQUE (Nome, Categoria)
 );
 
 
@@ -359,11 +360,11 @@ CREATE TRIGGER trigger_elimina_unico_gestore_ristorante BEFORE UPDATE ON Cliente
 -------------------------------------------POPOLAMENTO-------------------------------------------
 
 INSERT INTO Ristorante VALUES
-('Golocious Burger&Wine Napoli', 'Italia', 'NA', 'Napoli', '80127', 'Via Domenico Cimarosa, 26', '+39 081 587 2195', '04/05/2020'),
-('Golocious Burger&Wine Roma', 'Italia', 'RM', 'Roma', '00151', 'Viale Isacco Newton, 68', '+39 06 653 0724', '13/10/2020'),
-('Golocious Pizza&Cucina Napoli', 'Italia', 'NA', 'Napoli', '80127', 'Via Domenico Cimarosa, 144', '+39 081 556 8169', '01/12/2020'),
-('Golocious Pizza in Teglia Napoli', 'Italia', 'NA', 'Napoli', '80127', 'Via Domenico Cimarosa, 144', '+39 081 556 8169', '01/12/2020'),
-('Golocious Burger & Wine Dark Kitchen Milano', 'Italia', 'MI', 'Milano', '20124', 'Piazza Quattro Novembre, 3', '+39 02 2217 5500', '14/01/2021');
+('Golocious Burger&Wine Napoli', 'Via Domenico Cimarosa, 26, 80127, Napoli, NA, Italia', '+39 081 587 2195', '04/05/2020'),
+('Golocious Burger&Wine Roma', 'Viale Isacco Newton, 68, 00151, Roma, RM, Italia', '+39 06 653 0724', '13/10/2020'),
+('Golocious Pizza&Cucina Napoli', 'Via Domenico Cimarosa, 144, 80127, Napoli, NA, Italia', '+39 081 556 8169', '01/12/2020'),
+('Golocious Pizza in Teglia Napoli', 'Via Domenico Cimarosa, 144, 80127, Napoli, NA, Italia', '+39 081 556 8169', '01/12/2020'),
+('Golocious Burger & Wine Dark Kitchen Milano', 'Piazza Quattro Novembre, 3, 20124, Milano, MI, Italia', '+39 02 2217 5500', '14/01/2021');
 
 INSERT INTO Articolo VALUES
 --BURGER&WINE--

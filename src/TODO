@@ -13,5 +13,4 @@ TODO ORDINA
      divisione in 3 da sinistra a destra: sezione ristoranti, sezione articoli del ristorante e carrello con pulsante Ordina
      il carrello viene salvato del DB quando si ordina o quando si esce
 
-
-FIXME modificare tutte gli id delle combobox da xBox a xField
+TODO implentare bottoni di inserimento articoli e gestione errori aggiungi ristorante

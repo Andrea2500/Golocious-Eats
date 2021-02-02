@@ -38,7 +38,7 @@ public class GestoreDAO extends ClienteDAO{
             pstmt.setString(1,email);
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()){
-                sql = "INSERT INTO "+this.table+" VALUES(?,?)";
+                sql = "INSERT INTO "+this.table+" VALUES (?, ?)";
                 pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 pstmt.setInt(1, rs.getInt("clienteid"));
                 pstmt.setInt(2, ristoranteId);

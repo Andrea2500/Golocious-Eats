@@ -1,7 +1,7 @@
 package App.Scenes.Controller;
 
 import App.Controller.AggiungiGestoreController;
-import App.Controller.AggiungiRistoranteController;
+import App.Controller.ApriRistoranteController;
 import App.Controller.GestisciArticoliController;
 import App.Controller.InserisciArticoloController;
 import App.Objects.Articolo;
@@ -27,7 +27,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     Ristorante ristoranteAttivo;
     InserisciArticoloController inserisciArticoloController;
     GestisciArticoliController gestisciArticoliController;
-    AggiungiRistoranteController aggiungiRistoranteController;
+    ApriRistoranteController apriRistoranteController;
     AggiungiGestoreController aggiungiGestoreController;
     Gestore gestore;
     @FXML ComboBox<Ristorante> selezionaRistoranteBox;
@@ -83,12 +83,12 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    public void aggiungiRistoranteBtn() {
-        resetErroriAggiungiRistorante();
+    public void apriRistoranteBtn() {
+        resetErroriApriRistorante();
         resetBtnColor();
         resetVHBoxManagedAndVisible();
-        sceneController.setVisibile("aggiungiRistoranteHBox", true);
-        sceneController.setCliccatoBtn("aggiungiRistoranteBtn");
+        sceneController.setVisibile("apriRistoranteHBox", true);
+        sceneController.setCliccatoBtn("apriRistoranteBtn");
     }
 
     public void rendiGestoreBtn(ActionEvent e) {
@@ -164,22 +164,22 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    public void aggiungiNuovoRistoranteBtn() throws Exception {
-        resetErroriAggiungiRistorante();
+    public void apriNuovoRistoranteBtn() throws Exception {
+        resetErroriApriRistorante();
         String nome = ((TextField) getElementById("nomeristoranteField")).getText();
         String indirizzo = ((TextField) getElementById("indirizzoristoranteField")).getText();
         String telefono = ((TextField) getElementById("telefonoristoranteField")).getText();
         LocalDate dataApertura = ((DatePicker) getElementById("dataaperturaristoranteField")).getValue();
         if(nome.length() > 0 && indirizzo.length() > 0 && telefono.length() > 0 && dataApertura != null && dataApertura.isBefore(LocalDate.now())) {
-            this.aggiungiRistoranteController = new AggiungiRistoranteController();
-            String messaggio = this.aggiungiRistoranteController.aggiungiRistorante(new Ristorante(nome, indirizzo, telefono, dataApertura));
+            this.apriRistoranteController = new ApriRistoranteController();
+            String messaggio = this.apriRistoranteController.apriRistorante(new Ristorante(nome, indirizzo, telefono, dataApertura));
             if(messaggio.equals("gestore_aggiunto")) {
-                ((Label) getElementById("erroreAggiungiRistoranteLabel")).setText("Ristorante aggiunto con successo");
+                ((Label) getElementById("erroreApriRistoranteLabel")).setText("Ristorante aggiunto con successo");
             } else {
                 setErroriDB(messaggio);
             }
         } else {
-            setErroriAggiungiRistorante(nome, indirizzo, telefono, dataApertura);
+            setErroriApriRistorante(nome, indirizzo, telefono, dataApertura);
         }
     }
 
@@ -222,7 +222,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     private void resetVHBoxManagedAndVisible() {
         sceneController.setVisibile("inserisciArticoloHBox", false);
         sceneController.setVisibile("gestisciArticoliVBox", false);
-        sceneController.setVisibile("aggiungiRistoranteHBox", false);
+        sceneController.setVisibile("apriRistoranteHBox", false);
         sceneController.setVisibile("rendiGestoreVBox", false);
         sceneController.setVisibile("selezionaRistoranteVBox", false);
     }
@@ -232,8 +232,8 @@ public class GestisciRistoranteController extends BaseSceneController implements
             getElementById("inserisciArticoloBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         } else if(getElementById("gestisciArticoliVBox").isVisible()) {
             getElementById("gestisciArticoliBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
-        } else if(getElementById("aggiungiRistoranteHBox").isVisible()) {
-            getElementById("aggiungiRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
+        } else if(getElementById("apriRistoranteHBox").isVisible()) {
+            getElementById("apriRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         } else if(getElementById("rendiGestoreVBox").isVisible()) {
             getElementById("rendiGestoreBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         } else if(getElementById("selezionaRistoranteVBox").isVisible()) {
@@ -249,7 +249,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         inizializzaLabel("erroreGestisciarticoloLabel", true);
     }
 
-    private void setErroriAggiungiRistorante(String nome, String indirizzo, String telefono, LocalDate dataApertura) {
+    private void setErroriApriRistorante(String nome, String indirizzo, String telefono, LocalDate dataApertura) {
         if(nome.length()==0){
             errore("erroreNomeristoranteLabel", "Inserisci un nome", true);
         }
@@ -266,7 +266,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    private void resetErroriAggiungiRistorante() {
+    private void resetErroriApriRistorante() {
         inizializzaLabel("erroreNomeristoranteLabel", true);
         inizializzaLabel("erroreIndirizzoristoranteLabel", true);
         inizializzaLabel("erroreTelefonoristoranteLabel", true);
@@ -301,9 +301,9 @@ public class GestisciRistoranteController extends BaseSceneController implements
     private void setErroriDB(String messaggio) {
         switch (messaggio) {
             case "uq_gestore" -> errore("erroreGestoreLabel", "L'utente è già un gestore del ristorante", true);
-            case "ristorante_non_aggiunto" -> errore("erroreAggiungiRistoranteLabel", "Il ristorante non è stato aggiunto", false);
-            case "ristorante_nome_key" -> errore("erroreAggiungiRistoranteLabel", "Il nome è già esistente", false);
-            case "uq_telefono_ristorante" -> errore("erroreAggiungiRistoranteLabel", "Il telefono è già esistente", false);
+            case "ristorante_non_aggiunto" -> errore("erroreApriRistoranteLabel", "Il ristorante non è stato aggiunto", false);
+            case "ristorante_nome_key" -> errore("erroreApriRistoranteLabel", "Il nome è già esistente", false);
+            case "uq_telefono_ristorante" -> errore("erroreApriRistoranteLabel", "Il telefono è già esistente", false);
             case "uq_menu" -> errore("", "", false);//FIXME
         }
     }

@@ -1,6 +1,7 @@
 package App.DAO;
 
 import App.Config.Database;
+import App.Config.ErroriDB;
 import App.Objects.Articolo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +16,7 @@ public class ArticoloDAO {
     String table;
     Database db;
     ObservableList<Articolo> articoli;
+    ErroriDB edb;
 
     /**********Metodi**********/
 
@@ -27,21 +29,27 @@ public class ArticoloDAO {
 
     /**********Metodi di funzionalità**********/
 
-    public String setArticolo(Articolo articolo) throws SQLException {
-        String sql = "INSERT INTO "+this.table+" VALUES (?,?,?,?)";
-        this.db.setConnection();
-        PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        pstmt.setString(1, articolo.getNome());
-        pstmt.setString(2, articolo.getPrezzo());
-        pstmt.setString(3, articolo.getCategoria());
-        pstmt.setString(4, articolo.getIngredienti());
-        pstmt.executeUpdate();
-        ResultSet rs = pstmt.getGeneratedKeys();
-        this.db.closeConnection();
-        if(rs.next()){
-            return rs.getInt("articoloid");
-        }else {
-            return 0;
+    public int setArticolo(Articolo articolo) throws Exception {
+        try {
+            String sql = "INSERT INTO "+this.table+" VALUES (?,?,?,?)";
+            this.db.setConnection();
+            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, articolo.getNome());
+            pstmt.setString(2, articolo.getPrezzo());
+            pstmt.setString(3, articolo.getCategoria());
+            pstmt.setString(4, articolo.getIngredienti());
+            pstmt.executeUpdate();
+            ResultSet rs = pstmt.getGeneratedKeys();
+            this.db.closeConnection();
+            if(rs.next()) {
+                return rs.getInt("articoloid");
+            } else {
+                return 0;
+            }
+        } catch(PSQLException e) {
+            this.db.closeConnection();
+            String errore = this.edb.getErrorMessage(e.getMessage()); //TODO
+            throw new Exception(errore);
         }
     }
 

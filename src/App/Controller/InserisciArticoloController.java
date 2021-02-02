@@ -28,9 +28,13 @@ public class InserisciArticoloController {
         return ristorante.aggiungiArticoloEsistenteDB(articolo.getArticoloId());
     }
 
-    public String aggiungiManualmente(Ristorante ristorante, Articolo articolo) throws SQLException {
+    public String aggiungiManualmente(Ristorante ristorante, Articolo articolo) throws Exception {
         String messaggio = articolo.setArticoloDB();
-        return ristorante.aggiungiArticoloEsistenteDB(articolo.getArticoloId());
+        if(messaggio.equals("articolo_aggiunto")) {
+            return ristorante.aggiungiArticoloEsistenteDB(articolo.getArticoloId());
+        } else {
+            return "articolo_non_aggiunto";
+        }
     }
 
     /**********Metodi di supporto**********/
