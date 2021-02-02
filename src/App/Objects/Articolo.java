@@ -1,9 +1,6 @@
 package App.Objects;
 
 import App.DAO.ArticoloDAO;
-import javafx.collections.ObservableList;
-
-import java.sql.SQLException;
 
 public class Articolo {
 
@@ -87,9 +84,6 @@ public class Articolo {
 
     /**********Metodi di funzionalità**********/
 
-    public String switchDisponibilita(boolean toggle,int ristoranteid,int articoloid) throws SQLException {
-        return this.articoloDAO.switchDisponibilita(toggle,ristoranteid,articoloid);
-    }
 
     /**********Metodi di supporto**********/
 

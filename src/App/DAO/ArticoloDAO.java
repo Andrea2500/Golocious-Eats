@@ -30,24 +30,5 @@ public class ArticoloDAO {
 
     /**********Metodi di funzionalità**********/
 
-    public String switchDisponibilita(boolean toogle,int ristoranteid,int articoloid) throws SQLException {
-        try{
-            this.db.setConnection();
-            String sql = "UPDATE menu SET disponibile = ? WHERE ristoranteid = ? AND articoloid = ?";
-            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setBoolean(1,toogle);
-            pstmt.setInt(2,ristoranteid);
-            pstmt.setInt(3,articoloid);
-            if(pstmt.executeUpdate() > 0){
-                this.db.closeConnection();
-                return "disponibilita_aggiornata";
-            }else{
-                this.db.closeConnection();
-                return "disponibilita_fallita";
-            }
-        } catch(PSQLException e) {
-            this.db.closeConnection();
-            return "disponibilita_fallita";
-        }
-    }
+
 }

@@ -93,6 +93,10 @@ public class Ristorante {
 
     /**********Metodi di funzionalità**********/
 
+    public String switchDisponibilita(boolean toggle,int ristoranteid,int articoloid) throws SQLException {
+        return this.ristoranteDAO.switchDisponibilita(toggle,ristoranteid,articoloid);
+    }
+
     public String eliminaDaMenuDB(int articoloid) throws SQLException {
         return this.ristoranteDAO.eliminaDaMenu(this.ristoranteId, articoloid);
     }
@@ -115,6 +119,7 @@ public class Ristorante {
     public int aggiungiRistorante(Ristorante ristorante) throws SQLException {
         return this.ristoranteDAO.aggiungiRistorante(ristorante);
     }
+
 
     /**********Metodi di supporto**********/
 

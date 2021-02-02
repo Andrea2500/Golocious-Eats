@@ -22,7 +22,7 @@ public class GestisciArticoliController {
     }
 
     public String switchDisponibilita(boolean toggle, Ristorante ristorante, Articolo articolo) throws SQLException {
-        return articolo.switchDisponibilita(toggle, ristorante.getRistoranteId(), articolo.getArticoloId());
+        return ristorante.switchDisponibilita(toggle, ristorante.getRistoranteId(), articolo.getArticoloId());
     }
 
     public String eliminaDaMenu(Ristorante ristorante, Articolo articolo) throws SQLException {
