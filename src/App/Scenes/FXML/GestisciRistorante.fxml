@@ -70,7 +70,7 @@
                <ComboBox id="inserisciarticoloField" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un articolo esistente" visibleRowCount="8" />
                    <Button id="aggiungiEsistenteBtn" mnemonicParsing="false" onAction="#aggiungiEsistenteBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi esistente" />
                         <TextField id="nomeField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il nome" />
-                        <TextField id="provinciaField" layoutX="210.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il prezzo in euro (es. 7,50)" />
+                        <TextField id="prezzoField" layoutX="210.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il prezzo in euro (es. 7,50)" />
                    <ComboBox id="categoriaField" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona una categoria" visibleRowCount="8">
                     <items>
                         <FXCollections fx:factory="observableArrayList">

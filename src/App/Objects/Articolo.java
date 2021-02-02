@@ -6,11 +6,11 @@ public class Articolo {
 
     /**********Attributi**********/
 
+    int articoloid;
     String nome;
     String prezzo;
     String categoria;
     String ingredienti;
-    int articoloid;
     boolean disponibile;
     ArticoloDAO articoloDAO;
 
@@ -20,6 +20,13 @@ public class Articolo {
     /**********Costruttori**********/
 
     public Articolo() {
+    }
+
+    public Articolo(String nome, String prezzo, String categoria, String ingredienti) {
+        this.nome = nome;
+        this.prezzo = prezzo;
+        this.categoria = categoria;
+        this.ingredienti = ingredienti;
         this.articoloDAO = new ArticoloDAO();
     }
 
@@ -84,6 +91,9 @@ public class Articolo {
 
     /**********Metodi di funzionalità**********/
 
+    public String setArticoloDB() {
+        return this.articoloDAO.setArticolo(this);
+    }
 
     /**********Metodi di supporto**********/
 
@@ -107,6 +117,5 @@ public class Articolo {
         else
             return this.nome+" - "+this.categoria+" - NON DISPONIBILE";
     }
-
 
 }
