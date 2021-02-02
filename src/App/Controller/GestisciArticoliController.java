@@ -21,12 +21,12 @@ public class GestisciArticoliController {
         return new Ristorante(ristorante.getRistoranteId()).getArticoli();
     }
 
-    public String switchDisponibilita(boolean toggle, Ristorante ristorante, Articolo articolo) throws SQLException {
-        return ristorante.switchDisponibilita(toggle, ristorante.getRistoranteId(), articolo.getArticoloId());
+    public String switchDisponibilitaArticolo(boolean toggle, Ristorante ristorante, Articolo articolo) throws SQLException {
+        return ristorante.switchDisponibilitaArticoloDB(toggle, ristorante.getRistoranteId(), articolo.getArticoloId());
     }
 
-    public String eliminaDaMenu(Ristorante ristorante, Articolo articolo) throws SQLException {
-       return ristorante.eliminaDaMenuDB(articolo.getArticoloId());
+    public String eliminaArticoloDaMenu(Ristorante ristorante, Articolo articolo) throws SQLException {
+       return ristorante.eliminaArticoloDaMenuDB(articolo.getArticoloId());
     }
 
     /**********Metodi di supporto**********/

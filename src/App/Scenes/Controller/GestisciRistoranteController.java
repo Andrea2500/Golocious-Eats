@@ -127,7 +127,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         Articolo articolo = gestisciArticolo.getSelectionModel().getSelectedItem();
         if(articolo != null) {
             int index = gestisciArticolo.getSelectionModel().getSelectedIndex();
-            this.gestisciArticoliController.switchDisponibilita(true, this.ristoranteAttivo, articolo);
+            this.gestisciArticoliController.switchDisponibilitaArticolo(true, this.ristoranteAttivo, articolo);
             gestisciArticolo.setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
             gestisciArticolo.getSelectionModel().select(index);
         } else {
@@ -142,7 +142,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         Articolo articolo = gestisciArticolo.getSelectionModel().getSelectedItem();
         if(articolo != null) {
             int index = gestisciArticolo.getSelectionModel().getSelectedIndex();
-            this.gestisciArticoliController.switchDisponibilita(false, this.ristoranteAttivo, articolo);
+            this.gestisciArticoliController.switchDisponibilitaArticolo(false, this.ristoranteAttivo, articolo);
             gestisciArticolo.setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
             gestisciArticolo.getSelectionModel().select(index);
         } else {
@@ -155,7 +155,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         this.gestisciArticoliController = new GestisciArticoliController();
         Articolo articolo = ((ComboBox<Articolo>) getElementById("gestisciarticoloField")).getSelectionModel().getSelectedItem();
         if(articolo != null) {
-            String messaggio = this.gestisciArticoliController.eliminaDaMenu(this.ristoranteAttivo, articolo);
+            String messaggio = this.gestisciArticoliController.eliminaArticoloDaMenu(this.ristoranteAttivo, articolo);
             if(messaggio.equals("eliminazione_articolo_fallita")) {
                 errore("erroreGestisciarticoloLabel", "L'eliminazione non è riuscita", true);
             }

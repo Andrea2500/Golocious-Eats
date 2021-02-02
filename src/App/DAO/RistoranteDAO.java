@@ -78,7 +78,7 @@ public class RistoranteDAO {
     }
 
     public String eliminaDaMenu(Integer ristoranteId, int articoloId) throws SQLException {
-        try{
+        try {
             String sql = "DELETE FROM menu WHERE ristoranteid = ? AND articoloid = ?";
             this.db.setConnection();
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -122,7 +122,6 @@ public class RistoranteDAO {
     }
 
     public int aggiungiRistorante(Ristorante ristorante) throws SQLException{
-
         String sql = "INSERT INTO "+this.table+" VALUES (?,?,?,?)";
         this.db.setConnection();
         PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -139,4 +138,25 @@ public class RistoranteDAO {
             return 0;
         }
     }
+
+    public String aggiungiArticoloEsistente(Ristorante ristorante, int articoloId) throws SQLException{
+        try {
+            String sql = "INSERT INTO menu VALUES (?, ?)";
+            this.db.setConnection();
+            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql);
+            pstmt.setInt(1, ristorante.getRistoranteId());
+            pstmt.setInt(2, articoloId);
+            if(pstmt.executeUpdate() > 0){
+                this.db.closeConnection();
+                return "articolo_aggiunto";
+            }else{
+                this.db.closeConnection();
+                return "articolo_non_aggiunto";
+            }
+        } catch(PSQLException e) {
+            this.db.closeConnection();
+            return "closeConnection";
+        }
+    }
+
 }

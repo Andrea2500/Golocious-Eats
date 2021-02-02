@@ -21,7 +21,7 @@ CREATE TABLE Cliente (
     ClienteID SERIAL PRIMARY KEY NOT NULL,
 
     CONSTRAINT CK_email CHECK (Email ~ '^(?=.{1,64}@)[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,})$'),
-    CONSTRAINT CK_telefono_cliente CHECK (Telefono ~ '^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]{7,14}$')
+    CONSTRAINT CK_TELEFONO_CLIENTE CHECK (Telefono ~ '^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]{7,14}$')
 );
 
 
@@ -72,7 +72,7 @@ CREATE TABLE Ristorante (
     DataDiApertura DATE NOT NULL,
     RistoranteID SERIAL PRIMARY KEY NOT NULL,
 
-    CONSTRAINT CK_telefono_ristorante CHECK (Telefono ~ '^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]{7,14}$')
+    CONSTRAINT CK_TELEFONO_RISTORANTE CHECK (Telefono ~ '^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]{7,14}$')
 );
 
 
