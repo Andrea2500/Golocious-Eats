@@ -129,9 +129,19 @@ public class RistoranteDAO {
 
     public ObservableList<Articolo> getArticoli(int ristoranteId) throws SQLException {
         this.articoli = FXCollections.observableArrayList();
-        String from = "articolo NATURAL JOIN menu";
-        String where = "ristoranteid = '"+ristoranteId+"'";
-        ResultSet rs = this.db.queryBuilder(from,where);
+        String sql = "SELECT * FROM (SELECT * FROM articolo NATURAL JOIN menu WHERE ristoranteid = "+ristoranteId+") t "+
+                "ORDER BY CASE " +
+                "WHEN t.categoria ='a' THEN 1 " +
+                "WHEN t.categoria ='b' THEN 2 " +
+                "WHEN t.categoria ='p' THEN 3 " +
+                "WHEN t.categoria ='t' THEN 4 " +
+                "WHEN t.categoria ='d' THEN 5 "+
+                "WHEN categoria ='v' THEN 6 " +
+                "WHEN categoria ='w' THEN 7 " +
+                "END";
+        this.db.setConnection();
+        ResultSet rs = this.db.getConnection().createStatement().executeQuery(sql);
+        this.db.closeConnection();
         while(rs.next()) {
             this.articoli.add(new Articolo(rs.getString("nome"), rs.getFloat("prezzo"), rs.getString("categoria"),
                     rs.getString("ingredienti"), rs.getInt("articoloid"), rs.getBoolean("disponibile")));
