@@ -87,10 +87,10 @@ public class RistoranteDAO {
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1,ristoranteId);
             pstmt.setInt(2,articoloId);
-            if(pstmt.executeUpdate() > 0){
+            if(pstmt.executeUpdate() > 0) {
                 this.db.closeConnection();
                 return "articolo_eliminato";
-            }else{
+            } else {
                 this.db.closeConnection();
                 return "eliminazione_articolo_fallita";
             }
@@ -106,7 +106,7 @@ public class RistoranteDAO {
         ResultSet rs = this.db.getConnection().createStatement().executeQuery("SELECT DISTINCT articoloid, nome, prezzo, categoria, ingredienti, disponibile FROM articolo NATURAL JOIN menu EXCEPT " +
                 "(SELECT articoloid, nome, prezzo, categoria, ingredienti, disponibile FROM articolo NATURAL JOIN menu WHERE ristoranteid = '"+ristoranteId+"')");
         while(rs.next()) {
-            this.articoli.add(new Articolo(rs.getString("nome"), rs.getString("prezzo"), rs.getString("categoria"),
+            this.articoli.add(new Articolo(rs.getString("nome"), rs.getFloat("prezzo"), rs.getString("categoria"),
                     rs.getString("ingredienti"), rs.getInt("articoloid"), rs.getBoolean("disponibile")));
         }
         return this.articoli;
@@ -118,7 +118,7 @@ public class RistoranteDAO {
         String where = "ristoranteid = '"+ristoranteId+"'";
         ResultSet rs = this.db.queryBuilder(from,where);
         while(rs.next()) {
-            this.articoli.add(new Articolo(rs.getString("nome"), rs.getString("prezzo"), rs.getString("categoria"),
+            this.articoli.add(new Articolo(rs.getString("nome"), rs.getFloat("prezzo"), rs.getString("categoria"),
                     rs.getString("ingredienti"), rs.getInt("articoloid"), rs.getBoolean("disponibile")));
         }
         return this.articoli;

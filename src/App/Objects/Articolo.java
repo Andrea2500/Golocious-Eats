@@ -25,17 +25,17 @@ public class Articolo {
     public Articolo(String nome, String prezzo, String categoria, String ingredienti) {
         this.nome = nome;
         this.prezzo = prezzo;
-        this.categoria = categoria;
+        this.categoria = selezionaCategoriaDB(categoria);
         this.ingredienti = ingredienti;
         this.articoloDAO = new ArticoloDAO();
     }
 
-    public Articolo(String nome, String prezzo, String categoria, String ingredienti, int articoloId, boolean disponibile) {
+    public Articolo(String nome, Float prezzo, String categoria, String ingredienti, int articoloId, boolean disponibile) {
         this.nome = nome;
-        this.prezzo = prezzo;
+        this.prezzo = String.format("%.2f", prezzo).concat(" €");
         this.ingredienti = ingredienti;
         this.articoloId = articoloId;
-        selezionaCategoria(categoria);
+        this.categoria = selezionaCategoria(categoria);
         this.disponibile = disponibile;
     }
 
@@ -62,7 +62,7 @@ public class Articolo {
     }
 
     public void setCategoria(String categoria) {
-        selezionaCategoria(categoria);
+        this.categoria = selezionaCategoria(categoria);
     }
 
     public String getIngredienti() {
@@ -102,16 +102,61 @@ public class Articolo {
 
     /**********Metodi di supporto**********/
 
-    public void selezionaCategoria(String categoria){
+    public String selezionaCategoria(String categoria){
         switch (categoria){
-            case "a" -> this.categoria = "Antipasti";
-            case "b" -> this.categoria = "Hamburger";
-            case "p" -> this.categoria = "Pizze";
-            case "t" -> this.categoria = "Pizze in teglia";
-            case "d" -> this.categoria = "Dolci";
-            case "v" -> this.categoria = "Bevande";
-            case "w" -> this.categoria = "Vino";
-            default -> this.categoria = "Categoria inesistente";
+            case "a" -> {
+                return "Antipasti";
+            }
+            case "b" -> {
+                return "Hamburger";
+            }
+            case "p" -> {
+                return "Pizze";
+            }
+            case "t" -> {
+                return "Pizze in teglia";
+            }
+            case "d" -> {
+                return "Dolci";
+            }
+            case "v" -> {
+                return "Bevande";
+            }
+            case "w" -> {
+                return "Vino";
+            }
+            default -> {
+                return "Categoria inesistente";
+            }
+        }
+    }
+
+    public String selezionaCategoriaDB(String categoria){
+        switch (categoria){
+            case "Antipasti" -> {
+                return "a";
+            }
+            case "Hamburger" -> {
+                return "b";
+            }
+            case "Pizze" -> {
+                return "p";
+            }
+            case "Pizze in teglia" -> {
+                return "t";
+            }
+            case "Dolci" -> {
+                return "d";
+            }
+            case "Bevande" -> {
+                return "v";
+            }
+            case "Vino" -> {
+                return "w";
+            }
+            default -> {
+                return "Categoria inesistente";
+            }
         }
     }
 

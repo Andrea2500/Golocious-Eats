@@ -120,9 +120,9 @@ public class GestisciRistoranteController extends BaseSceneController implements
     public void aggiungiManualmenteBtn() throws Exception {
         resetErroriAggiungiArticolo();
         String nome = ((TextField) getElementById("nomeField")).getText();
-        Double prezzo = null;
+        Float prezzo = null;
         try{
-            prezzo = Double.valueOf(((TextField) getElementById("prezzoField")).getText());
+            prezzo = Float.valueOf(((TextField) getElementById("prezzoField")).getText());
         }catch (NumberFormatException e){
             errore("errorePrezzoLabel", "Inserisci un prezzo valido", true);
         }
@@ -263,7 +263,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    private void setErroriAggiungiArticolo(String nome, Double prezzo, String categoria, String ingredienti) {
+    private void setErroriAggiungiArticolo(String nome, Float prezzo, String categoria, String ingredienti) {
         if(nome.length() == 0){
             errore("erroreNomeLabel", "Inserisci un nome", true);
         }

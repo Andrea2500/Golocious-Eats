@@ -34,7 +34,7 @@ public class ArticoloDAO {
             this.db.setConnection();
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, articolo.getNome());
-            pstmt.setString(2, articolo.getPrezzo());
+            pstmt.setFloat(2, Float.parseFloat(articolo.getPrezzo()));
             pstmt.setString(3, articolo.getCategoria());
             pstmt.setString(4, articolo.getIngredienti());
             pstmt.executeUpdate();

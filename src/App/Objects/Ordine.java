@@ -22,11 +22,11 @@ public class Ordine {
 
     /**********Costruttori**********/
 
-    public Ordine(Integer ordineId, Integer ristoranteId, String dataOrdine, String totale, Integer riderId, boolean stato) throws SQLException {
+    public Ordine(Integer ordineId, Integer ristoranteId, String dataOrdine, Float totale, Integer riderId, boolean stato) throws SQLException {
         this.ordineId = ordineId;
         this.ristorante = new Ristorante(ristoranteId);
         this.dataOrdine = dataOrdine;
-        this.totale = totale;
+        this.totale = String.format("%.2f", totale).concat(" €");
         this.rider = new Rider(riderId);
         this.stato = (stato)?"Consegnato":"In consegna";
         this.ordineDAO = new OrdineDAO();
