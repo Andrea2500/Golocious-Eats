@@ -33,15 +33,15 @@
     </top>
     <center>
         <HBox alignment="CENTER" prefHeight="430.0" prefWidth="900.0" BorderPane.alignment="CENTER">
-            <VBox alignment="CENTER" prefHeight="430.0" prefWidth="300.0" spacing="20.0">
-                <Button id="inserisciArticoloBtn" mnemonicParsing="false" onAction="#inserisciArticoloBtn" prefHeight="30.0" prefWidth="145.0" text="Inserisci articolo" />
-                <Button id="gestisciArticoliBtn" mnemonicParsing="false" onAction="#gestisciArticoloBtn" prefHeight="30.0" prefWidth="145.0" text="Gestisci articoli" />
-                <Button id="apriRistoranteBtn" mnemonicParsing="false" onAction="#apriRistoranteBtn" prefHeight="30.0" prefWidth="145.0" text="Apri ristorante" />
-                <Button id="rendiGestoreBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" onAction="#rendiGestoreBtn" prefHeight="30.0" prefWidth="145.0" text="Rendi gestore" />
-                <Button id="selezionaRistoranteBtn" layoutX="88.0" layoutY="285.0" mnemonicParsing="false" onAction="#selezionaRistoranteBtn" prefHeight="30.0" prefWidth="145.0" text="Seleziona ristorante" />
+            <VBox alignment="CENTER_RIGHT" prefHeight="430.0" prefWidth="225.0" spacing="20.0">
+                <Button id="inserisciArticoloBtn" mnemonicParsing="false" onAction="#inserisciArticoloBtn" prefHeight="30.0" prefWidth="150.0" text="Inserisci articolo" />
+                <Button id="gestisciArticoliBtn" mnemonicParsing="false" onAction="#gestisciArticoloBtn" prefHeight="30.0" prefWidth="150.0" text="Gestisci articoli" />
+                <Button id="apriRistoranteBtn" mnemonicParsing="false" onAction="#apriRistoranteBtn" prefHeight="30.0" prefWidth="150.0" text="Apri ristorante" />
+                <Button id="rendiGestoreBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" onAction="#rendiGestoreBtn" prefHeight="30.0" prefWidth="150.0" text="Rendi gestore" />
+                <Button id="selezionaRistoranteBtn" layoutX="88.0" layoutY="285.0" mnemonicParsing="false" onAction="#selezionaRistoranteBtn" prefHeight="30.0" prefWidth="150.0" text="Seleziona ristorante" />
             </VBox>
-            <HBox id="inserisciArticoloHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
-                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="21.0">
+            <HBox id="inserisciArticoloHBox" managed="false" prefHeight="430.0" prefWidth="675.0" visible="false">
+                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="250.0" spacing="21.0">
                     <padding>
                         <Insets right="25.0" top="42.0" />
                     </padding>
@@ -101,7 +101,7 @@
                         </padding>
                     </VBox>
             </HBox>
-            <VBox id="gestisciArticoliVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
+            <VBox id="gestisciArticoliVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="675.0" spacing="10.0" visible="false">
                 <ComboBox id="gestisciarticoloField" prefHeight="30.0" prefWidth="350.0" promptText="Seleziona un articolo dal menu" visibleRowCount="8" />
                 <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0" spacing="15.0">
                     <VBox.margin>
@@ -120,8 +120,8 @@
                     <Insets top="30.0" />
                 </padding>
             </VBox>
-            <HBox id="apriRistoranteHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
-                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="21.0">
+            <HBox id="apriRistoranteHBox" managed="false" prefHeight="430.0" prefWidth="675.0" visible="false">
+                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="250.0" spacing="21.0">
                     <padding>
                         <Insets bottom="39.0" right="25.0" />
                     </padding>
@@ -162,7 +162,7 @@
                     </padding>
                 </VBox>
             </HBox>
-            <VBox id="rendiGestoreVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
+            <VBox id="rendiGestoreVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="675.0" spacing="10.0" visible="false">
                 <padding>
                     <Insets top="30.0" />
                 </padding>
@@ -174,7 +174,7 @@
                     </font>
                 </Label>
             </VBox>
-            <VBox id="selezionaRistoranteVBox" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="true" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="true">
+            <VBox id="selezionaRistoranteVBox" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="true" prefHeight="430.0" prefWidth="675.0" spacing="10.0" visible="true">
             <children>
                <ComboBox id="selezionaristoranteField" fx:id="selezionaRistoranteField" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#selezionaRistoranteField" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="8" />
                <Label id="erroreSelezionaristoranteLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" wrapText="true">

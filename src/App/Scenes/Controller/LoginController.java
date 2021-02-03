@@ -94,10 +94,10 @@ public class LoginController extends BaseSceneController {
             errore("errorePasswordLabel", "Inserisci una password", true);
         }
         if(telefono.length()==0){
-            errore("erroreTelefonoLabel", "Inserisci un numero", true);
+            errore("erroreTelefonoLabel", "Inserisci un numero di telefono", true);
         }
         if(dataNascita==null){
-            errore("erroreDatanascitaLabel", "Seleziona una data", true);
+            errore("erroreDatanascitaLabel", "Seleziona una data di nascita", true);
         } else if(eta(dataNascita)<14) {
             errore("erroreDatanascitaLabel", "Devi avere almeno 14 anni", true);
         }

@@ -243,7 +243,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    public void selezionaristoranteField(){
+    public void selezionaRistoranteField(){
         this.ristoranteAttivo = ((ComboBox<Ristorante>) getElementById("selezionaristoranteField")).getSelectionModel().getSelectedItem();
     }
 
@@ -330,7 +330,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         if(dataApertura==null) {
             errore("erroreDataaperturaristoranteLabel", "Seleziona una data di apertura", true);
         } else if(dataApertura.isAfter(LocalDate.now())) {
-            errore("erroreDataaperturaristoranteLabel", "La data deve essere passata", true);
+            errore("erroreDataaperturaristoranteLabel", "Seleziona una data deve passata", true);
         }
     }
 
