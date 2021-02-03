@@ -33,7 +33,7 @@
    </top>
    <center>
       <HBox alignment="CENTER" prefHeight="430.0" prefWidth="900.0" BorderPane.alignment="CENTER">
-         <VBox alignment="CENTER" prefHeight="430.0" prefWidth="300.0" spacing="20.0">
+         <VBox alignment="CENTER" prefHeight="430.0" prefWidth="300.0" spacing="15.0">
             <Button id="inserisciIndirizzoBtn" mnemonicParsing="false" onAction="#inserisciIndirizzoBtn" prefHeight="30.0" prefWidth="145.0" text="Inserisci indirizzo" />
             <Button id="gestisciIndirizziBtn" mnemonicParsing="false" onAction="#gestisciIndirizziBtn" prefHeight="30.0" prefWidth="145.0" text="Gestisci indirizzi" />
             <Button id="diventaRiderBtn" managed="false" mnemonicParsing="false" onAction="#diventaRiderBtn" prefHeight="30.0" prefWidth="145.0" text="Diventa rider" visible="false" />

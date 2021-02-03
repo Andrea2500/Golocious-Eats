@@ -137,3 +137,10 @@
 .date-picker-popup > .month-year-pane > * > .button:hover{
     -fx-border-color: #172156;
 }
+
+
+#menuVBox{
+    -fx-border-style: solid none none solid;
+    -fx-border-width: 2;
+    -fx-border-color: #fab338;
+}

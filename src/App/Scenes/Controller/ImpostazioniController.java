@@ -47,29 +47,6 @@ public class ImpostazioniController extends BaseSceneController {
         sceneController.setCliccatoBtn("inserisciIndirizzoBtn");
     }
 
-    public void gestisciIndirizziBtn() throws SQLException {
-        this.cliente.setIndirizzi(this.cliente.getIndirizziDB());
-        resetBtnColor();
-        resetVHBoxManagedAndVisible();
-        this.selezionaIndirizzoController = new SelezionaIndirizzoController();
-        cliente.setIndirizzi(cliente.getIndirizziDB());
-        setListaIndirizzi();
-        resetErroriGestisciIndirizzi();
-        sceneController.setVisibile("gestisciIndirizziVBox", true);
-        sceneController.setCliccatoBtn("gestisciIndirizziBtn");
-    }
-
-    public void diventaRiderBtn() {
-        resetBtnColor();
-        resetVHBoxManagedAndVisible();
-        resetErroriRider();
-        //resetCampiRider();
-        sceneController.setVisibile("diventaRiderHBox", true);
-        sceneController.setCliccatoBtn("diventaRiderBtn");
-    }
-
-
-
     public void aggiungiBtn() throws SQLException {
         resetErroriIndirizzo();
         String paese = getValue("paeseField", "textfield");
@@ -90,6 +67,19 @@ public class ImpostazioniController extends BaseSceneController {
         } else {
             setErroriIndirizzo(paese, provincia, cap, citta, indirizzo);
         }
+    }
+
+
+    public void gestisciIndirizziBtn() throws SQLException {
+        this.cliente.setIndirizzi(this.cliente.getIndirizziDB());
+        resetBtnColor();
+        resetVHBoxManagedAndVisible();
+        this.selezionaIndirizzoController = new SelezionaIndirizzoController();
+        cliente.setIndirizzi(cliente.getIndirizziDB());
+        setListaIndirizzi();
+        resetErroriGestisciIndirizzi();
+        sceneController.setVisibile("gestisciIndirizziVBox", true);
+        sceneController.setCliccatoBtn("gestisciIndirizziBtn");
     }
 
     public void rendiAttivoBtn() throws SQLException {
@@ -123,6 +113,16 @@ public class ImpostazioniController extends BaseSceneController {
         } else {
             setErroriGestisciIndirizzi();
         }
+    }
+
+
+    public void diventaRiderBtn() {
+        resetBtnColor();
+        resetVHBoxManagedAndVisible();
+        resetErroriRider();
+        //resetCampiRider();
+        sceneController.setVisibile("diventaRiderHBox", true);
+        sceneController.setCliccatoBtn("diventaRiderBtn");
     }
 
     public void iniziaAConsegnareBtn() throws SQLException, IOException {

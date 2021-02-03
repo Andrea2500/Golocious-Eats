@@ -32,13 +32,13 @@
         </HBox>
     </top>
     <center>
-        <HBox alignment="CENTER" prefHeight="430.0" prefWidth="900.0" BorderPane.alignment="CENTER">
-            <VBox alignment="CENTER_RIGHT" prefHeight="430.0" prefWidth="225.0" spacing="20.0">
+        <HBox id="center" alignment="CENTER" prefHeight="430.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER_RIGHT" prefHeight="430.0" prefWidth="225.0" spacing="15.0">
                 <Button id="inserisciArticoloBtn" mnemonicParsing="false" onAction="#inserisciArticoloBtn" prefHeight="30.0" prefWidth="150.0" text="Inserisci articolo" />
                 <Button id="gestisciArticoliBtn" mnemonicParsing="false" onAction="#gestisciArticoloBtn" prefHeight="30.0" prefWidth="150.0" text="Gestisci articoli" />
                 <Button id="apriRistoranteBtn" mnemonicParsing="false" onAction="#apriRistoranteBtn" prefHeight="30.0" prefWidth="150.0" text="Apri ristorante" />
                 <Button id="rendiGestoreBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" onAction="#rendiGestoreBtn" prefHeight="30.0" prefWidth="150.0" text="Rendi gestore" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Statistiche" />
+                <Button id="statisticheBtn" mnemonicParsing="false" onAction="#statisticheBtn" prefHeight="30.0" prefWidth="150.0" text="Statistiche" />
                 <Button id="selezionaRistoranteBtn" layoutX="88.0" layoutY="285.0" mnemonicParsing="false" onAction="#selezionaRistoranteBtn" prefHeight="30.0" prefWidth="150.0" text="Seleziona ristorante" />
             </VBox>
             <HBox id="inserisciArticoloHBox" managed="false" prefHeight="430.0" prefWidth="675.0" visible="false">
@@ -152,7 +152,7 @@
                <TextField id="indirizzoristoranteField" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'indirizzo" />
                <TextField id="telefonoristoranteField" layoutX="10.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci numero di telefono" />
                <DatePicker id="dataaperturaristoranteField" editable="false" prefHeight="28.0" prefWidth="250.0" promptText="Seleziona la data di apertura" showWeekNumbers="false" />
-                    <Button id="apriNuovoRistoranteBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#apriNuovoRistoranteBtn" prefHeight="30.0" prefWidth="250.0" text="Apri ora" />
+                    <Button id="apriOraBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#apriOraBtn" prefHeight="30.0" prefWidth="250.0" text="Apri ora" />
                     <Label id="erroreApriRistoranteLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                         <font>
                             <Font size="14.0" />
@@ -175,8 +175,26 @@
                     </font>
                 </Label>
             </VBox>
-            <HBox id="statisticheHBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="675.0" visible="true" />
-            <VBox id="selezionaRistoranteVBox" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="false" prefHeight="430.0" prefWidth="675.0" spacing="10.0" visible="false">
+            <HBox id="statisticheHBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="675.0" visible="false">
+                <VBox prefHeight="430.0" prefWidth="675.0">
+                    <HBox alignment="CENTER_RIGHT" prefHeight="30.0">
+                        <children>
+                            <Button id="menuBtn" mnemonicParsing="false" onAction="#menuBtn" prefHeight="30.0" prefWidth="100.0" text="Apri menu" />
+                        </children>
+                        <padding>
+                            <Insets right="10.0" />
+                        </padding>
+                    </HBox>
+                </VBox>
+                <VBox id="menuVBox" alignment="CENTER" layoutX="298.0" layoutY="10.0" managed="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="225.0" visible="false">
+                    <Label text="Menu">
+                        <font>
+                            <Font size="18.0" />
+                        </font>
+                    </Label>
+                </VBox>
+            </HBox>
+            <VBox id="selezionaRistoranteVBox" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="true" prefHeight="430.0" prefWidth="675.0" spacing="10.0" visible="true">
                 <padding>
                     <Insets top="50.0" />
                 </padding>

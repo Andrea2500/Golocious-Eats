@@ -11,10 +11,9 @@ import App.Objects.Ristorante;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -50,7 +49,6 @@ public class GestisciRistoranteController extends BaseSceneController implements
     public void inserisciArticoloBtn(ActionEvent e) {
         if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
             resetErroriAggiungiManualmente();
-            ((ComboBox) getElementById("categoriaField")).getItems().clear();
             ((ComboBox) getElementById("inserisciarticoloField")).getItems().clear();
             try {
                 setInserisciArticoliBox();
@@ -66,55 +64,6 @@ public class GestisciRistoranteController extends BaseSceneController implements
             setErroriSelezionaRistorante();
         }
     }
-
-    public void gestisciArticoloBtn(ActionEvent e) {
-        if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
-            resetErroriGestisciArticoli();
-            try {
-                setGestisciArticoliBox();
-            } catch (SQLException exception) {
-                exception.printStackTrace();
-            }
-            resetBtnColor();
-            resetVHBoxManagedAndVisible();
-            sceneController.setVisibile("gestisciArticoliVBox", true);
-            sceneController.setCliccatoBtn("gestisciArticoliBtn");
-        } else {
-            e.consume();
-            setErroriSelezionaRistorante();
-        }
-    }
-
-    public void apriRistoranteBtn() {
-        resetErroriApriRistorante();
-        resetBtnColor();
-        resetVHBoxManagedAndVisible();
-        sceneController.setVisibile("apriRistoranteHBox", true);
-        sceneController.setCliccatoBtn("apriRistoranteBtn");
-    }
-
-    public void rendiGestoreBtn(ActionEvent e) {
-        if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
-            resetErroriRendiGestore();
-            resetBtnColor();
-            resetVHBoxManagedAndVisible();
-            sceneController.setVisibile("rendiGestoreVBox", true);
-            sceneController.setCliccatoBtn("rendiGestoreBtn");
-        } else {
-            e.consume();
-            setErroriSelezionaRistorante();
-        }
-    }
-
-    public void selezionaRistoranteBtn() {
-        resetErroriSelezionaRistorante();
-        resetBtnColor();
-        resetVHBoxManagedAndVisible();
-        sceneController.setVisibile("selezionaRistoranteVBox", true);
-        sceneController.setCliccatoBtn("selezionaRistoranteBtn");
-    }
-
-
 
     public void aggiungiEsistenteBtn() throws SQLException {
         ((Label) getElementById("correttoLabel")).setText("");
@@ -156,6 +105,25 @@ public class GestisciRistoranteController extends BaseSceneController implements
             }
         } else {
             setErroriAggiungiManualmente(nome, prezzo, categoria);
+        }
+    }
+
+
+    public void gestisciArticoloBtn(ActionEvent e) {
+        if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
+            resetErroriGestisciArticoli();
+            try {
+                setGestisciArticoliBox();
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+            resetBtnColor();
+            resetVHBoxManagedAndVisible();
+            sceneController.setVisibile("gestisciArticoliVBox", true);
+            sceneController.setCliccatoBtn("gestisciArticoliBtn");
+        } else {
+            e.consume();
+            setErroriSelezionaRistorante();
         }
     }
 
@@ -205,7 +173,16 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    public void apriNuovoRistoranteBtn() throws Exception {
+
+    public void apriRistoranteBtn() {
+        resetErroriApriRistorante();
+        resetBtnColor();
+        resetVHBoxManagedAndVisible();
+        sceneController.setVisibile("apriRistoranteHBox", true);
+        sceneController.setCliccatoBtn("apriRistoranteBtn");
+    }
+
+    public void apriOraBtn() throws Exception {
         resetErroriApriRistorante();
         String nome = ((TextField) getElementById("nomeristoranteField")).getText();
         String indirizzo = ((TextField) getElementById("indirizzoristoranteField")).getText();
@@ -225,6 +202,20 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
+
+    public void rendiGestoreBtn(ActionEvent e) {
+        if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
+            resetErroriRendiGestore();
+            resetBtnColor();
+            resetVHBoxManagedAndVisible();
+            sceneController.setVisibile("rendiGestoreVBox", true);
+            sceneController.setCliccatoBtn("rendiGestoreBtn");
+        } else {
+            e.consume();
+            setErroriSelezionaRistorante();
+        }
+    }
+
     public void aggiungiGestoreBtn() throws SQLException {
         resetErroriRendiGestore();
         this.aggiungiGestoreController = new AggiungiGestoreController();
@@ -241,6 +232,39 @@ public class GestisciRistoranteController extends BaseSceneController implements
         } else {
             setErroriRendiGestore("email_vuota");
         }
+    }
+
+
+    public void statisticheBtn(ActionEvent e) {
+        if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
+            resetBtnColor();
+            resetVHBoxManagedAndVisible();
+            sceneController.setVisibile("statisticheHBox", true);
+            sceneController.setCliccatoBtn("statisticheBtn");
+        } else {
+            e.consume();
+            setErroriSelezionaRistorante();
+        }
+    }
+
+    public void menuBtn() {
+        if(getElementById("menuVBox").isVisible()) {
+            ((Button) getElementById("menuBtn")).setText("Apri menu");
+            sceneController.setVisibile("menuVBox", false);
+        } else {
+            ((Button) getElementById("menuBtn")).setText("Chiudi menu");
+            sceneController.setVisibile("menuVBox", true);
+        }
+    }
+
+
+    public void selezionaRistoranteBtn() {
+        resetErroriSelezionaRistorante();
+        selezionaRistoranteField.setItems(this.gestore.getRistoranti());
+        resetBtnColor();
+        resetVHBoxManagedAndVisible();
+        sceneController.setVisibile("selezionaRistoranteVBox", true);
+        sceneController.setCliccatoBtn("selezionaRistoranteBtn");
     }
 
     public void selezionaRistoranteField(){
@@ -266,6 +290,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         sceneController.setVisibile("gestisciArticoliVBox", false);
         sceneController.setVisibile("apriRistoranteHBox", false);
         sceneController.setVisibile("rendiGestoreVBox", false);
+        sceneController.setVisibile("statisticheHBox", false);
         sceneController.setVisibile("selezionaRistoranteVBox", false);
     }
 
@@ -278,6 +303,8 @@ public class GestisciRistoranteController extends BaseSceneController implements
             getElementById("apriRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         } else if(getElementById("rendiGestoreVBox").isVisible()) {
             getElementById("rendiGestoreBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
+        } else if(getElementById("statisticheHBox").isVisible()) {
+            getElementById("statisticheBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         } else if(getElementById("selezionaRistoranteVBox").isVisible()) {
             getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         }
@@ -330,7 +357,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         if(dataApertura==null) {
             errore("erroreDataaperturaristoranteLabel", "Seleziona una data di apertura", true);
         } else if(dataApertura.isAfter(LocalDate.now())) {
-            errore("erroreDataaperturaristoranteLabel", "Seleziona una data deve passata", true);
+            errore("erroreDataaperturaristoranteLabel", "Seleziona una data passata", true);
         }
     }
 
@@ -381,6 +408,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
             case "ristorante_nome_key" -> errore("erroreApriRistoranteLabel", "Il nome è già esistente", false);
             case "ck_telefono_ristorante" -> errore("erroreTelefonoristoranteLabel", "Inserisci un telefono valido", false);
             case "troppo_lungo" -> errore("erroreApriRistoranteLabel", "Uno dei campi inseriti è troppo lungo", false);
+            case "uq_nome" -> errore("erroreNomeLabel", "Il nome è già esistente", false);
             case "uq_menu" -> errore("", "", false);//FIXME
         }
     }
