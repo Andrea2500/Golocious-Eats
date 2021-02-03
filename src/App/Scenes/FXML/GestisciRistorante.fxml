@@ -38,6 +38,7 @@
                 <Button id="gestisciArticoliBtn" mnemonicParsing="false" onAction="#gestisciArticoloBtn" prefHeight="30.0" prefWidth="150.0" text="Gestisci articoli" />
                 <Button id="apriRistoranteBtn" mnemonicParsing="false" onAction="#apriRistoranteBtn" prefHeight="30.0" prefWidth="150.0" text="Apri ristorante" />
                 <Button id="rendiGestoreBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" onAction="#rendiGestoreBtn" prefHeight="30.0" prefWidth="150.0" text="Rendi gestore" />
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Statistiche" />
                 <Button id="selezionaRistoranteBtn" layoutX="88.0" layoutY="285.0" mnemonicParsing="false" onAction="#selezionaRistoranteBtn" prefHeight="30.0" prefWidth="150.0" text="Seleziona ristorante" />
             </VBox>
             <HBox id="inserisciArticoloHBox" managed="false" prefHeight="430.0" prefWidth="675.0" visible="false">
@@ -174,18 +175,17 @@
                     </font>
                 </Label>
             </VBox>
-            <VBox id="selezionaRistoranteVBox" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="true" prefHeight="430.0" prefWidth="675.0" spacing="10.0" visible="true">
-            <children>
-               <ComboBox id="selezionaristoranteField" fx:id="selezionaRistoranteField" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#selezionaRistoranteField" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="8" />
-               <Label id="erroreSelezionaristoranteLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" wrapText="true">
-                  <font>
-                     <Font size="14.0" />
-                  </font>
-               </Label>
-            </children>
-            <padding>
-               <Insets top="50.0" />
-            </padding>
+            <HBox id="statisticheHBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="675.0" visible="true" />
+            <VBox id="selezionaRistoranteVBox" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="false" prefHeight="430.0" prefWidth="675.0" spacing="10.0" visible="false">
+                <padding>
+                    <Insets top="50.0" />
+                </padding>
+                <ComboBox id="selezionaristoranteField" fx:id="selezionaRistoranteField" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#selezionaRistoranteField" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="8" />
+                <Label id="erroreSelezionaristoranteLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" wrapText="true">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
             </VBox>
         </HBox>
     </center>
