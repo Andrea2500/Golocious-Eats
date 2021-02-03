@@ -101,13 +101,28 @@ public class RistoranteDAO {
     }
 
     public ObservableList<Articolo> getArticoliAltriRistorantiDB(int ristoranteId) throws SQLException {
+        String sql = "SELECT * FROM (" +
+                "SELECT DISTINCT articolo.articoloid , nome, prezzo, categoria, ingredienti " +
+                "FROM articolo left outer join menu on articolo.articoloid = menu.articoloid " +
+                "EXCEPT (SELECT articolo.articoloid, nome, prezzo, categoria, ingredienti " +
+                "FROM articolo left outer join menu on articolo.articoloid = menu.articoloid " +
+                "WHERE ristoranteid = "+ristoranteId+")" +
+                ") t "+
+                "ORDER BY CASE " +
+                "WHEN t.categoria ='a' THEN 1 " +
+                "WHEN t.categoria ='b' THEN 2 " +
+                "WHEN t.categoria ='p' THEN 3 " +
+                "WHEN t.categoria ='t' THEN 4 " +
+                "WHEN t.categoria ='d' THEN 5 "+
+                "WHEN categoria ='v' THEN 6 " +
+                "WHEN categoria ='w' THEN 7 " +
+                "END";
         this.articoli = FXCollections.observableArrayList();
         this.db.setConnection();
-        ResultSet rs = this.db.getConnection().createStatement().executeQuery("SELECT DISTINCT articoloid, nome, prezzo, categoria, ingredienti, disponibile FROM articolo NATURAL JOIN menu EXCEPT " +
-                "(SELECT articoloid, nome, prezzo, categoria, ingredienti, disponibile FROM articolo NATURAL JOIN menu WHERE ristoranteid = '"+ristoranteId+"')");
+        ResultSet rs = this.db.getConnection().createStatement().executeQuery(sql);
         while(rs.next()) {
             this.articoli.add(new Articolo(rs.getString("nome"), rs.getFloat("prezzo"), rs.getString("categoria"),
-                    rs.getString("ingredienti"), rs.getInt("articoloid"), rs.getBoolean("disponibile")));
+                    rs.getString("ingredienti"), rs.getInt("articoloid"),true));
         }
         return this.articoli;
     }
