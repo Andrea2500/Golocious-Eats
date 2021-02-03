@@ -243,7 +243,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    public void selezionaRistoranteBox(){
+    public void selezionaristoranteField(){
         this.ristoranteAttivo = ((ComboBox<Ristorante>) getElementById("selezionaristoranteField")).getSelectionModel().getSelectedItem();
     }
 
@@ -371,7 +371,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     private void resetErroriSelezionaRistorante() {
         inizializzaLabel("erroreSelezionaristoranteLabel", false);
-        getElementById("selezionaRistoranteBox").setStyle("-fx-border-color: transparent");
+        getElementById("selezionaristoranteField").setStyle("-fx-border-color: transparent");
     }
 
     private void setErroriDB(String messaggio) {
