@@ -30,7 +30,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     ApriRistoranteController apriRistoranteController;
     AggiungiGestoreController aggiungiGestoreController;
     Gestore gestore;
-    @FXML ComboBox<Ristorante> selezionaRistoranteBox;
+    @FXML ComboBox<Ristorante> selezionaRistoranteField;
 
     /**********Metodi**********/
 
@@ -42,13 +42,15 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        selezionaRistoranteBox.setItems(this.gestore.getRistoranti());
+        selezionaRistoranteField.setItems(this.gestore.getRistoranti());
     }
 
     /**********Metodi di bottoni**********/
 
     public void inserisciArticoloBtn(ActionEvent e) {
-        if (selezionaRistoranteBox.getSelectionModel().getSelectedItem() != null) {
+        if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
+            resetErroriAggiungiManualmente();
+            ((ComboBox) getElementById("categoriaField")).getItems().clear();
             ((ComboBox) getElementById("inserisciarticoloField")).getItems().clear();
             try {
                 setInserisciArticoliBox();
@@ -66,7 +68,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     }
 
     public void gestisciArticoloBtn(ActionEvent e) {
-        if (selezionaRistoranteBox.getSelectionModel().getSelectedItem() != null) {
+        if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
             resetErroriGestisciArticoli();
             try {
                 setGestisciArticoliBox();
@@ -92,7 +94,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     }
 
     public void rendiGestoreBtn(ActionEvent e) {
-        if (selezionaRistoranteBox.getSelectionModel().getSelectedItem() != null) {
+        if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
             resetErroriRendiGestore();
             resetBtnColor();
             resetVHBoxManagedAndVisible();
@@ -241,7 +243,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    public void selezionaRistoranteBox(){
+    public void selezionaRistoranteField(){
         this.ristoranteAttivo = ((ComboBox<Ristorante>) getElementById("selezionaristoranteField")).getSelectionModel().getSelectedItem();
     }
 
@@ -323,12 +325,12 @@ public class GestisciRistoranteController extends BaseSceneController implements
             errore("erroreIndirizzoristoranteLabel", "Inserisci un indirizzo", true);
         }
         if(telefono.length()==0){
-            errore("erroreTelefonoristoranteLabel", "Inserisci un numero di telefono", true);
+            errore("erroreTelefonoristoranteLabel", "Inserisci un numero", true);
         }
         if(dataApertura==null) {
-            errore("erroreDataaperturaristoranteLabel", "Seleziona una data di apertura", true);
+            errore("erroreDataaperturaristoranteLabel", "Seleziona una data", true);
         } else if(dataApertura.isAfter(LocalDate.now())) {
-            errore("erroreDataaperturaristoranteLabel", "La data deve essere passata", true);
+            errore("erroreDataaperturaristoranteLabel", "Seleziona una data passata", true);
         }
     }
 
@@ -369,7 +371,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     private void resetErroriSelezionaRistorante() {
         inizializzaLabel("erroreSelezionaristoranteLabel", false);
-        getElementById("selezionaRistoranteBox").setStyle("-fx-border-color: transparent");
+        getElementById("selezionaristoranteField").setStyle("-fx-border-color: transparent");
     }
 
     private void setErroriDB(String messaggio) {
@@ -379,7 +381,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
             case "ristorante_nome_key" -> errore("erroreApriRistoranteLabel", "Il nome è già esistente", false);
             case "ck_telefono_ristorante" -> errore("erroreTelefonoristoranteLabel", "Inserisci un telefono valido", false);
             case "troppo_lungo" -> errore("erroreApriRistoranteLabel", "Uno dei campi inseriti è troppo lungo", false);
-            case "uq_menu" -> errore("", "", false);//FIXME
+            case "uq_nome" -> errore("erroreNomeLabel", "Il nome è già esistente", true);
         }
     }
 

@@ -111,7 +111,7 @@ CREATE TABLE Articolo (
     ArticoloID SERIAL PRIMARY KEY NOT NULL,
 
     CONSTRAINT CK_CATEGORIA CHECK (Categoria IN ('a', 'b', 'p', 't', 'd', 'v', 'w')),
-    CONSTRAINT UQ_CATEGORIA UNIQUE (Nome, Categoria)
+    CONSTRAINT UQ_NOME UNIQUE (Nome, Categoria)
 );
 
 

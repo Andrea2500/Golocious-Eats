@@ -49,6 +49,9 @@ public class ErroriDB {
         if(isErroreKey(errore, "ck_telefono_ristorante")) {
             return "ck_telefono_ristorante";
         }
+        if(isErroreKey(errore, "uq_nome")) {
+            return "uq_nome";
+        }
         else return "errore_sconosciuto";
     }
 

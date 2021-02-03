@@ -24,6 +24,7 @@ public class ArticoloDAO {
     public ArticoloDAO() {
         this.table = "Articolo";
         this.db = new Database();
+        this.edb = new ErroriDB();
     }
 
     /**********Metodi di funzionalità**********/
@@ -47,8 +48,7 @@ public class ArticoloDAO {
             }
         } catch(PSQLException e) {
             this.db.closeConnection();
-            String errore = this.edb.getMessaggioErrore(e.getMessage()); //TODO
-            throw new Exception(errore);
+            throw new Exception(this.edb.getMessaggioErrore(e.getMessage()));
         }
     }
 

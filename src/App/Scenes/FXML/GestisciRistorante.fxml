@@ -126,14 +126,14 @@
                         <Insets bottom="39.0" right="25.0" />
                     </padding>
                     <Label id="erroreNomeristoranteLabel" layoutX="128.0" layoutY="252.0" textAlignment="CENTER" wrapText="true">
-                        <font>
-                            <Font size="14.0" />
-                        </font>
+                  <font>
+                     <Font size="14.0" />
+                  </font>
                     </Label>
                     <Label id="erroreIndirizzoristoranteLabel" layoutX="128.0" layoutY="272.0" textAlignment="CENTER" wrapText="true">
-                        <font>
-                            <Font size="14.0" />
-                        </font>
+                  <font>
+                     <Font size="14.0" />
+                  </font>
                     </Label>
                <Label id="erroreTelefonoristoranteLabel" layoutX="160.0" layoutY="176.0" textAlignment="CENTER" wrapText="true">
                   <font>
@@ -176,7 +176,7 @@
             </VBox>
             <VBox id="selezionaRistoranteVBox" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="true" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="true">
             <children>
-               <ComboBox id="selezionaristoranteField" fx:id="selezionaRistoranteBox" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#selezionaRistoranteBox" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="8" />
+               <ComboBox id="selezionaristoranteField" fx:id="selezionaRistoranteField" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#selezionaRistoranteField" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="8" />
                <Label id="erroreSelezionaristoranteLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" wrapText="true">
                   <font>
                      <Font size="14.0" />
