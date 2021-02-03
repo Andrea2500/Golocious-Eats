@@ -49,7 +49,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     public void inserisciArticoloBtn(ActionEvent e) {
         if (selezionaRistoranteBox.getSelectionModel().getSelectedItem() != null) {
-            ((ComboBox) getElementById("inserisciArticoloBox")).getItems().clear();
+            ((ComboBox) getElementById("inserisciarticoloField")).getItems().clear();
             try {
                 setInserisciArticoliBox();
             } catch (SQLException exception) {
@@ -117,7 +117,28 @@ public class GestisciRistoranteController extends BaseSceneController implements
     public void aggiungiEsistenteBtn() {
     }
 
-    public void aggiungiManualmenteBtn() {
+    public void aggiungiManualmenteBtn() throws Exception {
+        resetErroriAggiungiArticolo();
+        String nome = ((TextField) getElementById("nomeField")).getText();
+        Double prezzo = null;
+        try{
+            prezzo = Double.valueOf(((TextField) getElementById("prezzoField")).getText());
+        }catch (NumberFormatException e){
+            errore("errorePrezzoLabel", "Inserisci un prezzo valido", true);
+        }
+        String categoria = ((ComboBox<String>) getElementById("categoriaField")).getSelectionModel().getSelectedItem();
+        String ingredienti = ((TextField) getElementById("ingredientiField")).getText();
+        if(nome.length() > 0 && prezzo != null && categoria != null && ingredienti.length()>0) {
+            this.inserisciArticoloController = new InserisciArticoloController();
+            String messaggio = this.inserisciArticoloController.aggiungiManualmente(this.ristoranteAttivo,new Articolo(nome, prezzo.toString(), categoria, ingredienti));
+            if(messaggio.equals("articolo_aggiunto")) {
+                ((Label) getElementById("correttoLabel")).setText("Articolo aggiunto con successo");
+            } else {
+                setErroriDB(messaggio);
+            }
+        } else {
+            setErroriAggiungiArticolo(nome, prezzo, categoria, ingredienti);
+        }
     }
 
     public void abilitaBtn() throws SQLException {
@@ -239,6 +260,28 @@ public class GestisciRistoranteController extends BaseSceneController implements
         } else if(getElementById("selezionaRistoranteVBox").isVisible()) {
             getElementById("selezionaRistoranteBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         }
+    }
+
+    private void setErroriAggiungiArticolo(String nome, Double prezzo, String categoria, String ingredienti) {
+        if(nome.length() == 0){
+            errore("erroreNomeLabel", "Inserisci un nome", true);
+        }
+        if(prezzo == null){
+            errore("errorePrezzoLabel", "Inserisci un prezzo", true);
+        }
+        if(ingredienti.length() == 0){
+            errore("erroreIngredientiLabel", "Inserisci gli ingredienti", true);
+        }
+        if(categoria == null) {
+            errore("erroreCategoriaLabel", "Seleziona una categoria", true);
+        }
+    }
+
+    private void resetErroriAggiungiArticolo() {
+        inizializzaLabel("erroreNomeLabel", true);
+        inizializzaLabel("errorePrezzoLabel", true);
+        inizializzaLabel("erroreIngredientiLabel", true);
+        inizializzaLabel("erroreCategoriaLabel", true);
     }
 
     private void setErroriGestisciArticoli() {
