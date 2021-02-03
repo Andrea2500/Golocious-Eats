@@ -34,23 +34,28 @@ public class Gestore extends Cliente{
     /**********Metodi di funzionalità**********/
 
     public String apriRistorante(Ristorante ristorante) throws Exception {
-        int idRistoranteAggiunto = creaRistorante(ristorante);
+        int idRistoranteAggiunto;
+        try {
+            idRistoranteAggiunto = creaRistorante(ristorante);
+        } catch (Exception e) {
+            return e.getMessage();
+        }
         if(idRistoranteAggiunto != 0) {
             String messaggio = rendiGestore(Cliente.getInstance().getEmail(), idRistoranteAggiunto);
             if(messaggio.equals("gestore_aggiunto")) {
                 return "ristorante_aperto";
             } else {
-                return "ristorante_aggiunto_gestore_no";
+                return "ristorante_aperto_gestore_no";
             }
         } else {
-            return "ristorante_non_aggiunto";
+            return "ristorante_non_aperto";
         }
     }
 
     public int creaRistorante(Ristorante ristorante) throws Exception {
         try{
             return ristorante.setRistoranteDB();
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }

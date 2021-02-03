@@ -126,12 +126,12 @@ public class RistoranteDAO {
 
     public int setRistorante(Ristorante ristorante) throws Exception {
         try {
-            String sql = "INSERT INTO "+this.table+" VALUES (?,?,?,?)";
+            String sql = "INSERT INTO "+this.table+" VALUES (?, ?, ?, ?)";
             this.db.setConnection();
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1,ristorante.getNome());
-            pstmt.setString(2,ristorante.getIndirizzo());
-            pstmt.setString(3,ristorante.getTelefono());
+            pstmt.setString(1, ristorante.getNome());
+            pstmt.setString(2, ristorante.getIndirizzo());
+            pstmt.setString(3, ristorante.getTelefono());
             pstmt.setDate(4, Date.valueOf(ristorante.getDataDiApertura()));
             pstmt.executeUpdate();
             ResultSet rs = pstmt.getGeneratedKeys();
@@ -143,9 +143,7 @@ public class RistoranteDAO {
             }
         } catch (PSQLException e) {
             this.db.closeConnection();
-            System.out.println(e.getMessage());
-            String errore = this.edb.getErrorMessage(e.getMessage());
-            throw new Exception(errore);
+            throw new Exception(this.edb.getMessaggioErrore(e.getMessage()));
         }
     }
 
@@ -156,10 +154,10 @@ public class RistoranteDAO {
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql);
             pstmt.setInt(1, ristoranteId);
             pstmt.setInt(2, articoloId);
-            if(pstmt.executeUpdate() > 0){
+            if(pstmt.executeUpdate() > 0) {
                 this.db.closeConnection();
                 return "articolo_aggiunto";
-            }else{
+            } else {
                 this.db.closeConnection();
                 return "articolo_non_aggiunto";
             }

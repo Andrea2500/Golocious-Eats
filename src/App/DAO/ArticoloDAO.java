@@ -3,7 +3,6 @@ package App.DAO;
 import App.Config.Database;
 import App.Config.ErroriDB;
 import App.Objects.Articolo;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
 
@@ -48,7 +47,7 @@ public class ArticoloDAO {
             }
         } catch(PSQLException e) {
             this.db.closeConnection();
-            String errore = this.edb.getErrorMessage(e.getMessage()); //TODO
+            String errore = this.edb.getMessaggioErrore(e.getMessage()); //TODO
             throw new Exception(errore);
         }
     }
