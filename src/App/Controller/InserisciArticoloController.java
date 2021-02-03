@@ -33,7 +33,7 @@ public class InserisciArticoloController {
         if(messaggio.equals("articolo_aggiunto")) {
             return ristorante.aggiungiArticoloEsistenteDB(articolo.getArticoloId());
         } else {
-            return "articolo_non_aggiunto";
+            return messaggio;
         }
     }
 

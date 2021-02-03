@@ -128,12 +128,12 @@ public class GestisciRistoranteController extends BaseSceneController implements
                 setErroriDB(messaggio);
             }
         }else{
-            ((Label) getElementById("correttoLabel")).setText("Seleziona un articolo");
+            errore("correttoLabel", "Seleziona un articolo", false);
         }
     }
 
     public void aggiungiManualmenteBtn() throws Exception {
-        resetErroriAggiungiArticolo();
+        resetErroriAggiungiManualmente();
         String nome = ((TextField) getElementById("nomeField")).getText();
         Float prezzo = null;
         try{
@@ -148,11 +148,12 @@ public class GestisciRistoranteController extends BaseSceneController implements
             String messaggio = this.inserisciArticoloController.aggiungiManualmente(this.ristoranteAttivo,new Articolo(nome, prezzo.toString(), categoria, ingredienti));
             if(messaggio.equals("articolo_aggiunto")) {
                 ((Label) getElementById("correttoLabel")).setText("Articolo aggiunto con successo");
+                resetCampiAggiungiManualmente();
             } else {
                 setErroriDB(messaggio);
             }
         } else {
-            setErroriAggiungiArticolo(nome, prezzo, categoria);
+            setErroriAggiungiManualmente(nome, prezzo, categoria);
         }
     }
 
@@ -280,7 +281,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    private void setErroriAggiungiArticolo(String nome, Float prezzo, String categoria) {
+    private void setErroriAggiungiManualmente(String nome, Float prezzo, String categoria) {
         if(nome.length() == 0){
             errore("erroreNomeLabel", "Inserisci un nome", true);
         }
@@ -292,11 +293,18 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    private void resetErroriAggiungiArticolo() {
+    private void resetErroriAggiungiManualmente() {
         inizializzaLabel("erroreNomeLabel", true);
         inizializzaLabel("errorePrezzoLabel", true);
-        inizializzaLabel("erroreIngredientiLabel", true);
         inizializzaLabel("erroreCategoriaLabel", true);
+        inizializzaLabel("erroreIngredientiLabel", true);
+    }
+
+    private void resetCampiAggiungiManualmente() {
+        ((TextField) getElementById("nomeField")).setText("");
+        ((TextField) getElementById("prezzoField")).setText("");
+        ((ComboBox) getElementById("categoriaField")).getSelectionModel().clearSelection();
+        ((TextField) getElementById("ingredientiField")).setText("");
     }
 
     private void setErroriGestisciArticoli() {
