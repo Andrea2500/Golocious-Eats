@@ -125,7 +125,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
                 ((ComboBox) getElementById("inserisciarticoloField")).getItems().clear();
                 setInserisciArticoliBox();
             } else {
-                setErroriDB(messaggio);
+                errore("correttoLabel", "Si è verificato un errore", false);
             }
         }else{
             errore("correttoLabel", "Seleziona un articolo", false);
@@ -369,7 +369,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     private void resetErroriSelezionaRistorante() {
         inizializzaLabel("erroreSelezionaristoranteLabel", false);
-        getElementById("selezionaRistoranteBox").setStyle("-fx-border-color: transparent");
+        getElementById("selezionaristoranteField").setStyle("-fx-border-color: transparent");
     }
 
     private void setErroriDB(String messaggio) {
@@ -380,6 +380,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
             case "ck_telefono_ristorante" -> errore("erroreTelefonoristoranteLabel", "Inserisci un telefono valido", false);
             case "troppo_lungo" -> errore("erroreApriRistoranteLabel", "Uno dei campi inseriti è troppo lungo", false);
             case "uq_menu" -> errore("", "", false);//FIXME
+
         }
     }
 
