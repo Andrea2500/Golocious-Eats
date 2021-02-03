@@ -30,7 +30,7 @@ public class GestoreDAO extends ClienteDAO{
 
     /**********Metodi di funzionalità**********/
 
-    public String rendiGetsore(String email, Integer ristoranteId) throws SQLException {
+    public String rendiGestore(String email, Integer ristoranteId) throws SQLException {
         try {
             this.db.setConnection();
             String sql = "SELECT * FROM cliente where email = ?";

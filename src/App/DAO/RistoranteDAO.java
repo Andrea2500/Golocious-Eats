@@ -152,8 +152,8 @@ public class RistoranteDAO {
             String sql = "INSERT INTO menu VALUES (?, ?)";
             this.db.setConnection();
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql);
-            pstmt.setInt(1, ristoranteId);
-            pstmt.setInt(2, articoloId);
+            pstmt.setInt(1, articoloId);
+            pstmt.setInt(2, ristoranteId);
             if(pstmt.executeUpdate() > 0) {
                 this.db.closeConnection();
                 return "articolo_aggiunto";

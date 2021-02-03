@@ -114,7 +114,22 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
 
 
-    public void aggiungiEsistenteBtn() {
+    public void aggiungiEsistenteBtn() throws SQLException {
+        ((Label) getElementById("correttoLabel")).setText("");
+        Articolo articolo = ((ComboBox<Articolo>) getElementById("inserisciarticoloField")).getSelectionModel().getSelectedItem();
+        if(articolo != null){
+            this.inserisciArticoloController = new InserisciArticoloController();
+            String messaggio = this.inserisciArticoloController.aggiungiEsistente(this.ristoranteAttivo,articolo);
+            if(messaggio.equals("articolo_aggiunto")) {
+                ((Label) getElementById("correttoLabel")).setText("Articolo aggiunto con successo");
+                ((ComboBox) getElementById("inserisciarticoloField")).getItems().clear();
+                setInserisciArticoliBox();
+            } else {
+                setErroriDB(messaggio);
+            }
+        }else{
+            ((Label) getElementById("correttoLabel")).setText("Seleziona un articolo");
+        }
     }
 
     public void aggiungiManualmenteBtn() throws Exception {
@@ -128,7 +143,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
         String categoria = ((ComboBox<String>) getElementById("categoriaField")).getSelectionModel().getSelectedItem();
         String ingredienti = ((TextField) getElementById("ingredientiField")).getText();
-        if(nome.length() > 0 && prezzo != null && categoria != null && ingredienti.length()>0) {
+        if(nome.length() > 0 && prezzo != null && categoria != null) {
             this.inserisciArticoloController = new InserisciArticoloController();
             String messaggio = this.inserisciArticoloController.aggiungiManualmente(this.ristoranteAttivo,new Articolo(nome, prezzo.toString(), categoria, ingredienti));
             if(messaggio.equals("articolo_aggiunto")) {
@@ -137,7 +152,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
                 setErroriDB(messaggio);
             }
         } else {
-            setErroriAggiungiArticolo(nome, prezzo, categoria, ingredienti);
+            setErroriAggiungiArticolo(nome, prezzo, categoria);
         }
     }
 
@@ -174,11 +189,13 @@ public class GestisciRistoranteController extends BaseSceneController implements
     public void eliminaBtn() throws SQLException {
         resetErroriGestisciArticoli();
         this.gestisciArticoliController = new GestisciArticoliController();
-        Articolo articolo = ((ComboBox<Articolo>) getElementById("gestisciarticoloField")).getSelectionModel().getSelectedItem();
-        if(articolo != null) {
-            String messaggio = this.gestisciArticoliController.eliminaArticoloDaMenu(this.ristoranteAttivo, articolo);
+        ComboBox<Articolo> gestisciArticolo = (ComboBox<Articolo>) getElementById("gestisciarticoloField");
+        if(gestisciArticolo.getSelectionModel().getSelectedItem() != null) {
+            String messaggio = this.gestisciArticoliController.eliminaArticoloDaMenu(this.ristoranteAttivo, gestisciArticolo.getSelectionModel().getSelectedItem());
             if(messaggio.equals("eliminazione_articolo_fallita")) {
                 errore("erroreGestisciarticoloLabel", "L'eliminazione non è riuscita", true);
+            }else{
+                gestisciArticolo.setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
             }
         } else {
             setErroriGestisciArticoli();
@@ -263,15 +280,12 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    private void setErroriAggiungiArticolo(String nome, Float prezzo, String categoria, String ingredienti) {
+    private void setErroriAggiungiArticolo(String nome, Float prezzo, String categoria) {
         if(nome.length() == 0){
             errore("erroreNomeLabel", "Inserisci un nome", true);
         }
         if(prezzo == null){
             errore("errorePrezzoLabel", "Inserisci un prezzo", true);
-        }
-        if(ingredienti.length() == 0){
-            errore("erroreIngredientiLabel", "Inserisci gli ingredienti", true);
         }
         if(categoria == null) {
             errore("erroreCategoriaLabel", "Seleziona una categoria", true);
