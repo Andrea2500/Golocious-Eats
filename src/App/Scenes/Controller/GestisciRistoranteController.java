@@ -243,7 +243,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    public void selezionaRistoranteField(){
+    public void selezionaRistoranteBox(){
         this.ristoranteAttivo = ((ComboBox<Ristorante>) getElementById("selezionaristoranteField")).getSelectionModel().getSelectedItem();
     }
 
@@ -325,12 +325,12 @@ public class GestisciRistoranteController extends BaseSceneController implements
             errore("erroreIndirizzoristoranteLabel", "Inserisci un indirizzo", true);
         }
         if(telefono.length()==0){
-            errore("erroreTelefonoristoranteLabel", "Inserisci un numero", true);
+            errore("erroreTelefonoristoranteLabel", "Inserisci un numero di telefono", true);
         }
         if(dataApertura==null) {
-            errore("erroreDataaperturaristoranteLabel", "Seleziona una data", true);
+            errore("erroreDataaperturaristoranteLabel", "Seleziona una data di apertura", true);
         } else if(dataApertura.isAfter(LocalDate.now())) {
-            errore("erroreDataaperturaristoranteLabel", "Seleziona una data passata", true);
+            errore("erroreDataaperturaristoranteLabel", "La data deve essere passata", true);
         }
     }
 
@@ -371,7 +371,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     private void resetErroriSelezionaRistorante() {
         inizializzaLabel("erroreSelezionaristoranteLabel", false);
-        getElementById("selezionaristoranteField").setStyle("-fx-border-color: transparent");
+        getElementById("selezionaRistoranteBox").setStyle("-fx-border-color: transparent");
     }
 
     private void setErroriDB(String messaggio) {
@@ -381,7 +381,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
             case "ristorante_nome_key" -> errore("erroreApriRistoranteLabel", "Il nome è già esistente", false);
             case "ck_telefono_ristorante" -> errore("erroreTelefonoristoranteLabel", "Inserisci un telefono valido", false);
             case "troppo_lungo" -> errore("erroreApriRistoranteLabel", "Uno dei campi inseriti è troppo lungo", false);
-            case "uq_nome" -> errore("erroreNomeLabel", "Il nome è già esistente", true);
+            case "uq_menu" -> errore("", "", false);//FIXME
         }
     }
 
