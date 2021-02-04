@@ -19,11 +19,15 @@ public class StatisticheController {
     public ObservableList<ElementoStatistiche> getStatistiche(Float daPrezzo, Float aPrezzo, boolean moto, boolean auto, boolean bici, LocalDate daData, LocalDate aData, Ristorante ristorante) throws SQLException {
         String veicolo = "('m','a','b')";
         if(!moto)
-            veicolo.replace("'m',","");
+           veicolo = veicolo.replace("'m'","''");
         if(!auto)
-            veicolo.replace("'a',","");
-        if(!moto)
-            veicolo.replace("'b',","");
+            veicolo = veicolo.replace("'a'","''");
+        if(!bici)
+            veicolo = veicolo.replace("'b'","''a@test.it    abc123");
+        if(!moto && !auto && !bici)
+            veicolo = "('m','a','b')";
+
+        System.out.println(veicolo);
         return this.elementoStatistiche.getStatisticheDB(daPrezzo,aPrezzo,veicolo,daData,aData,ristorante.getRistoranteId());
     }
 }

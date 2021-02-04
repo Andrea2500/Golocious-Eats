@@ -28,4 +28,37 @@ public class ElementoStatistiche {
     public ObservableList<ElementoStatistiche> getStatisticheDB(Float daPrezzo, Float aPrezzo, String veicolo, LocalDate daData, LocalDate aData, int ristoranteId) throws SQLException {
        return this.elementoStatisticheDAO.getStatistiche(daPrezzo,aPrezzo,veicolo,daData,aData,ristoranteId);
     }
+
+
+    public String getNomeArticolo() {
+        return nomeArticolo;
+    }
+
+    public void setNomeArticolo(String nomeArticolo) {
+        this.nomeArticolo = nomeArticolo;
+    }
+
+    public String getPrezzoArticolo() {
+        return prezzoArticolo;
+    }
+
+    public void setPrezzoArticolo(String prezzoArticolo) {
+        this.prezzoArticolo = prezzoArticolo;
+    }
+
+    public int getQuantita() {
+        return quantita;
+    }
+
+    public void setQuantita(int quantita) {
+        this.quantita = quantita;
+    }
+
+    public String getTotale() {
+        return totale;
+    }
+
+    public void setTotale(String totale) {
+        this.totale = totale;
+    }
 }
