@@ -1,7 +1,9 @@
 package App.Objects;
 
 import App.DAO.ElementoStatisticheDAO;
+import javafx.collections.ObservableList;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class ElementoStatistiche {
@@ -16,15 +18,14 @@ public class ElementoStatistiche {
         elementoStatisticheDAO = new ElementoStatisticheDAO();
     }
 
-    public ElementoStatistiche(String nomeArticolo, Float prezzoArticolo, int quantita) {
+    public ElementoStatistiche(String nomeArticolo, Float prezzoArticolo, int quantita,Float totale) {
         this.nomeArticolo = nomeArticolo;
-        this.prezzoArticolo = prezzoArticolo.toString().concat("€");
+        this.prezzoArticolo = prezzoArticolo.toString().concat(" €");
         this.quantita = quantita;
-        Float tot = prezzoArticolo*quantita;
-        this.totale = tot.toString().concat("€");
+        this.totale = totale.toString().concat(" €");
     }
 
-    public void getStatisticheDB(Float daPrezzo, Float aPrezzo, boolean moto, boolean auto, boolean bici, LocalDate daData, LocalDate aData) {
-        this.elementoStatisticheDAO.getStatistiche(daPrezzo,aPrezzo,moto,auto,bici,daData,aData);
+    public ObservableList<ElementoStatistiche> getStatisticheDB(Float daPrezzo, Float aPrezzo, String veicolo, LocalDate daData, LocalDate aData, int ristoranteId) throws SQLException {
+       return this.elementoStatisticheDAO.getStatistiche(daPrezzo,aPrezzo,veicolo,daData,aData,ristoranteId);
     }
 }

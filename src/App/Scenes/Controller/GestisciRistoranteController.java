@@ -2,6 +2,7 @@ package App.Scenes.Controller;
 
 import App.Controller.*;
 import App.Objects.*;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -294,7 +295,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         ((ComboBox) getElementById("gestisciarticoloField")).setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
     }
 
-    private void setStatistiche(){
+    private void setStatistiche() throws SQLException {
         Float daPrezzo = null;
         Float aPrezzo = null;
         try{
@@ -313,7 +314,8 @@ public class GestisciRistoranteController extends BaseSceneController implements
         LocalDate daData = ((DatePicker)getElementById("daDataField")).getValue();
         LocalDate aData = ((DatePicker)getElementById("aDataField")).getValue();
         this.statisticheController = new StatisticheController();
-        this.statisticheController.getStatistiche(daPrezzo,aPrezzo,moto,auto,bici,daData,aData);
+        ObservableList<ElementoStatistiche> statistiche =this.statisticheController.getStatistiche(daPrezzo,aPrezzo,moto,auto,bici,daData,aData, this.ristoranteAttivo);
+        this.tabellaStatistiche.setItems(statistiche);
     }
 
     private void setLarghezzaColonne(Boolean apri) {
