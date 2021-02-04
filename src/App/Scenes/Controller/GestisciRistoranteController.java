@@ -260,10 +260,11 @@ public class GestisciRistoranteController extends BaseSceneController implements
         if(getElementById("filtriVBox").isVisible()) {
             ((Button) getElementById("filtriBtn")).setText("Apri filtri");
             sceneController.setVisibile("filtriVBox", false);
-            // TODO setLarghezzaColonne();
+            setLarghezzaColonne(false);
         } else {
             ((Button) getElementById("filtriBtn")).setText("Chiudi filtri");
             sceneController.setVisibile("filtriVBox", true);
+            setLarghezzaColonne(true);
         }
     }
 
@@ -314,16 +315,20 @@ public class GestisciRistoranteController extends BaseSceneController implements
         this.statisticheController = new StatisticheController();
         this.statisticheController.getStatistiche(daPrezzo,aPrezzo,moto,auto,bici,daData,aData);
     }
-    
-    /* FIXME
+
     private void setLarghezzaColonne(Boolean apri) {
-        for (TableColumn<, ?> col : ((TableView) getElementById("statisticheTable")).getColumns())
-            col.setPrefWidth(145.5);
-
-
-        ((TableColumn) getElementById("nomeColonna")).setPrefWidth(145);
+        if(apri) {
+            this.nomeColonna.setPrefWidth(89);
+            this.prezzoColonna.setPrefWidth(89);
+            this.quantitaColonna.setPrefWidth(89);
+            this.totaleColonna.setPrefWidth(89);
+        } else {
+            this.nomeColonna.setPrefWidth(145);
+            this.prezzoColonna.setPrefWidth(145);
+            this.quantitaColonna.setPrefWidth(145);
+            this.totaleColonna.setPrefWidth(146);
+        }
     }
-    */
 
     /**********Metodi di ripristino e di errori**********/
 
