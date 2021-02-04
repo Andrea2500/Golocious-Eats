@@ -234,7 +234,7 @@ public class ImpostazioniController extends BaseSceneController {
         inizializzaLabel("errorePatenteLabel", true);
         inizializzaLabel("erroreVeicoloLabel", false);
         inizializzaLabel("erroreRiderLabel", false);
-        inizializzaLabel("veicoloBox", true);
+        inizializzaLabel("erroreVeicoloLabel", true);
     }
 
     /*

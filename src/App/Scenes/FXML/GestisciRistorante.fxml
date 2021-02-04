@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="480.0" prefWidth="900.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.GestisciRistoranteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="900.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.GestisciRistoranteController">
     <top>
         <HBox id="menuBar" alignment="CENTER" prefHeight="50.0" prefWidth="900.0">
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="90.0" BorderPane.alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
@@ -68,11 +68,11 @@
                     </Label>
                 </VBox>
                 <VBox alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
-               <ComboBox id="inserisciarticoloField" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un articolo esistente" visibleRowCount="8" />
-                   <Button id="aggiungiEsistenteBtn" mnemonicParsing="false" onAction="#aggiungiEsistenteBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi esistente" />
-                        <TextField id="nomeField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il nome" />
-                        <TextField id="prezzoField" layoutX="210.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il prezzo in euro (es. 7,50)" />
-                   <ComboBox id="categoriaField" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona una categoria" visibleRowCount="8">
+               <ComboBox id="inserisciarticoloField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un articolo esistente" visibleRowCount="8" />
+                   <Button id="aggiungiEsistenteBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aggiungiEsistenteBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi esistente" />
+                        <TextField id="nomeField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il nome" />
+                        <TextField id="prezzoField" layoutX="210.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il prezzo in euro (es. 7,50)" />
+                   <ComboBox id="categoriaField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona una categoria" visibleRowCount="8">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Antipasti" />
@@ -85,8 +85,8 @@
                         </FXCollections>
                     </items>
                     </ComboBox>
-                   <TextField id="ingredientiField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci gli ingredienti" />
-                        <Button id="aggiungiManualmenteBtn" mnemonicParsing="false" onAction="#aggiungiManualmenteBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi manualmente" />
+                   <TextField id="ingredientiField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci gli ingredienti" />
+                        <Button id="aggiungiManualmenteBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aggiungiManualmenteBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi manualmente" />
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="250.0">
                             <VBox.margin>
                                 <Insets />
@@ -103,7 +103,7 @@
                     </VBox>
             </HBox>
             <VBox id="gestisciArticoliVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="675.0" spacing="10.0" visible="false">
-                <ComboBox id="gestisciarticoloField" prefHeight="30.0" prefWidth="350.0" promptText="Seleziona un articolo dal menu" visibleRowCount="8" />
+                <ComboBox id="gestisciarticoloField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" promptText="Seleziona un articolo dal menu" visibleRowCount="8" />
                 <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0" spacing="15.0">
                     <VBox.margin>
                         <Insets />
@@ -148,11 +148,11 @@
                </Label>
                 </VBox>
                 <VBox alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
-                    <TextField id="nomeristoranteField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il nome" />
-               <TextField id="indirizzoristoranteField" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'indirizzo" />
-               <TextField id="telefonoristoranteField" layoutX="10.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci numero di telefono" />
-               <DatePicker id="dataaperturaristoranteField" editable="false" prefHeight="28.0" prefWidth="250.0" promptText="Seleziona la data di apertura" showWeekNumbers="false" />
-                    <Button id="apriOraBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#apriOraBtn" prefHeight="30.0" prefWidth="250.0" text="Apri ora" />
+                    <TextField id="nomeristoranteField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il nome" />
+               <TextField id="indirizzoristoranteField" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'indirizzo" />
+               <TextField id="telefonoristoranteField" layoutX="10.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci numero di telefono" />
+               <DatePicker id="dataaperturaristoranteField" editable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona la data di apertura" showWeekNumbers="false" />
+                    <Button id="apriOraBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#apriOraBtn" prefHeight="30.0" prefWidth="250.0" text="Apri ora" />
                     <Label id="erroreApriRistoranteLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                         <font>
                             <Font size="14.0" />
@@ -167,47 +167,93 @@
                 <padding>
                     <Insets top="30.0" />
                 </padding>
-                <TextField id="gestoreField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'email del nuovo gestore" />
-                <Button id="aggiungiGestoreBtn" mnemonicParsing="false" onAction="#aggiungiGestoreBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
+                <TextField id="gestoreField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci l'email del nuovo gestore" />
+                <Button id="aggiungiGestoreBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aggiungiGestoreBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
                 <Label id="erroreGestoreLabel">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
             </VBox>
-            <HBox id="statisticheHBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="675.0" visible="false">
+            <HBox id="statisticheHBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="675.0" visible="true">
                 <VBox prefHeight="430.0" prefWidth="675.0">
                     <HBox alignment="CENTER_RIGHT" prefHeight="30.0">
-                        <children>
-                            <Button id="filtriBtn" mnemonicParsing="false" onAction="#filtriBtn" prefHeight="30.0" prefWidth="100.0" text="Apri filtri" />
-                        </children>
                         <padding>
                             <Insets right="10.0" />
                         </padding>
+                        <Button id="filtriBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#filtriBtn" prefHeight="30.0" prefWidth="100.0" text="Apri filtri" />
                     </HBox>
-               <TableView fx:id="tabellaStatistiche">
-                 <columns>
-                   <TableColumn prefWidth="75.0" text="C1" />
-                   <TableColumn prefWidth="75.0" text="C2" />
-                 </columns>
-                  <VBox.margin>
-                     <Insets bottom="10.0" left="75.0" right="10.0" top="10.0" />
-                  </VBox.margin>
-               </TableView>
+                    <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="364.0" spacing="10.0">
+                        <VBox.margin>
+                            <Insets left="75.0" right="10.0" top="10.0" />
+                        </VBox.margin>
+                        <TableView id="statisticheTable" fx:id="tabellaStatistiche" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="364.0">
+                            <columns>
+                                <TableColumn id="nomeColonna" fx:id="nomeColonna" editable="false" maxWidth="147.0" minWidth="91.0" prefWidth="145.0" reorderable="false" resizable="false" text="Nome" />
+                                <TableColumn id="prezzoColonna" fx:id="prezzoColonna" editable="false" maxWidth="147.0" minWidth="-Infinity" prefWidth="145.0" reorderable="false" resizable="false" text="Prezzo" />
+                                <TableColumn id="quantitaColonna" fx:id="quantitaColonna" editable="false" maxWidth="147.0" minWidth="-Infinity" prefWidth="145.0" reorderable="false" resizable="false" text="Quantità" />
+                                <TableColumn id="totaleColonna" fx:id="totaleColonna" editable="false" maxWidth="147.0" minWidth="-1.0" prefWidth="146.0" reorderable="false" resizable="false" text="Totale" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                        <Label id="articoliDistintiLabel" text="Articoli distinti venduti: ">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label id="totaleRicavatoLabel" text="Totale ricavato: ">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label text="Totale quantità vendute: ">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="10.0" />
+                            </VBox.margin>
+                        </Label>
+                    </VBox>
                 </VBox>
-                <VBox id="filtriVBox" alignment="CENTER" layoutX="298.0" layoutY="10.0" managed="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="225.0" visible="false">
-                    <Label text="Filtri">
+                <VBox id="filtriVBox" alignment="CENTER" layoutX="298.0" layoutY="10.0" managed="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="225.0" spacing="10.0" visible="false">
+                    <Label text="Filtra per fascia di prezzo">
                         <font>
-                            <Font size="18.0" />
+                            <Font size="14.0" />
                         </font>
                     </Label>
+                    <TextField id="daPrezzoField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="Da" />
+                    <TextField id="aPrezzoField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="A" />
+                    <Label layoutX="107.0" layoutY="175.0" text="Filtra per veicolo del rider">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Label>
+                    <CheckBox id="motoveicoloCheck" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Motoveicolo" />
+                    <CheckBox id="biciclettaCheck" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Bicicletta" />
+                    <CheckBox id="automobileCheck" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Automobile" />
+                    <Label layoutX="44.0" layoutY="226.0" text="Filtra per intervallo temporale">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Label>
+                    <DatePicker id="daDataField" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="Da" />
+                    <DatePicker id="aDataField" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="A" />
                 </VBox>
             </HBox>
-            <VBox id="selezionaRistoranteVBox" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="true" prefHeight="430.0" prefWidth="675.0" spacing="10.0" visible="true">
+            <VBox id="selezionaRistoranteVBox" alignment="CENTER" layoutX="310.0" layoutY="10.0" managed="false" prefHeight="430.0" prefWidth="675.0" spacing="10.0" visible="false">
                 <padding>
                     <Insets top="50.0" />
                 </padding>
-                <ComboBox id="selezionaristoranteField" fx:id="selezionaRistoranteField" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#selezionaRistoranteField" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="8" />
+                <ComboBox id="selezionaristoranteField" fx:id="selezionaRistoranteField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#selezionaRistoranteField" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona un ristorante" visibleRowCount="8" />
                 <Label id="erroreSelezionaristoranteLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font size="14.0" />

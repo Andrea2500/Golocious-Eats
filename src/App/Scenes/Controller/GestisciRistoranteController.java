@@ -72,7 +72,8 @@ public class GestisciRistoranteController extends BaseSceneController implements
     }
 
     public void aggiungiEsistenteBtn() throws SQLException {
-        ((Label) getElementById("correttoLabel")).setText("");
+        inizializzaLabel("correttoLabel", false);
+        getElementById("inserisciarticoloField").setStyle("-fx-border-color: transparent");
         Articolo articolo = ((ComboBox<Articolo>) getElementById("inserisciarticoloField")).getSelectionModel().getSelectedItem();
         if(articolo != null){
             this.inserisciArticoloController = new InserisciArticoloController();
@@ -86,10 +87,12 @@ public class GestisciRistoranteController extends BaseSceneController implements
             }
         }else{
             errore("correttoLabel", "Seleziona un articolo", false);
+            getElementById("inserisciarticoloField").setStyle("-fx-border-color: #ff0000");
         }
     }
 
     public void aggiungiManualmenteBtn() throws Exception {
+        inizializzaLabel("correttoLabel", false);
         resetErroriAggiungiManualmente();
         String nome = ((TextField) getElementById("nomeField")).getText();
         Float prezzo = null;
@@ -257,6 +260,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         if(getElementById("filtriVBox").isVisible()) {
             ((Button) getElementById("filtriBtn")).setText("Apri filtri");
             sceneController.setVisibile("filtriVBox", false);
+            // TODO setLarghezzaColonne();
         } else {
             ((Button) getElementById("filtriBtn")).setText("Chiudi filtri");
             sceneController.setVisibile("filtriVBox", true);
@@ -310,6 +314,16 @@ public class GestisciRistoranteController extends BaseSceneController implements
         this.statisticheController = new StatisticheController();
         this.statisticheController.getStatistiche(daPrezzo,aPrezzo,moto,auto,bici,daData,aData);
     }
+    
+    /* FIXME
+    private void setLarghezzaColonne(Boolean apri) {
+        for (TableColumn<, ?> col : ((TableView) getElementById("statisticheTable")).getColumns())
+            col.setPrefWidth(145.5);
+
+
+        ((TableColumn) getElementById("nomeColonna")).setPrefWidth(145);
+    }
+    */
 
     /**********Metodi di ripristino e di errori**********/
 
@@ -431,13 +445,13 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     private void setErroriDB(String messaggio) {
         switch (messaggio) {
-            case "uq_gestore" -> errore("erroreGestoreLabel", "L'utente è già un gestore del ristorante", true);
-            case "ristorante_non_aggiunto" -> errore("erroreApriRistoranteLabel", "Il ristorante non è stato aggiunto", false);
-            case "ristorante_nome_key" -> errore("erroreApriRistoranteLabel", "Il nome è già esistente", false);
-            case "ck_telefono_ristorante" -> errore("erroreTelefonoristoranteLabel", "Inserisci un telefono valido", false);
-            case "troppo_lungo" -> errore("erroreApriRistoranteLabel", "Uno dei campi inseriti è troppo lungo", false);
             case "uq_nome" -> errore("erroreNomeLabel", "Il nome è già esistente", false);
-            case "uq_menu" -> errore("", "", false);//FIXME
+            case "uq_gestore" -> errore("erroreGestoreLabel", "L'utente è già un gestore del ristorante", true);
+            case "ck_telefono_ristorante" -> errore("erroreTelefonoristoranteLabel", "Inserisci un telefono valido", false);
+            case "ristorante_nome_key" -> errore("erroreApriRistoranteLabel", "Il nome è già esistente", false);
+            case "ristorante_non_aggiunto" -> errore("erroreApriRistoranteLabel", "Il ristorante non è stato aggiunto", false);
+            case "ck_gestore_non_rider" -> errore("erroreGestoreLabel", "L'utente lavora già come rider", true);
+            case "troppo_lungo" -> errore("erroreApriRistoranteLabel", "Uno dei campi inseriti è troppo lungo", false);
         }
     }
 
