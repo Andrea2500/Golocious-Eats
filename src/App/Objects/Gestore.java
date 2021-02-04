@@ -43,6 +43,7 @@ public class Gestore extends Cliente{
         if(idRistoranteAggiunto != 0) {
             String messaggio = rendiGestore(Cliente.getInstance().getEmail(), idRistoranteAggiunto);
             if(messaggio.equals("gestore_aggiunto")) {
+                this.ristoranti.add(ristorante);
                 return "ristorante_aperto";
             } else {
                 return "ristorante_aperto_gestore_no";

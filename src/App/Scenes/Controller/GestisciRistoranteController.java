@@ -189,7 +189,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         String telefono = ((TextField) getElementById("telefonoristoranteField")).getText();
         LocalDate dataApertura = ((DatePicker) getElementById("dataaperturaristoranteField")).getValue();
         if(nome.length() > 0 && indirizzo.length() > 0 && telefono.length() > 0 && dataApertura != null && dataApertura.isBefore(LocalDate.now())) {
-            this.apriRistoranteController = new ApriRistoranteController();
+            this.apriRistoranteController = new ApriRistoranteController(this.gestore);
             String messaggio = this.apriRistoranteController.apriRistorante(new Ristorante(nome, indirizzo, telefono, dataApertura));
             if(messaggio.equals("ristorante_aperto")) {
                 ((Label) getElementById("erroreApriRistoranteLabel")).setText("Ristorante aggiunto con successo");
@@ -247,13 +247,13 @@ public class GestisciRistoranteController extends BaseSceneController implements
         }
     }
 
-    public void menuBtn() {
-        if(getElementById("menuVBox").isVisible()) {
-            ((Button) getElementById("menuBtn")).setText("Apri menu");
-            sceneController.setVisibile("menuVBox", false);
+    public void filtriBtn() {
+        if(getElementById("filtriVBox").isVisible()) {
+            ((Button) getElementById("filtriBtn")).setText("Apri filtri");
+            sceneController.setVisibile("filtriVBox", false);
         } else {
-            ((Button) getElementById("menuBtn")).setText("Chiudi menu");
-            sceneController.setVisibile("menuVBox", true);
+            ((Button) getElementById("filtriBtn")).setText("Chiudi filtri");
+            sceneController.setVisibile("filtriVBox", true);
         }
     }
 

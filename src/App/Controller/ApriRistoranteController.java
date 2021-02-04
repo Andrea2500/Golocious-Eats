@@ -4,6 +4,8 @@ import App.Objects.Cliente;
 import App.Objects.Gestore;
 import App.Objects.Ristorante;
 
+import java.sql.SQLException;
+
 public class ApriRistoranteController {
 
     /**********Attributi**********/
@@ -15,9 +17,9 @@ public class ApriRistoranteController {
 
     /**********Costruttori**********/
 
-    public ApriRistoranteController() {
+    public ApriRistoranteController(Gestore gestore) {
         this.ristorante = new Ristorante();
-        this.gestore = new Gestore();
+        this.gestore = gestore;
     }
 
     /**********Metodi di funzionalità**********/
