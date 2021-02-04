@@ -96,9 +96,9 @@ public class GestisciRistoranteController extends BaseSceneController implements
         resetErroriAggiungiManualmente();
         String nome = ((TextField) getElementById("nomeField")).getText();
         Float prezzo = null;
-        try{
-            prezzo = Float.valueOf(((TextField) getElementById("prezzoField")).getText());
-        }catch (NumberFormatException e){
+        try {
+            prezzo = Float.valueOf(((TextField) getElementById("prezzoField")).getText().replace(",", "."));
+        } catch (NumberFormatException e) {
             errore("errorePrezzoLabel", "Inserisci un prezzo valido", true);
         }
         String categoria = ((ComboBox<String>) getElementById("categoriaField")).getSelectionModel().getSelectedItem();
@@ -246,6 +246,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     public void statisticheBtn(ActionEvent e) {
         if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
+            //aggiornaRisultatiBtn();
             resetBtnColor();
             resetVHBoxManagedAndVisible();
             sceneController.setVisibile("statisticheHBox", true);
@@ -265,6 +266,38 @@ public class GestisciRistoranteController extends BaseSceneController implements
             ((Button) getElementById("filtriBtn")).setText("Chiudi filtri");
             sceneController.setVisibile("filtriVBox", true);
             setLarghezzaColonne(true);
+        }
+    }
+
+    public void aggiornaRisultatiBtn() {
+        Float daPrezzo = null;
+        Float aPrezzo = null;
+        String daPrezzoString = ((TextField)getElementById("daPrezzoField")).getText().replace(",", ".");
+        String aPrezzoString = ((TextField)getElementById("aPrezzoField")).getText().replace(",", ".");
+        if(!daPrezzoString.equals("")) {
+            try {
+                daPrezzo = Float.parseFloat(daPrezzoString);
+            } catch (NumberFormatException e) {
+                System.out.println("Inserisci un prezzo"); //FIXME
+            }
+        }
+        if(!aPrezzoString.equals("")) {
+            try {
+                aPrezzo = Float.parseFloat(aPrezzoString);
+            } catch (NumberFormatException e) {
+                System.out.println("Inserisci un prezzo"); //FIXME
+            }
+        }
+        boolean moto = ((CheckBox)getElementById("motoveicoloCheck")).isSelected();
+        boolean bici = ((CheckBox)getElementById("biciclettaCheck")).isSelected();
+        boolean auto = ((CheckBox)getElementById("automobileCheck")).isSelected();
+        LocalDate daData = ((DatePicker)getElementById("daDataField")).getValue();
+        LocalDate aData = ((DatePicker)getElementById("aDataField")).getValue();
+        if(((daPrezzo == null || aPrezzo == null) || daPrezzo <= aPrezzo) && ((daData == null || aData == null) || (daData.isBefore(aData) || daData.isEqual(aData)))) {
+            //TODO
+            //this.statisticheController = new StatisticheController();
+            //this.statisticheController.getStatistiche(daPrezzo, aPrezzo, moto, auto, bici, daData, aData);
+            System.out.println("ciao");
         }
     }
 
@@ -292,28 +325,6 @@ public class GestisciRistoranteController extends BaseSceneController implements
     private void setGestisciArticoliBox() throws SQLException {
         this.gestisciArticoliController = new GestisciArticoliController();
         ((ComboBox) getElementById("gestisciarticoloField")).setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
-    }
-
-    private void setStatistiche(){
-        Float daPrezzo = null;
-        Float aPrezzo = null;
-        try{
-            daPrezzo = Float.parseFloat(((TextField)getElementById("daPrezzoField")).getText());
-        }catch (NumberFormatException e){
-            System.out.println("Formato prezzo errato");
-        }
-        try{
-            aPrezzo = Float.parseFloat(((TextField)getElementById("aPrezzoField")).getText());
-        }catch (NumberFormatException e){
-            System.out.println("Formato prezzo errato");
-        }
-        boolean moto = ((CheckBox)getElementById("motoveicoloCheck")).isSelected();
-        boolean auto = ((CheckBox)getElementById("autoveicoloCheck")).isSelected();
-        boolean bici = ((CheckBox)getElementById("biciclettaCheck")).isSelected();
-        LocalDate daData = ((DatePicker)getElementById("daDataField")).getValue();
-        LocalDate aData = ((DatePicker)getElementById("aDataField")).getValue();
-        this.statisticheController = new StatisticheController();
-        this.statisticheController.getStatistiche(daPrezzo,aPrezzo,moto,auto,bici,daData,aData);
     }
 
     private void setLarghezzaColonne(Boolean apri) {
