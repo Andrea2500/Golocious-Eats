@@ -1,18 +1,12 @@
 package App.Scenes.Controller;
 
-import App.Controller.AggiungiGestoreController;
-import App.Controller.ApriRistoranteController;
-import App.Controller.GestisciArticoliController;
-import App.Controller.InserisciArticoloController;
-import App.Objects.Articolo;
-import App.Objects.Cliente;
-import App.Objects.Gestore;
-import App.Objects.Ristorante;
+import App.Controller.*;
+import App.Objects.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -28,8 +22,16 @@ public class GestisciRistoranteController extends BaseSceneController implements
     GestisciArticoliController gestisciArticoliController;
     ApriRistoranteController apriRistoranteController;
     AggiungiGestoreController aggiungiGestoreController;
+    StatisticheController statisticheController;
     Gestore gestore;
     @FXML ComboBox<Ristorante> selezionaRistoranteField;
+    @FXML TableView<ElementoStatistiche> tabellaStatistiche;
+    @FXML private TableColumn<ElementoStatistiche,String> nomeColonna;
+    @FXML private TableColumn<ElementoStatistiche,String> prezzoColonna;
+    @FXML private TableColumn<ElementoStatistiche,Integer> quantitaColonna;
+    @FXML private TableColumn<ElementoStatistiche,String> totaleColonna;
+
+
 
     /**********Metodi**********/
 
@@ -42,6 +44,10 @@ public class GestisciRistoranteController extends BaseSceneController implements
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         selezionaRistoranteField.setItems(this.gestore.getRistoranti());
+        nomeColonna.setCellValueFactory(new PropertyValueFactory<>("nomeArticolo"));
+        prezzoColonna.setCellValueFactory(new PropertyValueFactory<>("prezzoArticolo"));
+        quantitaColonna.setCellValueFactory(new PropertyValueFactory<>("quantita"));
+        totaleColonna.setCellValueFactory(new PropertyValueFactory<>("totale"));
     }
 
     /**********Metodi di bottoni**********/
@@ -281,6 +287,28 @@ public class GestisciRistoranteController extends BaseSceneController implements
     private void setGestisciArticoliBox() throws SQLException {
         this.gestisciArticoliController = new GestisciArticoliController();
         ((ComboBox) getElementById("gestisciarticoloField")).setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
+    }
+
+    private void setStatistiche(){
+        Float daPrezzo = null;
+        Float aPrezzo = null;
+        try{
+            daPrezzo = Float.parseFloat(((TextField)getElementById("daPrezzoField")).getText());
+        }catch (NumberFormatException e){
+            System.out.println("Formato prezzo errato");
+        }
+        try{
+            aPrezzo = Float.parseFloat(((TextField)getElementById("aPrezzoField")).getText());
+        }catch (NumberFormatException e){
+            System.out.println("Formato prezzo errato");
+        }
+        boolean moto = ((CheckBox)getElementById("motoveicoloCheck")).isSelected();
+        boolean auto = ((CheckBox)getElementById("autoveicoloCheck")).isSelected();
+        boolean bici = ((CheckBox)getElementById("biciclettaCheck")).isSelected();
+        LocalDate daData = ((DatePicker)getElementById("daDataField")).getValue();
+        LocalDate aData = ((DatePicker)getElementById("aDataField")).getValue();
+        this.statisticheController = new StatisticheController();
+        this.statisticheController.getStatistiche(daPrezzo,aPrezzo,moto,auto,bici,daData,aData);
     }
 
     /**********Metodi di ripristino e di errori**********/

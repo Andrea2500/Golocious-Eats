@@ -185,7 +185,7 @@
                             <Insets right="10.0" />
                         </padding>
                     </HBox>
-               <TableView>
+               <TableView fx:id="tabellaStatistiche">
                  <columns>
                    <TableColumn prefWidth="75.0" text="C1" />
                    <TableColumn prefWidth="75.0" text="C2" />
