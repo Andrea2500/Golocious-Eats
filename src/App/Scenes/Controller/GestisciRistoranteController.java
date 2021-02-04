@@ -66,7 +66,8 @@ public class GestisciRistoranteController extends BaseSceneController implements
     }
 
     public void aggiungiEsistenteBtn() throws SQLException {
-        ((Label) getElementById("correttoLabel")).setText("");
+        inizializzaLabel("correttoLabel", false);
+        getElementById("inserisciarticoloField").setStyle("-fx-border-color: transparent");
         Articolo articolo = ((ComboBox<Articolo>) getElementById("inserisciarticoloField")).getSelectionModel().getSelectedItem();
         if(articolo != null){
             this.inserisciArticoloController = new InserisciArticoloController();
@@ -80,10 +81,12 @@ public class GestisciRistoranteController extends BaseSceneController implements
             }
         }else{
             errore("correttoLabel", "Seleziona un articolo", false);
+            getElementById("inserisciarticoloField").setStyle("-fx-border-color: #ff0000");
         }
     }
 
     public void aggiungiManualmenteBtn() throws Exception {
+        inizializzaLabel("correttoLabel", false);
         resetErroriAggiungiManualmente();
         String nome = ((TextField) getElementById("nomeField")).getText();
         Float prezzo = null;
@@ -251,6 +254,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         if(getElementById("filtriVBox").isVisible()) {
             ((Button) getElementById("filtriBtn")).setText("Apri filtri");
             sceneController.setVisibile("filtriVBox", false);
+            // TODO setLarghezzaColonne();
         } else {
             ((Button) getElementById("filtriBtn")).setText("Chiudi filtri");
             sceneController.setVisibile("filtriVBox", true);
@@ -282,6 +286,16 @@ public class GestisciRistoranteController extends BaseSceneController implements
         this.gestisciArticoliController = new GestisciArticoliController();
         ((ComboBox) getElementById("gestisciarticoloField")).setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
     }
+
+    /* FIXME
+    private void setLarghezzaColonne(Boolean apri) {
+        for (TableColumn<, ?> col : ((TableView) getElementById("statisticheTable")).getColumns())
+            col.setPrefWidth(145.5);
+
+
+        ((TableColumn) getElementById("nomeColonna")).setPrefWidth(145);
+    }
+    */
 
     /**********Metodi di ripristino e di errori**********/
 

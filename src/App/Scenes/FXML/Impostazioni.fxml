@@ -34,9 +34,9 @@
    <center>
       <HBox alignment="CENTER" prefHeight="430.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <VBox alignment="CENTER" prefHeight="430.0" prefWidth="300.0" spacing="15.0">
-            <Button id="inserisciIndirizzoBtn" mnemonicParsing="false" onAction="#inserisciIndirizzoBtn" prefHeight="30.0" prefWidth="145.0" text="Inserisci indirizzo" />
-            <Button id="gestisciIndirizziBtn" mnemonicParsing="false" onAction="#gestisciIndirizziBtn" prefHeight="30.0" prefWidth="145.0" text="Gestisci indirizzi" />
-            <Button id="diventaRiderBtn" managed="false" mnemonicParsing="false" onAction="#diventaRiderBtn" prefHeight="30.0" prefWidth="145.0" text="Diventa rider" visible="false" />
+            <Button id="inserisciIndirizzoBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#inserisciIndirizzoBtn" prefHeight="30.0" prefWidth="150.0" text="Inserisci indirizzo" />
+            <Button id="gestisciIndirizziBtn" minHeight="-Infinity" mnemonicParsing="false" onAction="#gestisciIndirizziBtn" prefHeight="30.0" prefWidth="150.0" text="Gestisci indirizzi" />
+            <Button id="diventaRiderBtn" managed="false" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#diventaRiderBtn" prefHeight="30.0" prefWidth="150.0" text="Diventa rider" visible="false" />
          </VBox>
          <VBox id="vuotoVBox" alignment="CENTER" managed="true" prefHeight="430.0" prefWidth="600.0" visible="true">
             <Label id="vuotoLabel" text="Clicca un pulsante a sinistra">
@@ -46,9 +46,9 @@
             </Label>
          </VBox>
          <HBox id="inserisciIndirizzoHBox" managed="false" prefHeight="430.0" prefWidth="600.0" visible="false">
-            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="20.0">
+            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="175.0" spacing="21.0">
                <padding>
-                  <Insets bottom="39.0" right="25.0" />
+                  <Insets bottom="43.0" right="25.0" />
                </padding>
                <Label id="errorePaeseLabel">
                   <font>
@@ -77,12 +77,12 @@
                </Label>
             </VBox>
             <VBox alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
-               <TextField id="paeseField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo Paese" />
-               <TextField id="provinciaField" layoutX="210.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua provincia" />
-               <TextField id="cittaField" layoutX="210.0" layoutY="192.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua città" />
-               <TextField id="capField" layoutX="210.0" layoutY="174.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo CAP" />
-               <TextField id="indirizzoField" layoutX="210.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo indirizzo e il tuo civico" />
-               <Button id="aggiungiBtn" mnemonicParsing="false" onAction="#aggiungiBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
+               <TextField id="paeseField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo Paese" />
+               <TextField id="provinciaField" layoutX="210.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua provincia" />
+               <TextField id="cittaField" layoutX="210.0" layoutY="192.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua città" />
+               <TextField id="capField" layoutX="210.0" layoutY="174.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo CAP" />
+               <TextField id="indirizzoField" layoutX="210.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo indirizzo e il tuo civico" />
+               <Button id="aggiungiBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#aggiungiBtn" prefHeight="30.0" prefWidth="250.0" text="Aggiungi" />
                <Label id="correttoLabel">
                   <font>
                      <Font size="14.0" />
@@ -97,13 +97,13 @@
             </VBox>
          </HBox>
          <VBox id="gestisciIndirizziVBox" alignment="CENTER" managed="false" prefHeight="430.0" prefWidth="600.0" spacing="10.0" visible="false">
-            <ComboBox id="indirizzoattivoField" prefHeight="30.0" prefWidth="250.0" promptText="Non hai indirizzi attivi" visibleRowCount="8" />
-            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="350.0" spacing="15.0">
+            <ComboBox id="indirizzoattivoField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Non hai indirizzi attivi" visibleRowCount="8" />
+            <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="350.0" spacing="15.0">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
-               <Button mnemonicParsing="false" onAction="#rendiAttivoBtn" prefHeight="30.0" prefWidth="125.0" text="Rendi attivo" />
-               <Button id="eliminaIndirizzoBtn" layoutX="235.0" layoutY="10.0" mnemonicParsing="false" onAction="#eliminaIndirizzoBtn" prefHeight="30.0" prefWidth="110.0" text="Elimina" />
+               <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#rendiAttivoBtn" prefHeight="30.0" prefWidth="125.0" text="Rendi attivo" />
+               <Button id="eliminaIndirizzoBtn" layoutX="235.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#eliminaIndirizzoBtn" prefHeight="30.0" prefWidth="110.0" text="Elimina" />
             </HBox>
             <Label id="erroreIndirizzoattivoLabel">
                <font>
@@ -130,8 +130,8 @@
                </Label>
             </VBox>
             <VBox alignment="CENTER_LEFT" prefHeight="430.0" prefWidth="425.0" spacing="10.0">
-               <TextField id="patenteField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua patente" />
-               <ComboBox id="veicoloField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona il tuo veicolo" visibleRowCount="8">
+               <TextField id="patenteField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua patente" />
+               <ComboBox id="veicoloField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Seleziona il tuo veicolo" visibleRowCount="8">
                   <items>
                      <FXCollections fx:factory="observableArrayList">
                         <String fx:value="Motoveicolo" />
@@ -140,7 +140,7 @@
                      </FXCollections>
                   </items>
                </ComboBox>
-               <Button id="iniziaAConsegnareBtn" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#iniziaAConsegnareBtn" prefHeight="30.0" prefWidth="250.0" text="Inizia a consegnare" />
+               <Button id="iniziaAConsegnareBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#iniziaAConsegnareBtn" prefHeight="30.0" prefWidth="250.0" text="Inizia a consegnare" />
                <Label id="erroreRiderLabel" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="250.0" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                   <font>
                      <Font size="14.0" />

@@ -56,26 +56,26 @@
                </Label>
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="300.0" spacing="10.0">
-               <TextField id="nomeField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo nome" visible="false">
+               <TextField id="nomeField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo nome" visible="false">
                   <VBox.margin>
                      <Insets />
                   </VBox.margin>
                </TextField>
-               <TextField id="cognomeField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo cognome" visible="false">
+               <TextField id="cognomeField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo cognome" visible="false">
                   <VBox.margin>
                      <Insets />
                   </VBox.margin>
                </TextField>
-               <TextField id="emailField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua email">
+               <TextField id="emailField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua email">
                   <VBox.margin>
                      <Insets />
                   </VBox.margin>
                </TextField>
-               <PasswordField id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua password" />
-               <TextField id="telefonoField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo numero di telefono" visible="false" />
-               <DatePicker id="datanascitaField" editable="false" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="28.0" prefWidth="250.0" promptText="Seleziona la tua data di nascita" showWeekNumbers="false" visible="false" />
-               <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="300.0" spacing="15.0">
-                  <Button id="loginBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#loginBtnClick" prefHeight="30.0" prefWidth="105.0" text="Login" textAlignment="CENTER">
+               <PasswordField id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci la tua password" />
+               <TextField id="telefonoField" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Inserisci il tuo numero di telefono" visible="false" />
+               <DatePicker id="datanascitaField" editable="false" managed="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="250.0" promptText="Seleziona la tua data di nascita" showWeekNumbers="false" visible="false" />
+               <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="300.0" spacing="15.0">
+                  <Button id="loginBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loginBtnClick" prefHeight="30.0" prefWidth="105.0" text="Login" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>

@@ -74,6 +74,41 @@
 }
 
 
+.table-view{
+    -fx-background-color: #172156;
+    -fx-border-color: #fab338;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+}
+
+
+.table-column{
+    -fx-background-color: #172156;
+    -fx-border-style: solid;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: #fab338;
+    -fx-padding: 0px 0px 2px 0px;
+}
+
+
+.check-box {
+    -fx-text-fill: #fab338;
+}
+
+
+.check-box > .box {
+    -fx-background-color: white;
+}
+
+.check-box:selected > * > .mark {
+    -fx-background-color: #172156;
+}
+
+.check-box:selected > .box {
+    -fx-background-color: #e19a1f;
+}
+
+
 .date-picker:focused{
     -fx-faint-focus-color: transparent;
     -fx-focus-color: #fab338;

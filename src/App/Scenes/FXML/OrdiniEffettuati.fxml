@@ -31,12 +31,12 @@
    <center>
       <TableView id="orderTable" fx:id="orderTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="idCol" editable="false" prefWidth="237.0" sortable="false" text="#" />
-          <TableColumn fx:id="ristoranteCol" editable="false" minWidth="0.0" prefWidth="56.0" sortable="false" text="Ristorante" />
-          <TableColumn fx:id="dataCol" editable="false" prefWidth="75.0" sortable="false" text="Data ordine" />
-          <TableColumn fx:id="totaleCol" editable="false" prefWidth="75.0" sortable="false" text="Totale" />
-          <TableColumn fx:id="riderCol" editable="false" prefWidth="75.0" sortable="false" text="Rider" />
-          <TableColumn fx:id="statoCol" editable="false" prefWidth="274.0" sortable="false" text="Stato" />
+          <TableColumn fx:id="idCol" editable="false" reorderable="false" prefWidth="150.0" text="#" />
+          <TableColumn fx:id="ristoranteCol" editable="false" reorderable="false" minWidth="0.0" prefWidth="150.0" text="Ristorante" />
+          <TableColumn fx:id="dataCol" editable="false" reorderable="false" prefWidth="150.0" text="Data ordine" />
+          <TableColumn fx:id="totaleCol" editable="false" reorderable="false" prefWidth="150.0" text="Totale" />
+          <TableColumn fx:id="riderCol" editable="false" reorderable="false" prefWidth="150.0" text="Rider" />
+          <TableColumn fx:id="statoCol" editable="false" reorderable="false" prefWidth="150.0" text="Stato" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
