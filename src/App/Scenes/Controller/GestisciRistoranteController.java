@@ -417,13 +417,13 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     private void setErroriDB(String messaggio) {
         switch (messaggio) {
-            case "uq_gestore" -> errore("erroreGestoreLabel", "L'utente è già un gestore del ristorante", true);
-            case "ristorante_non_aggiunto" -> errore("erroreApriRistoranteLabel", "Il ristorante non è stato aggiunto", false);
-            case "ristorante_nome_key" -> errore("erroreApriRistoranteLabel", "Il nome è già esistente", false);
-            case "ck_telefono_ristorante" -> errore("erroreTelefonoristoranteLabel", "Inserisci un telefono valido", false);
-            case "troppo_lungo" -> errore("erroreApriRistoranteLabel", "Uno dei campi inseriti è troppo lungo", false);
             case "uq_nome" -> errore("erroreNomeLabel", "Il nome è già esistente", false);
-            case "uq_menu" -> errore("", "", false);//FIXME
+            case "uq_gestore" -> errore("erroreGestoreLabel", "L'utente è già un gestore del ristorante", true);
+            case "ck_telefono_ristorante" -> errore("erroreTelefonoristoranteLabel", "Inserisci un telefono valido", false);
+            case "ristorante_nome_key" -> errore("erroreApriRistoranteLabel", "Il nome è già esistente", false);
+            case "ristorante_non_aggiunto" -> errore("erroreApriRistoranteLabel", "Il ristorante non è stato aggiunto", false);
+            case "ck_gestore_non_rider" -> errore("erroreGestoreLabel", "L'utente lavora già come rider", true);
+            case "troppo_lungo" -> errore("erroreApriRistoranteLabel", "Uno dei campi inseriti è troppo lungo", false);
         }
     }
 

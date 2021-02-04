@@ -1,6 +1,4 @@
 TODO GESTISCI RISTORANTE
-     INSERISCI ARTICOLO manualmente o da esistenti
-     ELIMINA ARTICOLO per quel ristorante, da Menu
      SEZIONE STATISTICHE per ricerca complessa
      RENDI GESTORE quando si vuole rendere gestore un cliente bisogna controllare che non sia un rider e che non sia un gestore di quel ristorante
 
