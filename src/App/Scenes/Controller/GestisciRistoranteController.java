@@ -295,11 +295,9 @@ public class GestisciRistoranteController extends BaseSceneController implements
         LocalDate daData = ((DatePicker)getElementById("daDataField")).getValue();
         LocalDate aData = ((DatePicker)getElementById("aDataField")).getValue();
         if(((daPrezzo == null || aPrezzo == null) || daPrezzo <= aPrezzo) && ((daData == null || aData == null) || (daData.isBefore(aData) || daData.isEqual(aData)))) {
-            //TODO
             this.statisticheController = new StatisticheController();
-            ObservableList<ElementoStatistiche> statistiche =this.statisticheController.getStatistiche(daPrezzo,aPrezzo,moto,auto,bici,daData,aData, this.ristoranteAttivo);
+            ObservableList<ElementoStatistiche> statistiche = this.statisticheController.getStatistiche(daPrezzo, aPrezzo, moto, bici, auto, daData, aData, this.ristoranteAttivo);
             this.tabellaStatistiche.setItems(statistiche);
-            System.out.println("ciao");
         }
     }
 
@@ -465,11 +463,11 @@ public class GestisciRistoranteController extends BaseSceneController implements
         switch (messaggio) {
             case "uq_nome" -> errore("erroreNomeLabel", "Il nome è già esistente", false);
             case "uq_gestore" -> errore("erroreGestoreLabel", "L'utente è già un gestore del ristorante", true);
-            case "ck_telefono_ristorante" -> errore("erroreTelefonoristoranteLabel", "Inserisci un telefono valido", false);
-            case "ristorante_nome_key" -> errore("erroreApriRistoranteLabel", "Il nome è già esistente", false);
+            case "ck_telefono_ristorante" -> errore("erroreTelefonoristoranteLabel", "Inserisci un telefono valido", true);
+            case "ristorante_nome_key" -> errore("erroreNomeristoranteLabel", "Il nome è già esistente", true);
             case "ristorante_non_aggiunto" -> errore("erroreApriRistoranteLabel", "Il ristorante non è stato aggiunto", false);
-            case "ck_gestore_non_rider" -> errore("erroreGestoreLabel", "L'utente lavora già come rider", true);
             case "troppo_lungo" -> errore("erroreApriRistoranteLabel", "Uno dei campi inseriti è troppo lungo", false);
+            case "ck_gestore_non_rider" -> errore("erroreGestoreLabel", "L'utente lavora già come rider", true);
         }
     }
 
