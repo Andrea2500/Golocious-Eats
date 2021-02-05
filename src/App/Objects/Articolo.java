@@ -19,6 +19,9 @@ public class Articolo {
 
     /**********Costruttori**********/
 
+    public Articolo() {
+    }
+
     public Articolo(String nome, String prezzo, String categoria, String ingredienti) {
         this.nome = nome;
         this.prezzo = prezzo;
