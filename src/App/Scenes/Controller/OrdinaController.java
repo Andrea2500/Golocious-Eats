@@ -5,14 +5,9 @@ import App.Objects.Articolo;
 import App.Objects.Carrello;
 import App.Objects.Ristorante;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -31,7 +26,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
     OrdinazioneController ordinazioneController;
 
 
-    public OrdinaController() {
+    public OrdinaController() throws SQLException {
         this.carrello = new Carrello();
         this.ordinazioneController = new OrdinazioneController();
     }
@@ -53,14 +48,14 @@ public class OrdinaController extends BaseSceneController implements Initializab
             Label nomeRistorante = new Label(ristorante.getNome());
             nomeRistorante.wrapTextProperty().set(true);
             nomeRistorante.setStyle("-fx-font-weight: bolder; -fx-font-size: 14px");
-            hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> this.mostraArticoli(ristorante.getArticoli()));
-            nomeRistorante.setStyle("-fx-font-weight: bolder");
-            hBox.getChildren().addAll(nomeRistorante);
-            hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> this.mostraArticoli(ristorante.getArticoli(), ristorante.getRistoranteId() ));
             hBox.alignmentProperty().set(Pos.CENTER_LEFT);
-            hBox.getChildren().addAll(nomeRistorante);
+            hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> this.mostraArticoli(ristorante.getArticoli(), ristorante.getRistoranteId()));
+            hBox.getChildren().add(nomeRistorante);
             hBox.getStyleClass().add("elementoOrdina");
             hBox.setStyle("-fx-pref-height: 75px");
+            if(ristorante.equals(ristoranti.get(ristoranti.size()-1))) {
+                hBox.setStyle("-fx-border-width: 0px; -fx-pref-height: 75px");
+            }
             ristorantiVBox.getChildren().add(hBox);
         }
     }
@@ -74,8 +69,8 @@ public class OrdinaController extends BaseSceneController implements Initializab
             if(!articolo.getCategoria().equals(categoria)) {
                 HBox categoriaHBox = new HBox();
                 Label categoriaLabel = new Label(articolo.getCategoria());
-                categoriaHBox.getStyleClass().add("categoria");
                 categoriaHBox.setStyle("-fx-pref-height: 30px");
+                categoriaHBox.getStyleClass().add("categoria");
                 categoriaHBox.getChildren().add(categoriaLabel);
                 menuVBox.getChildren().add(categoriaHBox);
                 categoria = articolo.getCategoria();
@@ -89,38 +84,75 @@ public class OrdinaController extends BaseSceneController implements Initializab
             nomeArticolo.wrapTextProperty().set(true);
             nomeArticolo.setStyle("-fx-font-weight: bolder; -fx-font-size: 13px");
             ingredientiArticolo.wrapTextProperty().set(true);
+            if(ingredientiArticolo.getText() == null || ingredientiArticolo.getText().equals("")) {
+                ingredientiArticolo.setManaged(false);
+                hBox.setStyle("-fx-pref-height: 75px");
+            }
             prezzoArticolo.setStyle("-fx-font-weight: bolder; -fx-font-size: 13px");
             vBox1.setStyle("-fx-pref-width: 190px; -fx-spacing: 5px");
             vBox1.alignmentProperty().set(Pos.CENTER_LEFT);
             vBox2.setStyle("-fx-pref-width: 45px");
             vBox2.alignmentProperty().set(Pos.CENTER_RIGHT);
-            hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> this.aggiungiAlCarrello(articolo));
             hBox.alignmentProperty().set(Pos.CENTER_LEFT);
+            hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                try {
+                    this.aggiungiAlCarrello(articolo);
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            });
             hBox.setStyle("-fx-pref-height: 160px");
             hBox.getStyleClass().add("elementoOrdina");
-            if(ingredientiArticolo.getText() == null || ingredientiArticolo.getText().equals("")) {
-                ingredientiArticolo.setManaged(false);
+            vBox1.getChildren().addAll(nomeArticolo, ingredientiArticolo);
+            vBox2.getChildren().add(prezzoArticolo);
+            if(articolo.getIngredienti() == null || articolo.getIngredienti().equals("")) {
                 hBox.setStyle("-fx-pref-height: 75px");
             }
-            vBox1.getChildren().addAll(nomeArticolo, ingredientiArticolo);
-            vBox2.getChildren().addAll(prezzoArticolo);
+            if(articolo.equals(articoli.get(articoli.size()-1))) {
+                hBox.setStyle("-fx-border-width: 0px");
+            }
             hBox.getChildren().addAll(vBox1, vBox2);
-            this.menuVBox.getChildren().addAll(hBox);
+            this.menuVBox.getChildren().add(hBox);
         }
     }
 
-    private void aggiungiAlCarrello(Articolo articolo) {
+    private void aggiungiAlCarrello(Articolo articolo) throws SQLException {
         this.carrello.aggiungiAlCarrello(articolo);
         this.mostraCarrello();
     }
 
     private void mostraCarrello() {
         this.carrelloVBox.getChildren().clear();
-        for(Articolo articolo : this.carrello.getArticoliCarrello()){
+        ObservableList<Articolo> articoli = this.carrello.getArticoli();
+        int indice = 0;
+        for(Articolo articolo : articoli){
+            indice++;
             HBox hBox = new HBox();
+            VBox vBox1 = new VBox();
+            VBox vBox2 = new VBox();
             Label nomeArticolo = new Label(articolo.getNome());
             Label prezzoArticolo = new Label(articolo.getPrezzo());
-            hBox.getChildren().addAll(nomeArticolo,prezzoArticolo);
+            nomeArticolo.wrapTextProperty().set(true);
+            nomeArticolo.setStyle("-fx-font-weight: bolder; -fx-font-size: 12px");
+            prezzoArticolo.setStyle("-fx-font-weight: bolder; -fx-font-size: 12px");
+            vBox1.setStyle("-fx-pref-width: 195px");
+            vBox2.setStyle("-fx-pref-width: 45px");
+            hBox.alignmentProperty().set(Pos.CENTER_LEFT);
+            /*TODO hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                try {
+                    this.aggiungiAlCarrello(articolo);
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            });*/
+            hBox.setStyle("-fx-pref-height: 30px");
+            hBox.getStyleClass().add("elementoOrdina");
+            vBox1.getChildren().add(nomeArticolo);
+            vBox2.getChildren().add(prezzoArticolo);
+            if(indice == articoli.size()) {
+                hBox.setStyle("-fx-border-width: 0px");
+            }
+            hBox.getChildren().addAll(vBox1, vBox2);
             this.carrelloVBox.getChildren().add(hBox);
         }
     }

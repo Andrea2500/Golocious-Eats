@@ -29,30 +29,26 @@
       </HBox>
    </top>
    <center>
-      <HBox prefHeight="430.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+      <VBox BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="300.0">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <content>
+            <HBox prefHeight="430.0" prefWidth="900.0">
+               <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="300.0">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
                   <VBox id="ristorantiVBox" fx:id="ristorantiVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" />
-               </content>
-            </ScrollPane>
-            <ScrollPane hbarPolicy="NEVER">
-               <content>
+               </ScrollPane>
+               <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="300.0">
                   <VBox id="menuVBox" fx:id="menuVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" />
-               </content>
-            </ScrollPane>
-            <ScrollPane hbarPolicy="NEVER">
-               <content>
+               </ScrollPane>
+               <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="300.0" style="-fx-border-width: 2px;">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
                   <VBox id="carrelloVBox" fx:id="carrelloVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" />
-               </content>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </ScrollPane>
+               </ScrollPane>
+            </HBox>
          </children>
-      </HBox>
+      </VBox>
    </center>
 </BorderPane>
