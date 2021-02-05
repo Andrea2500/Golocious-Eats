@@ -54,6 +54,9 @@ public class OrdinaController extends BaseSceneController implements Initializab
             nomeRistorante.wrapTextProperty().set(true);
             nomeRistorante.setStyle("-fx-font-weight: bolder; -fx-font-size: 14px");
             hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> this.mostraArticoli(ristorante.getArticoli()));
+            nomeRistorante.setStyle("-fx-font-weight: bolder");
+            hBox.getChildren().addAll(nomeRistorante);
+            hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> this.mostraArticoli(ristorante.getArticoli(), ristorante.getRistoranteId() ));
             hBox.alignmentProperty().set(Pos.CENTER_LEFT);
             hBox.getChildren().addAll(nomeRistorante);
             hBox.getStyleClass().add("elementoOrdina");
@@ -62,7 +65,9 @@ public class OrdinaController extends BaseSceneController implements Initializab
         }
     }
 
-    private void mostraArticoli(ObservableList<Articolo> articoli) {
+    private void mostraArticoli(ObservableList<Articolo> articoli, int ristoranteId) {
+        this.carrello.setRistoranteId(ristoranteId);
+        this.carrello.pulisciCarrello();
         this.menuVBox.getChildren().clear();
         String categoria = "";
         for (Articolo articolo : articoli){
