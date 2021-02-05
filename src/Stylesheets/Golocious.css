@@ -286,6 +286,11 @@
 }
 
 
+.elementoOrdina:hover > * > .label{
+    -fx-text-fill: #172156;
+}
+
+
 .categoria{
     -fx-cursor: pointer;
     -fx-background-color: #fab338;
