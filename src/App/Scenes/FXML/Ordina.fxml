@@ -31,16 +31,27 @@
    <center>
       <HBox prefHeight="430.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox id="ristorantiVBox" fx:id="ristorantiVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="300.0">
+            <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="300.0">
                <HBox.margin>
                   <Insets />
-               </HBox.margin></VBox>
-            <ScrollPane hbarPolicy="NEVER">
+               </HBox.margin>
                <content>
-                  <VBox id="menuVBox" fx:id="menuVBox" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="300.0" />
+                  <VBox id="ristorantiVBox" fx:id="ristorantiVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" />
                </content>
             </ScrollPane>
-            <VBox id="carrelloVBox" fx:id="carrelloVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="300.0" />
+            <ScrollPane hbarPolicy="NEVER">
+               <content>
+                  <VBox id="menuVBox" fx:id="menuVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" />
+               </content>
+            </ScrollPane>
+            <ScrollPane hbarPolicy="NEVER">
+               <content>
+                  <VBox id="carrelloVBox" fx:id="carrelloVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" />
+               </content>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ScrollPane>
          </children>
       </HBox>
    </center>
