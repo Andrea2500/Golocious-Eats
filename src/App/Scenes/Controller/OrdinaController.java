@@ -5,14 +5,9 @@ import App.Objects.Articolo;
 import App.Objects.Carrello;
 import App.Objects.Ristorante;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -31,7 +26,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
     OrdinazioneController ordinazioneController;
 
 
-    public OrdinaController() {
+    public OrdinaController() throws SQLException {
         this.carrello = new Carrello();
         this.ordinazioneController = new OrdinazioneController();
     }
@@ -54,7 +49,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
             nomeRistorante.wrapTextProperty().set(true);
             nomeRistorante.setStyle("-fx-font-weight: bolder");
             hBox.getChildren().addAll(nomeRistorante);
-            hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> this.mostraArticoli(ristorante.getArticoli()));
+            hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> this.mostraArticoli(ristorante.getArticoli(), ristorante.getRistoranteId() ));
             hBox.alignmentProperty().set(Pos.CENTER_LEFT);
             hBox.getStyleClass().add("elementoOrdina");
             hBox.setStyle("-fx-pref-height: 70px");
@@ -62,7 +57,9 @@ public class OrdinaController extends BaseSceneController implements Initializab
         }
     }
 
-    private void mostraArticoli(ObservableList<Articolo> articoli) {
+    private void mostraArticoli(ObservableList<Articolo> articoli, int ristoranteId) {
+        this.carrello.setRistoranteId(ristoranteId);
+        this.carrello.pulisciCarrello();
         this.menuVBox.getChildren().clear();
         String categoria = "";
         for (Articolo articolo : articoli){
@@ -87,7 +84,13 @@ public class OrdinaController extends BaseSceneController implements Initializab
             vBox.getChildren().addAll(nomeArticolo,ingredientiArticolo);
             Label prezzoArticolo = new Label(articolo.getPrezzo());
             hBox.getChildren().addAll(vBox, prezzoArticolo);
-            hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> this.aggiungiAlCarrello(articolo));
+            hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                try {
+                    this.aggiungiAlCarrello(articolo);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            });
             vBox.alignmentProperty().set(Pos.CENTER_LEFT);
             hBox.alignmentProperty().set(Pos.CENTER_LEFT);
             hBox.getStyleClass().add("elementoOrdina");
@@ -96,7 +99,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
         }
     }
 
-    private void aggiungiAlCarrello(Articolo articolo) {
+    private void aggiungiAlCarrello(Articolo articolo) throws SQLException {
         this.carrello.aggiungiAlCarrello(articolo);
         this.mostraCarrello();
     }
