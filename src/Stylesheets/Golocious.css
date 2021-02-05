@@ -228,11 +228,27 @@
     -fx-border-color: #fab338;
 }
 
+
 .elementoOrdina{
     -fx-cursor: hand;
-    -fx-border-style: solid none solid none;
+    -fx-border-style: solid none;
     -fx-border-color: #fab338;
     -fx-border-width: 1px;
-    -fx-padding: 15px 25px 15px 15px;
+    -fx-padding: 15px 30px 15px 15px;
     -fx-spacing: 15px;
+}
+
+
+.categoria{
+    -fx-cursor: pointer;
+    -fx-background-color: #fab338;
+    -fx-padding: 15px 30px 15px 15px;
+    -fx-alignment: center;
+}
+
+
+.categoria > .label{
+    -fx-text-fill: #172156;
+    -fx-font-size: 14px;
+    -fx-font-weight: bolder;
 }

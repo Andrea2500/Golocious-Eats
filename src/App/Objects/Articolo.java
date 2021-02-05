@@ -108,7 +108,7 @@ public class Articolo {
                 return "Antipasti";
             }
             case "b" -> {
-                return "Hamburger";
+                return "Burger";
             }
             case "p" -> {
                 return "Pizze";
@@ -136,7 +136,7 @@ public class Articolo {
             case "Antipasti" -> {
                 return "a";
             }
-            case "Hamburger" -> {
+            case "Burger" -> {
                 return "b";
             }
             case "Pizze" -> {

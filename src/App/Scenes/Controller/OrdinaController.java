@@ -52,12 +52,12 @@ public class OrdinaController extends BaseSceneController implements Initializab
             HBox hBox = new HBox();
             Label nomeRistorante = new Label(ristorante.getNome());
             nomeRistorante.wrapTextProperty().set(true);
-            nomeRistorante.setStyle("-fx-font-weight: bolder");
-            hBox.getChildren().addAll(nomeRistorante);
+            nomeRistorante.setStyle("-fx-font-weight: bolder; -fx-font-size: 14px");
             hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> this.mostraArticoli(ristorante.getArticoli()));
             hBox.alignmentProperty().set(Pos.CENTER_LEFT);
+            hBox.getChildren().addAll(nomeRistorante);
             hBox.getStyleClass().add("elementoOrdina");
-            hBox.setStyle("-fx-pref-height: 70px");
+            hBox.setStyle("-fx-pref-height: 75px");
             ristorantiVBox.getChildren().add(hBox);
         }
     }
@@ -66,32 +66,40 @@ public class OrdinaController extends BaseSceneController implements Initializab
         this.menuVBox.getChildren().clear();
         String categoria = "";
         for (Articolo articolo : articoli){
-
-            HBox hBox = new HBox();
-            if(categoria.equals("") || !articolo.getCategoria().equals(categoria)) {
+            if(!articolo.getCategoria().equals(categoria)) {
                 HBox categoriaHBox = new HBox();
-                categoriaHBox.getChildren().add(new Label(articolo.getCategoria()));
+                Label categoriaLabel = new Label(articolo.getCategoria());
+                categoriaHBox.getStyleClass().add("categoria");
+                categoriaHBox.setStyle("-fx-pref-height: 30px");
+                categoriaHBox.getChildren().add(categoriaLabel);
                 menuVBox.getChildren().add(categoriaHBox);
                 categoria = articolo.getCategoria();
             }
-            VBox vBox = new VBox();
-            vBox.prefWidthProperty().set(200);
+            HBox hBox = new HBox();
+            VBox vBox1 = new VBox();
+            VBox vBox2 = new VBox();
             Label nomeArticolo = new Label(articolo.getNome());
             Label ingredientiArticolo = new Label(articolo.getIngredienti());
-            if(ingredientiArticolo.getText() == null) {
-                ingredientiArticolo.setManaged(false);
-            }
-            nomeArticolo.wrapTextProperty().set(true);
-            nomeArticolo.setStyle("-fx-font-weight: bolder");
-            ingredientiArticolo.wrapTextProperty().set(true);
-            vBox.getChildren().addAll(nomeArticolo,ingredientiArticolo);
             Label prezzoArticolo = new Label(articolo.getPrezzo());
-            hBox.getChildren().addAll(vBox, prezzoArticolo);
+            nomeArticolo.wrapTextProperty().set(true);
+            nomeArticolo.setStyle("-fx-font-weight: bolder; -fx-font-size: 13px");
+            ingredientiArticolo.wrapTextProperty().set(true);
+            prezzoArticolo.setStyle("-fx-font-weight: bolder; -fx-font-size: 13px");
+            vBox1.setStyle("-fx-pref-width: 190px; -fx-spacing: 5px");
+            vBox1.alignmentProperty().set(Pos.CENTER_LEFT);
+            vBox2.setStyle("-fx-pref-width: 45px");
+            vBox2.alignmentProperty().set(Pos.CENTER_RIGHT);
             hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> this.aggiungiAlCarrello(articolo));
-            vBox.alignmentProperty().set(Pos.CENTER_LEFT);
             hBox.alignmentProperty().set(Pos.CENTER_LEFT);
+            hBox.setStyle("-fx-pref-height: 160px");
             hBox.getStyleClass().add("elementoOrdina");
-            hBox.setStyle("-fx-pref-height: 120px");
+            if(ingredientiArticolo.getText() == null || ingredientiArticolo.getText().equals("")) {
+                ingredientiArticolo.setManaged(false);
+                hBox.setStyle("-fx-pref-height: 75px");
+            }
+            vBox1.getChildren().addAll(nomeArticolo, ingredientiArticolo);
+            vBox2.getChildren().addAll(prezzoArticolo);
+            hBox.getChildren().addAll(vBox1, vBox2);
             this.menuVBox.getChildren().addAll(hBox);
         }
     }
