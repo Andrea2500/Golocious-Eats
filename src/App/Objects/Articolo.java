@@ -39,9 +39,6 @@ public class Articolo {
         this.disponibile = disponibile;
     }
 
-    public Articolo() {
-    }
-
     /**********Getter e Setter**********/
 
     public String getNome() {
