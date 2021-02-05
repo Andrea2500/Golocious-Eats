@@ -192,4 +192,14 @@ public class RistoranteDAO {
         }
     }
 
+    public ObservableList<Ristorante> getListaRistoranti() throws SQLException {
+        this.ristoranti = FXCollections.observableArrayList();
+        ResultSet rs = this.db.queryBuilder(this.table,"1 > 0");
+        while (rs.next()){
+            this.ristoranti.add(new Ristorante(rs.getInt("ristoranteid"), rs.getString("nome"),
+                    rs.getString("indirizzo"),rs.getString("telefono"),
+                    rs.getDate("datadiapertura").toLocalDate(),getArticoli(rs.getInt("ristoranteid"))));
+        }
+        return this.ristoranti;
+    }
 }

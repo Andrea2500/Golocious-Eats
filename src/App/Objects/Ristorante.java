@@ -129,7 +129,9 @@ public class Ristorante {
         }
     }
 
-
+    public ObservableList<Ristorante> getListaRistorantiDB() throws SQLException {
+        return this.ristoranteDAO.getListaRistoranti();
+    }
 
 
     /**********Metodi di supporto**********/
