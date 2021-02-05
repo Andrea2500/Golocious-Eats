@@ -6,9 +6,6 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane prefHeight="480.0" prefWidth="900.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.OrdinaController">
-   <center>
-      <VBox prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
-   </center>
    <top>
       <HBox id="menuBar" alignment="CENTER" prefHeight="50.0" prefWidth="900.0">
          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="90.0" BorderPane.alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
@@ -31,10 +28,13 @@
          </HBox>
       </HBox>
    </top>
-   <left>
-      <VBox prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
-   </left>
-   <right>
-      <VBox prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
-   </right>
+   <center>
+      <HBox prefHeight="430.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox id="ristorantiVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="300.0" />
+            <VBox id="menuVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="300.0" />
+            <VBox id="carrelloVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="300.0" />
+         </children>
+      </HBox>
+   </center>
 </BorderPane>
