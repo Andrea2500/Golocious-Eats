@@ -271,6 +271,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     }
 
     public void aggiornaRisultatiBtn() throws SQLException {
+        resetErroriFiltri();
         Float daPrezzo = null;
         Float aPrezzo = null;
         String daPrezzoString = ((TextField)getElementById("daPrezzoField")).getText().replace(",", ".");
@@ -279,14 +280,14 @@ public class GestisciRistoranteController extends BaseSceneController implements
             try {
                 daPrezzo = Float.parseFloat(daPrezzoString);
             } catch (NumberFormatException e) {
-                System.out.println("Inserisci un prezzo"); //FIXME
+                setErroriFiltri(true);
             }
         }
         if(!aPrezzoString.equals("")) {
             try {
                 aPrezzo = Float.parseFloat(aPrezzoString);
             } catch (NumberFormatException e) {
-                System.out.println("Inserisci un prezzo"); //FIXME
+                setErroriFiltri(false);
             }
         }
         boolean moto = ((CheckBox)getElementById("motoveicoloCheck")).isSelected();
@@ -294,24 +295,31 @@ public class GestisciRistoranteController extends BaseSceneController implements
         boolean auto = ((CheckBox)getElementById("automobileCheck")).isSelected();
         LocalDate daData = ((DatePicker)getElementById("daDataField")).getValue();
         LocalDate aData = ((DatePicker)getElementById("aDataField")).getValue();
-        if(((daPrezzo == null || aPrezzo == null) || daPrezzo <= aPrezzo) && ((daData == null || aData == null) || (daData.isBefore(aData) || daData.isEqual(aData)))) {
-            this.statisticheController = new StatisticheController();
-            ObservableList<ElementoStatistiche> statistiche = this.statisticheController.getStatistiche(daPrezzo, aPrezzo, moto, bici, auto, daData, aData, this.ristoranteAttivo);
-            this.tabellaStatistiche.setItems(statistiche);
-            Integer articoliDistinti =0;
-            Double totaleRicavato = Double.valueOf(0);
-            Integer articoliVenduti=0;
-
-            for(ElementoStatistiche e:statistiche){
-                articoliDistinti++;
-                totaleRicavato += Double.parseDouble(e.getTotale().replace(" €",""));
-                articoliVenduti += e.getQuantita();
-            }
-            ((Label)getElementById("articoliDistintiLabel")).setText("Articoli distinti venduti: "+articoliDistinti.toString());
-            ((Label)getElementById("totaleRicavatoLabel")).setText("Totale ricavato: "+totaleRicavato.toString().concat(" €"));
-            ((Label)getElementById("totaleQuantitaLabel")).setText("Totale quantità vendute: "+articoliVenduti.toString());
-
+        if(daPrezzo != null && aPrezzo != null && daPrezzo > aPrezzo) {
+            float tmp = daPrezzo;
+            daPrezzo = aPrezzo;
+            aPrezzo = tmp;
         }
+        if(daData != null && aData != null && daData.isAfter(aData)) {
+            LocalDate tmp = daData;
+            daData = aData;
+            aData = tmp;
+        }
+
+        this.statisticheController = new StatisticheController();
+        ObservableList<ElementoStatistiche> statistiche = this.statisticheController.getStatistiche(daPrezzo, aPrezzo, moto, bici, auto, daData, aData, this.ristoranteAttivo);
+        this.tabellaStatistiche.setItems(statistiche);
+        Integer articoliDistinti = 0;
+        Double totaleRicavato = Double.valueOf(0);
+        Integer articoliVenduti = 0;
+        for(ElementoStatistiche e:statistiche){
+            articoliDistinti++;
+            totaleRicavato += Double.parseDouble(e.getTotale().replace(" €",""));
+            articoliVenduti += e.getQuantita();
+        }
+        ((Label)getElementById("articoliDistintiLabel")).setText("Articoli distinti venduti: "+articoliDistinti.toString());
+        ((Label)getElementById("totaleRicavatoLabel")).setText("Totale ricavato: "+totaleRicavato.toString().concat(" €"));
+        ((Label)getElementById("totaleQuantitaLabel")).setText("Totale quantità vendute: "+articoliVenduti.toString());
     }
 
 
@@ -461,6 +469,25 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     private void resetCampiRendiGestore() {
         ((TextField) getElementById("gestoreField")).setText("");
+    }
+
+    private void setErroriFiltri(boolean da) {
+        if(da) {
+            (getElementById("daPrezzoField")).setStyle("-fx-border-color: #ff0000");
+            ((TextField)getElementById("daPrezzoField")).setText("");
+            ((TextField)getElementById("daPrezzoField")).setPromptText("Inserisci un prezzo");
+        } else {
+            (getElementById("aPrezzoField")).setStyle("-fx-border-color: #ff0000");
+            ((TextField)getElementById("aPrezzoField")).setText("");
+            ((TextField)getElementById("aPrezzoField")).setPromptText("Inserisci un prezzo");
+        }
+    }
+
+    private void resetErroriFiltri() {
+        (getElementById("daPrezzoField")).setStyle("-fx-border-color: transparent");
+        ((TextField)getElementById("daPrezzoField")).setPromptText("Da");
+        (getElementById("aPrezzoField")).setStyle("-fx-border-color: transparent");
+        ((TextField)getElementById("aPrezzoField")).setPromptText("A");
     }
 
     private void setErroriSelezionaRistorante() {
