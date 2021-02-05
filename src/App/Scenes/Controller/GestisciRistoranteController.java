@@ -298,6 +298,19 @@ public class GestisciRistoranteController extends BaseSceneController implements
             this.statisticheController = new StatisticheController();
             ObservableList<ElementoStatistiche> statistiche = this.statisticheController.getStatistiche(daPrezzo, aPrezzo, moto, bici, auto, daData, aData, this.ristoranteAttivo);
             this.tabellaStatistiche.setItems(statistiche);
+            Integer articoliDistinti =0;
+            Double totaleRicavato = Double.valueOf(0);
+            Integer articoliVenduti=0;
+
+            for(ElementoStatistiche e:statistiche){
+                articoliDistinti++;
+                totaleRicavato += Double.parseDouble(e.getTotale().replace(" €",""));
+                articoliVenduti += e.getQuantita();
+            }
+            ((Label)getElementById("articoliDistintiLabel")).setText("Articoli distinti venduti: "+articoliDistinti.toString());
+            ((Label)getElementById("totaleRicavatoLabel")).setText("Totale ricavato: "+totaleRicavato.toString().concat(" €"));
+            ((Label)getElementById("totaleQuantitaLabel")).setText("Totale quantità vendute: "+articoliVenduti.toString());
+
         }
     }
 

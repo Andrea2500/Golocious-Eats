@@ -43,6 +43,4 @@ public class InserisciArticoloController {
         return this.ristorante.getArticoliAltriRistorantiDB(ristorante.getRistoranteId());
     }
 
-    /**********Metodi di ripristino e di errori**********/
-
 }

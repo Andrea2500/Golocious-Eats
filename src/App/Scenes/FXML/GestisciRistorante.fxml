@@ -214,7 +214,7 @@
                                 <Insets left="10.0" />
                             </VBox.margin>
                         </Label>
-                        <Label text="Totale quantità vendute: ">
+                        <Label id="totaleQuantitaLabel" text="Totale quantità vendute: ">
                             <font>
                                 <Font size="14.0" />
                             </font>
@@ -247,7 +247,7 @@
                     </Label>
                     <DatePicker id="daDataField" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="Da" />
                     <DatePicker id="aDataField" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="A" />
-               <Button id="aggiornaRisultatiBtn" onAction="#aggiornaRisultatiBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Aggiorna risultati">
+               <Button id="aggiornaRisultatiBtn" mnemonicParsing="false" onAction="#aggiornaRisultatiBtn" prefHeight="30.0" prefWidth="150.0" text="Aggiorna risultati">
                   <VBox.margin>
                      <Insets bottom="5.0" top="10.0" />
                   </VBox.margin>
