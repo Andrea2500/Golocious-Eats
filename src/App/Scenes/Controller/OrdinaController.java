@@ -116,11 +116,6 @@ public class OrdinaController extends BaseSceneController implements Initializab
         }
     }
 
-    private void aggiungiAlCarrello(Articolo articolo) throws SQLException {
-        this.carrello.aggiungiAlCarrello(articolo);
-        this.mostraCarrello();
-    }
-
     private void mostraCarrello() {
         this.carrelloVBox.getChildren().clear();
         ObservableList<Articolo> articoli = this.carrello.getArticoli();
@@ -140,7 +135,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
             hBox.alignmentProperty().set(Pos.CENTER_LEFT);
             /*TODO hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 try {
-                    this.aggiungiAlCarrello(articolo);
+                    this.eliminaDalCarrello(articolo);
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }
@@ -155,6 +150,12 @@ public class OrdinaController extends BaseSceneController implements Initializab
             hBox.getChildren().addAll(vBox1, vBox2);
             this.carrelloVBox.getChildren().add(hBox);
         }
+    }
+
+
+    private void aggiungiAlCarrello(Articolo articolo) throws SQLException {
+        this.carrello.aggiungiAlCarrello(articolo);
+        this.mostraCarrello();
     }
 
 }
