@@ -3,6 +3,7 @@ package App.DAO;
 import App.Config.Database;
 import App.Objects.Articolo;
 import App.Objects.Cliente;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.PreparedStatement;
@@ -82,4 +83,12 @@ public class CarrelloDAO {
         return this.nuovoCarrello(ristoranteId);
     }
 
+    public ObservableList<Articolo> getArticoliNelCarrelloCliente(int carrelloId) throws SQLException {
+        ObservableList<Articolo> articoliCliente = FXCollections.observableArrayList();
+        ResultSet rs = this.db.queryBuilder("articoloincarrello","carrelloid = "+carrelloId);
+        while (rs.next()){
+            articoliCliente.add(new Articolo(rs.getInt("articoloid")));
+        }
+        return articoliCliente;
+    }
 }

@@ -52,4 +52,12 @@ public class ArticoloDAO {
         }
     }
 
+    public Articolo getArticolo(int articoloId) throws SQLException {
+        ResultSet rs = this.db.queryBuilder("articolo","articoloid = "+articoloId);
+        if(rs.next()){
+            return new Articolo(rs.getString("nome"), rs.getFloat("prezzo"), rs.getString("categoria"),
+                    rs.getString("ingredienti"), rs.getInt("articoloid"), true);
+        }
+        return null;
+    }
 }

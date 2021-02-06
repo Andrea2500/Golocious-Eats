@@ -1,7 +1,6 @@
 package App.Objects;
 
 import App.DAO.CarrelloDAO;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
@@ -15,8 +14,8 @@ public class Carrello {
 
     public Carrello() throws SQLException {
         this.carrelloDAO = new CarrelloDAO();
-        this.articoliCarrello = FXCollections.observableArrayList();
         this.carrelloId = this.carrelloDAO.getCarrelloCliente();
+        this.articoliCarrello = this.carrelloDAO.getArticoliNelCarrelloCliente(this.carrelloId);
     }
 
     public ObservableList<Articolo> getArticoliCarrello() {

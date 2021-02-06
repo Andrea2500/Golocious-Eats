@@ -3,6 +3,7 @@ package App.Scenes.Controller;
 import App.Controller.OrdinazioneController;
 import App.Objects.Articolo;
 import App.Objects.Carrello;
+import App.Objects.Cliente;
 import App.Objects.Ristorante;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -27,7 +28,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
 
 
     public OrdinaController() throws SQLException {
-        this.carrello = new Carrello();
+        this.carrello = Cliente.getInstance().getCarrello();
         this.ordinazioneController = new OrdinazioneController();
     }
 
@@ -35,6 +36,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             mostraRistoranti();
+            mostraCarrello();
         } catch(SQLException throwables) {
             throwables.printStackTrace();
         }

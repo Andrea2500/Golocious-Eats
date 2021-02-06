@@ -2,6 +2,8 @@ package App.Objects;
 
 import App.DAO.ArticoloDAO;
 
+import java.sql.SQLException;
+
 public class Articolo {
 
     /**********Attributi**********/
@@ -20,6 +22,11 @@ public class Articolo {
     /**********Costruttori**********/
 
     public Articolo() {
+    }
+
+    public Articolo(int articoloId) throws SQLException {
+        this.articoloDAO = new ArticoloDAO();
+        updateFields(this.articoloDAO.getArticolo(articoloId));
     }
 
     public Articolo(String nome, String prezzo, String categoria, String ingredienti) {
@@ -158,6 +165,15 @@ public class Articolo {
                 return "Categoria inesistente";
             }
         }
+    }
+
+    public void updateFields(Articolo articolo){
+        this.articoloId = articolo.getArticoloId();
+        this.nome = articolo.getNome();
+        this.prezzo = articolo.getPrezzo();
+        this.categoria = articolo.getCategoria();
+        this.ingredienti = articolo.getIngredienti();
+        this.disponibile = articolo.isDisponibile();
     }
 
     @Override
