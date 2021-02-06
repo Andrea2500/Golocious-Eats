@@ -72,37 +72,28 @@
             </ScrollPane>
          </HBox>
          <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="900.0">
-            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                  minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0">
                <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
-               <Label id="indirizzoLabel" text="Indirizzo attivo: " wrapText="true">
+               <Label id="indirizzoLabel" fx:id="indirizzoLabel" text="Indirizzo attivo: " wrapText="true">
                   <font>
-                     <Font size="14.0"/>
+                     <Font size="14.0" />
                   </font>
                </Label>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="310.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity"
-                  minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0">
+            <HBox alignment="CENTER_LEFT" layoutX="310.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0">
                <padding>
-                  <Insets left="15.0"/>
+                  <Insets left="15.0" />
                </padding>
-               <Label id="totaleLabel" text="Totale: ">
+               <Label id="totaleLabel" fx:id="totaleLabel" text="Totale: ">
                   <font>
-                     <Font size="14.0"/>
+                     <Font size="14.0" />
                   </font>
                </Label>
             </HBox>
-            <HBox alignment="CENTER" layoutX="460.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity"
-                  minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0">
-               <Button id="ordinaOraBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
-                       minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0"
-                       prefWidth="100.0" text="Ordina ora">
-                  <font>
-                     <Font size="14.0"/>
-                  </font>
-               </Button>
+            <HBox alignment="CENTER" layoutX="460.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0">
+               <Button id="ordinaOraBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Ordina ora" />
             </HBox>
          </HBox>
       </VBox>

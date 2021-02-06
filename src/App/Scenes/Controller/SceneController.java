@@ -1,6 +1,7 @@
 package App.Scenes.Controller;
 
 import App.Objects.Cliente;
+import App.Objects.Indirizzo;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -50,9 +51,7 @@ public class SceneController {
     /**********Metodi di cambio scene**********/
 
     public void login() throws IOException {
-        this.setScene("Ordina");
-        setCliccatoBtn("ordinaBtn");
-        setMenu(Cliente.getInstance().getRuolo());
+        this.ordina();
     }
 
     public void ordina() throws IOException {
