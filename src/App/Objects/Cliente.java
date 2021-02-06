@@ -21,6 +21,7 @@ public class Cliente {
     Indirizzo indirizzoAttivo;
     boolean auth;
     Carrello carrello;
+    //TODO ObservableList<Ordine> ordini;
     ObservableList<Indirizzo> indirizzi;
     ClienteDAO clienteDAO;
 

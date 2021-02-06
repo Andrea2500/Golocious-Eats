@@ -22,6 +22,38 @@
 }
 
 
+.scroll-pane{
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-border-style: solid;
+    -fx-border-width: 2px 0px 2px 2px;
+    -fx-border-color: #fab338;
+}
+
+.scroll-pane:focused{
+    -fx-background-insets: 0;
+}
+
+.scroll-pane > .corner{
+    -fx-background-insets: 0;
+    -fx-border-style: none;
+}
+
+
+.scroll-bar{
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.scroll-bar:focused{
+    -fx-background-insets: 0;
+}
+
+.scroll-bar > .corner{
+    -fx-background-insets: 0;
+}
+
+
 .scroll-pane > *{
     -fx-background-color: #172156;
 }
@@ -34,12 +66,18 @@
     -fx-border-radius: 50%;
 }
 
-.scroll-bar > .increment-button ,
+
+.scroll-bar > .increment-button,
 .scroll-bar > .decrement-button {
     -fx-background-color: transparent;
     -fx-background-radius: 0em;
     -fx-padding: 3px;
+}
 
+
+.scroll-bar > .increment-button:hover,
+.scroll-bar > .decrement-button:hover {
+    -fx-cursor: hand;
 }
 
 
@@ -49,10 +87,9 @@
 }
 
 
-.scroll-bar > * > .increment-arrow:hover,
-.scroll-bar > * > .decrement-arrow:hover {
+.scroll-bar > .increment-button:hover > .increment-arrow,
+.scroll-bar > .decrement-button:hover > .increment-arrow{
     -fx-background-color: #e19a1f;
-    -fx-cursor: hand;
 }
 
 
@@ -228,11 +265,42 @@
     -fx-border-color: #fab338;
 }
 
+
 .elementoOrdina{
     -fx-cursor: hand;
-    -fx-border-style: solid none solid none;
+    -fx-border-style: solid;
     -fx-border-color: #fab338;
-    -fx-border-width: 1px;
-    -fx-padding: 15px 25px 15px 15px;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-padding: 15px 30px 15px 15px;
     -fx-spacing: 15px;
+}
+
+
+.elementoOrdina:hover{
+    -fx-background-color: #fab338;
+}
+
+
+.elementoOrdina:hover > .label{
+    -fx-text-fill: #172156;
+}
+
+
+.elementoOrdina:hover > * > .label{
+    -fx-text-fill: #172156;
+}
+
+
+.categoria{
+    -fx-cursor: pointer;
+    -fx-background-color: #fab338;
+    -fx-padding: 15px 30px 15px 15px;
+    -fx-alignment: center;
+}
+
+
+.categoria > .label{
+    -fx-text-fill: #172156;
+    -fx-font-size: 14px;
+    -fx-font-weight: bolder;
 }

@@ -7,31 +7,15 @@ import java.sql.SQLException;
 
 public class Carrello {
 
-    CarrelloDAO carrelloDAO;
     int carrelloId;
     int ristoranteId;
-    ObservableList<Articolo> articoliCarrello;
+    ObservableList<Articolo> articoli;
+    CarrelloDAO carrelloDAO;
 
     public Carrello() throws SQLException {
         this.carrelloDAO = new CarrelloDAO();
         this.carrelloId = this.carrelloDAO.getCarrelloCliente();
-        this.articoliCarrello = this.carrelloDAO.getArticoliNelCarrelloCliente(this.carrelloId);
-    }
-
-    public ObservableList<Articolo> getArticoliCarrello() {
-        return articoliCarrello;
-    }
-
-    public void setArticoliCarrello(ObservableList<Articolo> articoliCarrello) {
-        this.articoliCarrello = articoliCarrello;
-    }
-
-    public int getRistoranteId() {
-        return ristoranteId;
-    }
-
-    public void setRistoranteId(int ristoranteId) {
-        this.ristoranteId = ristoranteId;
+        this.articoli = this.carrelloDAO.getArticoliNelCarrelloCliente(this.carrelloId);
     }
 
     public int getCarrelloId() {
@@ -42,14 +26,30 @@ public class Carrello {
         this.carrelloId = carrelloId;
     }
 
+    public int getRistoranteId() {
+        return ristoranteId;
+    }
+
+    public void setRistoranteId(int ristoranteId) {
+        this.ristoranteId = ristoranteId;
+    }
+
+    public ObservableList<Articolo> getArticoli() {
+        return articoli;
+    }
+
+    public void setArticoli(ObservableList<Articolo> articoli) {
+        this.articoli = articoli;
+    }
+
     public void aggiungiAlCarrello(Articolo articolo) throws SQLException {
-        this.articoliCarrello.add(articolo);
+        this.articoli.add(articolo);
         this.carrelloId = this.carrelloDAO.updateRistoranteId(this.ristoranteId,this.carrelloId);
-        this.carrelloDAO.sincronizzaDB(this.articoliCarrello,this.carrelloId);
+        this.carrelloDAO.sincronizzaDB(this.articoli,this.carrelloId);
     }
 
     public void pulisciCarrello(){
-        this.articoliCarrello.clear();
+        this.articoli.clear();
     }
 
 }

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane prefHeight="480.0" prefWidth="900.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.OrdinaController">
    <top>
@@ -29,30 +30,81 @@
       </HBox>
    </top>
    <center>
-      <HBox prefHeight="430.0" prefWidth="900.0" BorderPane.alignment="CENTER">
-         <children>
-            <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="300.0">
+      <VBox BorderPane.alignment="CENTER">
+         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="900.0">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="300.0">
+               <Label style="-fx-font-weight: bolder;" text="Ristorante">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+            </HBox>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="300.0">
+               <Label style="-fx-font-weight: bolder;" text="Menu">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+            </HBox>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="300.0">
+               <Label style="-fx-font-weight: bolder;" text="Carrello">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+            </HBox>
+         </HBox>
+         <HBox prefWidth="900.0">
+            <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="302.0" prefWidth="300.0">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
-               <content>
-                  <VBox id="ristorantiVBox" fx:id="ristorantiVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" />
-               </content>
+               <VBox id="ristorantiVBox" fx:id="ristorantiVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" />
             </ScrollPane>
-            <ScrollPane hbarPolicy="NEVER">
-               <content>
-                  <VBox id="menuVBox" fx:id="menuVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" />
-               </content>
+            <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="302.0" prefWidth="300.0">
+               <VBox id="menuVBox" fx:id="menuVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" />
             </ScrollPane>
-            <ScrollPane hbarPolicy="NEVER">
-               <content>
-                  <VBox id="carrelloVBox" fx:id="carrelloVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" />
-               </content>
+            <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="302.0" prefWidth="300.0" style="-fx-border-width: 2px;">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
+               <VBox id="carrelloVBox" fx:id="carrelloVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" />
             </ScrollPane>
-         </children>
-      </HBox>
+         </HBox>
+         <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="900.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                  minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+               </padding>
+               <Label id="indirizzoLabel" text="Indirizzo attivo: " wrapText="true">
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </Label>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="310.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                  minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0">
+               <padding>
+                  <Insets left="15.0"/>
+               </padding>
+               <Label id="totaleLabel" text="Totale: ">
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </Label>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="460.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                  minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0">
+               <Button id="ordinaOraBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+                       minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0"
+                       prefWidth="100.0" text="Ordina ora">
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </Button>
+            </HBox>
+         </HBox>
+      </VBox>
    </center>
 </BorderPane>
