@@ -185,7 +185,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
             for(Articolo articolo : articoli) {
                 totale += Float.parseFloat(articolo.getPrezzo().replace(" €", "").replace(",", "."));
             }
-            totaleLabel.setText("Totale: "+totale+" €");
+            totaleLabel.setText("Totale: "+String.format("%.2f", totale).concat(" €"));
         } else {
             totaleLabel.setText("Inserisci articoli nel carrello");
         }
