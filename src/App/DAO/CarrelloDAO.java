@@ -99,7 +99,7 @@ public class CarrelloDAO {
         pstmt.executeUpdate();
         this.db.closeConnection();
     }
-    
+
     public int updateRistoranteId(int ristoranteId,int carrelloId) throws SQLException {
         pulisciCarrello(carrelloId);
         String sql = "DELETE from carrello WHERE carrelloid = ?";
