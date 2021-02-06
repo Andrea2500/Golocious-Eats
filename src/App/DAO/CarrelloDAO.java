@@ -13,17 +13,19 @@ import java.sql.Statement;
 
 public class CarrelloDAO {
 
+    /**********Attributi**********/
+
     Database db;
+
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public CarrelloDAO() {
         this.db = new Database();
     }
 
-    public void sincronizzaDB(ObservableList<Articolo> articoliInCarrello,int carrelloId) throws SQLException {
-        //this.pulisciCarrello(carrello.getCarrelloId());
-        //this.updateRistoranteId(carrello.getCarrelloId(),carrello.getRistoranteId());
-        this.setArticoliInCarrello(articoliInCarrello, carrelloId );
-    }
+    /**********Getter e Setter**********/
 
     public int getCarrelloCliente() throws SQLException {
         ResultSet rs = this.db.queryBuilder("carrello", "clienteid = "+ Cliente.getInstance().getClienteId()+" AND ordinato = 'false'");
@@ -32,7 +34,42 @@ public class CarrelloDAO {
         }else{
             return this.nuovoCarrello(1);
         }
+    }
 
+    public int getRistoranteId(int carrelloId) throws SQLException {
+        ResultSet rs = this.db.queryBuilder("carrello", "carrelloid = "+ carrelloId);
+        if(rs.next()){
+            return rs.getInt("ristoranteid");
+        }else{
+            return 0;
+        }
+    }
+
+    private void setArticoliInCarrello(ObservableList<Articolo> articoliCarrello, int carrelloId) throws SQLException {
+        String sql = "INSERT INTO articoloincarrello VALUES(?,?)";
+        this.db.setConnection();
+        for(Articolo articolo:articoliCarrello){
+            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, carrelloId);
+            pstmt.setInt(2, articolo.getArticoloId());
+            pstmt.executeUpdate();
+        }
+        this.db.closeConnection();
+    }
+
+    public ObservableList<Articolo> getArticoliNelCarrelloCliente(int carrelloId) throws SQLException {
+        ObservableList<Articolo> articoliCliente = FXCollections.observableArrayList();
+        ResultSet rs = this.db.queryBuilder("articoloincarrello","carrelloid = "+carrelloId);
+        while (rs.next()){
+            articoliCliente.add(new Articolo(rs.getInt("articoloid")));
+        }
+        return articoliCliente;
+    }
+
+    /**********Metodi di funzionalità**********/
+
+    public void sincronizzaDB(ObservableList<Articolo> articoliInCarrello,int carrelloId) throws SQLException {
+        this.setArticoliInCarrello(articoliInCarrello, carrelloId );
     }
 
     private Integer nuovoCarrello(int ristoranteId) throws SQLException {
@@ -51,6 +88,9 @@ public class CarrelloDAO {
             }
     }
 
+
+    /**********Metodi di supporto**********/
+
     private void pulisciCarrello(int carrelloId) throws SQLException {
         String sql = "DELETE FROM articoloincarrello WHERE carrelloid = ?";
         this.db.setConnection();
@@ -59,19 +99,7 @@ public class CarrelloDAO {
         pstmt.executeUpdate();
         this.db.closeConnection();
     }
-
-    private void setArticoliInCarrello(ObservableList<Articolo> articoliCarrello, int carrelloId) throws SQLException {
-        String sql = "INSERT INTO articoloincarrello VALUES(?,?)";
-        this.db.setConnection();
-        for(Articolo articolo:articoliCarrello){
-            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, carrelloId);
-            pstmt.setInt(2, articolo.getArticoloId());
-            pstmt.executeUpdate();
-        }
-        this.db.closeConnection();
-    }
-
+    
     public int updateRistoranteId(int ristoranteId,int carrelloId) throws SQLException {
         pulisciCarrello(carrelloId);
         String sql = "DELETE from carrello WHERE carrelloid = ?";
@@ -83,12 +111,4 @@ public class CarrelloDAO {
         return this.nuovoCarrello(ristoranteId);
     }
 
-    public ObservableList<Articolo> getArticoliNelCarrelloCliente(int carrelloId) throws SQLException {
-        ObservableList<Articolo> articoliCliente = FXCollections.observableArrayList();
-        ResultSet rs = this.db.queryBuilder("articoloincarrello","carrelloid = "+carrelloId);
-        while (rs.next()){
-            articoliCliente.add(new Articolo(rs.getInt("articoloid")));
-        }
-        return articoliCliente;
-    }
 }

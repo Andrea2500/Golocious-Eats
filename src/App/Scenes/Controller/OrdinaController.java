@@ -20,12 +20,17 @@ import java.util.ResourceBundle;
 
 public class OrdinaController extends BaseSceneController implements Initializable {
 
+    /**********Attributi**********/
+
     @FXML VBox ristorantiVBox;
     @FXML VBox menuVBox;
     @FXML VBox carrelloVBox;
     Carrello carrello;
     OrdinazioneController ordinazioneController;
 
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public OrdinaController() throws SQLException {
         this.carrello = Cliente.getInstance().getCarrello();
@@ -42,6 +47,8 @@ public class OrdinaController extends BaseSceneController implements Initializab
         }
     }
 
+    /**********Getter e Setter**********/
+    /**********Metodi di funzionalità**********/
 
     public void mostraRistoranti() throws SQLException {
         ObservableList<Ristorante> ristoranti = this.ordinazioneController.getListaRistoranti();
@@ -123,7 +130,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
         ObservableList<Articolo> articoli = this.carrello.getArticoli();
         int indice = 0;
         for(Articolo articolo : articoli){
-            indice++;
+
             HBox hBox = new HBox();
             VBox vBox1 = new VBox();
             VBox vBox2 = new VBox();
@@ -135,13 +142,15 @@ public class OrdinaController extends BaseSceneController implements Initializab
             vBox1.setStyle("-fx-pref-width: 195px");
             vBox2.setStyle("-fx-pref-width: 45px");
             hBox.alignmentProperty().set(Pos.CENTER_LEFT);
-            /*TODO hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            int finalIndice = indice;
+            hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 try {
-                    this.eliminaDalCarrello(articolo);
+                    this.eliminaDalCarrello(finalIndice);
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }
-            });*/
+            });
+            indice++;
             hBox.setStyle("-fx-pref-height: 30px");
             hBox.getStyleClass().add("elementoOrdina");
             vBox1.getChildren().add(nomeArticolo);
@@ -160,4 +169,10 @@ public class OrdinaController extends BaseSceneController implements Initializab
         this.mostraCarrello();
     }
 
+    public void eliminaDalCarrello(int indice) throws SQLException {
+        this.carrello.eliminaDalCarrello(indice);
+        this.mostraCarrello();
+    }
+
+    /**********Metodi di supporto**********/
 }

@@ -7,16 +7,25 @@ import java.sql.SQLException;
 
 public class Carrello {
 
+    /**********Attributi**********/
+
     int carrelloId;
     int ristoranteId;
     ObservableList<Articolo> articoli;
     CarrelloDAO carrelloDAO;
 
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
+
     public Carrello() throws SQLException {
         this.carrelloDAO = new CarrelloDAO();
         this.carrelloId = this.carrelloDAO.getCarrelloCliente();
         this.articoli = this.carrelloDAO.getArticoliNelCarrelloCliente(this.carrelloId);
+        this.ristoranteId = this.carrelloDAO.getRistoranteId(this.carrelloId);
     }
+
+    /**********Getter e Setter**********/
 
     public int getCarrelloId() {
         return carrelloId;
@@ -42,11 +51,21 @@ public class Carrello {
         this.articoli = articoli;
     }
 
+    /**********Metodi di funzionalità**********/
+
     public void aggiungiAlCarrello(Articolo articolo) throws SQLException {
         this.articoli.add(articolo);
         this.carrelloId = this.carrelloDAO.updateRistoranteId(this.ristoranteId,this.carrelloId);
         this.carrelloDAO.sincronizzaDB(this.articoli,this.carrelloId);
     }
+
+    public void eliminaDalCarrello(int indice) throws SQLException {
+        this.articoli.remove(indice);
+        this.carrelloId = this.carrelloDAO.updateRistoranteId(this.ristoranteId,this.carrelloId);
+        this.carrelloDAO.sincronizzaDB(this.articoli,this.carrelloId);
+    }
+
+    /**********Metodi di supporto**********/
 
     public void pulisciCarrello(){
         this.articoli.clear();
