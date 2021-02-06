@@ -76,8 +76,10 @@ public class OrdinaController extends BaseSceneController implements Initializab
     }
 
     private void mostraArticoli(ObservableList<Articolo> articoli, int ristoranteId) {
+        if(ristoranteId != this.carrello.getRistoranteId()){
+            this.carrello.pulisciCarrello();
+        }
         this.carrello.setRistoranteId(ristoranteId);
-        this.carrello.pulisciCarrello();
         this.menuVBox.getChildren().clear();
         String categoria = "";
         for (Articolo articolo : articoli){
