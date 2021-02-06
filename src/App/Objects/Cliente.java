@@ -1,17 +1,11 @@
 package App.Objects;
 
 import App.DAO.ClienteDAO;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 public class Cliente {
 
@@ -26,7 +20,8 @@ public class Cliente {
     LocalDate dataNascita;
     Indirizzo indirizzoAttivo;
     boolean auth;
-    //todo ObservableList<Carrello> carrelli;
+    //TODO Carrello carrello;
+    //TODO ObservableList<Ordine> ordini;
     ObservableList<Indirizzo> indirizzi;
     ClienteDAO clienteDAO;
 
