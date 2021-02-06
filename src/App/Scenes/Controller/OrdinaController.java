@@ -1,10 +1,7 @@
 package App.Scenes.Controller;
 
 import App.Controller.OrdinazioneController;
-import App.Objects.Articolo;
-import App.Objects.Carrello;
-import App.Objects.Cliente;
-import App.Objects.Ristorante;
+import App.Objects.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +22,8 @@ public class OrdinaController extends BaseSceneController implements Initializab
     @FXML VBox ristorantiVBox;
     @FXML VBox menuVBox;
     @FXML VBox carrelloVBox;
+    @FXML Label indirizzoLabel;
+    @FXML Label totaleLabel;
     Carrello carrello;
     OrdinazioneController ordinazioneController;
 
@@ -45,6 +44,13 @@ public class OrdinaController extends BaseSceneController implements Initializab
         } catch(SQLException throwables) {
             throwables.printStackTrace();
         }
+        Indirizzo indirizzoAttivo = Cliente.getInstance().getIndirizzoAttivo();
+        if(indirizzoAttivo == null) {
+            indirizzoLabel.setText("Imposta un indirizzo attivo prima di ordinare");
+        } else {
+            indirizzoLabel.setText("Indirizzo attivo: "+indirizzoAttivo);
+        }
+        this.aggiornaTotale();
     }
 
     /**********Getter e Setter**********/
@@ -167,6 +173,20 @@ public class OrdinaController extends BaseSceneController implements Initializab
     private void aggiungiAlCarrello(Articolo articolo) throws SQLException {
         this.carrello.aggiungiAlCarrello(articolo);
         this.mostraCarrello();
+        this.aggiornaTotale();
+    }
+
+    private void aggiornaTotale() {
+        float totale = 0;
+        ObservableList<Articolo> articoli = this.carrello.getArticoli();
+        if(articoli.size()>0) {
+            for(Articolo articolo : articoli) {
+                totale += Float.parseFloat(articolo.getPrezzo().replace(" €", "").replace(",", "."));
+            }
+            totaleLabel.setText("Totale: "+totale+" €");
+        } else {
+            totaleLabel.setText("Inserisci articoli nel carrello");
+        }
     }
 
     public void eliminaDalCarrello(int indice) throws SQLException {
