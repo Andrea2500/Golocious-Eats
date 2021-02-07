@@ -6,6 +6,8 @@ TODO CONSEGNE EFFETTUATE
 TODO ORDINA
      divisione in 3 da sinistra a destra: sezione ristoranti, sezione articoli del ristorante e carrello con pulsante Ordina
      il carrello viene salvato del DB quando si ordina o quando si esce
+     controllare che siano disponibili rider al momento dell'ordine ed eventualmente chiedere di riprovare più tardi
 
 TODO Errore trigger DB
      Quando sono presenti 3 ordini attivi da effettuare non è possibile aggiornare lo stato
+     

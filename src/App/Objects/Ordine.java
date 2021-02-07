@@ -16,7 +16,6 @@ public class Ordine {
     String totale;
     Rider rider;
     String stato;
-    //TODO Carrello carrello
     OrdineDAO ordineDAO;
 
     /**********Metodi**********/
@@ -32,6 +31,13 @@ public class Ordine {
         this.stato = (stato)?"Consegnato":"In consegna";
         this.ordineDAO = new OrdineDAO();
         this.indirizzo = new Indirizzo(indirizzoId);
+    }
+
+    public Ordine(int ordineId) throws SQLException {
+        this.ordineDAO = new OrdineDAO();
+        Ordine creaOrdine = this.ordineDAO.creaOrdine(ordineId);
+        if(creaOrdine != null)
+            this.aggiornaCampi(creaOrdine);
     }
 
     public Ordine(Integer ordineId, Integer ristoranteId, String dataOrdine, Float totale, Integer riderId, boolean stato) throws SQLException {
@@ -112,4 +118,14 @@ public class Ordine {
        return this.ordineDAO.getOrdini(Cliente.getInstance().getClienteId());
     }
 
+    /**********Metodi di funzionalità**********/
+
+    private void aggiornaCampi(Ordine ordine) {
+        this.ordineId = ordine.getOrdineId();
+        this.ristorante = ordine.getRistorante();
+        this.dataOrdine = ordine.getDataOrdine();
+        this.totale = ordine.totale;
+        this.rider = ordine.rider;
+        this.stato = ordine.stato;
+    }
 }
