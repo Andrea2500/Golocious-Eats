@@ -273,6 +273,7 @@
     -fx-border-width: 0px 0px 2px 0px;
     -fx-padding: 15px 30px 15px 15px;
     -fx-spacing: 15px;
+    -fx-pref-height: 75px;
 }
 
 

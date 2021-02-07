@@ -11,7 +11,7 @@ public class ClienteDAO {
 
     /**********Attributi**********/
 
-    private String table;
+    private String tabella;
     private Cliente cliente;
     protected Database db;
     private ErroriDB edb = new ErroriDB();
@@ -22,14 +22,14 @@ public class ClienteDAO {
 
     public ClienteDAO() {
         this.db = new Database();
-        this.table = "Cliente";
+        this.tabella = "Cliente";
     }
 
     /**********Metodi di funzionalità**********/
 
     public boolean loginConf(String email, String password) throws SQLException {
         this.db.setConnection();
-        String sql = "select * from "+this.table+" where email = ? and password = ?";
+        String sql = "select * from "+this.tabella +" where email = ? and password = ?";
         PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         pstmt.setString(1, email);
         pstmt.setString(2, password);
@@ -53,7 +53,7 @@ public class ClienteDAO {
     public String registerConf(Cliente cliente, String password) throws SQLException {
         try {
             this.db.setConnection();
-            String sql = "insert into " + this.table + " values (?, ?, ?, ?, ?, ?)";
+            String sql = "insert into " + this.tabella + " values (?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, cliente.getNome());
             pstmt.setString(2, cliente.getCognome());
@@ -74,6 +74,17 @@ public class ClienteDAO {
         }
     }
 
+    public void effettuaOrdine(int carrelloId) throws SQLException {
+        try {
+            this.db.setConnection();
+            String sql = "insert into ordine values ("+carrelloId+")";
+            this.db.getConnection().createStatement().executeUpdate(sql);
+            this.db.closeConnection();
+        } catch(PSQLException e) {
+            this.db.closeConnection();
+        }
+    }
+
     /**********Getter e Setter**********/
 
     public String getRole(Integer id) throws SQLException {
@@ -91,7 +102,7 @@ public class ClienteDAO {
 
     public String getNomeDB(Integer id) throws SQLException {
         String where = "clienteid = '"+id+"'";
-        ResultSet rs = this.db.queryBuilder(this.table,where);
+        ResultSet rs = this.db.queryBuilder(this.tabella,where);
         if(rs.next()) {
             return rs.getString("nome")+" "+rs.getString("cognome");
         } else {
@@ -101,7 +112,7 @@ public class ClienteDAO {
 
     public String aggiornaIndirizzoAttivo(Integer indirizzoId) throws SQLException {
         try{
-            String sql = "UPDATE "+this.table+" SET indirizzoattivo = '"+ indirizzoId +"' WHERE clienteid = "+ Cliente.getInstance().getClienteId();
+            String sql = "UPDATE "+this.tabella +" SET indirizzoattivo = '"+ indirizzoId +"' WHERE clienteid = "+ Cliente.getInstance().getClienteId();
             this.db.setConnection();
             if(this.db.getConnection().createStatement().executeUpdate(sql)==1){
                 this.db.closeConnection();
@@ -115,5 +126,4 @@ public class ClienteDAO {
             return edb.getMessaggioErrore(e.getMessage());
         }
     }
-
 }

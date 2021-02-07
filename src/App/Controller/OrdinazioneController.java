@@ -1,6 +1,7 @@
 package App.Controller;
 
 import App.Objects.Articolo;
+import App.Objects.Cliente;
 import App.Objects.Ristorante;
 import javafx.collections.ObservableList;
 
@@ -12,6 +13,7 @@ public class OrdinazioneController {
 
     Ristorante ristorante;
     Articolo articolo;
+    Cliente cliente;
 
     /**********Metodi**********/
 
@@ -28,5 +30,8 @@ public class OrdinazioneController {
         return this.ristorante.getListaRistorantiDB();
     }
 
-    /**********Metodi di supporto**********/
+    public void effettuaOrdine(Cliente cliente) throws SQLException {
+        cliente.effettuaOrdine();
+    }
+
 }

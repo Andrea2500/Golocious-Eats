@@ -12,7 +12,7 @@ public class ArticoloDAO {
 
     /**********Attribbuti**********/
 
-    String table;
+    String tabella;
     Database db;
     ObservableList<Articolo> articoli;
     ErroriDB edb;
@@ -22,7 +22,7 @@ public class ArticoloDAO {
     /**********Costruttori**********/
 
     public ArticoloDAO() {
-        this.table = "Articolo";
+        this.tabella = "Articolo";
         this.db = new Database();
         this.edb = new ErroriDB();
     }
@@ -31,7 +31,7 @@ public class ArticoloDAO {
 
     public int setArticolo(Articolo articolo) throws Exception {
         try {
-            String sql = "INSERT INTO "+this.table+" VALUES (?,?,?,?)";
+            String sql = "INSERT INTO "+this.tabella +" VALUES (?,?,?,?)";
             this.db.setConnection();
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, articolo.getNome());

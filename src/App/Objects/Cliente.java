@@ -131,7 +131,6 @@ public class Cliente {
     public Carrello getCarrello() throws SQLException {
         if(this.carrello == null)
             return new Carrello();
-
         return carrello;
     }
 
@@ -151,6 +150,10 @@ public class Cliente {
 
     public String aggiornaIndirizzoAttivo(Integer indirizzoId) throws SQLException {
         return this.clienteDAO.aggiornaIndirizzoAttivo(indirizzoId);
+    }
+
+    public void effettuaOrdine() throws SQLException {
+        this.clienteDAO.effettuaOrdine(this.carrello.getCarrelloId());
     }
 
     /**********Metodi di supporto**********/
@@ -177,4 +180,5 @@ public class Cliente {
     public void removeIndirizzo(Indirizzo indirizzo) {
         this.indirizzi.remove(indirizzo);
     }
+
 }

@@ -14,12 +14,20 @@ import java.time.LocalDate;
 
 public class ElementoStatisticheDAO {
 
+    /**********Attributi**********/
+
     Database db;
     ObservableList<ElementoStatistiche> elementiStatiche;
+
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public ElementoStatisticheDAO() {
         this.db = new Database();
     }
+
+    /**********Metodi di funzionalità**********/
 
     public ObservableList<ElementoStatistiche> getStatistiche(Float daPrezzo, Float aPrezzo, String veicolo, LocalDate daData, LocalDate aData, int ristornateId) throws SQLException {
         try{
@@ -60,19 +68,17 @@ public class ElementoStatisticheDAO {
                 pstmt.setDate(index, Date.valueOf(aData));
                 index++;
             }
-
             ResultSet rs = pstmt.executeQuery();
             this.elementiStatiche = FXCollections.observableArrayList();
             while(rs.next()){
                 this.elementiStatiche.add(new ElementoStatistiche(rs.getString("nome"),rs.getFloat("prezzo"),
                         rs.getInt("nvenduti"),rs.getFloat("totalearticolo")));
             }
-
             return this.elementiStatiche;
         }catch (PSQLException e) {
             e.printStackTrace();
             return null;
         }
-
     }
+
 }
