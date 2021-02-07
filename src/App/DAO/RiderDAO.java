@@ -53,6 +53,14 @@ public class RiderDAO {
         }
     }
 
+    public void consegna(Integer ordineId) throws SQLException {
+        String sql = "UPDATE ordine SET consegnato = 'true' WHERE ordineid = ?";
+        this.db.setConnection();
+        PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql);
+        pstmt.setInt(1,ordineId);
+        pstmt.executeUpdate();
+    }
+
     /**********Metodi di supporto**********/
 
     public String getVeicolo(Integer riderId) throws SQLException {
@@ -72,14 +80,15 @@ public class RiderDAO {
 
     public ObservableList<Ordine> getConsegne(int riderId, boolean attive) throws SQLException {
         this.consegne = FXCollections.observableArrayList();
-        String where = "riderid ="+riderId+" AND consegnato = "+attive;
+        String where = "riderid ="+riderId+" AND consegnato = "+!attive;
         ResultSet rs = this.db.queryBuilder("ordine",where);
         while (rs.next()) {
             this.consegne.add(new Ordine(rs.getInt("ordineid"), rs.getInt("ristoranteid"),
                     rs.getTimestamp("dataordine").toString(), rs.getFloat("totale"),
-                    rs.getInt("riderid"),rs.getBoolean("consegnato")));
+                    rs.getInt("riderid"),rs.getBoolean("consegnato"), rs.getInt("indirizzoid")));
         }
         db.closeConnection();
         return this.consegne;
     }
+
 }

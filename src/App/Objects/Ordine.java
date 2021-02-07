@@ -11,6 +11,7 @@ public class Ordine {
 
     Integer ordineId;
     Ristorante ristorante;
+    Indirizzo indirizzo;
     String dataOrdine;
     String totale;
     Rider rider;
@@ -21,6 +22,17 @@ public class Ordine {
     /**********Metodi**********/
 
     /**********Costruttori**********/
+
+    public Ordine(Integer ordineId, Integer ristoranteId, String dataOrdine, Float totale, Integer riderId, boolean stato,Integer indirizzoId) throws SQLException {
+        this.ordineId = ordineId;
+        this.ristorante = new Ristorante(ristoranteId);
+        this.dataOrdine = dataOrdine;
+        this.totale = String.format("%.2f", totale).concat(" €");
+        this.rider = new Rider(riderId, false, false);
+        this.stato = (stato)?"Consegnato":"In consegna";
+        this.ordineDAO = new OrdineDAO();
+        this.indirizzo = new Indirizzo(indirizzoId);
+    }
 
     public Ordine(Integer ordineId, Integer ristoranteId, String dataOrdine, Float totale, Integer riderId, boolean stato) throws SQLException {
         this.ordineId = ordineId;
@@ -84,6 +96,14 @@ public class Ordine {
 
     public void setStato(String stato) {
         this.stato = stato;
+    }
+
+    public Indirizzo getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(Indirizzo indirizzo) {
+        this.indirizzo = indirizzo;
     }
 
     /**********Metodi di funzionalità**********/

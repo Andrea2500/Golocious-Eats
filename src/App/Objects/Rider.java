@@ -1,6 +1,7 @@
 package App.Objects;
 
 import App.DAO.RiderDAO;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
@@ -61,6 +62,7 @@ public class Rider extends Cliente {
     }
 
     public void setConsegneDB(boolean attive) throws SQLException {
+        this.consegne = FXCollections.observableArrayList();
         this.consegne = this.riderDAO.getConsegne(super.clienteId, attive);
     }
 
@@ -75,6 +77,10 @@ public class Rider extends Cliente {
     @Override
     public String toString() {
         return super.nome;
+    }
+
+    public void consegna(Integer ordineId) throws SQLException {
+        this.riderDAO.consegna(ordineId);
     }
 
 }

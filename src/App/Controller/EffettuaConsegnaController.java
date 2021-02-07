@@ -18,4 +18,12 @@ public class EffettuaConsegnaController {
     public ObservableList<Ordine> getConsegneAttive() {
         return this.rider.getConsegne();
     }
+
+    public void consegna(Integer ordineId) throws SQLException {
+        this.rider.consegna(ordineId);
+    }
+
+    public void aggiornaConsegne() throws SQLException {
+        this.rider.setConsegneDB(true);
+    }
 }
