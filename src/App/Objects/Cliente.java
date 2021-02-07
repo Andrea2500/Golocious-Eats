@@ -145,6 +145,8 @@ public class Cliente {
     }
 
     public ObservableList<Ordine> getOrdini() {
+        if(this.ordini == null)
+            this.ordini = FXCollections.observableArrayList();
         return ordini;
     }
 
@@ -168,7 +170,7 @@ public class Cliente {
 
     public String effettuaOrdine() {
         try {
-            this.ordini.add(new Ordine(this.getCarrello().getCarrelloId()));
+            getOrdini().add(new Ordine(this.getCarrello().getCarrelloId()));
             return "ordine_effettuato";
         } catch(Exception e) {
             return e.getMessage();

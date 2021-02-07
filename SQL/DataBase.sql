@@ -131,16 +131,20 @@ CREATE TABLE ArticoloInCarrello (
 
 -------------------------------------------VINCOLI-------------------------------------------
 
-CREATE OR REPLACE FUNCTION ordini_attivi_rider(RiderID INTEGER) RETURNS INTEGER AS $$
+CREATE OR REPLACE FUNCTION max_3_ordini_attivi_rider() RETURNS TRIGGER AS $$
 	BEGIN
-		RETURN (SELECT COUNT(*)
-				FROM Ordine o
-				WHERE o.Consegnato=FALSE AND o.RiderID=$1);
+        IF (3>(SELECT COUNT(*)
+               FROM Ordine o
+               WHERE o.Consegnato=FALSE AND o.RiderID = NEW.RiderID))
+        THEN
+        ELSE RAISE EXCEPTION 'Numero massimo di Ordini attivi raggiunto per questo Rider';
+        END IF;
+        RETURN NEW;
 	END;
 $$ LANGUAGE plpgsql;
 
-ALTER TABLE Ordine
-ADD CONSTRAINT CK_MAX_ORDINI CHECK (3>ordini_attivi_rider(RiderID));
+CREATE TRIGGER trigger_max_3_ordini_attivi_rider_insert BEFORE INSERT ON Ordine
+    FOR EACH ROW EXECUTE PROCEDURE max_3_ordini_attivi_rider();
 
 
 CREATE FUNCTION max_un_carrello_attivo() RETURNS TRIGGER AS $$

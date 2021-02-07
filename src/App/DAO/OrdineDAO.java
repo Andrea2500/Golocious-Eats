@@ -54,7 +54,8 @@ public class OrdineDAO {
             String sql = "insert into "+this.table+" values (?)";
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, carrelloId);
-            ResultSet rs = pstmt.executeQuery();
+            pstmt.executeUpdate();
+            ResultSet rs = pstmt.getGeneratedKeys();
             if(rs.next()) {
                 return new Ordine(rs.getInt("ordineid"), rs.getInt("ristoranteid"),
                         rs.getTimestamp("dataordine").toString(), rs.getFloat("totale"),
@@ -64,6 +65,7 @@ public class OrdineDAO {
             return null;
         } catch(PSQLException e) {
             this.db.closeConnection();
+            System.out.println(e.getMessage());
             throw new Exception(this.edb.getMessaggioErrore(e.getMessage()));
         }
     }
