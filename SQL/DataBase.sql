@@ -314,53 +314,6 @@ $$ LANGUAGE plpgsql;
 ALTER TABLE Cliente
 ADD CONSTRAINT ck_indirizzo_attivo_del_cliente CHECK (indirizzo_attivo_del_cliente(IndirizzoAttivo, ClienteID));
 
-/*
-CREATE FUNCTION elimina_cliente_rider() RETURNS TRIGGER AS $$
-	BEGIN
-		UPDATE Rider
-		SET Eliminato = NEW.Eliminato
-		WHERE RiderID = NEW.ClienteID;
-		RETURN NEW;
-	END
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trigger_elimina_cliente_rider AFTER UPDATE ON Cliente
-	FOR EACH ROW EXECUTE PROCEDURE elimina_cliente_rider();
-
-
-CREATE FUNCTION elimina_cliente_gestore() RETURNS TRIGGER AS $$
-	BEGIN
-		DELETE Rider
-		SET Eliminato = NEW.Eliminato
-		WHERE RiderID = NEW.ClienteID;
-		RETURN NEW;
-	END
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trigger_elimina_cliente_gestore AFTER UPDATE ON Cliente
-	FOR EACH ROW EXECUTE PROCEDURE elimina_cliente_gestore();
-
-
-CREATE FUNCTION elimina_unico_gestore_ristorante() RETURNS TRIGGER AS $$
-	BEGIN
-        IF NEW.Eliminato = true THEN
-            IF NOT EXISTS (SELECT *
-                           FROM Gestore as g1 NATURAL JOIN (SELECT COUNT(ClienteID), RistoranteID
-                                                            FROM Gestore
-                                                            GROUP BY RistoranteID
-                                                            HAVING COUNT(ClienteID) = 1) as g2
-                           WHERE g1.ClienteID = NEW.ClienteID)
-            THEN RETURN NEW;
-            ELSE RAISE EXCEPTION 'Utente singolo gestore di ristorante';
-            END IF;
-		ELSE RETURN OLD;
-		END IF;
-	END
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trigger_elimina_unico_gestore_ristorante BEFORE UPDATE ON Cliente
-	FOR EACH ROW EXECUTE PROCEDURE elimina_unico_gestore_ristorante();
-*/
 -------------------------------------------POPOLAMENTO-------------------------------------------
 
 INSERT INTO Ristorante VALUES
