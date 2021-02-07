@@ -1,13 +1,14 @@
 TODO CONSEGNA
      CONSEGNA ATTUALE con visualizzazione di indirizzo cliente e tasto per confermare consegna
 
-TODO CONSEGNE EFFETTUATE
+TODO CONSEGNE EFFETTUATE aggiungere indirizzo di consegna
 
 TODO ORDINA
-     divisione in 3 da sinistra a destra: sezione ristoranti, sezione articoli del ristorante e carrello con pulsante Ordina
-     il carrello viene salvato del DB quando si ordina o quando si esce
      controllare che siano disponibili rider al momento dell'ordine ed eventualmente chiedere di riprovare più tardi
 
 TODO Errore trigger DB
      Quando sono presenti 3 ordini attivi da effettuare non è possibile aggiornare lo stato
      
+TODO filtri non funziona
+
+TODO non permette di ordinare oltre il limite di 3 totali per rider

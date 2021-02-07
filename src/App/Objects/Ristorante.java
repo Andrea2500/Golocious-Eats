@@ -114,7 +114,7 @@ public class Ristorante {
     }
 
     public ObservableList<Articolo> getArticoliAltriRistorantiDB(Integer ristoranteId) throws SQLException {
-        return this.ristoranteDAO.getArticoliAltriRistorantiDB(ristoranteId);
+        return this.ristoranteDAO.getArticoliAltriRistorantiDB(ristoranteId);//TODO quando si crea un ristorante e poi si vuole aggiungere un articolo non lo fa aggiungere
     }
 
     public ObservableList<Ristorante> getRistorantiDB(Integer ristoranteId) throws SQLException {
