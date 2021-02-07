@@ -16,6 +16,7 @@ public class CarrelloDAO {
     /**********Attributi**********/
 
     Database db;
+    String tabella = "carrello";
 
     /**********Metodi**********/
 
@@ -25,10 +26,10 @@ public class CarrelloDAO {
         this.db = new Database();
     }
 
-    /**********Getter e Setter**********/
+    /**********Metodi di funzionalità**********/
 
     public int getCarrelloCliente() throws SQLException {
-        ResultSet rs = this.db.queryBuilder("carrello", "clienteid = "+ Cliente.getInstance().getClienteId()+" AND ordinato = 'false'");
+        ResultSet rs = this.db.queryBuilder(this.tabella, "clienteid = "+ Cliente.getInstance().getClienteId()+" AND ordinato = 'false'");
         if(rs.next()){
             return rs.getInt("carrelloId");
         }else{
@@ -37,7 +38,7 @@ public class CarrelloDAO {
     }
 
     public int getRistoranteId(int carrelloId) throws SQLException {
-        ResultSet rs = this.db.queryBuilder("carrello", "carrelloid = "+ carrelloId);
+        ResultSet rs = this.db.queryBuilder(this.tabella, "carrelloid = "+ carrelloId);
         if(rs.next()){
             return rs.getInt("ristoranteid");
         }else{
@@ -66,14 +67,12 @@ public class CarrelloDAO {
         return articoliCliente;
     }
 
-    /**********Metodi di funzionalità**********/
-
     public void sincronizzaDB(ObservableList<Articolo> articoliInCarrello,int carrelloId) throws SQLException {
-        this.setArticoliInCarrello(articoliInCarrello, carrelloId );
+        this.setArticoliInCarrello(articoliInCarrello, carrelloId);
     }
 
     private Integer nuovoCarrello(int ristoranteId) throws SQLException {
-            String sql = "INSERT INTO carrello VALUES(?,?)";
+            String sql = "INSERT INTO "+this.tabella+" VALUES(?,?)";
             this.db.setConnection();
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1,Cliente.getInstance().getClienteId());
@@ -100,9 +99,9 @@ public class CarrelloDAO {
         this.db.closeConnection();
     }
 
-    public int updateRistoranteId(int ristoranteId,int carrelloId) throws SQLException {
+    public int aggiornaRistoranteId(int ristoranteId, int carrelloId) throws SQLException {
         pulisciCarrello(carrelloId);
-        String sql = "DELETE from carrello WHERE carrelloid = ?";
+        String sql = "DELETE from "+this.tabella+" WHERE carrelloid = ?";
         this.db.setConnection();
         PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         pstmt.setInt(1,carrelloId);

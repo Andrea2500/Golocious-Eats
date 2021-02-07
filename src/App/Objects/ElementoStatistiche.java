@@ -68,7 +68,7 @@ public class ElementoStatistiche {
     /**********Metodi di funzionalità**********/
 
     public ObservableList<ElementoStatistiche> getStatisticheDB(Float daPrezzo, Float aPrezzo, String veicolo, LocalDate daData, LocalDate aData, int ristoranteId) throws SQLException {
-        return this.elementoStatisticheDAO.getStatistiche(daPrezzo,aPrezzo,veicolo,daData,aData,ristoranteId);
+        return this.elementoStatisticheDAO.getStatistiche(daPrezzo, aPrezzo, veicolo, daData, aData, ristoranteId);
     }
 
 }

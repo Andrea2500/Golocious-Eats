@@ -55,20 +55,22 @@ public class Carrello {
 
     public void aggiungiAlCarrello(Articolo articolo) throws SQLException {
         this.articoli.add(articolo);
-        this.carrelloId = this.carrelloDAO.updateRistoranteId(this.ristoranteId,this.carrelloId);
+        this.carrelloId = this.carrelloDAO.aggiornaRistoranteId(this.ristoranteId,this.carrelloId);
         this.carrelloDAO.sincronizzaDB(this.articoli,this.carrelloId);
     }
 
     public void eliminaDalCarrello(int indice) throws SQLException {
         this.articoli.remove(indice);
-        this.carrelloId = this.carrelloDAO.updateRistoranteId(this.ristoranteId,this.carrelloId);
+        this.carrelloId = this.carrelloDAO.aggiornaRistoranteId(this.ristoranteId,this.carrelloId);
         this.carrelloDAO.sincronizzaDB(this.articoli,this.carrelloId);
     }
 
     /**********Metodi di supporto**********/
 
-    public void pulisciCarrello(){
+    public void svuotaCarrello() throws SQLException {
         this.articoli.clear();
+        this.carrelloId = this.carrelloDAO.aggiornaRistoranteId(this.ristoranteId,this.carrelloId);
+        this.carrelloDAO.sincronizzaDB(this.articoli,this.carrelloId);
     }
 
 }
