@@ -47,7 +47,12 @@ public class OrdinaController extends BaseSceneController implements Initializab
         } catch(SQLException throwables) {
             throwables.printStackTrace();
         }
-        Indirizzo indirizzoAttivo = this.cliente.getIndirizzoAttivo();
+        Indirizzo indirizzoAttivo = null;
+        try {
+            indirizzoAttivo = this.cliente.getIndirizzoAttivo();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         if(indirizzoAttivo == null) {
             indirizzoLabel.setText("Imposta un indirizzo attivo prima di ordinare");
         } else {
@@ -224,7 +229,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
 
     /**********Metodi di ripristino e di errori**********/
 
-    public void setErrori() {
+    public void setErrori() throws SQLException {
         if(cliente.getIndirizzoAttivo() == null) {
             indirizzoLabel.setStyle("-fx-text-fill: #ff0000");
         }

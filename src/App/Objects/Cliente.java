@@ -92,7 +92,13 @@ public class Cliente {
         this.dataNascita = dataNascita;
     }
 
-    public Indirizzo getIndirizzoAttivo() {
+    public Indirizzo getIndirizzoAttivo() throws SQLException {
+        if(this.indirizzoAttivo == null) {
+            int indirizzoAttivoId = this.clienteDAO.getIndirizzoAttivo(this.clienteId);
+            if(indirizzoAttivoId != 0) {
+                this.indirizzoAttivo = new Indirizzo(indirizzoAttivoId);
+            }
+        }
         return indirizzoAttivo;
     }
 

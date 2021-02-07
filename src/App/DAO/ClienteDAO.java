@@ -3,6 +3,7 @@ package App.DAO;
 import App.Config.Database;
 import App.Config.ErroriDB;
 import App.Objects.Cliente;
+import App.Objects.Indirizzo;
 import org.postgresql.util.PSQLException;
 
 import java.sql.*;
@@ -90,18 +91,18 @@ public class ClienteDAO {
     public String getRole(Integer id) throws SQLException {
         ResultSet role;
         String where = "clienteid = '"+id+"'";
-        role = db.queryBuilder("gestore",where);
+        role = db.queryBuilder("gestore", where);
         if(role.next())
             return "gestore";
         where = "riderid = '"+id+"'";
-        role = db.queryBuilder("rider",where);
+        role = db.queryBuilder("rider", where);
         if(role.next())
             return "rider";
         return "cliente";
     }
 
-    public String getNomeDB(Integer id) throws SQLException {
-        String where = "clienteid = '"+id+"'";
+    public String getNomeDB(Integer clienteId) throws SQLException {
+        String where = "clienteid = '"+clienteId+"'";
         ResultSet rs = this.db.queryBuilder(this.tabella,where);
         if(rs.next()) {
             return rs.getString("nome")+" "+rs.getString("cognome");
@@ -124,6 +125,16 @@ public class ClienteDAO {
         }catch(PSQLException e){
             this.db.closeConnection();
             return edb.getMessaggioErrore(e.getMessage());
+        }
+    }
+
+    public int getIndirizzoAttivo(int clienteId) throws SQLException {
+        String where = "clienteid = '"+clienteId+"'";
+        ResultSet rs = this.db.queryBuilder(this.tabella, where);
+        if(rs.next()) {
+            return (rs.getInt("indirizzoattivo"));
+        } else {
+            return 0;
         }
     }
 }
