@@ -1,6 +1,7 @@
 package App.DAO;
 
 import App.Config.Database;
+import App.Config.ErroriDB;
 import App.Objects.Ordine;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ public class OrdineDAO {
     private String fkTable;
     private ObservableList<Ordine> ordini;
     private Database db;
+    private ErroriDB edb;
 
     /**********Metodi**********/
 
@@ -25,6 +27,7 @@ public class OrdineDAO {
         this.db = new Database();
         this.table = "Ordine";
         this.fkTable = "Carrello";
+        this.edb = new ErroriDB();
     }
 
     /**********Metodi di funzionalità**********/
@@ -45,10 +48,10 @@ public class OrdineDAO {
         return this.ordini;
     }
 
-    public Ordine creaOrdine(int carrelloId) throws SQLException {
+    public Ordine creaOrdine(int carrelloId) throws Exception {
         try {
             this.db.setConnection();
-            String sql = "insert into ordine values (?)";
+            String sql = "insert into "+this.table+" values (?)";
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, carrelloId);
             ResultSet rs = pstmt.executeQuery();
@@ -61,7 +64,7 @@ public class OrdineDAO {
             return null;
         } catch(PSQLException e) {
             this.db.closeConnection();
-            return null;
+            throw new Exception(this.edb.getMessaggioErrore(e.getMessage()));
         }
     }
 

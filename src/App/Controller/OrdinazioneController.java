@@ -30,8 +30,8 @@ public class OrdinazioneController {
         return this.ristorante.getListaRistorantiDB();
     }
 
-    public void effettuaOrdine(Cliente cliente) throws SQLException {
-        cliente.effettuaOrdine();
+    public String effettuaOrdine(Cliente cliente) {
+        return cliente.effettuaOrdine();
     }
 
 }

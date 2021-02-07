@@ -30,8 +30,8 @@ public class Database {
 
     /**********Metodi di supporto**********/
 
-    public ResultSet queryBuilder(String from, String where) {
-        ResultSet rs;
+    public ResultSet queryBuilder(String from, String where) throws SQLException {
+        ResultSet rs = null;
         try {
             setConnection();
             String sql = "SELECT * FROM "+from+" WHERE "+where;
@@ -39,7 +39,7 @@ public class Database {
             closeConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            rs = null;
+            closeConnection();
         }
         return rs;
     }

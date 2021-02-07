@@ -66,17 +66,22 @@ public class OrdinaController extends BaseSceneController implements Initializab
         this.carrello.svuotaCarrello();
         mostraCarrello();
         this.cliente.setCarrello(this.carrello);
+        resetErrori();
     }
 
     public void ordinaOraBtn() throws SQLException {
         resetErrori();
         if(this.cliente.getIndirizzoAttivo() != null && carrello.getArticoli().size()>0) {
             this.ordinazioneController = new OrdinazioneController();
-            this.ordinazioneController.effettuaOrdine(this.cliente);
-            this.cliente.setCarrello(null);
-            this.carrello = this.cliente.getCarrello();
-            svuotaCarrelloBtn();
-            totaleLabel.setText("Grazie per averci scelto!");
+            String messaggio = this.ordinazioneController.effettuaOrdine(this.cliente);
+            if(messaggio.equals("ordine_effettuato")) {
+                this.cliente.setCarrello(null);
+                this.carrello = this.cliente.getCarrello();
+                svuotaCarrelloBtn();
+                totaleLabel.setText("Grazie per averci scelto!");
+            } else {
+                setErroriDB();
+            }
         } else {
             setErrori();
         }
@@ -248,6 +253,11 @@ public class OrdinaController extends BaseSceneController implements Initializab
     public void resetErrori() {
         indirizzoLabel.setStyle("-fx-text-fill: #fab338");
         totaleLabel.setStyle("-fx-text-fill: #fab338");
+        sceneController.setVisibile("erroreRiderLabel", false);
+    }
+
+    private void setErroriDB() {
+        sceneController.setVisibile("erroreRiderLabel", true);
     }
 
 }

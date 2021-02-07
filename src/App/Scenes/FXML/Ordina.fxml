@@ -82,16 +82,23 @@
                   </font>
                </Label>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="310.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0">
+            <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0">
+               <children>
+                  <Label id="totaleLabel" fx:id="totaleLabel" text="Totale: ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label id="erroreRiderLabel" managed="false" visible="false" style="-fx-text-fill: ff0000;" text="Nessun rider disponibile, riprova più tardi" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
                <padding>
                   <Insets bottom="15.0" left="18.0" right="18.0" top="15.0" />
                </padding>
-               <Label id="totaleLabel" fx:id="totaleLabel" text="Totale: ">
-                  <font>
-                     <Font size="14.0" />
-                  </font>
-               </Label>
-            </HBox>
+            </VBox>
             <HBox alignment="CENTER" layoutX="460.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0" spacing="15.0">
                <Button id="svuotaCarrello" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#svuotaCarrelloBtn" prefHeight="30.0" prefWidth="100.0" text="Svuota carrello" textAlignment="CENTER" />
                <Button id="ordinaOraBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ordinaOraBtn" prefHeight="30.0" prefWidth="100.0" text="Ordina ora" />

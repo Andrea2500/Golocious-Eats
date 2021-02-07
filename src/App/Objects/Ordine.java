@@ -33,11 +33,16 @@ public class Ordine {
         this.indirizzo = new Indirizzo(indirizzoId);
     }
 
-    public Ordine(int ordineId) throws SQLException {
+    public Ordine(int ordineId) throws Exception {
         this.ordineDAO = new OrdineDAO();
-        Ordine creaOrdine = this.ordineDAO.creaOrdine(ordineId);
-        if(creaOrdine != null)
-            this.aggiornaCampi(creaOrdine);
+        Ordine ordineCreato;
+        try {
+            ordineCreato = this.ordineDAO.creaOrdine(ordineId);
+        } catch(Exception e) {
+            throw new Exception(e.getMessage());
+        }
+        if(ordineCreato != null)
+            this.aggiornaCampi(ordineCreato);
     }
 
     public Ordine(Integer ordineId, Integer ristoranteId, String dataOrdine, Float totale, Integer riderId, boolean stato) throws SQLException {

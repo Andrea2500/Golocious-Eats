@@ -54,6 +54,9 @@ public class ErroriDB {
         }if(isErroreKey(errore, "ck_gestore_non_rider")) {
             return "ck_gestore_non_rider";
         }
+        if(isErroreKey(errore, "null value in column \"riderid\"")) {
+            return "nessun_rider";
+        }
         else return "errore_sconosciuto";
     }
 

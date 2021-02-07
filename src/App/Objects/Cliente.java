@@ -166,8 +166,13 @@ public class Cliente {
         return this.clienteDAO.aggiornaIndirizzoAttivo(indirizzoId);
     }
 
-    public void effettuaOrdine() throws SQLException {
-        this.ordini.add(new Ordine(this.carrello.getCarrelloId()));
+    public String effettuaOrdine() {
+        try {
+            this.ordini.add(new Ordine(this.getCarrello().getCarrelloId()));
+            return "ordine_effettuato";
+        } catch(Exception e) {
+            return e.getMessage();
+        }
     }
 
     /**********Metodi di supporto**********/
