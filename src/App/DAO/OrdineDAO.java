@@ -36,7 +36,7 @@ public class OrdineDAO {
         ResultSet rs = pstmt.executeQuery();
         while (rs.next()) {
             this.ordini.add(new Ordine(rs.getInt("ordineid"), rs.getInt("ristoranteid"),
-                    rs.getDate("dataordine").toString(), rs.getFloat("totale"),
+                    rs.getTimestamp("dataordine").toString(), rs.getFloat("totale"),
                     rs.getInt("riderid"),rs.getBoolean("consegnato")));
         }
         db.closeConnection();

@@ -2,7 +2,10 @@ package App.DAO;
 
 import App.Config.Database;
 import App.Config.ErroriDB;
+import App.Objects.Ordine;
 import App.Objects.Rider;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +18,7 @@ public class RiderDAO {
 
     String table;
     Database db;
+    ObservableList<Ordine> consegne;
     ErroriDB edb = new ErroriDB();
 
     /**********Metodi**********/
@@ -66,4 +70,16 @@ public class RiderDAO {
         }
     }
 
+    public ObservableList<Ordine> getConsegne(int riderId, boolean attive) throws SQLException {
+        this.consegne = FXCollections.observableArrayList();
+        String where = "riderid ="+riderId+" AND consegnato = "+attive;
+        ResultSet rs = this.db.queryBuilder("ordine",where);
+        while (rs.next()) {
+            this.consegne.add(new Ordine(rs.getInt("ordineid"), rs.getInt("ristoranteid"),
+                    rs.getTimestamp("dataordine").toString(), rs.getFloat("totale"),
+                    rs.getInt("riderid"),rs.getBoolean("consegnato")));
+        }
+        db.closeConnection();
+        return this.consegne;
+    }
 }

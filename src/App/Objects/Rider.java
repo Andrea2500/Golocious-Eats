@@ -18,11 +18,13 @@ public class Rider extends Cliente {
 
     /**********Costruttori**********/
 
-    public Rider(Integer riderId) throws SQLException {
+    public Rider(Integer riderId, boolean consegne, boolean attive) throws SQLException {
         super.clienteId = riderId;
         this.riderDAO = new RiderDAO();
         this.veicolo = this.riderDAO.getVeicolo(riderId);
         super.nome = super.getNomeDB(riderId);
+        if(consegne)
+            setConsegneDB(attive);
     }
 
     public Rider(Integer riderId, String patente, String veicolo) {
@@ -56,6 +58,10 @@ public class Rider extends Cliente {
 
     public void setConsegne(ObservableList<Ordine> consegne) {
         this.consegne = consegne;
+    }
+
+    public void setConsegneDB(boolean attive) throws SQLException {
+        this.consegne = this.riderDAO.getConsegne(super.clienteId, attive);
     }
 
     /**********Metodi di funzionalità**********/

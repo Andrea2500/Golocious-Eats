@@ -28,4 +28,7 @@
             </HBox>
         </HBox>
     </top>
+   <center>
+      <VBox fx:id="consegnaVBox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>

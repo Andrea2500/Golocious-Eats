@@ -27,7 +27,7 @@ public class Ordine {
         this.ristorante = new Ristorante(ristoranteId);
         this.dataOrdine = dataOrdine;
         this.totale = String.format("%.2f", totale).concat(" €");
-        this.rider = new Rider(riderId);
+        this.rider = new Rider(riderId, false, false);
         this.stato = (stato)?"Consegnato":"In consegna";
         this.ordineDAO = new OrdineDAO();
     }

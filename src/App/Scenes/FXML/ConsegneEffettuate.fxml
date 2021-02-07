@@ -28,4 +28,13 @@
             </HBox>
         </HBox>
     </top>
+   <center>
+      <TableView fx:id="consegneEffettuateTable" prefWidth="899.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="idColonna" prefWidth="297.0" text="#" />
+          <TableColumn fx:id="ristoranteColonna" prefWidth="297.0" text="Ristorante" />
+            <TableColumn fx:id="dataColonna" prefWidth="297.0" text="Data" />
+        </columns>
+      </TableView>
+   </center>
 </BorderPane>
