@@ -28,7 +28,7 @@ public class Ristorante {
 
     public Ristorante(Integer ristoranteId) throws SQLException {
         this.ristoranteDAO = new RistoranteDAO();
-        this.updateFields(this.ristoranteDAO.getRistorante(ristoranteId));
+        this.aggiornaCampi(this.ristoranteDAO.getRistorante(ristoranteId));
     }
 
     public Ristorante(Integer ristoranteId, String nome, String indirizzo, String telefono, LocalDate dataDiApertura, ObservableList<Articolo> articoli) {
@@ -137,7 +137,7 @@ public class Ristorante {
     /**********Metodi di supporto**********/
 
 
-    public void updateFields(Ristorante ristorante){
+    public void aggiornaCampi(Ristorante ristorante){
         this.ristoranteId = ristorante.getRistoranteId();
         this.nome = ristorante.getNome();
         this.indirizzo = ristorante.getIndirizzo();

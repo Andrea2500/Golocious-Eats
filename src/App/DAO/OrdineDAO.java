@@ -4,6 +4,8 @@ import App.Config.Database;
 import App.Objects.Ordine;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.postgresql.util.PSQLException;
+
 import java.sql.*;
 
 public class OrdineDAO {
@@ -25,7 +27,7 @@ public class OrdineDAO {
         this.fkTable = "Carrello";
     }
 
-    /**********Metodi di supporto**********/
+    /**********Metodi di funzionalità**********/
 
     public ObservableList<Ordine> getOrdini(Integer id) throws SQLException {
         this.ordini = FXCollections.observableArrayList();
@@ -41,6 +43,26 @@ public class OrdineDAO {
         }
         db.closeConnection();
         return this.ordini;
+    }
+
+    public Ordine creaOrdine(int carrelloId) throws SQLException {
+        try {
+            this.db.setConnection();
+            String sql = "insert into ordine values (?)";
+            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, carrelloId);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()) {
+                return new Ordine(rs.getInt("ordineid"), rs.getInt("ristoranteid"),
+                        rs.getTimestamp("dataordine").toString(), rs.getFloat("totale"),
+                        rs.getInt("riderid"),rs.getBoolean("consegnato"));
+            }
+            this.db.closeConnection();
+            return null;
+        } catch(PSQLException e) {
+            this.db.closeConnection();
+            return null;
+        }
     }
 
 }

@@ -75,17 +75,6 @@ public class ClienteDAO {
         }
     }
 
-    public void effettuaOrdine(int carrelloId) throws SQLException {
-        try {
-            this.db.setConnection();
-            String sql = "insert into ordine values ("+carrelloId+")";
-            this.db.getConnection().createStatement().executeUpdate(sql);
-            this.db.closeConnection();
-        } catch(PSQLException e) {
-            this.db.closeConnection();
-        }
-    }
-
     /**********Getter e Setter**********/
 
     public String getRole(Integer id) throws SQLException {

@@ -76,6 +76,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
             this.cliente.setCarrello(null);
             this.carrello = this.cliente.getCarrello();
             svuotaCarrelloBtn();
+            totaleLabel.setText("Grazie per averci scelto!");
         } else {
             setErrori();
         }
@@ -169,13 +170,17 @@ public class OrdinaController extends BaseSceneController implements Initializab
             hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 try {
                     this.aggiungiAlCarrello(articolo);
+                    resetErrori();
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }
             });
             hBox.getStyleClass().add("elementoOrdina");
-            vBox1.getChildren().addAll(nomeArticolo, ingredientiArticolo);
-            vBox2.getChildren().add(prezzoArticolo);
+            vBox1.getChildren().add(nomeArticolo);
+            if(articolo.getIngredienti() != null && !articolo.getIngredienti().equals("")) {
+                vBox1.getChildren().add(ingredientiArticolo);
+            }
+                vBox2.getChildren().add(prezzoArticolo);
             if(articolo.getIngredienti() != null && !articolo.getIngredienti().equals("")) {
                 hBox.setStyle("-fx-pref-height: 160px");
             }

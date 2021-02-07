@@ -21,7 +21,7 @@ public class Cliente {
     Indirizzo indirizzoAttivo;
     boolean auth;
     Carrello carrello;
-    //TODO ObservableList<Ordine> ordini;
+    ObservableList<Ordine> ordini;
     ObservableList<Indirizzo> indirizzi;
     ClienteDAO clienteDAO;
 
@@ -144,6 +144,14 @@ public class Cliente {
         this.carrello = carrello;
     }
 
+    public ObservableList<Ordine> getOrdini() {
+        return ordini;
+    }
+
+    public void setOrdini(ObservableList<Ordine> ordini) {
+        this.ordini = ordini;
+    }
+
     /**********Metodi di funzionalità**********/
 
     public boolean login(String email, String password) throws SQLException {
@@ -159,7 +167,7 @@ public class Cliente {
     }
 
     public void effettuaOrdine() throws SQLException {
-        this.clienteDAO.effettuaOrdine(this.carrello.getCarrelloId());
+        this.ordini.add(new Ordine(this.carrello.getCarrelloId()));
     }
 
     /**********Metodi di supporto**********/
