@@ -68,6 +68,8 @@ public class OrdinaController extends BaseSceneController implements Initializab
         if(this.cliente.getIndirizzoAttivo() != null && carrello.getArticoli().size()>0) {
             this.ordinazioneController = new OrdinazioneController();
             this.ordinazioneController.effettuaOrdine(this.cliente);
+            this.cliente.setCarrello(null);
+            this.carrello = this.cliente.getCarrello();
             svuotaCarrelloBtn();
         } else {
             setErrori();
