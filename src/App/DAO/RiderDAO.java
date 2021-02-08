@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 
 public class RiderDAO {
 
@@ -84,7 +85,7 @@ public class RiderDAO {
         ResultSet rs = this.db.queryBuilder("ordine",where);
         while (rs.next()) {
             this.consegne.add(new Ordine(rs.getInt("ordineid"), rs.getInt("ristoranteid"),
-                    rs.getTimestamp("dataordine").toString(), rs.getFloat("totale"),
+                    new SimpleDateFormat("dd/MM/yyyy HH:mm").format(rs.getTimestamp("dataordine")), rs.getFloat("totale"),
                     rs.getInt("riderid"),rs.getBoolean("consegnato"), rs.getInt("indirizzoid")));
         }
         db.closeConnection();
