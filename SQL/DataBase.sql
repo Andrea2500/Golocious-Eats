@@ -151,7 +151,7 @@ CREATE FUNCTION max_un_carrello_attivo() RETURNS TRIGGER AS $$
     BEGIN
         IF (1>(SELECT COUNT(*)
 			   FROM Carrello ca
-			   WHERE Ordinato=false AND ClienteID = NEW.ClienteID))
+			   WHERE Ordinato = false AND ClienteID = NEW.ClienteID))
 		THEN
         ELSE RAISE EXCEPTION 'Numero massimo di Carrelli attivi raggiunto per questo Cliente';
         END IF;
@@ -267,6 +267,7 @@ CREATE FUNCTION assegnamento_rider(OrdineID INTEGER) RETURNS INTEGER AS $$
 				WHERE CarrelloID = $1
 				UNION (SELECT RiderID
 					   FROM Ordine o
+				       WHERE o.Consegnato = false
 					   GROUP BY RiderID
 					   HAVING COUNT(o.OrdineID)>=3));
 		RETURN (SELECT *
