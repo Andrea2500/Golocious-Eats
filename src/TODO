@@ -1,14 +1,3 @@
-TODO CONSEGNA
-     CONSEGNA ATTUALE con visualizzazione di indirizzo cliente e tasto per confermare consegna
-
 TODO CONSEGNE EFFETTUATE aggiungere indirizzo di consegna
 
-TODO ORDINA
-     controllare che siano disponibili rider al momento dell'ordine ed eventualmente chiedere di riprovare più tardi
-
-TODO Errore trigger DB
-     Quando sono presenti 3 ordini attivi da effettuare non è possibile aggiornare lo stato
-     
-TODO filtri non funziona filtra per veicolo
-
-TODO non permette di ordinare oltre il limite di 3 totali per rider
+TODO ARTICOLO disponibile o non disponibile -fx-cursor not-allowed
