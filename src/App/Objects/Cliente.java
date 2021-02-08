@@ -136,7 +136,7 @@ public class Cliente {
 
     public Carrello getCarrello() throws SQLException {
         if(this.carrello == null)
-            return new Carrello();
+            this.carrello = new Carrello();
         return carrello;
     }
 

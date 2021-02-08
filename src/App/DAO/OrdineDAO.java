@@ -65,7 +65,6 @@ public class OrdineDAO {
             return null;
         } catch(PSQLException e) {
             this.db.closeConnection();
-            System.out.println(e.getMessage());
             throw new Exception(this.edb.getMessaggioErrore(e.getMessage()));
         }
     }
