@@ -9,6 +9,6 @@ TODO ORDINA
 TODO Errore trigger DB
      Quando sono presenti 3 ordini attivi da effettuare non è possibile aggiornare lo stato
      
-TODO filtri non funziona
+TODO filtri non funziona filtra per veicolo
 
 TODO non permette di ordinare oltre il limite di 3 totali per rider
