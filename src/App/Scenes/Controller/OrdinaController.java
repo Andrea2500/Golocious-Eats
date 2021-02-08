@@ -64,8 +64,8 @@ public class OrdinaController extends BaseSceneController implements Initializab
 
     public void svuotaCarrelloBtn() throws SQLException {
         this.carrello.svuotaCarrello();
-        mostraCarrello();
         this.cliente.setCarrello(this.carrello);
+        mostraCarrello();
         resetErrori();
     }
 
