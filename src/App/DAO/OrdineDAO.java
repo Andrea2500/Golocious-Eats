@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 public class OrdineDAO {
 
@@ -41,7 +42,7 @@ public class OrdineDAO {
         ResultSet rs = pstmt.executeQuery();
         while (rs.next()) {
             this.ordini.add(new Ordine(rs.getInt("ordineid"), rs.getInt("ristoranteid"),
-                    rs.getTimestamp("dataordine").toString(), rs.getFloat("totale"),
+                    new SimpleDateFormat("dd/MM/yyyy HH:mm").format(rs.getTimestamp("dataordine")), rs.getFloat("totale"),
                     rs.getInt("riderid"),rs.getBoolean("consegnato")));
         }
         db.closeConnection();
@@ -58,7 +59,7 @@ public class OrdineDAO {
             ResultSet rs = pstmt.getGeneratedKeys();
             if(rs.next()) {
                 return new Ordine(rs.getInt("ordineid"), rs.getInt("ristoranteid"),
-                        rs.getTimestamp("dataordine").toString(), rs.getFloat("totale"),
+                        new SimpleDateFormat("dd/MM/yyyy HH:mm").format(rs.getTimestamp("dataordine")), rs.getFloat("totale"),
                         rs.getInt("riderid"),rs.getBoolean("consegnato"));
             }
             this.db.closeConnection();

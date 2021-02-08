@@ -3,150 +3,140 @@
   <ID>JAVA</ID>
   <OriginalElement>App.DAO.GestoreDAO</OriginalElement>
   <nodes>
-    <node x="1401.5839073329646" y="622.0">App.Objects.Articolo</node>
-    <node x="3661.775961632139" y="4412.0">javafx.fxml.Initializable</node>
-    <node x="4764.5755648067425" y="351.0">App.DAO.IndirizzoDAO</node>
-    <node x="825.5342166446708" y="1737.0">App.Objects.Ristorante</node>
-    <node x="846.5" y="4378.0">App.Controller.ApriRistoranteController</node>
-    <node x="1157.579761904762" y="3777.5">App.Objects.Gestore</node>
-    <node x="6485.894945531493" y="1356.5">App.Controller.AggiungiIndirizzoController</node>
-    <node x="3426.668802213868" y="3789.0">App.Controller.AuthController</node>
-    <node x="3001.984226190476" y="0.0">App.Config.Database</node>
-    <node x="2984.1324096919207" y="5203.0">App.Scenes.Controller.OrdinaController</node>
-    <node x="1651.7297619047622" y="4389.0">App.Controller.StatisticheController</node>
-    <node x="450.5" y="2530.5">App.Controller.InserisciArticoloController</node>
-    <node x="1283.2357142857145" y="3175.5">App.DAO.GestoreDAO</node>
-    <node x="47.5" y="2542.0">App.Controller.GestisciArticoliController</node>
-    <node x="1135.632409691921" y="4916.999999999999">App.Scenes.Controller.GestisciRistoranteController</node>
-    <node x="4747.0755648067425" y="611.0">App.Objects.Indirizzo</node>
-    <node x="1874.9797619047622" y="3186.5">App.DAO.ElementoStatisticheDAO</node>
-    <node x="6023.394945531493" y="4389.0">App.Controller.DiventaRiderController</node>
-    <node x="5058.277343575085" y="3810.5">App.Controller.EffettuaConsegnaController</node>
-    <node x="1566.0839073329646" y="1190.0">App.DAO.RistoranteDAO</node>
-    <node x="4307.451388958269" y="1869.5">App.DAO.OrdineDAO</node>
-    <node x="5481.394945531493" y="3833.0">App.Controller.MostraConsegneEffettuateController</node>
-    <node x="3968.1092949654726" y="3690.0">App.Scenes.Controller.SceneController</node>
-    <node x="1867.4797619047622" y="3777.5">App.Objects.ElementoStatistiche</node>
-    <node x="2752.984226190476" y="22.5">App.Config.ErroriDB</node>
-    <node x="2922.525892857143" y="2475.5">App.DAO.ClienteDAO</node>
-    <node x="3452.3647661512505" y="5357.0">App.Scenes.Controller.LoginController</node>
-    <node x="4687.277343575085" y="3197.5">App.Controller.MostraOrdiniEffettuatiController</node>
-    <node x="3619.983198474244" y="1869.0">App.Objects.Carrello</node>
-    <node x="3315.534717236299" y="1245.0">App.DAO.CarrelloDAO</node>
-    <node x="3919.775961632139" y="4246.0">App.Scenes.Controller.BaseSceneController</node>
-    <node x="4546.066061882766" y="1267.5">App.DAO.RiderDAO</node>
-    <node x="4555.60334258452" y="2442.0">App.Objects.Ordine</node>
-    <node x="4669.343932817917" y="5357.5">App.Scenes.Controller.ConsegneEffettuateController</node>
-    <node x="3889.3439328179174" y="5324.5">App.Scenes.Controller.OrdiniEffettuatiController</node>
-    <node x="4039.647968880535" y="2955.0">App.Objects.Cliente</node>
-    <node x="6208.894945531493" y="3833.0">App.Controller.EliminaIndirizzoController</node>
-    <node x="5221.433683166249" y="1847.0">App.Objects.Rider</node>
-    <node x="4303.343932817917" y="5368.0">App.Scenes.Controller.ConsegnaController</node>
-    <node x="1383.7297619047622" y="4389.0">App.Controller.AggiungiGestoreController</node>
-    <node x="5821.394945531493" y="3833.0">App.Controller.SelezionaIndirizzoController</node>
-    <node x="2496.479761904762" y="3799.5">App.Controller.OrdinazioneController</node>
-    <node x="1444.0839073329646" y="362.0">App.DAO.ArticoloDAO</node>
-    <node x="5819.738669660022" y="5159.0">App.Scenes.Controller.ImpostazioniController</node>
+    <node x="2180.0" y="1719.0">App.Objects.Articolo</node>
+    <node x="673.75" y="166.0">javafx.fxml.Initializable</node>
+    <node x="1660.0" y="2654.0">App.DAO.IndirizzoDAO</node>
+    <node x="612.0" y="1719.0">App.Objects.Ristorante</node>
+    <node x="1753.0" y="2976.0">App.Controller.ApriRistoranteController</node>
+    <node x="0.0" y="2376.0">App.Objects.Gestore</node>
+    <node x="2192.0" y="3187.0">App.Controller.AggiungiIndirizzoController</node>
+    <node x="2317.0" y="2654.0">App.Controller.AuthController</node>
+    <node x="2038.0" y="2976.0">App.Config.Database</node>
+    <node x="366.0" y="837.0">App.Scenes.Controller.OrdinaController</node>
+    <node x="2326.0" y="2976.0">App.Controller.StatisticheController</node>
+    <node x="0.0" y="2976.0">App.Controller.InserisciArticoloController</node>
+    <node x="1126.5" y="2045.0">App.DAO.GestoreDAO</node>
+    <node x="721.0" y="2976.0">App.Controller.GestisciArticoliController</node>
+    <node x="699.0" y="496.0">App.Scenes.Controller.GestisciRistoranteController</node>
+    <node x="1413.0" y="1719.0">App.Objects.Indirizzo</node>
+    <node x="1149.0" y="2976.0">App.DAO.ElementoStatisticheDAO</node>
+    <node x="1332.0" y="3187.0">App.Controller.DiventaRiderController</node>
+    <node x="420.0" y="2976.0">App.Controller.EffettuaConsegnaController</node>
+    <node x="1784.0" y="1719.0">App.DAO.RistoranteDAO</node>
+    <node x="1996.0" y="2654.0">App.DAO.OrdineDAO</node>
+    <node x="0.0" y="3187.0">App.Controller.MostraConsegneEffettuateController</node>
+    <node x="2533.0" y="1719.0">App.Scenes.Controller.SceneController</node>
+    <node x="772.0" y="2654.0">App.Objects.ElementoStatistiche</node>
+    <node x="1918.0" y="3187.0">App.Config.ErroriDB</node>
+    <node x="1117.0" y="1719.0">App.DAO.ClienteDAO</node>
+    <node x="2337.0" y="991.0">App.Scenes.Controller.LoginController</node>
+    <node x="365.0" y="3187.0">App.Controller.MostraOrdiniEffettuatiController</node>
+    <node x="1391.0" y="2654.0">App.Objects.Carrello</node>
+    <node x="0.0" y="2654.0">App.DAO.CarrelloDAO</node>
+    <node x="1269.5" y="0.0">App.Scenes.Controller.BaseSceneController</node>
+    <node x="405.0" y="2654.0">App.DAO.RiderDAO</node>
+    <node x="2793.0" y="1719.0">App.Objects.Ordine</node>
+    <node x="1508.0" y="991.5">App.Scenes.Controller.ConsegneEffettuateController</node>
+    <node x="1094.0" y="958.5">App.Scenes.Controller.OrdiniEffettuatiController</node>
+    <node x="183.75" y="1719.0">App.Objects.Cliente</node>
+    <node x="1031.0" y="3187.0">App.Controller.EliminaIndirizzoController</node>
+    <node x="345.0" y="2354.0">App.Objects.Rider</node>
+    <node x="0.0" y="1002.0">App.Scenes.Controller.ConsegnaController</node>
+    <node x="1625.0" y="3187.0">App.Controller.AggiungiGestoreController</node>
+    <node x="714.0" y="3187.0">App.Controller.SelezionaIndirizzoController</node>
+    <node x="2969.0" y="2654.0">App.Controller.OrdinazioneController</node>
+    <node x="2701.0" y="2654.0">App.DAO.ArticoloDAO</node>
+    <node x="1968.0" y="793.0">App.Scenes.Controller.ImpostazioniController</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="App.Scenes.Controller.GestisciRistoranteController" target="App.Scenes.Controller.BaseSceneController">
-      <point x="179.3478260869565" y="-589.0" />
-      <point x="1522.4802357788776" y="4752.0" />
-      <point x="3952.503234359412" y="4752.0" />
-      <point x="-87.27272727272702" y="193.0" />
-    </edge>
-    <edge source="App.Scenes.Controller.ConsegneEffettuateController" target="App.Scenes.Controller.BaseSceneController">
-      <point x="-110.0" y="-93.5" />
-      <point x="4779.343932817917" y="4692.0" />
-      <point x="4105.230507086684" y="4692.0" />
-      <point x="65.45454545454504" y="193.0" />
+    <edge source="App.DAO.GestoreDAO" target="App.DAO.ClienteDAO">
+      <point x="0.0" y="-72.0" />
+      <point x="0.0" y="138.0" />
     </edge>
     <edge source="App.Scenes.Controller.OrdiniEffettuatiController" target="javafx.fxml.Initializable">
-      <point x="-164.16666666666697" y="-126.5" />
-      <point x="3922.1772661512505" y="4732.0" />
-      <point x="3780.775961632139" y="4732.0" />
-      <point x="0.0" y="27.0" />
-    </edge>
-    <edge source="App.Scenes.Controller.ConsegneEffettuateController" target="javafx.fxml.Initializable">
-      <point x="-183.33333333333303" y="-93.5" />
-      <point x="4706.010599484584" y="4702.0" />
-      <point x="3875.975961632139" y="4702.0" />
-      <point x="95.19999999999982" y="27.0" />
-    </edge>
-    <edge source="App.DAO.GestoreDAO" target="App.DAO.ClienteDAO">
-      <point x="92.79999999999995" y="-72.0" />
-      <point x="1492.0357142857144" y="2935.0" />
-      <point x="2947.625892857143" y="2935.0" />
-      <point x="-100.40000000000009" y="138.0" />
-    </edge>
-    <edge source="App.Scenes.Controller.OrdinaController" target="javafx.fxml.Initializable">
-      <point x="85.36363636363649" y="-248.0" />
-      <point x="3225.996046055557" y="4732.0" />
-      <point x="3733.1759616321388" y="4732.0" />
-      <point x="-47.600000000000364" y="27.0" />
-    </edge>
-    <edge source="App.Objects.Rider" target="App.Objects.Cliente">
-      <point x="-9.25" y="127.5" />
-      <point x="5323.183683166249" y="2402.0" />
-      <point x="4964.238669660022" y="2402.0" />
-      <point x="4964.238669660022" y="2935.0" />
-      <point x="4284.04270572264" y="2935.0" />
-      <point x="118.89473684210543" y="-292.5" />
-    </edge>
-    <edge source="App.Objects.Gestore" target="App.Objects.Cliente">
-      <point x="92.85714285714289" y="-105.5" />
-      <point x="1412.936904761905" y="3580.0" />
-      <point x="4046.253232038429" y="3580.0" />
-      <point x="-118.89473684210543" y="292.5" />
-    </edge>
-    <edge source="App.Scenes.Controller.ConsegnaController" target="javafx.fxml.Initializable">
-      <point x="-144.16666666666697" y="-83.0" />
-      <point x="4332.1772661512505" y="4722.0" />
-      <point x="3828.3759616321395" y="4722.0" />
-      <point x="47.600000000000364" y="27.0" />
-    </edge>
-    <edge source="App.Scenes.Controller.OrdinaController" target="App.Scenes.Controller.BaseSceneController">
-      <point x="142.27272727272702" y="-248.0" />
-      <point x="3282.9051369646477" y="4772.0" />
-      <point x="3996.139597995775" y="4772.0" />
-      <point x="-43.63636363636397" y="193.0" />
-    </edge>
-    <edge source="App.Scenes.Controller.OrdiniEffettuatiController" target="App.Scenes.Controller.BaseSceneController">
       <point x="-98.5" y="-126.5" />
-      <point x="3987.8439328179174" y="4802.0" />
-      <point x="4061.594143450321" y="4802.0" />
-      <point x="21.818181818181984" y="193.0" />
-    </edge>
-    <edge source="App.Scenes.Controller.LoginController" target="App.Scenes.Controller.BaseSceneController">
-      <point x="136.125" y="-94.0" />
-      <point x="3769.9897661512505" y="4792.0" />
-      <point x="4039.775961632139" y="4792.0" />
-      <point x="0.0" y="193.0" />
+      <point x="1192.5" y="446.0" />
+      <point x="840.3499999999999" y="446.0" />
+      <point x="47.59999999999991" y="27.0" />
     </edge>
     <edge source="App.Scenes.Controller.ConsegnaController" target="App.Scenes.Controller.BaseSceneController">
-      <point x="-86.5" y="-83.0" />
-      <point x="4389.843932817917" y="4712.0" />
-      <point x="4083.412325268503" y="4712.0" />
-      <point x="43.63636363636397" y="193.0" />
+      <point x="86.5" y="-83.0" />
+      <point x="259.5" y="456.0" />
+      <point x="1286.642857142857" y="456.0" />
+      <point x="-102.85714285714289" y="193.0" />
+    </edge>
+    <edge source="App.Scenes.Controller.GestisciRistoranteController" target="App.Scenes.Controller.BaseSceneController">
+      <point x="93.75" y="-589.0" />
+      <point x="980.25" y="476.0" />
+      <point x="1355.2142857142858" y="476.0" />
+      <point x="-34.28571428571422" y="193.0" />
+    </edge>
+    <edge source="App.Scenes.Controller.OrdinaController" target="javafx.fxml.Initializable">
+      <point x="-78.25" y="-248.0" />
+      <point x="444.25" y="446.0" />
+      <point x="745.1500000000001" y="446.0" />
+      <point x="-47.59999999999991" y="27.0" />
+    </edge>
+    <edge source="App.Objects.Gestore" target="App.Objects.Cliente">
+      <point x="0.0" y="-105.5" />
+      <point x="162.5" y="2329.0" />
+      <point x="246.5" y="2329.0" />
+      <point x="-62.75" y="292.5" />
     </edge>
     <edge source="App.Scenes.Controller.GestisciRistoranteController" target="javafx.fxml.Initializable">
-      <point x="146.7391304347825" y="-589.0" />
-      <point x="1489.8715401267036" y="4722.0" />
-      <point x="3685.5759616321393" y="4722.0" />
-      <point x="-95.19999999999982" y="27.0" />
+      <point x="-93.75" y="-589.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="App.Scenes.Controller.ConsegnaController" target="javafx.fxml.Initializable">
+      <point x="-86.5" y="-83.0" />
+      <point x="86.5" y="436.0" />
+      <point x="697.55" y="436.0" />
+      <point x="-95.20000000000005" y="27.0" />
+    </edge>
+    <edge source="App.Objects.Rider" target="App.Objects.Cliente">
+      <point x="0.0" y="-127.5" />
+      <point x="456.0" y="2329.0" />
+      <point x="372.0" y="2329.0" />
+      <point x="62.75" y="292.5" />
+    </edge>
+    <edge source="App.Scenes.Controller.ConsegneEffettuateController" target="App.Scenes.Controller.BaseSceneController">
+      <point x="110.0" y="-93.5" />
+      <point x="1838.0" y="426.0" />
+      <point x="1423.7857142857142" y="426.0" />
+      <point x="34.28571428571422" y="193.0" />
+    </edge>
+    <edge source="App.Scenes.Controller.OrdinaController" target="App.Scenes.Controller.BaseSceneController">
+      <point x="78.25" y="-248.0" />
+      <point x="600.75" y="466.0" />
+      <point x="1320.9285714285713" y="466.0" />
+      <point x="-68.57142857142867" y="193.0" />
+    </edge>
+    <edge source="App.Scenes.Controller.ConsegneEffettuateController" target="javafx.fxml.Initializable">
+      <point x="-110.0" y="-93.5" />
+      <point x="1618.0" y="436.0" />
+      <point x="887.95" y="436.0" />
+      <point x="95.20000000000005" y="27.0" />
     </edge>
     <edge source="App.Scenes.Controller.ImpostazioniController" target="App.Scenes.Controller.BaseSceneController">
-      <point x="-162.03571428571422" y="-292.0" />
-      <point x="5832.202955374309" y="4682.0" />
-      <point x="4127.048688904866" y="4682.0" />
-      <point x="87.27272727272702" y="193.0" />
+      <point x="0.0" y="-292.0" />
+      <point x="2142.5" y="416.0" />
+      <point x="1458.0714285714284" y="416.0" />
+      <point x="68.57142857142844" y="193.0" />
+    </edge>
+    <edge source="App.Scenes.Controller.OrdiniEffettuatiController" target="App.Scenes.Controller.BaseSceneController">
+      <point x="98.5" y="-126.5" />
+      <point x="0.0" y="193.0" />
+    </edge>
+    <edge source="App.Scenes.Controller.LoginController" target="App.Scenes.Controller.BaseSceneController">
+      <point x="0.0" y="-94.0" />
+      <point x="2518.5" y="406.0" />
+      <point x="1492.357142857143" y="406.0" />
+      <point x="102.85714285714289" y="193.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.1125102207686018" x="3398.5" y="3047.5" />
-  <SelectedNodes>
-    <node>App.Scenes.Controller.GestisciRistoranteController</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="0.20867455262359721" x="1611.0" y="1638.5" />
+  <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>
