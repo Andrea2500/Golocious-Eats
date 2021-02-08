@@ -41,8 +41,11 @@ public class OrdinaController extends BaseSceneController implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            this.cliente = Cliente.getInstance();
+            this.carrello = this.cliente.getCarrello();
+            this.ordinazioneController = new OrdinazioneController();
             mostraRistoranti();
-            mostraArticoli(this.carrello.getArticoli(), this.carrello.getRistoranteId());
+            mostraArticoli(new Ristorante(this.carrello.getRistoranteId()).getArticoli(), this.carrello.getRistoranteId());
             mostraCarrello();
         } catch(SQLException throwables) {
             throwables.printStackTrace();

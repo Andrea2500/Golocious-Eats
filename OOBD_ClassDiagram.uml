@@ -9,14 +9,14 @@
     <node x="612.0" y="1719.0">App.Objects.Ristorante</node>
     <node x="1753.0" y="2976.0">App.Controller.ApriRistoranteController</node>
     <node x="0.0" y="2376.0">App.Objects.Gestore</node>
-    <node x="2192.0" y="3187.0">App.Controller.AggiungiIndirizzoController</node>
     <node x="2317.0" y="2654.0">App.Controller.AuthController</node>
+    <node x="2192.0" y="3187.0">App.Controller.AggiungiIndirizzoController</node>
     <node x="2038.0" y="2976.0">App.Config.Database</node>
     <node x="366.0" y="837.0">App.Scenes.Controller.OrdinaController</node>
     <node x="2326.0" y="2976.0">App.Controller.StatisticheController</node>
+    <node x="721.0" y="2976.0">App.Controller.GestisciArticoliController</node>
     <node x="0.0" y="2976.0">App.Controller.InserisciArticoloController</node>
     <node x="1126.5" y="2045.0">App.DAO.GestoreDAO</node>
-    <node x="721.0" y="2976.0">App.Controller.GestisciArticoliController</node>
     <node x="699.0" y="496.0">App.Scenes.Controller.GestisciRistoranteController</node>
     <node x="1413.0" y="1719.0">App.Objects.Indirizzo</node>
     <node x="1149.0" y="2976.0">App.DAO.ElementoStatisticheDAO</node>
@@ -28,8 +28,8 @@
     <node x="2533.0" y="1719.0">App.Scenes.Controller.SceneController</node>
     <node x="772.0" y="2654.0">App.Objects.ElementoStatistiche</node>
     <node x="1918.0" y="3187.0">App.Config.ErroriDB</node>
-    <node x="1117.0" y="1719.0">App.DAO.ClienteDAO</node>
     <node x="2337.0" y="991.0">App.Scenes.Controller.LoginController</node>
+    <node x="1117.0" y="1719.0">App.DAO.ClienteDAO</node>
     <node x="365.0" y="3187.0">App.Controller.MostraOrdiniEffettuatiController</node>
     <node x="1391.0" y="2654.0">App.Objects.Carrello</node>
     <node x="0.0" y="2654.0">App.DAO.CarrelloDAO</node>
@@ -45,8 +45,8 @@
     <node x="1625.0" y="3187.0">App.Controller.AggiungiGestoreController</node>
     <node x="714.0" y="3187.0">App.Controller.SelezionaIndirizzoController</node>
     <node x="2969.0" y="2654.0">App.Controller.OrdinazioneController</node>
-    <node x="2701.0" y="2654.0">App.DAO.ArticoloDAO</node>
     <node x="1968.0" y="793.0">App.Scenes.Controller.ImpostazioniController</node>
+    <node x="2701.0" y="2654.0">App.DAO.ArticoloDAO</node>
   </nodes>
   <notes />
   <edges>
@@ -106,17 +106,17 @@
       <point x="1423.7857142857142" y="426.0" />
       <point x="34.28571428571422" y="193.0" />
     </edge>
-    <edge source="App.Scenes.Controller.OrdinaController" target="App.Scenes.Controller.BaseSceneController">
-      <point x="78.25" y="-248.0" />
-      <point x="600.75" y="466.0" />
-      <point x="1320.9285714285713" y="466.0" />
-      <point x="-68.57142857142867" y="193.0" />
-    </edge>
     <edge source="App.Scenes.Controller.ConsegneEffettuateController" target="javafx.fxml.Initializable">
       <point x="-110.0" y="-93.5" />
       <point x="1618.0" y="436.0" />
       <point x="887.95" y="436.0" />
       <point x="95.20000000000005" y="27.0" />
+    </edge>
+    <edge source="App.Scenes.Controller.OrdinaController" target="App.Scenes.Controller.BaseSceneController">
+      <point x="78.25" y="-248.0" />
+      <point x="600.75" y="466.0" />
+      <point x="1320.9285714285713" y="466.0" />
+      <point x="-68.57142857142867" y="193.0" />
     </edge>
     <edge source="App.Scenes.Controller.ImpostazioniController" target="App.Scenes.Controller.BaseSceneController">
       <point x="0.0" y="-292.0" />
@@ -135,8 +135,10 @@
       <point x="102.85714285714289" y="193.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.20867455262359721" x="1611.0" y="1638.5" />
-  <SelectedNodes />
+  <settings layout="Hierarchic Group" zoom="0.20804354399758088" x="1611.0" y="1643.5" />
+  <SelectedNodes>
+    <node>App.DAO.GestoreDAO</node>
+  </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>

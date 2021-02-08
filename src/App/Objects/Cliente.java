@@ -3,7 +3,6 @@ package App.Objects;
 import App.DAO.ClienteDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -180,14 +179,7 @@ public class Cliente {
     /**********Metodi di supporto**********/
 
     public void reset(){
-        this.nome = null;
-        this.cognome = null;
-        this.email = null;
-        this.telefono = null;
-        this.dataNascita = null;
-        this.clienteId = null;
-        this.setAuth(false);
-        this.ruolo = null;
+        instance = null;
     }
 
     public String getNomeDB(Integer id) throws SQLException {
