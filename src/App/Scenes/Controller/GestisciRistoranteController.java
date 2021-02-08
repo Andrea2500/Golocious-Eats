@@ -350,15 +350,15 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     private void setLarghezzaColonne(Boolean apri) {
         if(apri) {
-            this.nomeColonna.setPrefWidth(90);
-            this.prezzoColonna.setPrefWidth(90);
-            this.quantitaColonna.setPrefWidth(90);
-            this.totaleColonna.setPrefWidth(89);
+            this.nomeColonna.setPrefWidth(203);
+            this.prezzoColonna.setPrefWidth(50);
+            this.quantitaColonna.setPrefWidth(50);
+            this.totaleColonna.setPrefWidth(55);
         } else {
-            this.nomeColonna.setPrefWidth(146);
-            this.prezzoColonna.setPrefWidth(146);
-            this.quantitaColonna.setPrefWidth(146);
-            this.totaleColonna.setPrefWidth(146);
+            this.nomeColonna.setPrefWidth(398);
+            this.prezzoColonna.setPrefWidth(60);
+            this.quantitaColonna.setPrefWidth(60);
+            this.totaleColonna.setPrefWidth(65);
         }
     }
 

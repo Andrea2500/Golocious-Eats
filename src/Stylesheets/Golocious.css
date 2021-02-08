@@ -170,9 +170,10 @@
     -fx-background-color: #172156;
     -fx-text-fill: #fab338;
     -fx-border-style: solid;
-    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-width: 0px 0px 0px 0px;
     -fx-border-color: #fab338;
     -fx-padding: 0px 0px 2px 0px;
+    -fx-alignment: CENTER;
 }
 
 
