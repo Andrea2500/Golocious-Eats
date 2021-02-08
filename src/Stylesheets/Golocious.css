@@ -166,13 +166,25 @@
 }
 
 
+.table-view .scroll-bar:horizontal {
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+}
+
+
 .table-column{
     -fx-background-color: #172156;
     -fx-text-fill: #fab338;
     -fx-border-style: solid;
-    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-width: 0px 0px 0px 0px;
     -fx-border-color: #fab338;
     -fx-padding: 0px 0px 2px 0px;
+    -fx-alignment: CENTER;
 }
 
 
