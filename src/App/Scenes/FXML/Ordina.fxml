@@ -89,7 +89,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label id="erroreRiderLabel" managed="false" visible="false" style="-fx-text-fill: ff0000;" text="Nessun rider disponibile, riprova più tardi" wrapText="true">
+                  <Label id="erroreRiderLabel" managed="false" style="-fx-text-fill: ff0000;" visible="false" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>

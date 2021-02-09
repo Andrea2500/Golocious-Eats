@@ -83,7 +83,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
                 svuotaCarrelloBtn();
                 totaleLabel.setText("Grazie per averci scelto!");
             } else {
-                setErroriDB();
+                setErroriDB(messaggio);
             }
         } else {
             setErrori();
@@ -266,11 +266,11 @@ public class OrdinaController extends BaseSceneController implements Initializab
     }
 
     public void setErrori() throws SQLException {
-        if(cliente.getIndirizzoAttivo() == null) {
-            indirizzoLabel.setStyle("-fx-text-fill: #ff0000");
+        if(this.cliente.getIndirizzoAttivo() == null) {
+            this.indirizzoLabel.setStyle("-fx-text-fill: #ff0000");
         }
         if(this.carrello.getArticoli().size() <= 0) {
-            totaleLabel.setStyle("-fx-text-fill: #ff0000");
+            this.totaleLabel.setStyle("-fx-text-fill: #ff0000");
         }
     }
 
@@ -280,8 +280,17 @@ public class OrdinaController extends BaseSceneController implements Initializab
         sceneController.setVisibile("erroreRiderLabel", false);
     }
 
-    private void setErroriDB() {
-        sceneController.setVisibile("erroreRiderLabel", true);
+    private void setErroriDB(String messaggio) {
+        switch (messaggio) {
+            case "nessun_rider" -> {
+                errore("erroreLabel", "Nessun rider disponibile, riprova più tardi", false);
+                sceneController.setVisibile("erroreLabel", true);
+            }
+            case "ck_ordine_articoli_attivi" -> {
+                errore("erroreLabel", "Uno o più articoli nel carrello non sono più disponibili", false);
+                sceneController.setVisibile("erroreLabel", true);
+            }
+        }
     }
 
 }
