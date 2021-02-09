@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane prefHeight="480.0" prefWidth="900.0" stylesheets="@../../../Stylesheets/Golocious.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Scenes.Controller.ConsegneEffettuateController">
     <top>
@@ -29,12 +30,26 @@
         </HBox>
     </top>
    <center>
-      <TableView fx:id="consegneEffettuateTable" prefWidth="899.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="idColonna" prefWidth="297.0" text="#" />
-          <TableColumn fx:id="ristoranteColonna" prefWidth="297.0" text="Ristorante" />
-            <TableColumn fx:id="dataColonna" prefWidth="297.0" text="Data" />
-        </columns>
-      </TableView>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="consegneEffettuateTable" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="380.0" prefWidth="899.0">
+              <columns>
+                <TableColumn fx:id="idColonna" prefWidth="250.0" text="#" />
+                <TableColumn fx:id="ristoranteColonna" prefWidth="250.0" text="Ristorante" />
+                  <TableColumn fx:id="indirizzoColonna" prefWidth="50.0" text="Indirizzo" />
+                  <TableColumn fx:id="dataColonna" prefWidth="250.0" text="Data" />
+              </columns>
+            </TableView>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="900.0">
+               <children>
+                  <Label fx:id="totaleConsegneLabel" text="Non hai effettuato nessuna consegna">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </center>
 </BorderPane>
