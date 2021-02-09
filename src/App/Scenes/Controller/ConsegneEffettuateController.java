@@ -1,10 +1,12 @@
 package App.Scenes.Controller;
 
 import App.Controller.MostraConsegneEffettuateController;
+import App.Objects.Indirizzo;
 import App.Objects.Ordine;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,6 +24,8 @@ public class ConsegneEffettuateController extends BaseSceneController implements
     @FXML private TableColumn<Ordine,Integer> idColonna;
     @FXML private TableColumn<Ordine,String> ristoranteColonna;
     @FXML private TableColumn<Ordine,String> dataColonna;
+    @FXML private TableColumn<Ordine, Indirizzo> indirizzoColonna;
+    @FXML private Label totaleConsegneLabel;
 
     /**********Costruttori**********/
 
@@ -30,6 +34,8 @@ public class ConsegneEffettuateController extends BaseSceneController implements
         idColonna.setCellValueFactory(new PropertyValueFactory<>("ordineId"));
         ristoranteColonna.setCellValueFactory(new PropertyValueFactory<>("ristorante"));
         dataColonna.setCellValueFactory(new PropertyValueFactory<>("dataOrdine"));
+        indirizzoColonna.setCellValueFactory(new PropertyValueFactory<>("indirizzo"));
+
         try{
             this.showOrder();
         } catch (SQLException throwables) {
@@ -42,6 +48,10 @@ public class ConsegneEffettuateController extends BaseSceneController implements
     private void showOrder() throws SQLException {
         this.mostraConsegneEffettuateController = new MostraConsegneEffettuateController();
         ObservableList<Ordine> data = this.mostraConsegneEffettuateController.getConsegne();
+        int count = (int) data.stream().count();
+        if(count > 0) {
+            this.totaleConsegneLabel.setText("Numero di consegne effettuate: "+count);
+        }
         consegneEffettuateTable.setItems(data);
     }
 
