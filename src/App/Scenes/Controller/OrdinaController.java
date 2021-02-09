@@ -174,15 +174,22 @@ public class OrdinaController extends BaseSceneController implements Initializab
             vBox2.setStyle("-fx-pref-width: 45px");
             vBox2.alignmentProperty().set(Pos.CENTER_RIGHT);
             hBox.alignmentProperty().set(Pos.CENTER_LEFT);
-            hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                try {
-                    this.aggiungiAlCarrello(articolo);
-                    resetErrori();
-                } catch (SQLException exception) {
-                    exception.printStackTrace();
-                }
-            });
-            hBox.getStyleClass().add("elementoOrdina");
+            if(articolo.isDisponibile()){
+                hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                    try {
+                        this.aggiungiAlCarrello(articolo);
+                        resetErrori();
+                    } catch (SQLException exception) {
+                        exception.printStackTrace();
+                    }
+                });
+                hBox.getStyleClass().add("elementoOrdina");
+            }else{
+                hBox.getStyleClass().add("elementoND");
+                hBox.setDisable(true);
+            }
+
+
             vBox1.getChildren().add(nomeArticolo);
             if(articolo.getIngredienti() != null && !articolo.getIngredienti().equals("")) {
                 vBox1.getChildren().add(ingredientiArticolo);
