@@ -170,7 +170,7 @@ CREATE FUNCTION ordine_articoli_disponibili() RETURNS TRIGGER AS $$
     BEGIN
         IF (NOT EXISTS (SELECT *
                         FROM Articoloincarrello NATURAL JOIN Carrello NATURAL JOIN Articolo NATURAL JOIN Menu
-                        WHERE CarrelloID = NEW.OrdineID and Disponibile = false))
+                        WHERE CarrelloID = NEW.OrdineID AND Disponibile = false))
         THEN RETURN NEW;
         ELSE RAISE EXCEPTION 'Il carrello presenta articoli non disponibili';
         END IF;
