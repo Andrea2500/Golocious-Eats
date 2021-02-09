@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -126,15 +127,25 @@ public class OrdinaController extends BaseSceneController implements Initializab
             nomeRistorante.wrapTextProperty().set(true);
             nomeRistorante.setStyle("-fx-font-weight: bolder; -fx-font-size: 14px");
             hBox.alignmentProperty().set(Pos.CENTER_LEFT);
+            hBox.getChildren().add(nomeRistorante);
+            hBox.getStyleClass().add("elementoOrdina");
             hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 try {
                     this.mostraArticoli(ristorante.getArticoli(), ristorante.getRistoranteId());
+                    this.mostraCarrello();
+                    ristorantiVBox.getChildren().forEach(node -> {
+                        node.getStyleClass().remove("ristoranteSelezionato");
+                        node.getStyleClass().add("elementoOrdina");
+                    });
+                    ((Node) event.getSource()).getStyleClass().remove("ristoranteSelezionato");
+                    ((Node) event.getSource()).getStyleClass().add("ristoranteSelezionato");
                 } catch (SQLException exception) {
                     exception.printStackTrace();
                 }
             });
-            hBox.getChildren().add(nomeRistorante);
-            hBox.getStyleClass().add("elementoOrdina");
+            if(ristorante.getRistoranteId() == this.carrello.getRistoranteId()) {
+                hBox.getStyleClass().add("ristoranteSelezionato");
+            }
             if(ristorante.equals(ristoranti.get(ristoranti.size()-1))) {
                 hBox.setStyle("-fx-border-width: 0px");
             }
@@ -250,6 +261,10 @@ public class OrdinaController extends BaseSceneController implements Initializab
     }
 
     /**********Metodi di ripristino e di errori**********/
+
+    /*private void resetColoriRistorante() {
+        for ()
+    }*/
 
     public void setErrori() throws SQLException {
         if(cliente.getIndirizzoAttivo() == null) {

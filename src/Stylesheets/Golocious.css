@@ -313,6 +313,27 @@
 }
 
 
+.ristoranteSelezionato{
+    -fx-background-color: #fab338;
+    -fx-border-style: solid;
+    -fx-border-color: #fab338;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-padding: 15px 30px 15px 15px;
+    -fx-spacing: 15px;
+    -fx-pref-height: 75px;
+}
+
+
+.ristoranteSelezionato > .label{
+    -fx-text-fill: #172156;
+}
+
+
+.ristoranteSelezionato > * > .label{
+    -fx-text-fill: #172156;
+}
+
+
 .categoria{
     -fx-cursor: pointer;
     -fx-background-color: #fab338;
