@@ -297,16 +297,6 @@
     -fx-pref-height: 75px;
 }
 
-.elementoND{
-    -fx-cursor: pointer;
-    -fx-border-style: solid;
-    -fx-border-color: #fab338;
-    -fx-border-width: 0px 0px 2px 0px;
-    -fx-padding: 15px 30px 15px 15px;
-    -fx-spacing: 15px;
-    -fx-pref-height: 75px;
-}
-
 
 .elementoOrdina:hover{
     -fx-background-color: #fab338;
@@ -335,4 +325,29 @@
     -fx-text-fill: #172156;
     -fx-font-size: 14px;
     -fx-font-weight: bolder;
+}
+
+
+.elementoConsegna{
+    -fx-padding: 15px;
+    -fx-spacing: 10px;
+    -fx-pref-height: 140px;
+}
+
+
+.elementoConsegna > * {
+    -fx-pref-width: 450px;
+    -fx-spacing: 10px;
+}
+
+
+.elementoConsegna > * > .label{
+    -fx-font-size: 14px;
+    -fx-wrap-text: true;
+}
+
+
+.elementoConsegna > .button{
+    -fx-pref-width: 150px;
+    -fx-pref-height: 30px;
 }

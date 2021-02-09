@@ -174,6 +174,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
             vBox2.setStyle("-fx-pref-width: 45px");
             vBox2.alignmentProperty().set(Pos.CENTER_RIGHT);
             hBox.alignmentProperty().set(Pos.CENTER_LEFT);
+            hBox.getStyleClass().add("elementoOrdina");
             if(articolo.isDisponibile()){
                 hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                     try {
@@ -183,9 +184,9 @@ public class OrdinaController extends BaseSceneController implements Initializab
                         exception.printStackTrace();
                     }
                 });
-                hBox.getStyleClass().add("elementoOrdina");
+
             }else{
-                hBox.getStyleClass().add("elementoND");
+                hBox.setStyle("-fx-cursor: pointer");
                 hBox.setDisable(true);
             }
 

@@ -24,6 +24,7 @@ public class EffettuaConsegnaController {
     }
 
     public void aggiornaConsegne() throws SQLException {
-        this.rider.setConsegneDB(true);
+        this.rider.getConsegneDB(true);
     }
+
 }

@@ -25,7 +25,7 @@ public class Rider extends Cliente {
         this.veicolo = this.riderDAO.getVeicolo(riderId);
         super.nome = super.getNomeDB(riderId);
         if(consegne)
-            setConsegneDB(attive);
+            getConsegneDB(attive);
     }
 
     public Rider(Integer riderId, String patente, String veicolo) {
@@ -61,7 +61,7 @@ public class Rider extends Cliente {
         this.consegne = consegne;
     }
 
-    public void setConsegneDB(boolean attive) throws SQLException {
+    public void getConsegneDB(boolean attive) throws SQLException {
         this.consegne = FXCollections.observableArrayList();
         this.consegne = this.riderDAO.getConsegne(super.clienteId, attive);
     }

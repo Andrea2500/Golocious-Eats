@@ -80,16 +80,21 @@ public class RiderDAO {
     }
 
     public ObservableList<Ordine> getConsegne(int riderId, boolean attive) throws SQLException {
-        this.consegne = FXCollections.observableArrayList();
-        String where = "riderid ="+riderId+" AND consegnato = "+!attive;
-        ResultSet rs = this.db.queryBuilder("ordine",where);
-        while (rs.next()) {
-            this.consegne.add(new Ordine(rs.getInt("ordineid"), rs.getInt("ristoranteid"),
-                    new SimpleDateFormat("dd/MM/yyyy HH:mm").format(rs.getTimestamp("dataordine")), rs.getFloat("totale"),
-                    rs.getInt("riderid"),rs.getBoolean("consegnato"), rs.getInt("indirizzoid")));
+        try {
+            this.consegne = FXCollections.observableArrayList();
+            String where = "riderid =" + riderId + " AND consegnato = " + !attive;
+            ResultSet rs = this.db.queryBuilder("ordine inner join carrello on carrelloid = ordineid natural join cliente", where);
+            while (rs.next()) {
+                this.consegne.add(new Ordine(rs.getInt("ordineid"), rs.getInt("ristoranteid"), rs.getInt("indirizzoid"), rs.getString("nome"), rs.getString("telefono"),
+                        new SimpleDateFormat("dd/MM/yyyy HH:mm").format(rs.getTimestamp("dataordine")), rs.getFloat("totale"),
+                        rs.getInt("riderid"), rs.getBoolean("consegnato")));
+            }
+            db.closeConnection();
+            return this.consegne;
+        } catch(PSQLException e) {
+            System.out.println(e.getMessage());
+            return null;
         }
-        db.closeConnection();
-        return this.consegne;
     }
 
 }

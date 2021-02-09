@@ -5,6 +5,7 @@ import App.Objects.Ordine;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -16,9 +17,15 @@ import java.util.ResourceBundle;
 
 public class ConsegnaController extends BaseSceneController implements Initializable {
 
+    /**********Attributi**********/
+
     @FXML private VBox consegnaVBox;
     EffettuaConsegnaController effettuaConsegnaController;
     ObservableList<Ordine> consegneAttive;
+
+    /**********Metodi**********/
+
+    /**********Costruttori**********/
 
     public ConsegnaController() throws SQLException {
         this.effettuaConsegnaController = new EffettuaConsegnaController();
@@ -30,13 +37,19 @@ public class ConsegnaController extends BaseSceneController implements Initializ
         this.showConsegneAttive();
     }
 
+    /**********Metodi di funzionalità**********/
+
     private void showConsegneAttive() {
         this.consegnaVBox.getChildren().clear();
         for (Ordine consegna: consegneAttive){
             HBox hBox = new HBox();
+            VBox vBox1 = new VBox();
+            VBox vBox2 = new VBox();
             Label ristorante = new Label("Ristorante di ritiro: "+consegna.getRistorante().toString());
             Label indirizzo = new Label("Indirizzo di consegna: "+consegna.getIndirizzo().toString());
-            Button consegnaBtn = new Button("Consegnato");
+            Label nomeCliente =  new Label("Nome cliente: "+consegna.getNomeCliente());
+            Label telefonoCliente = new Label("Telefono cliente: "+consegna.getTelefonoCliente());
+            Button consegnaBtn = new Button("Termina consegna");
             consegnaBtn.setOnAction(actionEvent -> {
                 try {
                     this.effettuaConsegnaController.consegna(consegna.getOrdineId());
@@ -48,8 +61,16 @@ public class ConsegnaController extends BaseSceneController implements Initializ
                     throwables.printStackTrace();
                 }
             });
-            hBox.getChildren().addAll(ristorante,indirizzo,consegnaBtn);
+            vBox1.alignmentProperty().set(Pos.CENTER_LEFT);
+            vBox2.alignmentProperty().set(Pos.CENTER_LEFT);
+            hBox.alignmentProperty().set(Pos.CENTER_LEFT);
+            vBox2.setStyle("-fx-pref-width: 245px");
+            hBox.getStyleClass().add("elementoConsegna");
+            vBox1.getChildren().addAll(ristorante, indirizzo);
+            vBox2.getChildren().addAll(nomeCliente, telefonoCliente);
+            hBox.getChildren().addAll(vBox1, vBox2, consegnaBtn);
             this.consegnaVBox.getChildren().add(hBox);
         }
     }
+
 }

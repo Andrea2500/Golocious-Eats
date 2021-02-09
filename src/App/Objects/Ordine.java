@@ -12,6 +12,8 @@ public class Ordine {
     Integer ordineId;
     Ristorante ristorante;
     Indirizzo indirizzo;
+    String nomeCliente;
+    String telefonoCliente;
     String dataOrdine;
     String totale;
     Rider rider;
@@ -22,15 +24,17 @@ public class Ordine {
 
     /**********Costruttori**********/
 
-    public Ordine(Integer ordineId, Integer ristoranteId, String dataOrdine, Float totale, Integer riderId, boolean stato,Integer indirizzoId) throws SQLException {
+    public Ordine(Integer ordineId, Integer ristoranteId, Integer indirizzoId, String nomeCliente, String telefonoCliente, String dataOrdine, Float totale, Integer riderId, boolean stato) throws SQLException {
         this.ordineId = ordineId;
         this.ristorante = new Ristorante(ristoranteId);
+        this.indirizzo = new Indirizzo(indirizzoId);
+        this.nomeCliente = nomeCliente;
+        this.telefonoCliente = telefonoCliente;
         this.dataOrdine = dataOrdine;
         this.totale = String.format("%.2f", totale).concat(" €");
         this.rider = new Rider(riderId, false, false);
         this.stato = (stato)?"Consegnato":"In consegna";
         this.ordineDAO = new OrdineDAO();
-        this.indirizzo = new Indirizzo(indirizzoId);
     }
 
     public Ordine(int ordineId) throws Exception {
@@ -77,6 +81,30 @@ public class Ordine {
         this.ristorante = ristorante;
     }
 
+    public Indirizzo getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(Indirizzo indirizzo) {
+        this.indirizzo = indirizzo;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public String getTelefonoCliente() {
+        return telefonoCliente;
+    }
+
+    public void setTelefonoCliente(String telefonoCliente) {
+        this.telefonoCliente = telefonoCliente;
+    }
+
     public String getDataOrdine() {
         return dataOrdine;
     }
@@ -107,14 +135,6 @@ public class Ordine {
 
     public void setStato(String stato) {
         this.stato = stato;
-    }
-
-    public Indirizzo getIndirizzo() {
-        return indirizzo;
-    }
-
-    public void setIndirizzo(Indirizzo indirizzo) {
-        this.indirizzo = indirizzo;
     }
 
     /**********Metodi di funzionalità**********/
