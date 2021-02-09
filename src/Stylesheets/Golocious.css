@@ -166,6 +166,21 @@
 }
 
 
+.table-view > .scroll-bar:vertical{
+    -fx-content-display: always;
+}
+
+
+.table-view > *{
+    -fx-background-color: #172156;
+}
+
+
+.table-view > * > *{
+    -fx-background-color: #172156;
+}
+
+
 .table-column{
     -fx-background-color: #172156;
     -fx-text-fill: #fab338;
@@ -174,6 +189,11 @@
     -fx-border-color: #fab338;
     -fx-padding: 0px 0px 2px 0px;
     -fx-alignment: CENTER;
+}
+
+
+.table-row-cell{
+    -fx-background-color: #172156;
 }
 
 
