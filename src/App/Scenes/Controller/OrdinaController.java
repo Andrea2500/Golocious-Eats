@@ -277,7 +277,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
     public void resetErrori() {
         indirizzoLabel.setStyle("-fx-text-fill: #fab338");
         totaleLabel.setStyle("-fx-text-fill: #fab338");
-        sceneController.setVisibile("erroreRiderLabel", false);
+        sceneController.setVisibile("erroreLabel", false);
     }
 
     private void setErroriDB(String messaggio) {
@@ -286,7 +286,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
                 errore("erroreLabel", "Nessun rider disponibile, riprova più tardi", false);
                 sceneController.setVisibile("erroreLabel", true);
             }
-            case "ck_ordine_articoli_attivi" -> {
+            case "ck_ordine_articoli_disponibili" -> {
                 errore("erroreLabel", "Uno o più articoli nel carrello non sono più disponibili", false);
                 sceneController.setVisibile("erroreLabel", true);
             }

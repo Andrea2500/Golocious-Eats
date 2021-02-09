@@ -57,8 +57,8 @@ public class ErroriDB {
         if(isErroreKey(errore, "null value in column \"riderid\"")) {
             return "nessun_rider";
         }
-        if(isErroreKey(errore, "ck_ordine_articoli_attivi")) {
-            return "ck_ordine_articoli_attivi";
+        if(isErroreKey(errore, "Il carrello presenta articoli non disponibili")) {
+            return "ck_ordine_articoli_disponibili";
         }
         else return "errore_sconosciuto";
     }
