@@ -133,11 +133,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
                 try {
                     this.mostraArticoli(ristorante.getArticoli(), ristorante.getRistoranteId());
                     this.mostraCarrello();
-                    ristorantiVBox.getChildren().forEach(node -> {
-                        node.getStyleClass().remove("ristoranteSelezionato");
-                        node.getStyleClass().add("elementoOrdina");
-                    });
-                    ((Node) event.getSource()).getStyleClass().remove("ristoranteSelezionato");
+                    resetColoriRistorante(ristorantiVBox);
                     ((Node) event.getSource()).getStyleClass().add("ristoranteSelezionato");
                 } catch (SQLException exception) {
                     exception.printStackTrace();
@@ -262,9 +258,12 @@ public class OrdinaController extends BaseSceneController implements Initializab
 
     /**********Metodi di ripristino e di errori**********/
 
-    /*private void resetColoriRistorante() {
-        for ()
-    }*/
+    private void resetColoriRistorante(VBox ristorantiVBox) {
+        ristorantiVBox.getChildren().forEach(node -> {
+            node.getStyleClass().remove("ristoranteSelezionato");
+            node.getStyleClass().add("elementoOrdina");
+        });
+    }
 
     public void setErrori() throws SQLException {
         if(cliente.getIndirizzoAttivo() == null) {
