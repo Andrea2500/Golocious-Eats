@@ -58,7 +58,7 @@ public class ErroriDB {
             return "nessun_rider";
         }
         if(isErroreKey(errore, "Il carrello presenta articoli non disponibili")) {
-            return "ck_ordine_articoli_disponibili";
+            return "carrello_articoli_disponibili";
         }
         else return "errore_sconosciuto";
     }

@@ -166,15 +166,15 @@ CREATE TRIGGER trigger_max_un_carrello_attivo_update AFTER UPDATE ON Carrello
 FOR EACH ROW EXECUTE PROCEDURE max_un_carrello_attivo();
 
 
-CREATE OR REPLACE FUNCTION ordine_articoli_disponibili() RETURNS TRIGGER AS $$
-BEGIN
+CREATE FUNCTION ordine_articoli_disponibili() RETURNS TRIGGER AS $$
+    BEGIN
         IF (NOT EXISTS (SELECT *
-						from articoloincarrello natural join carrello natural join articolo natural join menu
-						WHERE carrelloid = NEW.ordineid and disponibile = false))
+                        FROM Articoloincarrello NATURAL JOIN Carrello NATURAL JOIN Articolo NATURAL JOIN Menu
+                        WHERE CarrelloID = NEW.OrdineID and Disponibile = false))
         THEN RETURN NEW;
-ELSE RAISE EXCEPTION 'Il carrello presenta articoli non disponibili';
-END IF;
-END;
+        ELSE RAISE EXCEPTION 'Il carrello presenta articoli non disponibili';
+        END IF;
+    END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trigger_ordine_articoli_disponibili BEFORE INSERT ON ordine

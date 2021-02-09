@@ -74,6 +74,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
 
     public void ordinaOraBtn() throws SQLException {
         resetErrori();
+        aggiornaTotale();
         if(this.cliente.getIndirizzoAttivo() != null && carrello.getArticoli().size()>0) {
             this.ordinazioneController = new OrdinazioneController();
             String messaggio = this.ordinazioneController.effettuaOrdine(this.cliente);
@@ -286,7 +287,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
                 errore("erroreLabel", "Nessun rider disponibile, riprova più tardi", false);
                 sceneController.setVisibile("erroreLabel", true);
             }
-            case "ck_ordine_articoli_disponibili" -> {
+            case "carrello_articoli_disponibili" -> {
                 errore("erroreLabel", "Uno o più articoli nel carrello non sono più disponibili", false);
                 sceneController.setVisibile("erroreLabel", true);
             }
