@@ -3,7 +3,6 @@ package App.DAO;
 import App.Config.Database;
 import App.Config.ErroriDB;
 import App.Objects.Cliente;
-import App.Objects.Indirizzo;
 import org.postgresql.util.PSQLException;
 
 import java.sql.*;
@@ -102,7 +101,7 @@ public class ClienteDAO {
 
     public String aggiornaIndirizzoAttivo(Integer indirizzoId) throws SQLException {
         try{
-            String sql = "UPDATE "+this.tabella +" SET indirizzoattivo = '"+ indirizzoId +"' WHERE clienteid = "+ Cliente.getInstance().getClienteId();
+            String sql = "UPDATE "+this.tabella +" SET indirizzoattivo = "+((indirizzoId != null)?indirizzoId: "NULL" )+" WHERE clienteid = "+ Cliente.getInstance().getClienteId();
             this.db.setConnection();
             if(this.db.getConnection().createStatement().executeUpdate(sql)==1){
                 this.db.closeConnection();

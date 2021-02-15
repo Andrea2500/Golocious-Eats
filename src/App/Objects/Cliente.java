@@ -101,8 +101,10 @@ public class Cliente {
         return indirizzoAttivo;
     }
 
-    public void setIndirizzoAttivo(Indirizzo indirizzoAttivo) {
+    public void setIndirizzoAttivo(Indirizzo indirizzoAttivo) throws SQLException {
         this.indirizzoAttivo = indirizzoAttivo;
+        if(indirizzoAttivo == null)
+            this.clienteDAO.aggiornaIndirizzoAttivo(null);
     }
 
     public Integer getClienteId() {
