@@ -169,8 +169,8 @@ FOR EACH ROW EXECUTE PROCEDURE max_un_carrello_attivo();
 CREATE OR REPLACE FUNCTION ordine_articoli_disponibili() RETURNS TRIGGER AS $$
     BEGIN
         IF (EXISTS (SELECT *
-                        FROM Articoloincarrello NATURAL JOIN Carrello NATURAL JOIN Articolo NATURAL JOIN Menu
-                        WHERE CarrelloID = NEW.OrdineID AND Disponibile = true))
+                    FROM Articoloincarrello NATURAL JOIN Carrello NATURAL JOIN Articolo NATURAL JOIN Menu
+                    WHERE CarrelloID = NEW.OrdineID AND Disponibile = true))
         THEN RETURN NEW;
         ELSE RAISE EXCEPTION 'Il carrello presenta articoli non disponibili';
         END IF;
