@@ -15,8 +15,8 @@ public class IndirizzoDAO {
 
     /**********Attributi**********/
 
-    private String table;
-    private ObservableList<Indirizzo> listaIndirizzi;
+    private String tabella;
+    private ObservableList<Indirizzo> indirizzi;
     private Database db;
 
     /**********Metodi**********/
@@ -25,7 +25,7 @@ public class IndirizzoDAO {
 
     public IndirizzoDAO() {
         this.db = new Database();
-        this.table = "Indirizzo";
+        this.tabella = "Indirizzo";
     }
 
     /**********Metodi di funzionalità**********/
@@ -33,7 +33,7 @@ public class IndirizzoDAO {
     public String aggiungiIndirizzoConf(Indirizzo indirizzo) throws SQLException {
         try {
             this.db.setConnection();
-            String sql = "insert into " + this.table + " values (?, ?, ?, ?, ?, ?)";
+            String sql = "insert into " + this.tabella + " values (?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, indirizzo.getCliente().getClienteId());
             pstmt.setString(2, indirizzo.getPaese());
@@ -57,7 +57,7 @@ public class IndirizzoDAO {
     public String eliminaIndirizzo(Integer indirizzoid) throws SQLException {
         try {
             this.db.setConnection();
-            String sql = "UPDATE "+this.table+" SET eliminato = true WHERE indirizzoid = ?";
+            String sql = "UPDATE "+this.tabella +" SET eliminato = true WHERE indirizzoid = ?";
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, indirizzoid);
             if(pstmt.executeUpdate() > 0) {
@@ -77,7 +77,7 @@ public class IndirizzoDAO {
 
     public Indirizzo getIndirizzo(int indirizzoId) throws SQLException {
         String where = "indirizzoid = '"+indirizzoId+"'";
-        ResultSet rs = this.db.queryBuilder(this.table,where);
+        ResultSet rs = this.db.queryBuilder(this.tabella,where);
         if(rs.next()) {
             return new Indirizzo(rs.getInt("indirizzoid"), rs.getString("paese"), rs.getString("provincia"),
                     rs.getString("citta"), rs.getString("cap"), rs.getString("indirizzo"));
@@ -87,15 +87,15 @@ public class IndirizzoDAO {
     }
 
     public ObservableList<Indirizzo> getIndirizzi(Integer clienteid) throws SQLException {
-        this.listaIndirizzi = FXCollections.observableArrayList();
+        this.indirizzi = FXCollections.observableArrayList();
         String where = "clienteid = '"+clienteid+"' AND eliminato = false";
-        ResultSet rs = this.db.queryBuilder(this.table,where);
+        ResultSet rs = this.db.queryBuilder(this.tabella,where);
         while(rs.next()){
-            this.listaIndirizzi.add(new Indirizzo(rs.getInt("indirizzoid"), rs.getString("paese"),
+            this.indirizzi.add(new Indirizzo(rs.getInt("indirizzoid"), rs.getString("paese"),
                     rs.getString("provincia"),rs.getString("citta"),
                     rs.getString("cap"),rs.getString("indirizzo")));
         }
-        return this.listaIndirizzi;
+        return this.indirizzi;
     }
 
 }

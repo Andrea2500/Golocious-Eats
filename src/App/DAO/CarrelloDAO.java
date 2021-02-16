@@ -75,8 +75,8 @@ public class CarrelloDAO {
             String sql = "INSERT INTO "+this.tabella+" VALUES(?,?)";
             this.db.setConnection();
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1,Cliente.getInstance().getClienteId());
-            pstmt.setInt(2,ristoranteId);
+            pstmt.setInt(1, Cliente.getInstance().getClienteId());
+            pstmt.setInt(2, ristoranteId);
             if(pstmt.executeUpdate() > 0){
                 this.db.closeConnection();
                 ResultSet rs = pstmt.getGeneratedKeys();
@@ -94,7 +94,7 @@ public class CarrelloDAO {
         String sql = "DELETE FROM articoloincarrello WHERE carrelloid = ?";
         this.db.setConnection();
         PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        pstmt.setInt(1,carrelloId);
+        pstmt.setInt(1, carrelloId);
         pstmt.executeUpdate();
         this.db.closeConnection();
     }
@@ -104,7 +104,7 @@ public class CarrelloDAO {
         String sql = "DELETE from "+this.tabella+" WHERE carrelloid = ?";
         this.db.setConnection();
         PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        pstmt.setInt(1,carrelloId);
+        pstmt.setInt(1, carrelloId);
         pstmt.executeUpdate();
         this.db.closeConnection();
         return this.nuovoCarrello(ristoranteId);

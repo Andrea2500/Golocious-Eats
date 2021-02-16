@@ -3,9 +3,13 @@ package App.DAO;
 import App.Config.Database;
 import App.Config.ErroriDB;
 import App.Objects.Cliente;
+import App.Objects.Ordine;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 public class ClienteDAO {
 
@@ -13,6 +17,7 @@ public class ClienteDAO {
 
     private String tabella;
     private Cliente cliente;
+    private ObservableList<Ordine> ordini;
     protected Database db;
     private ErroriDB edb = new ErroriDB();
 
@@ -125,4 +130,21 @@ public class ClienteDAO {
             return 0;
         }
     }
+
+    public ObservableList<Ordine> getOrdini(Integer clienteId) throws SQLException {
+        this.ordini = FXCollections.observableArrayList();
+        this.db.setConnection();
+        String sql = "SELECT * FROM ordine o inner join carrello c on o.ordineid = c.carrelloid where clienteid = ?";
+        PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        pstmt.setInt(1, clienteId);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            this.ordini.add(new Ordine(rs.getInt("ordineid"), rs.getInt("ristoranteid"),
+                    new SimpleDateFormat("dd/MM/yyyy HH:mm").format(rs.getTimestamp("dataordine")), rs.getFloat("totale"),
+                    rs.getInt("riderid"),rs.getBoolean("consegnato")));
+        }
+        db.closeConnection();
+        return this.ordini;
+    }
+
 }

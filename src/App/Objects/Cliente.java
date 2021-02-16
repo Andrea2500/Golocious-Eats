@@ -178,6 +178,10 @@ public class Cliente {
         }
     }
 
+    public ObservableList<Ordine> getOrdiniDB() throws SQLException {
+        return this.clienteDAO.getOrdini(this.clienteId);
+    }
+
     /**********Metodi di supporto**********/
 
     public void reset(){

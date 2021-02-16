@@ -25,9 +25,4 @@ public class AggiungiGestoreController {
         return this.gestore.rendiGestore(email,ristorante.getRistoranteId());
     }
 
-    /**********Metodi di supporto**********/
-
-    /**********Metodi di ripristino e di errori**********/
-
-
 }

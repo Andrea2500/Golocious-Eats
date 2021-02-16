@@ -31,14 +31,6 @@ public class ImpostazioniController extends BaseSceneController {
         this.cliente = Cliente.getInstance();
     }
 
-    /**********Metodi di bottoni**********/
-
-    public void vuotoVBox() {
-        resetBtnColor();
-        resetVHBoxManagedAndVisible();
-        sceneController.setVisibile("vuotoVBox",true);
-    }
-
     public void inserisciIndirizzoBtn() {
         resetBtnColor();
         resetVHBoxManagedAndVisible();

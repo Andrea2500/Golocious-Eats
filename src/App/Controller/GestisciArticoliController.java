@@ -8,11 +8,6 @@ import java.sql.SQLException;
 
 public class GestisciArticoliController {
 
-    /**********Attributi**********/
-
-    Articolo articolo;
-    Ristorante ristorante;
-
     /**********Metodi**********/
 
     /**********Metodi di funzionalità**********/
@@ -26,11 +21,7 @@ public class GestisciArticoliController {
     }
 
     public String eliminaArticoloDaMenu(Ristorante ristorante, Articolo articolo) throws SQLException {
-       return ristorante.eliminaArticoloDaMenuDB(articolo.getArticoloId());
+        return ristorante.eliminaArticoloDaMenuDB(articolo.getArticoloId());
     }
-
-    /**********Metodi di supporto**********/
-
-    /**********Metodi di ripristino e di errori**********/
 
 }

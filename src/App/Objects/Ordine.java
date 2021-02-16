@@ -139,10 +139,6 @@ public class Ordine {
 
     /**********Metodi di funzionalità**********/
 
-    public ObservableList<Ordine> getOrdini() throws SQLException {
-       return this.ordineDAO.getOrdini(Cliente.getInstance().getClienteId());
-    }
-
     /**********Metodi di funzionalità**********/
 
     private void aggiornaCampi(Ordine ordine) {
@@ -153,4 +149,5 @@ public class Ordine {
         this.rider = ordine.rider;
         this.stato = ordine.stato;
     }
+
 }

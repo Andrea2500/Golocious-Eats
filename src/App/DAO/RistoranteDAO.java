@@ -15,12 +15,11 @@ public class RistoranteDAO {
 
     /**********Attributi**********/
 
-    private String table;
+    private String tabella;
     private Database db;
     ErroriDB edb;
     private ObservableList<Ristorante> ristoranti;
     private ObservableList<Articolo> articoli;
-    private Indirizzo indirizzo;
 
     /**********Metodi**********/
 
@@ -29,18 +28,18 @@ public class RistoranteDAO {
     public RistoranteDAO() {
         this.db = new Database();
         this.edb = new ErroriDB();
-        this.table = "Ristorante";
+        this.tabella = "Ristorante";
     }
 
     /**********Metodi di supporto**********/
 
     public Ristorante getRistorante(Integer ristoranteId) throws SQLException {
         String where ="ristoranteid = '"+ristoranteId+"'";
-        ResultSet rs = this.db.queryBuilder(this.table,where);
+        ResultSet rs = this.db.queryBuilder(this.tabella,where);
         if(rs.next()) {
             return new Ristorante(rs.getInt("ristoranteid"), rs.getString("nome"),
-                    rs.getString("indirizzo"),rs.getString("telefono"),
-                    rs.getDate("datadiapertura").toLocalDate(),getArticoli(rs.getInt("ristoranteid")));
+                    rs.getString("indirizzo"), rs.getString("telefono"),
+                    rs.getDate("datadiapertura").toLocalDate(), getArticoli(rs.getInt("ristoranteid")));
         } else {
             return null;
         }
@@ -49,7 +48,7 @@ public class RistoranteDAO {
     public ObservableList<Ristorante> getRistoranti(Integer clienteId) throws SQLException {
         this.db.setConnection();
         ristoranti = FXCollections.observableArrayList();
-        ResultSet rs = db.queryBuilder(this.table+" NATURAL JOIN Gestore", "clienteid = "+clienteId);
+        ResultSet rs = db.queryBuilder(this.tabella+" NATURAL JOIN Gestore", "clienteid = "+clienteId);
         this.db.closeConnection();
         while(rs.next()) {
             ristoranti.add(new Ristorante(rs.getInt("ristoranteid"), rs.getString("nome"),
@@ -151,7 +150,7 @@ public class RistoranteDAO {
 
     public int setRistorante(Ristorante ristorante) throws Exception {
         try {
-            String sql = "INSERT INTO "+this.table+" VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO "+this.tabella+" VALUES (?, ?, ?, ?)";
             this.db.setConnection();
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, ristorante.getNome());
@@ -194,7 +193,7 @@ public class RistoranteDAO {
 
     public ObservableList<Ristorante> getListaRistoranti() throws SQLException {
         this.ristoranti = FXCollections.observableArrayList();
-        ResultSet rs = this.db.queryBuilder(this.table,"1 > 0");
+        ResultSet rs = this.db.queryBuilder(this.tabella,"1 > 0");
         while (rs.next()){
             this.ristoranti.add(new Ristorante(rs.getInt("ristoranteid"), rs.getString("nome"),
                     rs.getString("indirizzo"),rs.getString("telefono"),

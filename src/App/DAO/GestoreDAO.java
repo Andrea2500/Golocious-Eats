@@ -13,7 +13,7 @@ public class GestoreDAO extends ClienteDAO{
 
     /**********Metodi**********/
 
-    String table = "gestore";
+    String tabella;
     Database db;
     ErroriDB edb;
 
@@ -23,7 +23,7 @@ public class GestoreDAO extends ClienteDAO{
     /**********Costruttori**********/
 
     public GestoreDAO() {
-        this.table = "gestore";
+        this.tabella = "gestore";
         this.db = new Database();
         this.edb = new ErroriDB();
     }
@@ -38,7 +38,7 @@ public class GestoreDAO extends ClienteDAO{
             pstmt.setString(1,email);
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()){
-                sql = "INSERT INTO "+this.table+" VALUES (?, ?)";
+                sql = "INSERT INTO "+this.tabella +" VALUES (?, ?)";
                 pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 pstmt.setInt(1, rs.getInt("clienteid"));
                 pstmt.setInt(2, ristoranteId);

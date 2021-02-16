@@ -28,7 +28,6 @@ public class StatisticheController {
         String veicolo = "('m','b','a')";
         if(!moto)
            veicolo = veicolo.replace("'m'","''");
-
         if(!bici)
             veicolo = veicolo.replace("'b'","''");
         if(!auto)

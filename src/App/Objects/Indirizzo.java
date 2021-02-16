@@ -96,6 +96,10 @@ public class Indirizzo {
         return this.indirizzoDAO.aggiungiIndirizzoConf(indirizzo);
     }
 
+    public String eliminaIndirizzo(Integer indirizzoid) throws SQLException {
+        return this.indirizzoDAO.eliminaIndirizzo(indirizzoid);
+    }
+
     public ObservableList<Indirizzo> getIndirizziDB() throws SQLException {
         return this.indirizzoDAO.getIndirizzi(this.cliente.getClienteId());
     }
@@ -105,10 +109,6 @@ public class Indirizzo {
     @Override
     public String toString(){
         return this.indirizzoCivico +", "+this.cap+", "+this.citta+", "+this.provincia+", "+this.paese;
-    }
-
-    public String eliminaIndirizzo(Integer indirizzoid) throws SQLException {
-        return this.indirizzoDAO.eliminaIndirizzo(indirizzoid);
     }
 
     public void setData(Indirizzo indirizzo) {

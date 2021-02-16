@@ -72,15 +72,15 @@ public class Rider extends Cliente {
         return this.riderDAO.diventaRiderConf(rider);
     }
 
+    public void consegna(Integer ordineId) throws SQLException {
+        this.riderDAO.consegna(ordineId);
+    }
+
     /**********Metodi di supporto**********/
 
     @Override
     public String toString() {
         return super.nome;
-    }
-
-    public void consegna(Integer ordineId) throws SQLException {
-        this.riderDAO.consegna(ordineId);
     }
 
 }

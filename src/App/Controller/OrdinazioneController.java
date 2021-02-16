@@ -13,7 +13,6 @@ public class OrdinazioneController {
 
     Ristorante ristorante;
     Articolo articolo;
-    Cliente cliente;
 
     /**********Metodi**********/
 

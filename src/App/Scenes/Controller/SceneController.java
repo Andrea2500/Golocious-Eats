@@ -1,12 +1,12 @@
 package App.Scenes.Controller;
 
 import App.Objects.Cliente;
-import App.Objects.Indirizzo;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class SceneController {

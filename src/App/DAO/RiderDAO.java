@@ -17,7 +17,7 @@ public class RiderDAO {
 
     /**********Attributi**********/
 
-    String table;
+    String tabella;
     Database db;
     ObservableList<Ordine> consegne;
     ErroriDB edb = new ErroriDB();
@@ -28,7 +28,7 @@ public class RiderDAO {
 
     public RiderDAO() {
         this.db = new Database();
-        this.table = "Rider";
+        this.tabella = "Rider";
     }
 
     /**********Metodi di funzionalità**********/
@@ -36,7 +36,7 @@ public class RiderDAO {
     public String diventaRiderConf(Rider rider) throws SQLException {
         try {
             this.db.setConnection();
-            String sql = "insert into " + this.table + " values (?, ?, ?)";
+            String sql = "insert into " + this.tabella + " values (?, ?, ?)";
             PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, rider.getClienteId());
             pstmt.setString(2, rider.getPatente());
@@ -66,7 +66,7 @@ public class RiderDAO {
 
     public String getVeicolo(Integer riderId) throws SQLException {
         String where="riderid = '"+riderId+"'";
-        ResultSet rs = this.db.queryBuilder(this.table, where);
+        ResultSet rs = this.db.queryBuilder(this.tabella, where);
         if(rs.next()) {
             switch (rs.getString("veicolo")){
                 case "a" -> { return "automobile"; }

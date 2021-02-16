@@ -25,7 +25,7 @@ public class DiventaRiderController {
 
     public String diventaRider() throws SQLException, IOException {
         String messaggio = this.rider.diventaRider(this.rider);
-        if(messaggio.equals("rider_aggiunto")){
+        if(messaggio.equals("rider_aggiunto")) {
             SceneController.getInstance().riderLogout();
         }
         return messaggio;

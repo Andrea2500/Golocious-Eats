@@ -91,26 +91,26 @@ public class Ristorante {
         this.dataDiApertura = dataDiApertura;
     }
 
-    /**********Metodi di funzionalità**********/
-
-    public String switchDisponibilitaArticoloDB(boolean toggle, int ristoranteid, int articoloid) throws SQLException {
-        return this.ristoranteDAO.switchDisponibilita(toggle,ristoranteid,articoloid);
-    }
-
-    public String eliminaArticoloDaMenuDB(int articoloid) throws SQLException {
-        return this.ristoranteDAO.eliminaDaMenu(this.ristoranteId, articoloid);
-    }
-
-    public String aggiungiArticoloEsistenteDB(int articoloId) throws SQLException {
-        return this.ristoranteDAO.aggiungiArticoloEsistente(this.ristoranteId, articoloId);
-    }
-
     public ObservableList<Articolo> getArticoli() {
         return articoli;
     }
 
     public void setArticoli(ObservableList<Articolo> articoli) {
         this.articoli = articoli;
+    }
+
+    /**********Metodi di funzionalità**********/
+
+    public String switchDisponibilitaArticoloDB(boolean toggle, int ristoranteid, int articoloid) throws SQLException {
+        return this.ristoranteDAO.switchDisponibilita(toggle,ristoranteid,articoloid);
+    }
+
+    public String aggiungiArticoloEsistenteDB(int articoloId) throws SQLException {
+        return this.ristoranteDAO.aggiungiArticoloEsistente(this.ristoranteId, articoloId);
+    }
+
+    public String eliminaArticoloDaMenuDB(int articoloid) throws SQLException {
+        return this.ristoranteDAO.eliminaDaMenu(this.ristoranteId, articoloid);
     }
 
     public ObservableList<Articolo> getArticoliAltriRistorantiDB(Integer ristoranteId) throws SQLException {

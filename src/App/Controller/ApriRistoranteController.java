@@ -28,8 +28,4 @@ public class ApriRistoranteController {
        return this.gestore.apriRistorante(ristorante);
     }
 
-    /**********Metodi di supporto**********/
-
-    /**********Metodi di ripristino e di errori**********/
-
 }
