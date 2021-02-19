@@ -130,7 +130,7 @@ public class Articolo {
                 return "Bevande";
             }
             case "w" -> {
-                return "Vino";
+                return "Vini";
             }
             default -> {
                 return "Categoria inesistente";
@@ -158,7 +158,7 @@ public class Articolo {
             case "Bevande" -> {
                 return "v";
             }
-            case "Vino" -> {
+            case "Vini" -> {
                 return "w";
             }
             default -> {

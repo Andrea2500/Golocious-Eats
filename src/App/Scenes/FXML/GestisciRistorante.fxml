@@ -76,7 +76,7 @@
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Antipasti" />
-                            <String fx:value="Hamburger" />
+                            <String fx:value="Burger" />
                             <String fx:value="Pizze" />
                             <String fx:value="Pizze in teglia" />
                             <String fx:value="Dolci" />
