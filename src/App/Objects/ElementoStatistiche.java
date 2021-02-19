@@ -1,10 +1,6 @@
 package App.Objects;
 
 import App.DAO.ElementoStatisticheDAO;
-import javafx.collections.ObservableList;
-
-import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class ElementoStatistiche {
 
@@ -19,10 +15,6 @@ public class ElementoStatistiche {
     /**********Metodi**********/
 
     /**********Costruttori**********/
-
-    public ElementoStatistiche() {
-        elementoStatisticheDAO = new ElementoStatisticheDAO();
-    }
 
     public ElementoStatistiche(String nomeArticolo, Float prezzoArticolo, int quantita,Float totale) {
         this.nomeArticolo = nomeArticolo;
@@ -67,8 +59,6 @@ public class ElementoStatistiche {
 
     /**********Metodi di funzionalità**********/
 
-    public ObservableList<ElementoStatistiche> getStatisticheDB(Float daPrezzo, Float aPrezzo, String veicolo, LocalDate daData, LocalDate aData, int ristoranteId) throws SQLException {
-        return this.elementoStatisticheDAO.getStatistiche(daPrezzo, aPrezzo, veicolo, daData, aData, ristoranteId);
-    }
+
 
 }

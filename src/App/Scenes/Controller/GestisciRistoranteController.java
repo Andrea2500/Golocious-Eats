@@ -1,6 +1,5 @@
 package App.Scenes.Controller;
 
-import App.Controller.*;
 import App.Objects.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,11 +18,6 @@ public class GestisciRistoranteController extends BaseSceneController implements
     /**********Attributi**********/
 
     Ristorante ristoranteAttivo;
-    InserisciArticoloController inserisciArticoloController;
-    GestisciArticoliController gestisciArticoliController;
-    ApriRistoranteController apriRistoranteController;
-    AggiungiGestoreController aggiungiGestoreController;
-    StatisticheController statisticheController;
     Gestore gestore;
     @FXML ComboBox<Ristorante> selezionaRistoranteField;
     @FXML TableView<ElementoStatistiche> tabellaStatistiche;
@@ -77,8 +71,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         getElementById("inserisciarticoloField").setStyle("-fx-border-color: transparent");
         Articolo articolo = ((ComboBox<Articolo>) getElementById("inserisciarticoloField")).getSelectionModel().getSelectedItem();
         if(articolo != null){
-            this.inserisciArticoloController = new InserisciArticoloController();
-            String messaggio = this.inserisciArticoloController.aggiungiEsistente(this.ristoranteAttivo,articolo);
+            String messaggio = this.ristoranteAttivo.aggiungiArticoloEsistenteDB(articolo.getArticoloId());
             if(messaggio.equals("articolo_aggiunto")) {
                 ((Label) getElementById("correttoLabel")).setText("Articolo aggiunto con successo");
                 ((ComboBox) getElementById("inserisciarticoloField")).getItems().clear();
@@ -105,8 +98,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         String categoria = ((ComboBox<String>) getElementById("categoriaField")).getSelectionModel().getSelectedItem();
         String ingredienti = ((TextField) getElementById("ingredientiField")).getText();
         if(nome.length() > 0 && prezzo != null && categoria != null) {
-            this.inserisciArticoloController = new InserisciArticoloController();
-            String messaggio = this.inserisciArticoloController.aggiungiManualmente(this.ristoranteAttivo,new Articolo(nome, prezzo.toString(), categoria, ingredienti));
+            String messaggio = this.aggiungiManualmente(this.ristoranteAttivo,new Articolo(nome, prezzo.toString(), categoria, ingredienti));
             if(messaggio.equals("articolo_aggiunto")) {
                 ((Label) getElementById("correttoLabel")).setText("Articolo aggiunto con successo");
                 resetCampiAggiungiManualmente();
@@ -140,12 +132,11 @@ public class GestisciRistoranteController extends BaseSceneController implements
     public void abilitaBtn() throws SQLException {
         resetErroriGestisciArticoli();
         ComboBox<Articolo> gestisciArticolo = (ComboBox<Articolo>) getElementById("gestisciarticoloField");
-        this.gestisciArticoliController = new GestisciArticoliController();
         Articolo articolo = gestisciArticolo.getSelectionModel().getSelectedItem();
         if(articolo != null) {
             int index = gestisciArticolo.getSelectionModel().getSelectedIndex();
-            this.gestisciArticoliController.switchDisponibilitaArticolo(true, this.ristoranteAttivo, articolo);
-            gestisciArticolo.setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
+            this.ristoranteAttivo.switchDisponibilitaArticoloDB(true, this.ristoranteAttivo.getRistoranteId(), articolo.getArticoloId());
+            gestisciArticolo.setItems(this.ristoranteAttivo.getArticoliDB());
             gestisciArticolo.getSelectionModel().select(index);
         } else {
             setErroriGestisciArticoli();
@@ -155,12 +146,11 @@ public class GestisciRistoranteController extends BaseSceneController implements
     public void disabilitaBtn() throws SQLException {
         resetErroriGestisciArticoli();
         ComboBox<Articolo> gestisciArticolo = (ComboBox<Articolo>) getElementById("gestisciarticoloField");
-        this.gestisciArticoliController = new GestisciArticoliController();
         Articolo articolo = gestisciArticolo.getSelectionModel().getSelectedItem();
         if(articolo != null) {
             int index = gestisciArticolo.getSelectionModel().getSelectedIndex();
-            this.gestisciArticoliController.switchDisponibilitaArticolo(false, this.ristoranteAttivo, articolo);
-            gestisciArticolo.setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
+            this.ristoranteAttivo.switchDisponibilitaArticoloDB(false, this.ristoranteAttivo.getRistoranteId(), articolo.getArticoloId());
+            gestisciArticolo.setItems(this.ristoranteAttivo.getArticoliDB());
             gestisciArticolo.getSelectionModel().select(index);
         } else {
             setErroriGestisciArticoli();
@@ -169,14 +159,13 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     public void eliminaBtn() throws SQLException {
         resetErroriGestisciArticoli();
-        this.gestisciArticoliController = new GestisciArticoliController();
         ComboBox<Articolo> gestisciArticolo = (ComboBox<Articolo>) getElementById("gestisciarticoloField");
         if(gestisciArticolo.getSelectionModel().getSelectedItem() != null) {
-            String messaggio = this.gestisciArticoliController.eliminaArticoloDaMenu(this.ristoranteAttivo, gestisciArticolo.getSelectionModel().getSelectedItem());
+            String messaggio = this.ristoranteAttivo.eliminaArticoloDaMenuDB(gestisciArticolo.getSelectionModel().getSelectedItem().getArticoloId());
             if(messaggio.equals("eliminazione_articolo_fallita")) {
                 errore("erroreGestisciarticoloLabel", "L'eliminazione non è riuscita", true);
             }else{
-                gestisciArticolo.setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
+                gestisciArticolo.setItems(this.ristoranteAttivo.getArticoliDB());
             }
         } else {
             setErroriGestisciArticoli();
@@ -199,8 +188,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
         String telefono = ((TextField) getElementById("telefonoristoranteField")).getText();
         LocalDate dataApertura = ((DatePicker) getElementById("dataaperturaristoranteField")).getValue();
         if(nome.length() > 0 && indirizzo.length() > 0 && telefono.length() > 0 && dataApertura != null && dataApertura.isBefore(LocalDate.now())) {
-            this.apriRistoranteController = new ApriRistoranteController(this.gestore);
-            String messaggio = this.apriRistoranteController.apriRistorante(new Ristorante(nome, indirizzo, telefono, dataApertura));
+            String messaggio = this.gestore.apriRistorante(new Ristorante(nome, indirizzo, telefono, dataApertura));
             if(messaggio.equals("ristorante_aperto")) {
                 ((Label) getElementById("erroreApriRistoranteLabel")).setText("Ristorante aggiunto con successo");
                 resetCampiApriRistorante();
@@ -228,10 +216,9 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     public void aggiungiGestoreBtn() throws SQLException {
         resetErroriRendiGestore();
-        this.aggiungiGestoreController = new AggiungiGestoreController();
         String email = ((TextField) getElementById("gestoreField")).getText();
         if(email.length() > 0) {
-            String messaggio = this.aggiungiGestoreController.rendiGestore(email, ristoranteAttivo);
+            String messaggio = this.gestore.rendiGestore(email, ristoranteAttivo.getRistoranteId());
             if (messaggio.equals("gestore_aggiunto")) {
                 resetCampiRendiGestore();
                 ((Label) getElementById("erroreGestoreLabel")).setText("Gestore aggiunto con successo");
@@ -306,8 +293,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
             aData = tmp;
         }
 
-        this.statisticheController = new StatisticheController();
-        ObservableList<ElementoStatistiche> statistiche = this.statisticheController.getStatistiche(daPrezzo, aPrezzo, moto, bici, auto, daData, aData, this.ristoranteAttivo);
+        ObservableList<ElementoStatistiche> statistiche = this.getStatistiche(daPrezzo, aPrezzo, moto, bici, auto, daData, aData, this.ristoranteAttivo);
         this.tabellaStatistiche.setItems(statistiche);
         Integer articoliDistinti = 0;
         Double totaleRicavato = Double.valueOf(0);
@@ -339,13 +325,11 @@ public class GestisciRistoranteController extends BaseSceneController implements
     /**********Metodi di supporto**********/
 
     private void setInserisciArticoliBox() throws SQLException{
-        this.inserisciArticoloController = new InserisciArticoloController();
-        ((ComboBox) getElementById("inserisciarticoloField")).setItems(inserisciArticoloController.getArticoliAltriRistoranti(this.ristoranteAttivo));
+        ((ComboBox) getElementById("inserisciarticoloField")).setItems(this.ristoranteAttivo.getArticoliAltriRistorantiDB(this.ristoranteAttivo.getRistoranteId()));
     }
 
     private void setGestisciArticoliBox() throws SQLException {
-        this.gestisciArticoliController = new GestisciArticoliController();
-        ((ComboBox) getElementById("gestisciarticoloField")).setItems(gestisciArticoliController.getArticoliRistorante(this.ristoranteAttivo));
+        ((ComboBox) getElementById("gestisciarticoloField")).setItems(this.ristoranteAttivo.getArticoliDB());
     }
 
     private void setLarghezzaColonne(Boolean apri) {
@@ -360,6 +344,28 @@ public class GestisciRistoranteController extends BaseSceneController implements
             this.quantitaColonna.setPrefWidth(70);
             this.totaleColonna.setPrefWidth(60);
         }
+    }
+
+    private String aggiungiManualmente(Ristorante ristorante, Articolo articolo) throws Exception {
+        String messaggio = articolo.setArticoloDB();
+        if(messaggio.equals("articolo_aggiunto")) {
+            return ristorante.aggiungiArticoloEsistenteDB(articolo.getArticoloId());
+        } else {
+            return messaggio;
+        }
+    }
+
+    private ObservableList<ElementoStatistiche> getStatistiche(Float daPrezzo, Float aPrezzo, boolean moto, boolean bici, boolean auto, LocalDate daData, LocalDate aData, Ristorante ristorante) throws SQLException {
+        String veicolo = "('m','b','a')";
+        if(!moto)
+            veicolo = veicolo.replace("'m'","''");
+        if(!bici)
+            veicolo = veicolo.replace("'b'","''");
+        if(!auto)
+            veicolo = veicolo.replace("'a'","''");
+        if(!moto && !auto && !bici)
+            veicolo = "('m','a','b')";
+        return ristorante.getStatisticheDB(daPrezzo, aPrezzo, veicolo, daData, aData, ristorante.getRistoranteId());
     }
 
     /**********Metodi di ripristino e di errori**********/

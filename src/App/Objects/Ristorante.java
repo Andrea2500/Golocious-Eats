@@ -95,6 +95,10 @@ public class Ristorante {
         return articoli;
     }
 
+    public ObservableList<Articolo> getArticoliDB() throws SQLException {
+        return this.ristoranteDAO.getArticoli(this.ristoranteId);
+    }
+
     public void setArticoli(ObservableList<Articolo> articoli) {
         this.articoli = articoli;
     }
@@ -131,6 +135,10 @@ public class Ristorante {
 
     public ObservableList<Ristorante> getListaRistorantiDB() throws SQLException {
         return this.ristoranteDAO.getListaRistoranti();
+    }
+
+    public ObservableList<ElementoStatistiche> getStatisticheDB(Float daPrezzo, Float aPrezzo, String veicolo, LocalDate daData, LocalDate aData, int ristoranteId) throws SQLException {
+        return this.ristoranteDAO.getStatistiche(daPrezzo, aPrezzo, veicolo, daData, aData, ristoranteId);
     }
 
 
