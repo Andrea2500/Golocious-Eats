@@ -1,9 +1,5 @@
 package App.Scenes.Controller;
 
-import App.Controller.AggiungiIndirizzoController;
-import App.Controller.DiventaRiderController;
-import App.Controller.EliminaIndirizzoController;
-import App.Controller.SelezionaIndirizzoController;
 import App.Objects.Cliente;
 import App.Objects.Indirizzo;
 import javafx.collections.ObservableList;
@@ -18,10 +14,6 @@ public class ImpostazioniController extends BaseSceneController {
     /**********Attributi**********/
 
     private Cliente cliente;
-    private AggiungiIndirizzoController aggiungiIndirizzoController;
-    private SelezionaIndirizzoController selezionaIndirizzoController;
-    private EliminaIndirizzoController eliminaIndirizzoController;
-    private DiventaRiderController diventaRiderController;
 
     /**********Metodi**********/
 
@@ -48,8 +40,7 @@ public class ImpostazioniController extends BaseSceneController {
         String indirizzo = getValue("indirizzoField", "textfield");
         Indirizzo indirizzoCompleto = new Indirizzo(paese,provincia,cap,citta,indirizzo);
         if(paese.length()>0 && provincia.length()>0 && cap.length()>0 && citta.length()>0 && indirizzo.length()>0){
-            aggiungiIndirizzoController = new AggiungiIndirizzoController();
-            String messaggio = aggiungiIndirizzoController.aggiungiIndirizzo(indirizzoCompleto);
+            String messaggio = this.cliente.aggiungiIndirizzoDB(indirizzoCompleto);
             if(messaggio.equals("indirizzo_aggiunto")){
                 resetCampiIndirizzo();
                 ((Label)getElementById("correttoLabel")).setText("Indirizzo aggiunto correttamente");
@@ -66,7 +57,6 @@ public class ImpostazioniController extends BaseSceneController {
         this.cliente.setIndirizzi(this.cliente.getIndirizziDB());
         resetBtnColor();
         resetVHBoxManagedAndVisible();
-        this.selezionaIndirizzoController = new SelezionaIndirizzoController();
         cliente.setIndirizzi(cliente.getIndirizziDB());
         setListaIndirizzi();
         resetErroriGestisciIndirizzi();
@@ -78,7 +68,7 @@ public class ImpostazioniController extends BaseSceneController {
         resetErroriGestisciIndirizzi();
         Indirizzo attivo = ((ComboBox<Indirizzo>)getElementById("indirizzoattivoField")).getSelectionModel().getSelectedItem();
         if(attivo != null) {
-            String messaggio = selezionaIndirizzoController.setIndirizzoAttivo(attivo);
+            String messaggio = this.setIndirizzoAttivo(attivo);
             if (messaggio.equals("indirizzo_aggiornato")) {
                 errore("erroreIndirizzoattivoLabel", "Indirizzo attivo aggiornato con successo", false);
                 cliente.setIndirizzoAttivo(attivo);
@@ -94,8 +84,7 @@ public class ImpostazioniController extends BaseSceneController {
         resetErroriGestisciIndirizzi();
         Indirizzo elimina = ((ComboBox<Indirizzo>)getElementById("indirizzoattivoField")).getSelectionModel().getSelectedItem();
         if(elimina != null) {
-            this.eliminaIndirizzoController = new EliminaIndirizzoController();
-            String messaggio = eliminaIndirizzoController.eliminaIndirizzo(elimina);
+            String messaggio = this.eliminaIndirizzo(elimina);
             if (messaggio.equals("indirizzo_eliminato")) {
                 errore("erroreIndirizzoattivoLabel", "Indirizzo eliminato con successo", false);
                 setListaIndirizzi();
@@ -122,8 +111,7 @@ public class ImpostazioniController extends BaseSceneController {
         String patente = getValue("patenteField", "textfield");
         String veicolo = getValue("veicoloField", "combobox");
         if(patente.length()>0 && veicolo != null) {
-            diventaRiderController = new DiventaRiderController(patente, veicolo);
-            setErroriDB(diventaRiderController.diventaRider());
+            setErroriDB(this.diventaRider(this.cliente, patente, veicolo));
         } else {
             setErroriRider(patente, veicolo);
         }
@@ -166,6 +154,31 @@ public class ImpostazioniController extends BaseSceneController {
             }
             indirizzoattivoField.getSelectionModel().select(index);
         }
+    }
+
+    public String setIndirizzoAttivo(Indirizzo indirizzo) throws SQLException {
+        String messaggio = this.cliente.aggiornaIndirizzoAttivoDB(indirizzo.getIndirizzoId());
+        if(messaggio.equals("indirizzo_aggiornato")) {
+            this.cliente.setIndirizzoAttivo(indirizzo);
+        }
+        return messaggio;
+    }
+
+    public String eliminaIndirizzo(Indirizzo indirizzo) throws SQLException {
+        String messaggio = new Indirizzo().eliminaIndirizzo(indirizzo.getIndirizzoId());
+        if(this.cliente.getIndirizzoAttivo() != null){
+            if (indirizzo.getIndirizzoId().equals(cliente.getIndirizzoAttivo().getIndirizzoId()))
+                this.cliente.setIndirizzoAttivo(null);
+        }
+        return messaggio;
+    }
+
+    public String diventaRider(Cliente cliente, String patente, String veicolo) throws SQLException, IOException {
+        String messaggio = cliente.diventaRider(patente, veicolo);
+        if(messaggio.equals("rider_aggiunto")) {
+            SceneController.getInstance().riderLogout();
+        }
+        return messaggio;
     }
 
     /**********Metodi di ripristino e di errori**********/

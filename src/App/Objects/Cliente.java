@@ -165,7 +165,11 @@ public class Cliente {
         return this.clienteDAO.registerConf(cliente, passwordHash);
     }
 
-    public String aggiornaIndirizzoAttivo(Integer indirizzoId) throws SQLException {
+    public String aggiungiIndirizzoDB(Indirizzo indirizzo) throws SQLException {
+        return this.clienteDAO.aggiungiIndirizzoConf(indirizzo);
+    }
+
+    public String aggiornaIndirizzoAttivoDB(Integer indirizzoId) throws SQLException {
         return this.clienteDAO.aggiornaIndirizzoAttivo(indirizzoId);
     }
 
@@ -176,6 +180,10 @@ public class Cliente {
         } catch(Exception e) {
             return e.getMessage();
         }
+    }
+
+    public String diventaRider(String patente, String veicolo) throws SQLException {
+        return this.clienteDAO.diventaRider(this.getClienteId(), patente, veicolo);
     }
 
     public ObservableList<Ordine> getOrdiniDB() throws SQLException {
@@ -189,7 +197,7 @@ public class Cliente {
     }
 
     public String getNomeDB(Integer id) throws SQLException {
-        return this.clienteDAO.getNomeDB(id);
+        return this.clienteDAO.getNome(id);
     }
 
     public void addIndirizzo(Indirizzo indirizzo){

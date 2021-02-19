@@ -1,7 +1,8 @@
 package App.Scenes.Controller;
 
-import App.Controller.EffettuaConsegnaController;
+import App.Objects.Cliente;
 import App.Objects.Ordine;
+import App.Objects.Rider;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,16 +21,16 @@ public class ConsegnaController extends BaseSceneController implements Initializ
     /**********Attributi**********/
 
     @FXML private VBox consegnaVBox;
-    EffettuaConsegnaController effettuaConsegnaController;
-    ObservableList<Ordine> consegneAttive;
+    private Rider rider;
+    private ObservableList<Ordine> consegneAttive;
 
     /**********Metodi**********/
 
     /**********Costruttori**********/
 
     public ConsegnaController() throws SQLException {
-        this.effettuaConsegnaController = new EffettuaConsegnaController();
-        this.consegneAttive = this.effettuaConsegnaController.getConsegneAttive();
+        this.rider = new Rider(Cliente.getInstance().getClienteId(), true, true);
+        this.consegneAttive = this.rider.getConsegneAttive();
     }
 
     @Override
@@ -53,10 +54,10 @@ public class ConsegnaController extends BaseSceneController implements Initializ
                 Button consegnaBtn = new Button("Termina consegna");
                 consegnaBtn.setOnAction(actionEvent -> {
                     try {
-                        this.effettuaConsegnaController.consegna(consegna.getOrdineId());
-                        this.effettuaConsegnaController.aggiornaConsegne();
+                        this.rider.consegna(consegna.getOrdineId());
+                        this.rider.getConsegneDB(true); //aggiorna le consegne attive
                         this.consegneAttive.clear();
-                        this.consegneAttive = this.effettuaConsegnaController.getConsegneAttive();
+                        this.consegneAttive = this.rider.getConsegneAttive();
                         this.showConsegneAttive();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();

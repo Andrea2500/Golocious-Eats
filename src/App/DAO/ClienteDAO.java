@@ -3,7 +3,9 @@ package App.DAO;
 import App.Config.Database;
 import App.Config.ErroriDB;
 import App.Objects.Cliente;
+import App.Objects.Indirizzo;
 import App.Objects.Ordine;
+import App.Objects.Rider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
@@ -94,13 +96,37 @@ public class ClienteDAO {
         return "cliente";
     }
 
-    public String getNomeDB(Integer clienteId) throws SQLException {
+    public String getNome(Integer clienteId) throws SQLException {
         String where = "clienteid = '"+clienteId+"'";
         ResultSet rs = this.db.queryBuilder(this.tabella,where);
         if(rs.next()) {
             return rs.getString("nome")+" "+rs.getString("cognome");
         } else {
             return "Utente non trovato";
+        }
+    }
+
+    public String aggiungiIndirizzoConf(Indirizzo indirizzo) throws SQLException {
+        try {
+            this.db.setConnection();
+            String sql = "insert into indirizzo values (?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, indirizzo.getCliente().getClienteId());
+            pstmt.setString(2, indirizzo.getPaese());
+            pstmt.setString(3, indirizzo.getProvincia());
+            pstmt.setString(4, indirizzo.getCitta());
+            pstmt.setString(5, indirizzo.getCap());
+            pstmt.setString(6, indirizzo.getIndirizzoCivico());
+            if(pstmt.executeUpdate() > 0){
+                this.db.closeConnection();
+                return "indirizzo_aggiunto";
+            }else{
+                this.db.closeConnection();
+                return "aggiunta_indirizzo_fallita";
+            }
+        } catch(PSQLException e) {
+            this.db.closeConnection();
+            return "aggiunta_indirizzo_fallita";
         }
     }
 
@@ -128,6 +154,28 @@ public class ClienteDAO {
             return (rs.getInt("indirizzoattivo"));
         } else {
             return 0;
+        }
+    }
+
+    public String diventaRider(int clienteId, String patente, String veicolo) throws SQLException {
+        try {
+            this.db.setConnection();
+            String sql = "insert into rider values (?, ?, ?)";
+            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, clienteId);
+            pstmt.setString(2, patente);
+            pstmt.setString(3, veicolo.substring(0,1).toLowerCase());
+            if(pstmt.executeUpdate() > 0){
+                this.db.closeConnection();
+                return "rider_aggiunto";
+            }else{
+                this.db.closeConnection();
+                return "aggiunta_rider_fallita";
+            }
+        } catch(PSQLException e) {
+            this.db.closeConnection();
+            System.out.println(e.getMessage());
+            return edb.getMessaggioErrore(e.getMessage());
         }
     }
 

@@ -30,30 +30,6 @@ public class IndirizzoDAO {
 
     /**********Metodi di funzionalità**********/
 
-    public String aggiungiIndirizzoConf(Indirizzo indirizzo) throws SQLException {
-        try {
-            this.db.setConnection();
-            String sql = "insert into " + this.tabella + " values (?, ?, ?, ?, ?, ?)";
-            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, indirizzo.getCliente().getClienteId());
-            pstmt.setString(2, indirizzo.getPaese());
-            pstmt.setString(3, indirizzo.getProvincia());
-            pstmt.setString(4, indirizzo.getCitta());
-            pstmt.setString(5, indirizzo.getCap());
-            pstmt.setString(6, indirizzo.getIndirizzoCivico());
-            if(pstmt.executeUpdate() > 0){
-                this.db.closeConnection();
-                return "indirizzo_aggiunto";
-            }else{
-                this.db.closeConnection();
-                return "aggiunta_indirizzo_fallita";
-            }
-        } catch(PSQLException e) {
-            this.db.closeConnection();
-            return "aggiunta_indirizzo_fallita";
-        }
-    }
-
     public String eliminaIndirizzo(Integer indirizzoid) throws SQLException {
         try {
             this.db.setConnection();

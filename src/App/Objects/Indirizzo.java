@@ -92,10 +92,6 @@ public class Indirizzo {
 
     /**********Metodi di funzionalità**********/
 
-    public String aggiungiIndirizzo(Indirizzo indirizzo) throws SQLException {
-        return this.indirizzoDAO.aggiungiIndirizzoConf(indirizzo);
-    }
-
     public String eliminaIndirizzo(Integer indirizzoid) throws SQLException {
         return this.indirizzoDAO.eliminaIndirizzo(indirizzoid);
     }
