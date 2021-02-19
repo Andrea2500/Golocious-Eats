@@ -1,10 +1,7 @@
 package App.Controller;
 
-import App.Objects.Cliente;
 import App.Objects.Gestore;
 import App.Objects.Ristorante;
-
-import java.sql.SQLException;
 
 public class ApriRistoranteController {
 

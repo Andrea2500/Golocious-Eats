@@ -1,8 +1,9 @@
 package App.Scenes.Controller;
 
-import App.Controller.MostraConsegneEffettuateController;
+import App.Objects.Cliente;
 import App.Objects.Indirizzo;
 import App.Objects.Ordine;
+import App.Objects.Rider;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,7 +20,7 @@ public class ConsegneEffettuateController extends BaseSceneController implements
 
     /**********Attributi**********/
 
-    private MostraConsegneEffettuateController mostraConsegneEffettuateController;
+    private Rider rider;
     @FXML private TableView<Ordine> consegneEffettuateTable;
     @FXML private TableColumn<Ordine,Integer> idColonna;
     @FXML private TableColumn<Ordine,String> ristoranteColonna;
@@ -31,12 +32,16 @@ public class ConsegneEffettuateController extends BaseSceneController implements
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            this.rider = new Rider(Cliente.getInstance().getClienteId(), true, false);
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         idColonna.setCellValueFactory(new PropertyValueFactory<>("ordineId"));
         ristoranteColonna.setCellValueFactory(new PropertyValueFactory<>("ristorante"));
         dataColonna.setCellValueFactory(new PropertyValueFactory<>("dataOrdine"));
         indirizzoColonna.setCellValueFactory(new PropertyValueFactory<>("indirizzo"));
-
-        try{
+        try {
             this.showOrder();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -46,8 +51,7 @@ public class ConsegneEffettuateController extends BaseSceneController implements
     /**********Metodi di funzionalità**********/
 
     private void showOrder() throws SQLException {
-        this.mostraConsegneEffettuateController = new MostraConsegneEffettuateController();
-        ObservableList<Ordine> data = this.mostraConsegneEffettuateController.getConsegne();
+        ObservableList<Ordine> data = this.rider.getConsegne();
         int count = (int) data.stream().count();
         if(count > 0) {
             this.totaleConsegneLabel.setText("Numero di consegne effettuate: "+count);

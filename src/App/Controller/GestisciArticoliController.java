@@ -16,8 +16,8 @@ public class GestisciArticoliController {
         return new Ristorante(ristorante.getRistoranteId()).getArticoli();
     }
 
-    public String switchDisponibilitaArticolo(boolean toggle, Ristorante ristorante, Articolo articolo) throws SQLException {
-        return ristorante.switchDisponibilitaArticoloDB(toggle, ristorante.getRistoranteId(), articolo.getArticoloId());
+    public void switchDisponibilitaArticolo(boolean toggle, Ristorante ristorante, Articolo articolo) throws SQLException {
+        ristorante.switchDisponibilitaArticoloDB(toggle, ristorante.getRistoranteId(), articolo.getArticoloId());
     }
 
     public String eliminaArticoloDaMenu(Ristorante ristorante, Articolo articolo) throws SQLException {

@@ -12,7 +12,6 @@ public class OrdinazioneController {
     /**********Attributi**********/
 
     Ristorante ristorante;
-    Articolo articolo;
 
     /**********Metodi**********/
 
@@ -20,17 +19,12 @@ public class OrdinazioneController {
 
     public OrdinazioneController() {
         this.ristorante = new Ristorante();
-        this.articolo = new Articolo();
     }
 
     /**********Metodi di funzionalità**********/
 
     public ObservableList<Ristorante> getListaRistoranti() throws SQLException {
         return this.ristorante.getListaRistorantiDB();
-    }
-
-    public String effettuaOrdine(Cliente cliente) {
-        return cliente.effettuaOrdine();
     }
 
 }

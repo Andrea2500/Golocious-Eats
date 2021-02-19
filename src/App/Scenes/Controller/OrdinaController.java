@@ -76,8 +76,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
         resetErrori();
         aggiornaTotale();
         if(this.cliente.getIndirizzoAttivo() != null && carrello.getArticoli().size()>0) {
-            this.ordinazioneController = new OrdinazioneController();
-            String messaggio = this.ordinazioneController.effettuaOrdine(this.cliente);
+            String messaggio = this.cliente.effettuaOrdine();
             if(messaggio.equals("ordine_effettuato")) {
                 this.cliente.setCarrello(null);
                 this.carrello = this.cliente.getCarrello();

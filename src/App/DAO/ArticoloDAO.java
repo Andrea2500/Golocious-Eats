@@ -14,7 +14,6 @@ public class ArticoloDAO {
 
     String tabella;
     Database db;
-    ObservableList<Articolo> articoli;
     ErroriDB edb;
 
     /**********Metodi**********/

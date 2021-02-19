@@ -3,7 +3,6 @@ package App.DAO;
 import App.Config.Database;
 import App.Config.ErroriDB;
 import App.Objects.Articolo;
-import App.Objects.Indirizzo;
 import App.Objects.Ristorante;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
