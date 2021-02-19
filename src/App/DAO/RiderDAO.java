@@ -33,27 +33,6 @@ public class RiderDAO {
 
     /**********Metodi di funzionalità**********/
 
-    public String diventaRiderConf(Rider rider) throws SQLException {
-        try {
-            this.db.setConnection();
-            String sql = "insert into " + this.tabella + " values (?, ?, ?)";
-            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, rider.getClienteId());
-            pstmt.setString(2, rider.getPatente());
-            pstmt.setString(3, rider.getVeicolo().substring(0,1).toLowerCase());
-            if(pstmt.executeUpdate() > 0){
-                this.db.closeConnection();
-                return "rider_aggiunto";
-            }else{
-                this.db.closeConnection();
-                return "aggiunta_rider_fallita";
-            }
-        } catch(PSQLException e) {
-            this.db.closeConnection();
-            return edb.getMessaggioErrore(e.getMessage());
-        }
-    }
-
     public void consegna(Integer ordineId) throws SQLException {
         String sql = "UPDATE ordine SET consegnato = 'true' WHERE ordineid = ?";
         this.db.setConnection();

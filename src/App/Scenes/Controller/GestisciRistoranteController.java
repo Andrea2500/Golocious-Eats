@@ -234,7 +234,6 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     public void statisticheBtn(ActionEvent e) {
         if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
-            //aggiornaRisultatiBtn();
             resetBtnColor();
             resetVHBoxManagedAndVisible();
             sceneController.setVisibile("statisticheHBox", true);

@@ -1,6 +1,5 @@
 package App.Scenes.Controller;
 
-import App.Controller.OrdinazioneController;
 import App.Objects.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,26 +25,21 @@ public class OrdinaController extends BaseSceneController implements Initializab
     @FXML Label totaleLabel;
     Cliente cliente;
     Carrello carrello;
-    OrdinazioneController ordinazioneController;
+    ObservableList<Ristorante> ristoranti;
+    ObservableList<Articolo> articoli;
 
     /**********Metodi**********/
 
     /**********Costruttori**********/
-
-    public OrdinaController() throws SQLException {
-        this.cliente = Cliente.getInstance();
-        this.carrello = this.cliente.getCarrello();
-        this.ordinazioneController = new OrdinazioneController();
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             this.cliente = Cliente.getInstance();
             this.carrello = this.cliente.getCarrello();
-            this.ordinazioneController = new OrdinazioneController();
+            this.ristoranti = new Ristorante().getListaRistorantiDB();
             mostraRistoranti();
-            mostraArticoli(new Ristorante(this.carrello.getRistoranteId()).getArticoli(), this.carrello.getRistoranteId());
+            mostraArticoli(this.trovaRistorante(this.ristoranti, this.carrello.getRistoranteId()).getArticoli(), this.carrello.getRistoranteId());
             mostraCarrello();
         } catch(SQLException throwables) {
             throwables.printStackTrace();
@@ -121,8 +115,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
     /**********Metodi di supporto**********/
 
     public void mostraRistoranti() throws SQLException {
-        ObservableList<Ristorante> ristoranti = this.ordinazioneController.getListaRistoranti();
-        for(Ristorante ristorante : ristoranti){
+        for(Ristorante ristorante : this.ristoranti){
             HBox hBox = new HBox();
             Label nomeRistorante = new Label(ristorante.getNome());
             nomeRistorante.wrapTextProperty().set(true);
@@ -132,7 +125,8 @@ public class OrdinaController extends BaseSceneController implements Initializab
             hBox.getStyleClass().add("elementoOrdina");
             hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 try {
-                    this.mostraArticoli(ristorante.getArticoli(), ristorante.getRistoranteId());
+                    this.articoli = ristorante.getArticoli();
+                    this.mostraArticoli(articoli, ristorante.getRistoranteId());
                     this.mostraCarrello();
                     resetColoriRistorante(ristorantiVBox);
                     ((Node) event.getSource()).getStyleClass().add("ristoranteSelezionato");
@@ -192,7 +186,6 @@ public class OrdinaController extends BaseSceneController implements Initializab
                         exception.printStackTrace();
                     }
                 });
-
             }else{
                 hBox.setStyle("-fx-cursor: pointer");
                 hBox.setDisable(true);
@@ -255,6 +248,15 @@ public class OrdinaController extends BaseSceneController implements Initializab
             this.carrelloVBox.getChildren().add(hBox);
         }
         this.aggiornaTotale();
+    }
+
+    public Ristorante trovaRistorante(ObservableList<Ristorante> ristoranti, int ristoranteId) {
+        for (Ristorante ristorante : ristoranti) {
+            if (ristorante.getRistoranteId().equals(ristoranteId)) {
+                return ristorante;
+            }
+        }
+        return null;
     }
 
     /**********Metodi di ripristino e di errori**********/

@@ -106,7 +106,7 @@ public class Ristorante {
     /**********Metodi di funzionalità**********/
 
     public String switchDisponibilitaArticoloDB(boolean toggle, int ristoranteid, int articoloid) throws SQLException {
-        return this.ristoranteDAO.switchDisponibilita(toggle,ristoranteid,articoloid);
+        return this.ristoranteDAO.switchDisponibilita(toggle, ristoranteid, articoloid);
     }
 
     public String aggiungiArticoloEsistenteDB(int articoloId) throws SQLException {
