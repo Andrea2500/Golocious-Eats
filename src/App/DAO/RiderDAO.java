@@ -1,16 +1,14 @@
 package App.DAO;
 
 import App.Config.Database;
-import App.Config.ErroriDB;
 import App.Objects.Ordine;
-import App.Objects.Rider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 
 public class RiderDAO {
@@ -20,7 +18,6 @@ public class RiderDAO {
     String tabella;
     Database db;
     ObservableList<Ordine> consegne;
-    ErroriDB edb = new ErroriDB();
 
     /**********Metodi**********/
 
@@ -40,8 +37,6 @@ public class RiderDAO {
         pstmt.setInt(1,ordineId);
         pstmt.executeUpdate();
     }
-
-    /**********Metodi di supporto**********/
 
     public String getVeicolo(Integer riderId) throws SQLException {
         String where="riderid = '"+riderId+"'";
@@ -71,7 +66,6 @@ public class RiderDAO {
             db.closeConnection();
             return this.consegne;
         } catch(PSQLException e) {
-            System.out.println(e.getMessage());
             return null;
         }
     }

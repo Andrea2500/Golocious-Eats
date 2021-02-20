@@ -2,7 +2,6 @@ package App.Objects;
 
 import App.DAO.GestoreDAO;
 import javafx.collections.ObservableList;
-
 import java.sql.SQLException;
 
 public class Gestore extends Cliente{
@@ -16,13 +15,9 @@ public class Gestore extends Cliente{
 
     /**********Costruttori**********/
 
-    public Gestore(Cliente cliente) throws SQLException {
+    public Gestore() throws SQLException {
         this.gestoreDAO = new GestoreDAO();
-        this.ristoranti = this.getRistorantiDB(cliente);
-    }
-
-    public Gestore() {
-        this.gestoreDAO = new GestoreDAO();
+        this.ristoranti = this.getRistorantiDB();
     }
 
     /**********Getter e Setter**********/
@@ -43,7 +38,7 @@ public class Gestore extends Cliente{
         if(idRistoranteAggiunto != 0) {
             String messaggio = rendiGestore(Cliente.getInstance().getEmail(), idRistoranteAggiunto);
             if(messaggio.equals("gestore_aggiunto")) {
-                this.getRistorantiDB(Cliente.getInstance());
+                this.getRistorantiDB();
                 return "ristorante_aperto";
             } else {
                 return "ristorante_aperto_gestore_no";
@@ -65,8 +60,8 @@ public class Gestore extends Cliente{
         return this.gestoreDAO.rendiGestore(email,ristoranteId);
     }
 
-    public ObservableList<Ristorante> getRistorantiDB(Cliente cliente) throws SQLException {
-        this.ristoranti = new Ristorante().getRistorantiDB(cliente.getClienteId());
-        return this.ristoranti;
+    public ObservableList<Ristorante> getRistorantiDB() throws SQLException {
+        return this.gestoreDAO.getRistoranti(Cliente.getInstance().getClienteId());
     }
+
 }

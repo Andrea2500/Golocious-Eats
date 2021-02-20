@@ -119,14 +119,14 @@ public class ImpostazioniController extends BaseSceneController {
 
     /**********Metodi di supporto**********/
 
-    public void resetVHBoxManagedAndVisible() {
+    private void resetVHBoxManagedAndVisible() {
         sceneController.setVisibile("vuotoVBox", false);
         sceneController.setVisibile("inserisciIndirizzoHBox", false);
         sceneController.setVisibile("gestisciIndirizziVBox", false);
         sceneController.setVisibile("diventaRiderHBox", false);
     }
 
-    public void resetBtnColor() {
+    private void resetBtnColor() {
         if(getElementById("inserisciIndirizzoHBox").isVisible()) {
             getElementById("inserisciIndirizzoBtn").setStyle("-fx-background-color: #fab338; -fx-hovered-cursor: pointer");
         } else if(getElementById("gestisciIndirizziVBox").isVisible()) {
@@ -156,7 +156,7 @@ public class ImpostazioniController extends BaseSceneController {
         }
     }
 
-    public String setIndirizzoAttivo(Indirizzo indirizzo) throws SQLException {
+    private String setIndirizzoAttivo(Indirizzo indirizzo) throws SQLException {
         String messaggio = this.cliente.aggiornaIndirizzoAttivoDB(indirizzo.getIndirizzoId());
         if(messaggio.equals("indirizzo_aggiornato")) {
             this.cliente.setIndirizzoAttivo(indirizzo);
@@ -164,7 +164,7 @@ public class ImpostazioniController extends BaseSceneController {
         return messaggio;
     }
 
-    public String eliminaIndirizzo(Indirizzo indirizzo) throws SQLException {
+    private String eliminaIndirizzo(Indirizzo indirizzo) throws SQLException {
         String messaggio = new Indirizzo().eliminaIndirizzo(indirizzo.getIndirizzoId());
         if(this.cliente.getIndirizzoAttivo() != null){
             if (indirizzo.getIndirizzoId().equals(cliente.getIndirizzoAttivo().getIndirizzoId()))
@@ -173,7 +173,7 @@ public class ImpostazioniController extends BaseSceneController {
         return messaggio;
     }
 
-    public String diventaRider(Cliente cliente, String patente, String veicolo) throws SQLException, IOException {
+    private String diventaRider(Cliente cliente, String patente, String veicolo) throws SQLException, IOException {
         String messaggio = cliente.diventaRider(patente, veicolo);
         if(messaggio.equals("rider_aggiunto")) {
             SceneController.getInstance().riderLogout();
@@ -226,7 +226,7 @@ public class ImpostazioniController extends BaseSceneController {
         inizializzaLabel("erroreIndirizzoattivoLabel", true);
     }
 
-    public void setErroriRider(String patente, String veicolo) {
+    private void setErroriRider(String patente, String veicolo) {
         if(patente.length()==0) {
             errore("errorePatenteLabel", "Inserisci una patente", true);
         }
@@ -235,20 +235,12 @@ public class ImpostazioniController extends BaseSceneController {
         }
     }
 
-    public void resetErroriRider() {
+    private void resetErroriRider() {
         inizializzaLabel("errorePatenteLabel", true);
         inizializzaLabel("erroreVeicoloLabel", false);
         inizializzaLabel("erroreRiderLabel", false);
         inizializzaLabel("erroreVeicoloLabel", true);
     }
-
-    /*
-    public void resetCampiRider() {
-
-        ((TextField) getElementById("patenteField")).setText("");
-        ((ComboBox<String>) getElementById("veicoloBox")).getSelectionModel().clearSelection();
-    }
-    */
 
     private void setErroriDB(String messaggio) {
         switch (messaggio) {

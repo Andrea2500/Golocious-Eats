@@ -1,6 +1,7 @@
 package App.Objects;
 
 import App.DAO.CarrelloDAO;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
@@ -55,7 +56,7 @@ public class Carrello {
 
     public void aggiungiAlCarrello(Articolo articolo) throws SQLException {
         this.articoli.add(articolo);
-        this.carrelloId = this.carrelloDAO.aggiornaRistoranteId(this.ristoranteId,this.carrelloId);
+        this.carrelloId = this.carrelloDAO.aggiornaRistoranteId(this.ristoranteId, this.carrelloId);
         this.carrelloDAO.sincronizzaDB(this.articoli,this.carrelloId);
     }
 
@@ -64,8 +65,6 @@ public class Carrello {
         this.carrelloId = this.carrelloDAO.aggiornaRistoranteId(this.ristoranteId,this.carrelloId);
         this.carrelloDAO.sincronizzaDB(this.articoli,this.carrelloId);
     }
-
-    /**********Metodi di supporto**********/
 
     public void svuotaCarrello() throws SQLException {
         this.articoli.clear();

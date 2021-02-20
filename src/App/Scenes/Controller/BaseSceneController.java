@@ -53,16 +53,16 @@ public class BaseSceneController {
 
     /**********Metodi di supporto**********/
 
-    public Node getElementById(String id) {
+    protected Node getElementById(String id) {
         return sceneController.getScene().lookup("#" + id);
     }
 
-    public boolean getVisibility(String id) {
+    protected boolean getVisibility(String id) {
         return sceneController.getScene().lookup("#" + id).isVisible();
 
     }
 
-    public String getValue(String id, String control) {
+    protected String getValue(String id, String control) {
         return switch (control) {
             case "textfield" -> ((TextField) sceneController.getScene().lookup("#" + id)).getText();
             case "passwordfield" -> ((PasswordField) sceneController.getScene().lookup("#" + id)).getText();
@@ -72,11 +72,11 @@ public class BaseSceneController {
         };
     }
 
-    public LocalDate getValue(String id) {
+    protected LocalDate getValue(String id) {
         return ((DatePicker) sceneController.getScene().lookup("#" + id)).getValue();
     }
 
-    public void errore(String id, String errore, boolean field){
+    protected void errore(String id, String errore, boolean field){
         Node node = this.getElementById(id);
         if(field) {
             String text = id.substring(6, id.indexOf("Label")).toLowerCase()+"Field";
@@ -85,7 +85,7 @@ public class BaseSceneController {
         ((Label) node).setText(errore);
     }
 
-    public void inizializzaLabel(String id, boolean field) {
+    protected void inizializzaLabel(String id, boolean field) {
         Node node = this.getElementById(id);
         if(field){
             String text = id.substring(6, id.indexOf("Label")).toLowerCase()+"Field";
@@ -94,7 +94,7 @@ public class BaseSceneController {
         ((Label) node).setText("");
     }
 
-    public int eta(LocalDate datanascita) {
+    protected int eta(LocalDate datanascita) {
         if(datanascita != null)
             return Period.between(datanascita, LocalDate.now()).getYears();
         else return 0;

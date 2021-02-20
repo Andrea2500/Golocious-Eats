@@ -53,7 +53,7 @@ public class Rider extends Cliente {
         this.veicolo = veicolo;
     }
 
-    public ObservableList<Ordine> getConsegneAttive() {
+    public ObservableList<Ordine> getConsegne() {
         return consegne;
     }
 
@@ -67,8 +67,6 @@ public class Rider extends Cliente {
     }
 
     /**********Metodi di funzionalità**********/
-
-
 
     public void consegna(Integer ordineId) throws SQLException {
         this.riderDAO.consegna(ordineId);

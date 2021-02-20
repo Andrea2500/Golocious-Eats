@@ -3,7 +3,6 @@ package App.DAO;
 import App.Config.Database;
 import App.Config.ErroriDB;
 import App.Objects.Articolo;
-import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
 
 import java.sql.*;
@@ -59,4 +58,5 @@ public class ArticoloDAO {
         }
         return null;
     }
+
 }

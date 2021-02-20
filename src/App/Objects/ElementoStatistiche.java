@@ -1,7 +1,5 @@
 package App.Objects;
 
-import App.DAO.ElementoStatisticheDAO;
-
 public class ElementoStatistiche {
 
     /**********Attributi**********/
@@ -10,7 +8,6 @@ public class ElementoStatistiche {
     String prezzoArticolo;
     int quantita;
     String totale;
-    ElementoStatisticheDAO elementoStatisticheDAO;
 
     /**********Metodi**********/
 
@@ -56,9 +53,5 @@ public class ElementoStatistiche {
     public void setTotale(String totale) {
         this.totale = totale;
     }
-
-    /**********Metodi di funzionalità**********/
-
-
 
 }

@@ -15,7 +15,7 @@ public class Cliente {
     String cognome;
     String email;
     String telefono;
-    String ruolo = "cliente";
+    String ruolo;
     LocalDate dataNascita;
     Indirizzo indirizzoAttivo;
     boolean auth;
@@ -29,6 +29,7 @@ public class Cliente {
     /**********Costruttori**********/
 
     public static Cliente instance;
+
     public static Cliente getInstance() {
         if (instance == null)
             instance = new Cliente();
@@ -38,6 +39,7 @@ public class Cliente {
     public Cliente() {
         this.clienteDAO = new ClienteDAO();
         this.auth = false;
+        this.ruolo = "cliente";
         this.indirizzi = FXCollections.observableArrayList();
     }
 
@@ -104,7 +106,7 @@ public class Cliente {
     public void setIndirizzoAttivo(Indirizzo indirizzoAttivo) throws SQLException {
         this.indirizzoAttivo = indirizzoAttivo;
         if(indirizzoAttivo == null)
-            this.clienteDAO.aggiornaIndirizzoAttivo(null);
+            this.clienteDAO.aggiornaIndirizzo(null);
     }
 
     public Integer getClienteId() {
@@ -166,11 +168,11 @@ public class Cliente {
     }
 
     public String aggiungiIndirizzoDB(Indirizzo indirizzo) throws SQLException {
-        return this.clienteDAO.aggiungiIndirizzoConf(indirizzo);
+        return this.clienteDAO.aggiungiIndirizzo(indirizzo);
     }
 
     public String aggiornaIndirizzoAttivoDB(Integer indirizzoId) throws SQLException {
-        return this.clienteDAO.aggiornaIndirizzoAttivo(indirizzoId);
+        return this.clienteDAO.aggiornaIndirizzo(indirizzoId);
     }
 
     public String effettuaOrdine() {
@@ -190,22 +192,14 @@ public class Cliente {
         return this.clienteDAO.getOrdini(this.clienteId);
     }
 
-    /**********Metodi di supporto**********/
-
     public void reset(){
         instance = null;
     }
 
-    public String getNomeDB(Integer id) throws SQLException {
+    /**********Metodi di supporto**********/
+
+    protected String getNomeDB(Integer id) throws SQLException {
         return this.clienteDAO.getNome(id);
-    }
-
-    public void addIndirizzo(Indirizzo indirizzo){
-        this.indirizzi.add(indirizzo);
-    }
-
-    public void removeIndirizzo(Indirizzo indirizzo) {
-        this.indirizzi.remove(indirizzo);
     }
 
 }

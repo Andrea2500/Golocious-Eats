@@ -87,10 +87,7 @@ public class CarrelloDAO {
             }
     }
 
-
-    /**********Metodi di supporto**********/
-
-    private void pulisciCarrello(int carrelloId) throws SQLException {
+    public void pulisciCarrello(int carrelloId) throws SQLException {
         String sql = "DELETE FROM articoloincarrello WHERE carrelloid = ?";
         this.db.setConnection();
         PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

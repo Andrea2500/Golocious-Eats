@@ -67,7 +67,7 @@ public class LoginController extends BaseSceneController {
 
     /**********Metodi di supporto**********/
 
-    public void setField(boolean Register){
+    private void setField(boolean Register){
         sceneController.setVisibile("nomeField", Register);
         sceneController.setVisibile("erroreNomeLabel", Register);
         sceneController.setVisibile("cognomeField", Register);
@@ -80,7 +80,7 @@ public class LoginController extends BaseSceneController {
 
     /**********Metodi di ripristino e di errori**********/
 
-    public void setErrori(String nome, String cognome, String email, String password, String telefono, LocalDate dataNascita) {
+    private void setErrori(String nome, String cognome, String email, String password, String telefono, LocalDate dataNascita) {
         if(nome.length()==0){
             errore("erroreNomeLabel", "Inserisci un nome", true);
         }
@@ -103,7 +103,7 @@ public class LoginController extends BaseSceneController {
         }
     }
 
-    public void resetErrori() {
+    private void resetErrori() {
         inizializzaLabel("erroreNomeLabel", true);
         inizializzaLabel("erroreCognomeLabel", true);
         inizializzaLabel("erroreEmailLabel", true);

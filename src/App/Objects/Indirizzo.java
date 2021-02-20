@@ -28,7 +28,7 @@ public class Indirizzo {
 
     public Indirizzo(int indirizzoId) throws SQLException {
         this.indirizzoDAO = new IndirizzoDAO();
-        this.setData(this.indirizzoDAO.getIndirizzo(indirizzoId));
+        this.aggiornaCampi(this.indirizzoDAO.getIndirizzo(indirizzoId));
     }
 
     public Indirizzo(String paese, String provincia, String citta, String cap, String indirizzoCivico) throws SQLException {
@@ -107,7 +107,7 @@ public class Indirizzo {
         return this.indirizzoCivico +", "+this.cap+", "+this.citta+", "+this.provincia+", "+this.paese;
     }
 
-    public void setData(Indirizzo indirizzo) {
+    private void aggiornaCampi(Indirizzo indirizzo) {
         this.indirizzoId = indirizzo.getIndirizzoId();
         this.paese = indirizzo.getPaese();
         this.provincia = indirizzo.getProvincia();

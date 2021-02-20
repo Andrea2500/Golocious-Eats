@@ -5,7 +5,6 @@ import App.Config.ErroriDB;
 import App.Objects.Cliente;
 import App.Objects.Indirizzo;
 import App.Objects.Ordine;
-import App.Objects.Rider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
@@ -81,21 +80,6 @@ public class ClienteDAO {
         }
     }
 
-    /**********Getter e Setter**********/
-
-    public String getRole(Integer id) throws SQLException {
-        ResultSet role;
-        String where = "clienteid = '"+id+"'";
-        role = db.queryBuilder("gestore", where);
-        if(role.next())
-            return "gestore";
-        where = "riderid = '"+id+"'";
-        role = db.queryBuilder("rider", where);
-        if(role.next())
-            return "rider";
-        return "cliente";
-    }
-
     public String getNome(Integer clienteId) throws SQLException {
         String where = "clienteid = '"+clienteId+"'";
         ResultSet rs = this.db.queryBuilder(this.tabella,where);
@@ -106,7 +90,7 @@ public class ClienteDAO {
         }
     }
 
-    public String aggiungiIndirizzoConf(Indirizzo indirizzo) throws SQLException {
+    public String aggiungiIndirizzo(Indirizzo indirizzo) throws SQLException {
         try {
             this.db.setConnection();
             String sql = "insert into indirizzo values (?, ?, ?, ?, ?, ?)";
@@ -130,7 +114,7 @@ public class ClienteDAO {
         }
     }
 
-    public String aggiornaIndirizzoAttivo(Integer indirizzoId) throws SQLException {
+    public String aggiornaIndirizzo(Integer indirizzoId) throws SQLException {
         try{
             String sql = "UPDATE "+this.tabella +" SET indirizzoattivo = "+((indirizzoId != null)?indirizzoId: "NULL" )+" WHERE clienteid = "+ Cliente.getInstance().getClienteId();
             this.db.setConnection();
@@ -174,7 +158,6 @@ public class ClienteDAO {
             }
         } catch(PSQLException e) {
             this.db.closeConnection();
-            System.out.println(e.getMessage());
             return edb.getMessaggioErrore(e.getMessage());
         }
     }
@@ -193,6 +176,21 @@ public class ClienteDAO {
         }
         db.closeConnection();
         return this.ordini;
+    }
+
+    /**********Metodi di supporto**********/
+
+    public String getRole(Integer id) throws SQLException {
+        ResultSet role;
+        String where = "clienteid = '"+id+"'";
+        role = db.queryBuilder("gestore", where);
+        if(role.next())
+            return "gestore";
+        where = "riderid = '"+id+"'";
+        role = db.queryBuilder("rider", where);
+        if(role.next())
+            return "rider";
+        return "cliente";
     }
 
 }

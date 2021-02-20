@@ -30,7 +30,7 @@ public class ConsegnaController extends BaseSceneController implements Initializ
 
     public ConsegnaController() throws SQLException {
         this.rider = new Rider(Cliente.getInstance().getClienteId(), true, true);
-        this.consegneAttive = this.rider.getConsegneAttive();
+        this.consegneAttive = this.rider.getConsegne();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ConsegnaController extends BaseSceneController implements Initializ
                         this.rider.consegna(consegna.getOrdineId());
                         this.rider.getConsegneDB(true); //aggiorna le consegne attive
                         this.consegneAttive.clear();
-                        this.consegneAttive = this.rider.getConsegneAttive();
+                        this.consegneAttive = this.rider.getConsegne();
                         this.showConsegneAttive();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();

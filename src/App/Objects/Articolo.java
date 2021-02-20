@@ -21,9 +21,6 @@ public class Articolo {
 
     /**********Costruttori**********/
 
-    public Articolo() {
-    }
-
     public Articolo(int articoloId) throws SQLException {
         this.articoloDAO = new ArticoloDAO();
         updateFields(this.articoloDAO.getArticolo(articoloId));
@@ -109,7 +106,7 @@ public class Articolo {
 
     /**********Metodi di supporto**********/
 
-    public String selezionaCategoria(String categoria){
+    private String selezionaCategoria(String categoria){
         switch (categoria){
             case "a" -> {
                 return "Antipasti";
@@ -138,7 +135,7 @@ public class Articolo {
         }
     }
 
-    public String selezionaCategoriaDB(String categoria){
+    private String selezionaCategoriaDB(String categoria){
         switch (categoria){
             case "Antipasti" -> {
                 return "a";
@@ -167,7 +164,7 @@ public class Articolo {
         }
     }
 
-    public void updateFields(Articolo articolo){
+    private void updateFields(Articolo articolo){
         this.articoloId = articolo.getArticoloId();
         this.nome = articolo.getNome();
         this.prezzo = articolo.getPrezzo();

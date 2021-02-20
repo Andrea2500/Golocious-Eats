@@ -33,7 +33,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
     /**********Costruttori**********/
 
     public GestisciRistoranteController() throws SQLException {
-        this.gestore = new Gestore(Cliente.getInstance());
+        this.gestore = new Gestore();
     }
 
     @Override
@@ -134,10 +134,10 @@ public class GestisciRistoranteController extends BaseSceneController implements
         ComboBox<Articolo> gestisciArticolo = (ComboBox<Articolo>) getElementById("gestisciarticoloField");
         Articolo articolo = gestisciArticolo.getSelectionModel().getSelectedItem();
         if(articolo != null) {
-            int index = gestisciArticolo.getSelectionModel().getSelectedIndex();
+            int indice = gestisciArticolo.getSelectionModel().getSelectedIndex();
             this.ristoranteAttivo.switchDisponibilitaArticoloDB(true, this.ristoranteAttivo.getRistoranteId(), articolo.getArticoloId());
             gestisciArticolo.setItems(this.ristoranteAttivo.getArticoliDB());
-            gestisciArticolo.getSelectionModel().select(index);
+            gestisciArticolo.getSelectionModel().select(indice);
         } else {
             setErroriGestisciArticoli();
         }
@@ -148,10 +148,10 @@ public class GestisciRistoranteController extends BaseSceneController implements
         ComboBox<Articolo> gestisciArticolo = (ComboBox<Articolo>) getElementById("gestisciarticoloField");
         Articolo articolo = gestisciArticolo.getSelectionModel().getSelectedItem();
         if(articolo != null) {
-            int index = gestisciArticolo.getSelectionModel().getSelectedIndex();
+            int indice = gestisciArticolo.getSelectionModel().getSelectedIndex();
             this.ristoranteAttivo.switchDisponibilitaArticoloDB(false, this.ristoranteAttivo.getRistoranteId(), articolo.getArticoloId());
             gestisciArticolo.setItems(this.ristoranteAttivo.getArticoliDB());
-            gestisciArticolo.getSelectionModel().select(index);
+            gestisciArticolo.getSelectionModel().select(indice);
         } else {
             setErroriGestisciArticoli();
         }

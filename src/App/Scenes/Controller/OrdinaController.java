@@ -26,6 +26,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
     Cliente cliente;
     Carrello carrello;
     ObservableList<Ristorante> ristoranti;
+    Ristorante ristoranteSelezionato;
     ObservableList<Articolo> articoli;
 
     /**********Metodi**********/
@@ -38,6 +39,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
             this.cliente = Cliente.getInstance();
             this.carrello = this.cliente.getCarrello();
             this.ristoranti = new Ristorante().getListaRistorantiDB();
+            this.ristoranteSelezionato = new Ristorante(this.carrello.getRistoranteId());
             mostraRistoranti();
             mostraArticoli(this.trovaRistorante(this.ristoranti, this.carrello.getRistoranteId()).getArticoli(), this.carrello.getRistoranteId());
             mostraCarrello();
@@ -87,13 +89,14 @@ public class OrdinaController extends BaseSceneController implements Initializab
 
     /**********Metodi di funzionalità**********/
 
-    public void eliminaDalCarrello(int indice) throws SQLException {
+    private void eliminaDalCarrello(int indice) throws SQLException {
         this.carrello.eliminaDalCarrello(indice);
         this.mostraCarrello();
         this.cliente.setCarrello(this.carrello);
     }
 
     private void aggiungiAlCarrello(Articolo articolo) throws SQLException {
+        this.carrello.setRistoranteId(ristoranteSelezionato.getRistoranteId());
         this.carrello.aggiungiAlCarrello(articolo);
         this.mostraCarrello();
         this.cliente.setCarrello(this.carrello);
@@ -114,7 +117,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
 
     /**********Metodi di supporto**********/
 
-    public void mostraRistoranti() throws SQLException {
+    private void mostraRistoranti() throws SQLException {
         for(Ristorante ristorante : this.ristoranti){
             HBox hBox = new HBox();
             Label nomeRistorante = new Label(ristorante.getNome());
@@ -125,8 +128,9 @@ public class OrdinaController extends BaseSceneController implements Initializab
             hBox.getStyleClass().add("elementoOrdina");
             hBox.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 try {
+                    this.ristoranteSelezionato = ristorante;
                     this.articoli = ristorante.getArticoli();
-                    this.mostraArticoli(articoli, ristorante.getRistoranteId());
+                    this.mostraArticoli(this.articoli, ristorante.getRistoranteId());
                     this.mostraCarrello();
                     resetColoriRistorante(ristorantiVBox);
                     ((Node) event.getSource()).getStyleClass().add("ristoranteSelezionato");
@@ -250,7 +254,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
         this.aggiornaTotale();
     }
 
-    public Ristorante trovaRistorante(ObservableList<Ristorante> ristoranti, int ristoranteId) {
+    private Ristorante trovaRistorante(ObservableList<Ristorante> ristoranti, int ristoranteId) {
         for (Ristorante ristorante : ristoranti) {
             if (ristorante.getRistoranteId().equals(ristoranteId)) {
                 return ristorante;
@@ -268,7 +272,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
         });
     }
 
-    public void setErrori() throws SQLException {
+    private void setErrori() throws SQLException {
         if(this.cliente.getIndirizzoAttivo() == null) {
             this.indirizzoLabel.setStyle("-fx-text-fill: #ff0000");
         }
@@ -277,7 +281,7 @@ public class OrdinaController extends BaseSceneController implements Initializab
         }
     }
 
-    public void resetErrori() {
+    private void resetErrori() {
         indirizzoLabel.setStyle("-fx-text-fill: #fab338");
         totaleLabel.setStyle("-fx-text-fill: #fab338");
         sceneController.setVisibile("erroreLabel", false);

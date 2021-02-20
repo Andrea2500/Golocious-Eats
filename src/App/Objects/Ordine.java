@@ -1,8 +1,6 @@
 package App.Objects;
 
 import App.DAO.OrdineDAO;
-import javafx.collections.ObservableList;
-
 import java.sql.SQLException;
 
 public class Ordine {
@@ -56,10 +54,6 @@ public class Ordine {
         this.totale = String.format("%.2f", totale).concat(" €");
         this.rider = new Rider(riderId, false, false);
         this.stato = (stato)?"Consegnato":"In consegna";
-        this.ordineDAO = new OrdineDAO();
-    }
-
-    public Ordine(){
         this.ordineDAO = new OrdineDAO();
     }
 
@@ -137,9 +131,7 @@ public class Ordine {
         this.stato = stato;
     }
 
-    /**********Metodi di funzionalità**********/
-
-    /**********Metodi di funzionalità**********/
+    /**********Metodi di supporto**********/
 
     private void aggiornaCampi(Ordine ordine) {
         this.ordineId = ordine.getOrdineId();

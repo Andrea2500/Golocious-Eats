@@ -34,7 +34,7 @@ public class RistoranteDAO {
         this.tabella = "Ristorante";
     }
 
-    /**********Metodi di supporto**********/
+    /**********Metodi di funzionalità**********/
 
     public Ristorante getRistorante(Integer ristoranteId) throws SQLException {
         String where ="ristoranteid = '"+ristoranteId+"'";
@@ -48,20 +48,7 @@ public class RistoranteDAO {
         }
     }
 
-    public ObservableList<Ristorante> getRistoranti(Integer clienteId) throws SQLException {
-        this.db.setConnection();
-        ristoranti = FXCollections.observableArrayList();
-        ResultSet rs = db.queryBuilder(this.tabella+" NATURAL JOIN Gestore", "clienteid = "+clienteId);
-        this.db.closeConnection();
-        while(rs.next()) {
-            ristoranti.add(new Ristorante(rs.getInt("ristoranteid"), rs.getString("nome"),
-                    rs.getString("indirizzo"),rs.getString("telefono"),
-                    rs.getDate("datadiapertura").toLocalDate(), getArticoli(rs.getInt("ristoranteid"))));
-        }
-        return ristoranti;
-    }
-
-    public String switchDisponibilita(boolean toogle,int ristoranteid,int articoloid) throws SQLException {
+    public void switchDisponibilita(boolean toogle,int ristoranteid,int articoloid) throws SQLException {
         try{
             this.db.setConnection();
             String sql = "UPDATE menu SET disponibile = ? WHERE ristoranteid = ? AND articoloid = ?";
@@ -71,14 +58,11 @@ public class RistoranteDAO {
             pstmt.setInt(3,articoloid);
             if(pstmt.executeUpdate() > 0){
                 this.db.closeConnection();
-                return "disponibilita_aggiornata";
             }else{
                 this.db.closeConnection();
-                return "disponibilita_fallita";
             }
         } catch(PSQLException e) {
             this.db.closeConnection();
-            return "disponibilita_fallita";
         }
     }
 

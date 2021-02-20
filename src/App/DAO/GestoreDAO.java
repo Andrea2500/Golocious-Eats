@@ -2,6 +2,9 @@ package App.DAO;
 
 import App.Config.Database;
 import App.Config.ErroriDB;
+import App.Objects.Ristorante;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.postgresql.util.PSQLException;
 
 import java.sql.PreparedStatement;
@@ -16,7 +19,8 @@ public class GestoreDAO extends ClienteDAO{
     String tabella;
     Database db;
     ErroriDB edb;
-
+    ObservableList<Ristorante> ristoranti;
+    RistoranteDAO ristoranteDAO;
 
     /**********Metodi**********/
 
@@ -26,6 +30,8 @@ public class GestoreDAO extends ClienteDAO{
         this.tabella = "gestore";
         this.db = new Database();
         this.edb = new ErroriDB();
+        this.ristoranti = FXCollections.observableArrayList();
+        this.ristoranteDAO = new RistoranteDAO();
     }
 
     /**********Metodi di funzionalità**********/
@@ -57,6 +63,18 @@ public class GestoreDAO extends ClienteDAO{
             this.db.closeConnection();
             return edb.getMessaggioErrore(e.getMessage());
         }
+    }
+
+    public ObservableList<Ristorante> getRistoranti(Integer clienteId) throws SQLException {
+        this.db.setConnection();
+        ResultSet rs = db.queryBuilder("Ristorante NATURAL JOIN Gestore", "clienteid = "+clienteId);
+        this.db.closeConnection();
+        while(rs.next()) {
+            ristoranti.add(new Ristorante(rs.getInt("ristoranteid"), rs.getString("nome"),
+                    rs.getString("indirizzo"),rs.getString("telefono"),
+                    rs.getDate("datadiapertura").toLocalDate(), this.ristoranteDAO.getArticoli(rs.getInt("ristoranteid"))));
+        }
+        return ristoranti;
     }
 
 }

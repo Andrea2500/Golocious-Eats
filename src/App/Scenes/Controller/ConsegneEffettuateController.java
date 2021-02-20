@@ -51,7 +51,7 @@ public class ConsegneEffettuateController extends BaseSceneController implements
     /**********Metodi di funzionalità**********/
 
     private void showOrder() throws SQLException {
-        ObservableList<Ordine> data = this.rider.getConsegneAttive();
+        ObservableList<Ordine> data = this.rider.getConsegne();
         int count = (int) data.stream().count();
         if(count > 0) {
             this.totaleConsegneLabel.setText("Numero di consegne effettuate: "+count);

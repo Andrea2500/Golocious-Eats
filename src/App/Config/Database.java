@@ -10,7 +10,7 @@ public class Database {
 
     /**********Metodi**********/
 
-    /**********Getter e setter**********/
+    /**********Metodi di supporto**********/
 
     public Connection getConnection(){
         return this.connection;
@@ -19,8 +19,6 @@ public class Database {
     public void setConnection() throws SQLException {
         this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/OOBD", "postgres", "root");
     }
-
-    /**********Metodi di supporto**********/
 
     public void closeConnection() throws SQLException {
         if (this.connection != null) {
