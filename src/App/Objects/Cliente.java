@@ -125,10 +125,6 @@ public class Cliente {
         this.auth = auth;
     }
 
-    public ObservableList<Indirizzo> getIndirizziDB() throws SQLException {
-        return new Indirizzo().getIndirizziDB();
-    }
-
     public ObservableList<Indirizzo> getIndirizzi() {
         return indirizzi;
     }
@@ -167,8 +163,8 @@ public class Cliente {
         return this.clienteDAO.registerConf(cliente, passwordHash);
     }
 
-    public String aggiungiIndirizzoDB(Indirizzo indirizzo) throws SQLException {
-        return this.clienteDAO.aggiungiIndirizzo(indirizzo);
+    public String aggiungiIndirizzo(Indirizzo indirizzo) throws SQLException {
+        return indirizzo.aggiungiIndirizzoDB(this);
     }
 
     public String aggiornaIndirizzoAttivoDB(Integer indirizzoId) throws SQLException {
@@ -190,6 +186,10 @@ public class Cliente {
 
     public ObservableList<Ordine> getOrdiniDB() throws SQLException {
         return this.clienteDAO.getOrdini(this.clienteId);
+    }
+
+    public ObservableList<Indirizzo> getIndirizziDB() throws SQLException {
+        return this.clienteDAO.getIndirizzi(this.clienteId);
     }
 
     public void reset(){

@@ -19,7 +19,8 @@ public class ClienteDAO {
     private String tabella;
     private Cliente cliente;
     private ObservableList<Ordine> ordini;
-    protected Database db;
+    private ObservableList<Indirizzo> indirizzi;
+    private Database db;
     private ErroriDB edb = new ErroriDB();
 
     /**********Metodi**********/
@@ -90,30 +91,6 @@ public class ClienteDAO {
         }
     }
 
-    public String aggiungiIndirizzo(Indirizzo indirizzo) throws SQLException {
-        try {
-            this.db.setConnection();
-            String sql = "insert into indirizzo values (?, ?, ?, ?, ?, ?)";
-            PreparedStatement pstmt = this.db.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setInt(1, indirizzo.getCliente().getClienteId());
-            pstmt.setString(2, indirizzo.getPaese());
-            pstmt.setString(3, indirizzo.getProvincia());
-            pstmt.setString(4, indirizzo.getCitta());
-            pstmt.setString(5, indirizzo.getCap());
-            pstmt.setString(6, indirizzo.getIndirizzoCivico());
-            if(pstmt.executeUpdate() > 0){
-                this.db.closeConnection();
-                return "indirizzo_aggiunto";
-            }else{
-                this.db.closeConnection();
-                return "aggiunta_indirizzo_fallita";
-            }
-        } catch(PSQLException e) {
-            this.db.closeConnection();
-            return "aggiunta_indirizzo_fallita";
-        }
-    }
-
     public String aggiornaIndirizzo(Integer indirizzoId) throws SQLException {
         try{
             String sql = "UPDATE "+this.tabella +" SET indirizzoattivo = "+((indirizzoId != null)?indirizzoId: "NULL" )+" WHERE clienteid = "+ Cliente.getInstance().getClienteId();
@@ -176,6 +153,19 @@ public class ClienteDAO {
         }
         db.closeConnection();
         return this.ordini;
+    }
+
+    public ObservableList<Indirizzo> getIndirizzi(Integer clienteid) throws SQLException {
+        this.indirizzi = FXCollections.observableArrayList();
+        String from = "indirizzo";
+        String where = "clienteid = '"+clienteid+"' AND eliminato = false";
+        ResultSet rs = this.db.queryBuilder(from, where);
+        while(rs.next()){
+            this.indirizzi.add(new Indirizzo(rs.getInt("indirizzoid"), rs.getString("paese"),
+                    rs.getString("provincia"),rs.getString("citta"),
+                    rs.getString("cap"),rs.getString("indirizzo")));
+        }
+        return this.indirizzi;
     }
 
     /**********Metodi di supporto**********/

@@ -12,8 +12,8 @@ public class Rider extends Cliente {
 
     private String patente;
     private String veicolo;
-    private RiderDAO riderDAO;
     private ObservableList<Ordine> consegne;
+    private RiderDAO riderDAO;
 
     /**********Metodi**********/
 

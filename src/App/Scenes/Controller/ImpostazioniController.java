@@ -39,12 +39,12 @@ public class ImpostazioniController extends BaseSceneController {
         String citta = getValue("cittaField", "textfield");
         String indirizzo = getValue("indirizzoField", "textfield");
         Indirizzo indirizzoCompleto = new Indirizzo(paese,provincia,cap,citta,indirizzo);
-        if(paese.length()>0 && provincia.length()>0 && cap.length()>0 && citta.length()>0 && indirizzo.length()>0){
-            String messaggio = this.cliente.aggiungiIndirizzoDB(indirizzoCompleto);
-            if(messaggio.equals("indirizzo_aggiunto")){
+        if(paese.length()>0 && provincia.length()>0 && cap.length()>0 && citta.length()>0 && indirizzo.length()>0) {
+            String messaggio = this.cliente.aggiungiIndirizzo(indirizzoCompleto);
+            if(messaggio.equals("indirizzo_aggiunto")) {
                 resetCampiIndirizzo();
                 ((Label)getElementById("correttoLabel")).setText("Indirizzo aggiunto correttamente");
-            } else if(messaggio.equals("aggiunta_indirizzo_fallita")){
+            } else if(messaggio.equals("aggiunta_indirizzo_fallita")) {
                 ((Label)getElementById("correttoLabel")).setText("L'indirizzo non è stato aggiunto");
             }
         } else {
@@ -165,7 +165,7 @@ public class ImpostazioniController extends BaseSceneController {
     }
 
     private String eliminaIndirizzo(Indirizzo indirizzo) throws SQLException {
-        String messaggio = new Indirizzo().eliminaIndirizzo(indirizzo.getIndirizzoId());
+        String messaggio = indirizzo.eliminaIndirizzo();
         if(this.cliente.getIndirizzoAttivo() != null){
             if (indirizzo.getIndirizzoId().equals(cliente.getIndirizzoAttivo().getIndirizzoId()))
                 this.cliente.setIndirizzoAttivo(null);

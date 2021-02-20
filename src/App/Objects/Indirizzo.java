@@ -92,12 +92,13 @@ public class Indirizzo {
 
     /**********Metodi di funzionalità**********/
 
-    public String eliminaIndirizzo(Integer indirizzoid) throws SQLException {
-        return this.indirizzoDAO.eliminaIndirizzo(indirizzoid);
+    public String aggiungiIndirizzoDB(Cliente cliente) throws SQLException {
+        this.cliente = cliente;
+        return this.indirizzoDAO.aggiungiIndirizzo(this);
     }
 
-    public ObservableList<Indirizzo> getIndirizziDB() throws SQLException {
-        return this.indirizzoDAO.getIndirizzi(this.cliente.getClienteId());
+    public String eliminaIndirizzo() throws SQLException {
+        return this.indirizzoDAO.eliminaIndirizzo(this.indirizzoId);
     }
 
     /**********Metodi di supporto**********/
