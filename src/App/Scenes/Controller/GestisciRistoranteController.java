@@ -48,6 +48,8 @@ public class GestisciRistoranteController extends BaseSceneController implements
     /**********Metodi di bottoni**********/
 
     public void inserisciArticoloBtn(ActionEvent e) {
+        resetBtnColor();
+        resetVHBoxManagedAndVisible();
         if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
             resetErroriAggiungiManualmente();
             ((ComboBox) getElementById("inserisciarticoloField")).getItems().clear();
@@ -56,12 +58,12 @@ public class GestisciRistoranteController extends BaseSceneController implements
             } catch (SQLException exception) {
                 exception.printStackTrace();
             }
-            resetBtnColor();
-            resetVHBoxManagedAndVisible();
             sceneController.setVisibile("inserisciArticoloHBox", true);
             sceneController.setCliccatoBtn("inserisciArticoloBtn");
         } else {
             e.consume();
+            sceneController.setVisibile("selezionaRistoranteVBox", true);
+            sceneController.setCliccatoBtn("selezionaRistoranteBtn");
             setErroriSelezionaRistorante();
         }
     }
@@ -111,7 +113,9 @@ public class GestisciRistoranteController extends BaseSceneController implements
     }
 
 
-    public void gestisciArticoloBtn(ActionEvent e) {
+    public void gestisciArticoliBtn(ActionEvent e) {
+        resetBtnColor();
+        resetVHBoxManagedAndVisible();
         if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
             resetErroriGestisciArticoli();
             try {
@@ -119,12 +123,12 @@ public class GestisciRistoranteController extends BaseSceneController implements
             } catch (SQLException exception) {
                 exception.printStackTrace();
             }
-            resetBtnColor();
-            resetVHBoxManagedAndVisible();
             sceneController.setVisibile("gestisciArticoliVBox", true);
             sceneController.setCliccatoBtn("gestisciArticoliBtn");
         } else {
             e.consume();
+            sceneController.setVisibile("selezionaRistoranteVBox", true);
+            sceneController.setCliccatoBtn("selezionaRistoranteBtn");
             setErroriSelezionaRistorante();
         }
     }
@@ -202,14 +206,16 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
 
     public void rendiGestoreBtn(ActionEvent e) {
+        resetBtnColor();
+        resetVHBoxManagedAndVisible();
         if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
             resetErroriRendiGestore();
-            resetBtnColor();
-            resetVHBoxManagedAndVisible();
             sceneController.setVisibile("rendiGestoreVBox", true);
             sceneController.setCliccatoBtn("rendiGestoreBtn");
         } else {
             e.consume();
+            sceneController.setVisibile("selezionaRistoranteVBox", true);
+            sceneController.setCliccatoBtn("selezionaRistoranteBtn");
             setErroriSelezionaRistorante();
         }
     }
@@ -233,13 +239,15 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
 
     public void statisticheBtn(ActionEvent e) {
+        resetBtnColor();
+        resetVHBoxManagedAndVisible();
         if (selezionaRistoranteField.getSelectionModel().getSelectedItem() != null) {
-            resetBtnColor();
-            resetVHBoxManagedAndVisible();
             sceneController.setVisibile("statisticheHBox", true);
             sceneController.setCliccatoBtn("statisticheBtn");
         } else {
             e.consume();
+            sceneController.setVisibile("selezionaRistoranteVBox", true);
+            sceneController.setCliccatoBtn("selezionaRistoranteBtn");
             setErroriSelezionaRistorante();
         }
     }
@@ -310,6 +318,7 @@ public class GestisciRistoranteController extends BaseSceneController implements
 
     public void selezionaRistoranteBtn() {
         resetErroriSelezionaRistorante();
+        selezionaRistoranteField();
         selezionaRistoranteField.setItems(this.gestore.getRistoranti());
         resetBtnColor();
         resetVHBoxManagedAndVisible();
