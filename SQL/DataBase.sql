@@ -287,7 +287,7 @@ CREATE FUNCTION assegnamento_rider(OrdineID INTEGER) RETURNS INTEGER AS $$
 					   HAVING COUNT(o.OrdineID)>=3));
 		RETURN (SELECT *
 				FROM rider_disponibili OFFSET floor(random()*(SELECT COUNT(*)
-															  FROM rider_disponibili))
+				FROM rider_disponibili))
 				LIMIT 1);
 	END
 $$ LANGUAGE plpgsql;
