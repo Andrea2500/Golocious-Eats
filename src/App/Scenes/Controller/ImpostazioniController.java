@@ -248,7 +248,7 @@ public class ImpostazioniController extends BaseSceneController {
             case "troppo_lungo" -> errore("errorePatenteLabel", "Patente troppo lunga", true);
             case "ck_indirizzo_attivo_del_cliente" -> errore("erroreIndirizzoattivoLabel","Si è verificato un errore. Riprova.",false);
             case "eliminazione_indirizzo_fallita" -> errore("erroreIndirizzoattivoLabel","Non è stato possibile eliminare l'indirizzo. Riprova.",false);
-            case "aggiunta_rider_fallita" -> errore("erroreRiderLabel", "Siamo spiacenti, si è verificato un errore", false);
+            case "rider_non_aggiunto" -> errore("erroreRiderLabel", "Siamo spiacenti, si è verificato un errore", false);
             case "ck_eta_rider" -> errore("erroreRiderLabel", "Devi essere maggiorenne per iscriverti come rider", false);
             case "rider_patente_key" -> errore("erroreRiderLabel", "La patente è già registrata", false);
         }

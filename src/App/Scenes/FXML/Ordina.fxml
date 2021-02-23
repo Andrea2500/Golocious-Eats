@@ -82,22 +82,21 @@
                   </font>
                </Label>
             </HBox>
-            <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0">
-               <children>
-                  <Label id="totaleLabel" fx:id="totaleLabel" text="Totale: ">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label id="erroreLabel" managed="false" style="-fx-text-fill: ff0000;" visible="false" wrapText="true">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children>
+            <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                  minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0">
                <padding>
-                  <Insets bottom="15.0" left="18.0" right="18.0" top="15.0" />
+                  <Insets bottom="15.0" left="18.0" right="18.0" top="15.0"/>
                </padding>
+               <Label id="totaleLabel" fx:id="totaleLabel" text="Totale: ">
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </Label>
+               <Label id="erroreLabel" managed="false" style="-fx-text-fill: ff0000;" visible="false" wrapText="true">
+                  <font>
+                     <Font size="14.0"/>
+                  </font>
+               </Label>
             </VBox>
             <HBox alignment="CENTER" layoutX="460.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="300.0" spacing="15.0">
                <Button id="svuotaCarrello" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#svuotaCarrelloBtn" prefHeight="30.0" prefWidth="100.0" text="Svuota carrello" textAlignment="CENTER" />

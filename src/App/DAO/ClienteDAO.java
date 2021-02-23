@@ -126,12 +126,12 @@ public class ClienteDAO {
             pstmt.setInt(1, clienteId);
             pstmt.setString(2, patente);
             pstmt.setString(3, veicolo.substring(0,1).toLowerCase());
-            if(pstmt.executeUpdate() > 0){
+            if(pstmt.executeUpdate() > 0) {
                 this.db.closeConnection();
                 return "rider_aggiunto";
-            }else{
+            } else {
                 this.db.closeConnection();
-                return "aggiunta_rider_fallita";
+                return "rider_non_aggiunto";
             }
         } catch(PSQLException e) {
             this.db.closeConnection();

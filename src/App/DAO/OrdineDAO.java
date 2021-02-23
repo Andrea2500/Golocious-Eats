@@ -36,12 +36,12 @@ public class OrdineDAO {
             pstmt.setInt(1, carrelloId);
             pstmt.executeUpdate();
             ResultSet rs = pstmt.getGeneratedKeys();
+            this.db.closeConnection();
             if(rs.next()) {
                 return new Ordine(rs.getInt("ordineid"), rs.getInt("ristoranteid"),
                         new SimpleDateFormat("dd/MM/yyyy HH:mm").format(rs.getTimestamp("dataordine")), rs.getFloat("totale"),
-                        rs.getInt("riderid"),rs.getBoolean("consegnato"));
+                        rs.getInt("riderid"), rs.getBoolean("consegnato"));
             }
-            this.db.closeConnection();
             return null;
         } catch(PSQLException e) {
             this.db.closeConnection();

@@ -77,7 +77,6 @@ public class OrdinaController extends BaseSceneController implements Initializab
                 this.cliente.setCarrello(null);
                 this.carrello = this.cliente.getCarrello();
                 mostraCarrello();
-                resetErrori();
                 totaleLabel.setText("Grazie per averci scelto!");
             } else {
                 setErroriDB(messaggio);
