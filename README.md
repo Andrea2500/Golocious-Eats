@@ -1,5 +1,17 @@
-# Progetto OOBD-2021
+# Golocious Eats - Ordina cibo a domicilio!
+**Golocious Eats** è una piattaforma di food delivery che ti permette di ordinare da tutti i ristoranti della catena Golocious. *Registrati subito!*
 
-Si sviluppi un sistema informativo, composto da una base di dati relazionale e un applicativo Java dotato di GUI (Swing o JavaFX), per la gestione di un sistema di consegne a domiciliodi una catena di ristorazione. Il sistema deve tenere traccia delle consegne effettuate, del negozio da cui sono partite, degli utenti che effettuano le ordinazioni, e dei riders che effettuano le consegne. Un rider è dotato di un mezzo di trasporto a sua scelta ed è associato a max 3 attività contemporaneamente. Il sistema deve permettere di associare una nuova richiesta di consegne ad un rider. Inoltre,deve essere possibile effettuare una ricerca complessa, combinando prodotti, il mezzo di trasporto del rider, una fascia di prezzo del prodotto, etc.
-#
+Dopo la registrazione effettua il tuo primo ordine per gustare le nostre specialità, avendo cura di inserire un indirizzo valido di consegna ed impostarlo come attivo.
+Una volta che il tuo ordine è stato registrato, potrai monitorarlo nella sezione *Ordini effettuati*.
+
+Se hai voglia di unirti al team di Golocious, ti basterà recarti nella sezione *Impostazioni*,  premere sulla voce *Diventa rider*  e inserire i tuoi dati.
+Non appena sarà stata verificata la tua identità potrai accedere per iniziare a consegnare e tenere traccia delle consegne effettuate.
+
+Se sei già un membro della crew e sei gestore di uno dei nostri ristoranti hai la possibilità di accedere nella tua area riservata in cui puoi gestire diversi aspetti del tuo business.
+
+-----
+
+### [Clicca qui per visualizzare la documentazione](https://communitystudentiunina-my.sharepoint.com/:b:/g/personal/andrea_pepe2_studenti_unina_it/EeDvEteC6rhMobGv9HNngtUB9Mu77WNuWM7vuoxuY6_-EQ?e=HXwjyo)
+
+-----
 Dev: Andrea Pepe - Marcello Russo
