@@ -416,7 +416,7 @@ INSERT INTO Articolo VALUES
 ('Justina Gewurztraminer Alto Adige DOC - St. Pauls', 22, 'w', null);
 
 INSERT INTO Menu VALUES
-ag(1,1), (2,1), (3,1), (4,1), (5,1), (6,1),
+(1,1), (2,1), (3,1), (4,1), (5,1), (6,1),
 (1,2), (2,2), (3,2), (4,2), (5,2), (6,2),
 (1,5), (2,5), (3,5), (4,5), (5,5), (6,5),
 (7,3), (8,3), (9,3), (10,3), (11,3),
@@ -440,16 +440,16 @@ ag(1,1), (2,1), (3,1), (4,1), (5,1), (6,1),
 (60,2), (61,2), (62,2), (63,2), (64,2), (65,2),
 (60,5), (61,5), (62,5), (63,5), (64,5), (65,5);
 
-/*
+
 INSERT INTO Cliente VALUES
-('Andrea', 'Pepe', 'andrea.pepe2@studenti.unina.it', 'andrea25', '+39 347 871 9922', '25/05/2000'),
-('Marcello', 'Russo', 'marcello.russo@studenti.unina.it', 'marcello04', '+39 366 134 7726', '04/06/2000'),
-('Vincenzo', 'Falcone', 'falcone@golocious.it', 'vincenzogolo', '+39 345 724 3434', '28/01/1990'),
-('Gian Andrea', 'Squadrilli', 'jana@golocious.it', 'janagolo', '+39 333 842 6645', '15/08/1994');
+('Andrea', 'Pepe', 'andrea.pepe2@studenti.unina.it', '5f65a616acfcc6a3b6d6a60990001bac775ce150ae854619b4da09355ed3ea15', '+39 347 871 9922', '25/05/2000'),
+('Marcello', 'Russo', 'marcello.russo@studenti.unina.it', 'd969cdee4abc55337f23b87dd5cc68025d9ddb48139c293debfb3ee65f513c86', '+39 366 134 7726', '04/06/2000'),
+('Vincenzo', 'Falcone', 'falcone@golocious.it', '2219639dabbf86ceb8f121448c71b90220a9957f0dbae284e0fa3228c08a50b1', '+39 345 724 3434', '28/01/1990'),
+('Gian Andrea', 'Squadrilli', 'jana@golocious.it', '675be351b53ae09974ebbbc425880f28b48eed05c345d55e5f2d2a7d31639a0c', '+39 333 842 6645', '15/08/1994');
 
 INSERT INTO Indirizzo VALUES
-(1, 'Italia', 'NA', 'Napoli', '80137', 'Via A. de Curtis, 20', 1),
-(2, 'Italia', 'NA', 'Napoli', '80137', 'Via Abate Minichini, 19', 2);
+(1, 'Italia', 'NA', 'Napoli', '80137', 'Via A. de Curtis, 20'),
+(2, 'Italia', 'NA', 'Napoli', '80137', 'Via Abate Minichini, 19');
 
 UPDATE Cliente
 SET indirizzoattivo = 1 WHERE clienteid = '1';
@@ -458,16 +458,16 @@ UPDATE Cliente
 SET indirizzoattivo = 2 WHERE clienteid = '2';
 
 INSERT INTO Gestore VALUES 
-(3,1,'Titolare'),
-(3,2,'Titolare'),
-(3,3,'Titolare'),
-(3,4,'Titolare'),
-(4,1,'Titolare'),
-(4,2,'Titolare'),
-(4,3,'Titolare'),
-(4,4,'Titolare');
+(3,1),
+(3,2),
+(3,3),
+(3,4),
+(3,5),
+(4,1),
+(4,2),
+(4,3),
+(4,4),
+(4,5);
 
 INSERT INTO Rider VALUES
-(1,'NA7297377W','m'),
-(2,'NA7276894N','m');
-*/
+(1,'NA7297377W','m')

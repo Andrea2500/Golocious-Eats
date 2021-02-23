@@ -35,7 +35,7 @@
         <HBox id="center" alignment="CENTER" prefHeight="430.0" prefWidth="900.0" BorderPane.alignment="CENTER">
             <VBox alignment="CENTER_RIGHT" prefHeight="430.0" prefWidth="225.0" spacing="15.0">
                 <Button id="inserisciArticoloBtn" mnemonicParsing="false" onAction="#inserisciArticoloBtn" prefHeight="30.0" prefWidth="150.0" text="Inserisci articolo" />
-                <Button id="gestisciArticoliBtn" mnemonicParsing="false" onAction="#gestisciArticoloBtn" prefHeight="30.0" prefWidth="150.0" text="Gestisci articoli" />
+                <Button id="gestisciArticoliBtn" mnemonicParsing="false" onAction="#gestisciArticoliBtn" prefHeight="30.0" prefWidth="150.0" text="Gestisci articoli" />
                 <Button id="apriRistoranteBtn" mnemonicParsing="false" onAction="#apriRistoranteBtn" prefHeight="30.0" prefWidth="150.0" text="Apri ristorante" />
                 <Button id="rendiGestoreBtn" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" onAction="#rendiGestoreBtn" prefHeight="30.0" prefWidth="150.0" text="Rendi gestore" />
                 <Button id="statisticheBtn" mnemonicParsing="false" onAction="#statisticheBtn" prefHeight="30.0" prefWidth="150.0" text="Statistiche" />
