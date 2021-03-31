@@ -10,7 +10,7 @@ public class Database {
 
     /**********Metodi**********/
 
-    /**********Metodi di supporto**********/
+    /**********Metodi di funzionalità**********/
 
     public Connection getConnection(){
         return this.connection;
